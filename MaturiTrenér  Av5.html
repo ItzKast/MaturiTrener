@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaturiTrenér</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">MaturiTrenér</div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link" id="dashboard-link">Dashboard</a>
+                    <a href="#" class="nav-link" id="test-link">Testy</a>
+                    <a href="#" class="nav-link" id="progress-link">Statistiky</a>
+                    <a href="#" class="nav-link" id="logout-link">Resetovat</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="dashboard-section">
+            <h1>Vítejte v MaturiTrenéru!</h1>
+            <p>Připravte se na maturitu efektivně a zábavně.</p>
+
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-title">Dnešní statistika</div>
+                    <p>Dokončené testy: <strong id="tests-today">0</strong></p>
+                    <p>Správné odpovědi: <strong id="correct-answers">0</strong></p>
+                    <p>Úspěšnost: <strong id="success-rate">0%</strong></p>
+                </div>
+                <div id="activity-calendar" class="calendar">
+                    <div class="calendar-header">
+                        <button id="prev-month">‹</button>
+                        <h2 id="current-month"></h2>
+                        <button id="next-month">›</button>
+                    </div>
+                    <div id="calendar-grid" class="calendar-grid">
+                        <!-- Zde se vygeneruje kalendář pomocí JavaScriptu -->
+                    </div>
+                    <div class="calendar-legend">
+                        <p>Aktivita:</p>
+                        <ul>
+                            <li>
+                                <span class="legend-color activity-low"></span> 1-2 testy
+                            </li>
+                            <li>
+                                <span class="legend-color activity-medium"></span> 3-4 testy
+                            </li>
+                            <li>
+                                <span class="legend-color activity-high"></span> 5-6 testů
+                            </li>
+                            <li>
+                                <span class="legend-color activity-very-high"></span> 7+ testů
+                            </li>
+                            <li>
+                                <span class="legend-color activity-none"></span> Žádná aktivita
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Pokrok v předmětech</h2>
+            <div class="subjects" id="subject-stats">
+                <!-- Statistiky předmětů se zde vygenerují JavaScriptem -->
+            </div>
+        </section>
+
+        <section id="test-section" style="display: none;">
+            <div class="test-header">
+                <div class="test-title">Test</div>
+                <div>
+                    <select id="subject-select" class="btn">
+                        <option value="">Vyberte předmět</option>
+                        <option value="Programovani">Programování</option>
+                        <option value="Pocitacove site">Počítačové sítě</option>
+                        <option value="Elektronika">Elektronika</option>
+                    </select>
+                    <select id="topic-select" class="btn" disabled>
+                        <option value="">Vyberte okruh</option>
+                    </select>
+                    <button id="generate-test" class="btn btn-primary" disabled>Generovat test</button>
+                    <div id="button-container"></div>
+                </div>
+            </div>
+            <div id="test-container" class="test-container" style="display: none;">
+                <!-- Test questions will be generated here -->
+            </div>
+            <p id="no-questions-message" style="display: none;">Pro daný předmět a okruh nejsou k dispozici žádné
+                otázky.</p>
+        </section>
+
+        <section id="progress-section" style="display: none;">
+            <h1>Statistiky</h1>
+            <div class="dashboard">
+                <div class="card">
+                    <div class="card-title">Denní Série</div>
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 2rem; margin-right: 0.5rem;">🔥</span>
+                        <strong id="day-streak">0</strong> dní
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Celkové XP</div>
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 2rem; margin-right: 0.5rem;">⚡</span>
+                        <strong id="total-xp">0</strong> XP
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 2rem;">
+                <div class="card-title">Detailní statistiky</div>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left; padding: 0.75rem;">Předmět</th>
+                            <th style="text-align: center; padding: 0.75rem;">Dokončené testy</th>
+                            <th style="text-align: center; padding: 0.75rem;">Správné odpovědi</th>
+                            <th style="text-align: center; padding: 0.75rem;">Úspěšnost</th>
+                        </tr>
+                    </thead>
+                    <tbody id="progress-table-body">
+                        <!-- Progress Data will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <div id="test-completion-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Výsledek testu</div>
+                <span class="close">×</span>
+            </div>
+            <div id="test-result">
+                <p>Správné odpovědi: <strong id="result-correct">0</strong> z <strong id="result-total">0</strong></p>
+                <p>Úspěšnost: <strong id="result-percentage">0%</strong></p>
+            </div>
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <button id="back-to-tests" class="btn btn-primary">Zpět na testy</button>
+            </div>
+        </div>
+    </div>
+    <input type="" file"" id="" csvFile"" style="display: none;">
+    <script src="script.js"></script>
+</body>
+
+</html>

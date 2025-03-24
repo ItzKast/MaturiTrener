@@ -1,0 +1,562 @@
+/* Stejné styly jako v původním souboru MaturiTrener v2.html */
+:root {
+    --primary: #4D57F0;
+    --secondary: #FF6B6B;
+    --success: #51D88A;
+    --warning: #FFD166;
+    --dark: #2D3748;
+    --light: #F7FAFC;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    min-height: 100vh;
+}
+
+header {
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+    font-weight: 500;
+}
+
+main {
+    padding: 2rem 0;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.subjects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.subject-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.subject-card:hover {
+    transform: translateY(-5px);
+}
+
+.subject-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--dark);
+}
+
+.subject-progress {
+    margin-top: auto;
+}
+
+.progress-bar {
+    height: 0.5rem;
+    background-color: #e2e8f0;
+    /* Light gray */
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.progress-value {
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 0.25rem;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #718096;
+    margin-top: 0.25rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.test-container {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.test-header>div {
+    display: flex;
+    align-items: center;
+    /* Zarovnání na střed svisle */
+}
+
+.test-header select,
+.test-header button {
+    margin-left: 0.5rem;
+    /* Mezera mezi selecty a tlačítkem */
+}
+
+.test-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.question {
+    margin-bottom: 2rem;
+}
+
+.question-text {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--dark);
+}
+
+.question-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.option {
+    padding: 1rem;
+    border: 1px solid var(--gray);
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #F9FAFB;
+}
+
+.option.selected {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.option.correct {
+    background-color: #51D88A;
+    /* Green */
+    color: white;
+}
+
+.option.incorrect {
+    background-color: #FF6B6B;
+    /* Red */
+    color: white;
+}
+
+.correct-answer-text {
+    font-style: italic;
+    color: #718096;
+    margin-top: 0.5rem;
+}
+
+.option {
+    cursor: pointer;
+    /* Zpět na pointer, ale upravíme v JS */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.modal-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.close {
+    font-size: 1.5rem;
+    color: #A0AEC0;
+    cursor: pointer;
+}
+
+.question {
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    padding: 1rem;
+}
+
+.option {
+    margin-bottom: 0.5rem;
+}
+
+#login-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#login-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 300px;
+}
+
+#login-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+#login-form input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--gray);
+    border-radius: 0.25rem;
+}
+
+/* Styly pro kalendář */
+.calendar {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 600px;
+    /* Uprav podle potřeby */
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calendar-header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.calendar-header button {
+    background-color: var(--light);
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.calendar-header button:hover {
+    background-color: #e2e8f0;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /* 7 sloupců pro dny v týdnu */
+    gap: 0.25rem;
+}
+
+.calendar-grid .day {
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 0.8rem;
+    color: var(--dark);
+}
+
+.calendar-grid .day:hover {
+    background-color: #f9fafb;
+}
+
+.calendar-grid .day.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.calendar-grid .day.inactive {
+    color: #cbd5e0;
+}
+
+.calendar-grid .day.activity-low {
+    background-color: #e2e8f0;
+    /* Světle šedá */
+}
+
+.calendar-grid .day.activity-medium {
+    background-color: #90caf9;
+    /* Světle modrá */
+}
+
+.calendar-grid .day.activity-high {
+    background-color: #4fc3f7;
+    /* Modrá */
+}
+
+.calendar-grid .day.activity-very-high {
+    background-color: #29b6f6;
+    /* Tmavě modrá */
+}
+
+/* Styly pro vysvětlivky kalendáře */
+.calendar-legend {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--dark);
+}
+
+.calendar-legend p {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.calendar-legend ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    /* Zajistí zalomení řádků */
+    gap: 1rem;
+}
+
+.calendar-legend li {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    border-radius: 0.25rem;
+    /* Pro zaoblené rohy */
+}
+
+/* Definice barev pro jednotlivé úrovně aktivity (musí odpovídat barvám v kalendáři) */
+.activity-low {
+    background-color: #e2e8f0;
+    /* Světle šedá */
+}
+
+.activity-medium {
+    background-color: #90caf9;
+    /* Světle modrá */
+}
+
+.activity-high {
+    background-color: #4fc3f7;
+    /* Modrá */
+}
+
+.activity-very-high {
+    background-color: #29b6f6;
+    /* Tmavě modrá */
+}
+
+.activity-none {
+    width: 0;
+    height: 0;
+}
+
+/* Styly pro mobilní zařízení (šířka obrazovky menší než 768px) */
+@media (max-width: 767px) {
+    .container {
+        padding: 0.5rem;
+        /* Menší odsazení */
+    }
+
+    .navbar {
+        flex-direction: column;
+        /* Uspořádání položek pod sebe */
+        align-items: flex-start;
+        /* Zarovnání na začátek */
+    }
+
+    .nav-links {
+        flex-direction: column;
+        /* Odkazy pod sebou */
+        gap: 0.5rem;
+        /* Menší mezery */
+        margin-top: 0.5rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        /* Menší logo */
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+        /* Jeden sloupec */
+    }
+
+    .subjects {
+        grid-template-columns: 1fr;
+        /* Jeden sloupec */
+    }
+
+    .calendar {
+        max-width: 100%;
+        /* Kalendář na celou šířku */
+        padding: 1rem;
+    }
+
+    .calendar-legend ul {
+        flex-direction: column;
+        /* Položky legendy pod sebou */
+        align-items: flex-start;
+    }
+
+    .calendar-legend li {
+        margin-right: 0;
+        /* Odstranění odsazení */
+        margin-bottom: 0.5rem;
+    }
+
+    .test-header>div {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .test-header select,
+    .test-header button {
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Styly pro tablety (šířka obrazovky mezi 768px a 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+        /* Dva sloupce */
+    }
+
+    .subjects {
+        grid-template-columns: repeat(2, 1fr);
+        /* Dva sloupce */
+    }
+}
+
+/* Pokud chcete, aby kalendář zabíral 2 sloupce v gridu */
+#activity-calendar {
+    grid-column: 1 / -1;
+    /* Začne v prvním sloupci a táhne se až do konce */
+}
+
+/* Pro větší obrazovky, aby kalendář byl vpravo */
+@media (min-width: 768px) {
+    .dashboard-cards {
+        grid-template-columns: repeat(3, 1fr);
+        /* Tři sloupce */
+    }
+
+    #activity-calendar {
+        grid-column: auto;
+        /* Reset na automatické umístění */
+    }
+}
+
+@media (min-width: 768px) {
+    .dashboard-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
