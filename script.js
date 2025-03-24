@@ -1,6 +1,3 @@
-
-// Global variables
-
 // CSV data (otázky z programování)
 const csvDataProgramovani = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
 Co je algoritmus?;Jednoznačně definovaný postup k řešení problému;Programovací jazyk;Hardwarová komponenta;Uživatelské rozhraní;Definice problému
