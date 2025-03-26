@@ -2131,7 +2131,7 @@ function generateTest() {
         submitBtn.classList.add('btn', 'btn-primary');
         submitBtn.style.marginTop = '2rem'; // Add space above button
         submitBtn.textContent = 'Odeslat odpovědi';
-        submitBtn.addEventListener('click', () => evaluateTest(db)); // Pass db instance
+        submitBtn.addEventListener('click', () => eTest(db)); // Pass db instance
         testContainer.appendChild(submitBtn);
 
         testContainer.style.display = 'block'; // Show the generated test
@@ -2145,7 +2145,7 @@ function generateTest() {
 }
 
 /**
- * Evaluates the completed test, updates user stats/achievements, saves data, shows results.
+ * es the completed test, updates user stats/achievements, saves data, shows results.
  * @param {firebase.firestore.Firestore} db - The Firestore instance.
  */
 async function evaluateTest(db) {
@@ -2286,7 +2286,6 @@ async function evaluateTest(db) {
     const todayDay = today.getDate();
 
     // Day Streak (>80% success)
-    const finalSuccessRate = total > 0 ? Math.round((correct / total) * 100) : 0; // Recalculate for streak check
     if (finalSuccessRate >= 80) {
         // More robust streak check: only increment if previous success wasn't today
         const yesterday = new Date(today);
