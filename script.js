@@ -2486,20 +2486,20 @@ function parseAllCSVData() {
     parseCSV(csvDataVykresy, "Automatizace", "Druhy výkresů v AT");
     parseCSV(csvDataRozvody, "Automatizace", "Elektrické rozvody v průmyslu");
     parseCSV(csvDataRegulace, "Automatizace", "Regulační pohony a orgány");
-    ParseCSV(csvDataAutomat, "Automatizace", "Programovatelný automat");
-    ParseCSV(csvDataRele, "Automatizace", "Relé impulzní");
-    ParseCSV(csvDataPrevodniky, "Automatizace", "Převodníky a přizpůsobovací členy");
-    ParseCSV(csvDataVystavba, "Automatizace", "Výstavba regulačního obvodu");
-    ParseCSV(csvDataMale, "Automatizace", "Malé řídící systémy");
-    ParseCSV(csvDataPrvkyvObvodech, "Automatizace", "Prvky používané v obvodech AT");
-    ParseCSV(csvDataSenzor, "Automatizace", "Senzory - rozdělení");
-    ParseCSV(csvDataBinSenzory, "Automatizace", "Analogové a binární senzory");
-    ParseCSV(csvDataPLC, "Automatizace", "PLC");
-    ParseCSV(csvDataSekvencni, "Automatizace", "Sekvenční logické obvody");
-    ParseCSV(csvDataMereni, "Automatizace", "Měření neelektrických veličin");
-    ParseCSV(csvDataTypy, "Automatizace", "Typy regulačních obvodů");
-    ParseCSV(csvDataRoboty, "Automatizace", "Roboty a jejich aplikace");
-    ParseCSV(csvDataGraficke, "Automatizace", "Grafické znázornění stavů");
+    parseCSV(csvDataAutomat, "Automatizace", "Programovatelný automat");
+    parseCSV(csvDataRele, "Automatizace", "Relé impulzní");
+    parseCSV(csvDataPrevodniky, "Automatizace", "Převodníky a přizpůsobovací členy");
+    parseCSV(csvDataVystavba, "Automatizace", "Výstavba regulačního obvodu");
+    parseCSV(csvDataMale, "Automatizace", "Malé řídící systémy");
+    parseCSV(csvDataPrvkyvObvodech, "Automatizace", "Prvky používané v obvodech AT");
+    parseCSV(csvDataSenzor, "Automatizace", "Senzory - rozdělení");
+    parseCSV(csvDataBinSenzory, "Automatizace", "Analogové a binární senzory");
+    parseCSV(csvDataPLC, "Automatizace", "PLC");
+    parseCSV(csvDataSekvencni, "Automatizace", "Sekvenční logické obvody");
+    parseCSV(csvDataMereni, "Automatizace", "Měření neelektrických veličin");
+    parseCSV(csvDataTypy, "Automatizace", "Typy regulačních obvodů");
+    parseCSV(csvDataRoboty, "Automatizace", "Roboty a jejich aplikace");
+    parseCSV(csvDataGraficke, "Automatizace", "Grafické znázornění stavů");
     console.log("Finished parsing CSV data.");
 }
 
