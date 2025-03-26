@@ -1171,13 +1171,13 @@ const achievementLevels = {
 
 // --- Firebase Configuration & Initialization ---
 const firebaseConfig = {
-    apiKey: "__FIREBASE_API_KEY__", // Placeholder
-    authDomain: "__FIREBASE_AUTH_DOMAIN__",
-    projectId: "__FIREBASE_PROJECT_ID__",
-    storageBucket: "__FIREBASE_STORAGE_BUCKET__",
-    messagingSenderId: "__FIREBASE_MESSAGING_SENDER_ID__",
-    appId: "__FIREBASE_APP_ID__",
-    measurementId: "__FIREBASE_MEASUREMENT_ID__" // Optional
+    apiKey: "AIzaSyCsaY8QZCiozpDnLbpiid3a6ilom7rp4Bk", // Replace with your actual API key
+    authDomain: "maturitrener.firebaseapp.com",
+    projectId: "maturitrener",
+    storageBucket: "maturitrener.appspot.com", // Corrected storage bucket URL if needed
+    messagingSenderId: "485827643986",
+    appId: "1:485827643986:web:838563f26c0fafda9c6d8b",
+    measurementId: "G-FLVEDE8H82D" // Optional: Firebase Analytics
 };
 
 let db;
