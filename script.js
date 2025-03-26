@@ -1063,7 +1063,138 @@ const csvDataRLC = `Otázka;Správná_odpověď;Odpověď_2;Odpověď_3;Odpově�
 "Co se stane při rezonanci v RLC obvodu?";"Impedance je minimální a proud je maximální";"Impedance je maximální a proud je minimální";"Napětí je nulové";"Proud je nulový"
 "Jaký vliv má frekvence na kapacitní reaktanci?";"S rostoucí frekvencí klesá";"S rostoucí frekvencí roste";"Nemá vliv";"S rostoucí frekvencí zůstává konstantní"
 `;
-
+const csvDataRegulacni = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je regulační obvod?;Systém tvořený regulátorem a regulovanou soustavou;Uzavřený obvod bez akčního členu;Přímé řízení;Pouze regulační ventil;Mechanický spínač
+Co je úkolem součtového členu?;Porovnává skutečnou a žádanou hodnotu regulované veličiny;Zesiluje signál;Generuje akční veličinu;Řídí napájení;Ověřuje výkon pohonu
+Co znamená zpětná vazba v regulačním obvodu?;Vrací výstupní signál zpět k porovnání se žádanou hodnotou;Zesiluje akční veličinu;Používá se k programování regulátoru;Vytváří nové vstupní veličiny;Zajišťuje napájení pohonu
+Který člen přeměňuje odchylku na akční zásah?;Regulátor;Snímač;Převodník;Měřicí člen;Relé
+Jaký je rozdíl mezi otevřeným a uzavřeným regulačním obvodem?;Uzavřený obvod má zpětnou vazbu, otevřený ne;Otevřený je bez čidel;Uzavřený nepotřebuje řízení;Otevřený nemá měřicí člen;Rozdíl není žádný
+Kdy je regulační obvod považován za stabilní?;Výstupní veličina se po změně vstupu ustálí;Nemění se výstupní veličina;Nepotřebuje vstupní veličinu;Výstup je trvale nulový;Je-li ručně ovládán
+Co určuje jakost regulace?;Přesnost a rychlost reakce obvodu;Značka regulátoru;Druh použitého signálu;Typ pohonu;Množství vodičů
+Co znamená přímé řízení?;Řízení tlačítkem v přímo spojeném obvodu;Přes stykač nebo relé;Pomocí PLC;Pomocí snímačů;Pomocí pneumatického ventilu
+Jaká barva signalizuje poruchový stav?;Červená;Zelená;Modrá;Oranžová;Bílá
+Co je programová regulace?;Regulovaná veličina se mění dle časového programu;Veličina je konstantní;Změna na základě venkovní teploty;Řízení poměrem veličin;Nepředvídatelná změna
+K čemu slouží akční člen?;Provádí zásah do regulované soustavy;Změří vstupní signál;Upravuje napětí;Přenáší data;Zpracovává signály
+Jaký je rozdíl mezi analogovým a binárním signálem?;Analogový se mění spojitě, binární má pouze dvě hodnoty;Binární signál je plynulý;Analogový pracuje pouze s 0 a 1;Binární je nepoužitelný v automatizaci;Analogový signál se nepoužívá
+Co je to regulační odchylka?;Rozdíl mezi žádanou a skutečnou hodnotou veličiny;Výstupní výkon regulátoru;Proudový zisk čidla;Časová prodleva při regulaci;Změna směru otáček
+K čemu slouží snímač v regulačním obvodu?;Měří a vyhodnocuje skutečnou hodnotu veličiny;Řídí akční člen;Změní analogový signál na digitální;Zajišťuje napájení soustavy;Zpětně upravuje signál
+Jaký typ řízení se používá při řízení bez zpětné vazby?;Ovládání;Regulace;Kybernetické řízení;Adaptivní řízení;Automatizace
+Co je funkce inteligentního senzoru?;Zpracovává a analyzuje signál v jednom modulu;Pouze měří signál;Zesiluje výstupní napětí;Přenáší proud na snímač;Detekuje barvy
+Co je remanentní relé?;Relé, které drží polohu bez napájení díky feromagnetickému jádru;Relé s trvalým proudem;Časové relé bez časovače;Spínací modul s dvojitým výstupem;Relé s pamětí programu
+Jaká je hlavní výhoda nepřímého řízení?;Možnost ovládat vysoké napětí malým proudem;Přímé spojení se zařízením;Používá se v domácnostech;Nezávislost na vzdálenosti;Zpětné řízení ventilů
+"Jaká veličina je označena jako ""u"" v regulačním obvodu?";Akční veličina;Žádaná hodnota;Měřená hodnota;Regulovaná veličina;Odchylka
+K čemu slouží časové relé se zpožděným odpadem?;Udržuje sepnutí kontaktu po určitou dobu po odpojení signálu;Sepne ihned po zapnutí;Resetuje systém;Přeruší obvod při přepětí;Generuje vysokofrekvenční signál
+`;
+const csvDataProstredky = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je to automatizace?;Řízení procesu bez přímého zásahu člověka;Řízení počítačem;Manuální ovládání;Nepřetržité sledování obsluhou;Přepínání elektrických obvodů
+Kdy člověk zasahuje do automatizovaného procesu?;Pouze při spouštění, zastavování nebo mimořádných situacích;Nepřetržitě během celého procesu;Nikdy;Každou hodinu;Po ukončení každého cyklu
+Jaké jsou technické prostředky automatizace?;Čidla, převodníky, akční členy, regulátory, řídicí počítače;Pouze senzory;Jen převodníky a motory;Výhradně softwarové prostředky;Optické kabely a relé
+Podle čeho volíme druh automatizačního prostředku?;Podle požadovaných technických a provozních vlastností;Podle ceny součástek;Podle barvy komponent;Podle velikosti zařízení;Podle délky kabelu
+Jaký je rozdíl mezi ovládáním a regulací?;Ovládání je bez zpětné vazby, regulace pracuje se zpětnou vazbou;Regulace je manuální;Ovládání využívá čidla;Regulace je rychlejší;Ovládání je přesnější
+Co je analogový signál?;Spojitě se měnící fyzikální veličina;Signál s hodnotami 0 nebo 1;Skokový signál;Náhodný signál;Signál s chybovým kódem
+Co je binární signál?;Signál se dvěma hodnotami – log. 1 a 0;Spojitě se měnící signál;Zvukový signál;Světelný signál;Skládající se z impulsů
+Jaký je rozdíl mezi analogovým a digitálním signálem?;Analogový je spojitý, digitální skokový;Digitální má více hladin;Analogový má jen 0 a 1;Digitální je vždy přesnější;Analogový je optický
+Co je střída u obdélníkového signálu?;Poměr mezi dobou zapnuto a vypnuto;Frekvence signálu;Napěťová úroveň;Šířka signálu;Doba přenosu dat
+Jaký tvar mají taktovací signály v digitální technice?;Obdélníkové a jehlové impulsy;Sinusové;Trojúhelníkové;Zvukové;Chaotické
+Co je komunikační řetězec?;Cesta, kterou signál prochází od snímače až k akčnímu členu;Sled operací v programu;Síťový kabel;Typ rozvaděče;Zpětná vazba
+Co znamená pojem tok energie?;Přenos energie spolu se signály v regulačním obvodu;Měření výkonu motoru;Ztráta energie ve vodiči;Ohřev vodičů při přenosu;Stabilita signálu
+Jaký člen zesiluje signál bez nositele energie?;Obecný člen;Snímač;Výkonový zesilovač;Motor;Měřicí člen
+Co je řízení?;Informační proces s cílem ovlivnit systém na základě měření a výpočtů;Manuální ovládání spínačů;Činnost elektrického obvodu;Programování zařízení;Distribuce energie
+Jaký je rozdíl mezi ručním a automatickým řízením?;Ruční řízení provádí člověk, automatické vykonává automat;Ruční řízení je levnější;Automatické je vždy přesnější;Automatické nepotřebuje program;Ruční má větší výkon
+Co je adaptivní řízení?;Automatické řízení se schopností samočinně volit podmínky řízení;Ruční řízení;Předem naprogramovaný proces;Ovládání tlačítky;Nepřesné řízení
+K čemu slouží čidlo v automatizační technice?;Získává informace o řízeném procesu;Vytváří výstupní signál;Spíná motor;Zastavuje systém;Zesiluje signál
+Jaký je hlavní účel signálu v automatizaci?;Přenášet informaci o veličinách v systému;Napájet čidla;Zajišťovat chlazení;Měnit mechanickou energii;Udržovat stálou teplotu
+Jaký druh signálu je nejvíce využíván ve výpočetní technice?;Binární;Analogový;Zvukový;Tepelný;Světelný
+Proč se používá kódování signálu?;Aby bylo možné přenášet informaci jednoznačně;Kvůli zvýšení výkonu;Pro chlazení vodičů;Z důvodu zjednodušení konstrukce;Pro zvýšení odporu vedení
+`;
+const csvDataLogika = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je logické řízení?;Řízení pomocí dvouhodnotových logických funkcí;Řízení pomocí proudových zesilovačů;Mechanické ovládání;Regulace teploty;Ruční řízení
+Jaké hodnoty používá dvouhodnotová logika?;1 a 0;2 a 3;5V a 12V;100 a 200;Ano a Ne
+Které tři základní logické funkce tvoří úplný soubor?;NOT, AND, OR;NAND, NOR, XOR;XOR, AND, NAND;IF, ELSE, END;A, B, C
+K čemu slouží logická funkce NOT?;Invertuje vstupní signál;Přenáší signál;Zesiluje signál;Zpožďuje signál;Detekuje chybu
+Co je funkce AND?;Výstup je 1, když všechny vstupy jsou 1;Výstup je 0, když všechny vstupy jsou 1;Výstup je 1, když alespoň jeden vstup je 1;Výstup je vždy 1;Invertuje vstup
+Co je funkce OR?;Výstup je 1, pokud alespoň jeden vstup je 1;Výstup je 1, pokud žádný vstup není 1;Výstup je 0 vždy;Vždy přerušuje signál;Spojuje signály do série
+Jaká logická funkce je opakem AND?;NAND;NOR;XOR;NOT;OR
+Co znamená zkratka NAND?;Negace funkce AND;Spojení NOT a OR;Zesilovač;Napěťový spínač;Negativní signál
+Jaký je výstup funkce NOR, pokud jsou oba vstupy 0?;1;0;-1;Nelze určit;Závisí na čase
+Jak zapisujeme logické funkce?;Booleovou algebrou, pravdivostní tabulkou, schématy;Grafickým schématem výpočtu;Pomocí UML diagramu;Číselným kódem;Binárním stromem
+Jaký typ systému používá dvouhodnotové členy jako spínače?;Logický řídicí systém;Analogový systém;Hydraulický obvod;Pneumatický systém;Mechanický stroj
+Co je kombinační logický obvod?;Výstup závisí pouze na kombinaci vstupních proměnných;Výstup závisí na předchozím stavu;Má paměť;Reaguje se zpožděním;Používá se pouze v PLC
+Co je sekvenční logický obvod?;Výstup závisí na vstupech i jejich předchozím sledu;Výstup závisí pouze na vstupu;Nemá žádnou paměť;Pouze spíná světlo;Nelze ho programovat
+Jak se značí stykač a relé ve schématu?;K;R;S;T;C
+Co označuje KM5 ve schématu?;Stykač, který spíná motor číslo 5;Relé číslo 5;Motor číslo 5;Páté čidlo;Pátý logický obvod
+Co je kontaktní řídicí systém?;Systém řízení pomocí kontaktů a tlačítek;Systém bezdrátového přenosu;Logický programovací jazyk;Výpočtový model;Pneumatická řídicí jednotka
+Jaké napětí obvykle používá kontaktní řídicí systém?;24 V DC;230 V AC;12 V AC;5 V DC;48 V DC
+Jak se označují funkční jednotky v řídicím systému?;Písmenem a číslem (např. K1, M2);Slovy;Barvou;Značkou a šipkou;Řádkem a sloupcem
+Co je základní požadavek na logický řídicí systém?;Provozní spolehlivost;Barevné značení;Nízká cena;Vysoký výkon;Pomalá odezva
+K čemu slouží dynamická šumová imunita?;Odolnost proti jednorázovým rušivým impulzům;Odolnost proti vysoké teplotě;Přesné spínání;Zvýšení rychlosti;Ochrana proti přepětí
+`;
+const csvDataVykresy = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je přehledové schéma?;Zjednodušené jednopólové instalační schéma;Schéma zapojení relé;Liniové schéma;Spojovací plán;Schéma rozvaděče
+K čemu slouží vícepólové schéma?;Zobrazuje podrobné zapojení více vodičů;Zobrazuje prostorové umístění součástek;Používá se jen pro jističe;Zobrazuje pouze napájení;Zobrazuje topologii sítě
+Jak se značí počet žil ve vodiči v jednopólovém schématu?;Počtem příčných čárek přes vedení;Barvou vodiče;Tloušťkou čáry;Typem izolace;Délkou čáry
+Co je liniové schéma?;Ukazuje funkce elektrického zařízení;Zobrazuje pouze hlavní přívody;Slouží ke značení vodičů;Zobrazuje fyzické rozmístění součástek;Zobrazuje uzemnění
+Jak jsou orientovány napájecí linie v liniovém schématu?;Svisle nebo vodorovně, + pól nahoře nebo vlevo;+ pól vždy dole;Vždy diagonálně;Nezáleží na orientaci;Pouze vodorovně
+Co je kontaktní funkční schéma?;Zjednodušené liniové schéma zakreslené vodorovně;Schéma pro silové rozvody;Digitální výkres;Schéma chlazení;Spojovací plán motorů
+Co ukazuje propojovací schéma?;Skutečné propojení mezi jednotlivými prvky;Přepětí v obvodu;Napájecí napětí;Funkci obvodu;Barvu vodičů
+K čemu slouží schéma zapojení elektrického přístroje?;Zobrazuje vnitřní zapojení přístroje se všemi spoji;Zobrazuje polohu v rozvaděči;Ukazuje zemnění;Zobrazuje druhy kabelů;Vyhodnocuje poruchy
+Co je spojovací schéma?;Zobrazuje elektrické spojení mezi přístroji jednoho zařízení;Zobrazuje signální proud;Zobrazuje napájecí zdroje;Schéma chlazení rozvaděče;Pouze schematické značení jističů
+K čemu slouží přehledový plán rozvaděče?;Ukazuje rozložení a propojení prvků v rozvaděči;Zobrazuje chlazení;Zobrazuje programování;Určuje barvy tlačítek;Zobrazuje typy kabelů
+Co určuje systém řídicího vedení?;Funkce, připojení a propojení řídicích obvodů;Barvu vodičů;Počet stykačů;Ochranu proti přepětí;Rozměry rozvaděče
+Co je řízení s postupným spínáním?;Jednotlivé prvky se spínají v daném sledu;Vše se spíná současně;Pouze výstupní členy se spínají;Není řízeno logikou;Používá se jen v PLC
+Co je reverzační zapojení?;Zapojení umožňující změnu směru otáčení motoru;Zapojení s časovým zpožděním;Zapojení s více stykači;Zapojení bez pojistek;Jednoduché reléové řízení
+Co je automatické stykačové spouštění motorů?;Motor je spouštěn pomocí stykačů bez ručního zásahu;Motor se spouští ručně;Používá se jen při výpadku napájení;Využívá analogový senzor;Spínání probíhá impulsem
+K čemu slouží návrh plošného spoje?;K vytvoření vodivého propojení mezi součástkami;K sestavení programového kódu;K montáži krytu rozvaděče;K návrhu mechanické skříně;K popisu algoritmu řízení
+Jaké zásady platí pro návrh plošného spoje?;Minimalizace rušení, správná šířka cest, oddělení signálů;Použití modrých cest;Co nejvíce vrstev;Použití pevných drátů;Použití jednoho typu kondenzátoru
+Co je význam operátorů v liniových schématech?;Řídí funkce a průběh spínání;Měří proud;Určují barvu čidel;Označují napájení;Zapisují výrobní čísla
+K čemu slouží značení vodičů?;K identifikaci propojení a usnadnění servisu;Zvyšuje proud;Zajišťuje zemnění;Připojuje ochranné prvky;Slouží k chlazení
+Jaký je účel elektrického výkresu?;Zobrazit elektrické zapojení a funkce obvodu;Zobrazit design rozvaděče;Zobrazit teplotu vodičů;Zobrazit výrobní proces;Zobrazit rychlost motoru
+Kde se zakreslují prvky ve funkčním schématu?;V pořadí, jak přicházejí do činnosti;Dle velikosti;Podle barvy;Podle výrobce;Podle hmotnosti
+`;
+const csvDataRozvody = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+K čemu slouží průmyslový elektrický rozvod?;K napájení zařízení a strojů ve výrobních provozech;K osvětlení domácností;K napájení malých spotřebičů;K připojení telefonů;K řízení domácí sítě
+Jaké napětí je běžné v silnoproudých rozvodech?;230 V / 400 V;12 V;5 V;1000 V;750 V
+K čemu slouží slaboproudé rozvody?;Pro komunikaci, signalizaci a automatizaci;Pro napájení motorů;Pro osvětlení;Pro chlazení;Pro připojení jističů
+Co jsou přípojnicové rozvody?;Systémy distribuce el. energie pomocí přípojnic;Přenosové sítě pro WiFi;Optické spoje;Spínací prvky;Zemnící systémy
+K čemu slouží záložní rozvody?;Pro případ výpadku elektrické energie;Pro připojení ventilátorů;Pro zajištění chlazení;Pro dálkové ovládání;Pro regulaci teploty
+Co je instalovaný výkon?;Součet jmenovitých výkonů všech spotřebičů;Maximální příkon sítě;Proud při poruše;Zkratový proud;Průměrný proud v obvodu
+Jaký je součinitel náročnosti v průmyslu?;0,48;1,0;0,2;0,9;0,05
+K čemu slouží výpočtové zatížení?;K dimenzování elektrického rozvodu;K výběru motoru;K určení délky vedení;K výběru pojistky;K regulaci napětí
+Co je prachotěsný přípojnicový rozvod?;Rozvod v uzavřeném kanále s krytím IP65 nebo vyšším;Standardní rozvod bez ochrany;Otevřený vodič;Vodič bez izolace;Podzemní vedení
+Jaký je přípustný pokles napětí v místě připojení motoru?;5 %;0 %;10 %;20 %;1 %
+Jaký je hlavní požadavek při připojování elektromotoru?;Dobrý účiník a účinnost;Nízká cena;Malá velikost;Tichý chod;Nízký výkon
+Co je Y-Δ spouštění motoru?;Spouštění sníženým proudem pomocí změny zapojení;Paralelní spouštění;Ruční spínání;Spínání přes tlačítko;Spouštění pomocí tepla
+K čemu slouží softstartéry?;Omezují náběhový proud motoru;Zvyšují otáčky motoru;Zastavují motor;Chladí motor;Řídí světla
+Jaký je rozběh motoru do 4 sekund?;Lehký;Střední;Těžký;Nemožný;Zrychlený
+Jaký je hlavní rozdíl mezi dodávkou 1., 2. a 3. stupně?;V úrovni zabezpečení dodávky el. energie;V typu použitých motorů;V délce kabeláže;V typu jističů;Ve velikosti rozvaděče
+Kde musí být dodávka 1. stupně vždy zajištěna?;V nemocnicích nebo kritických provozech;V běžných domácnostech;V dílně;Ve školní laboratoři;V kanceláři
+Jak se označuje dodávka 3. stupně?;Není nutné ji zajišťovat;Musí být zálohovaná;Zajišťována ze dvou zdrojů;Určena pro nemocnice;Napájení pomocí UPS
+K čemu slouží pravidla bezpečné práce na elektrickém zařízení?;K ochraně zdraví a života při práci;K rychlejší montáži;K levnějšímu provozu;K označení vodičů;K výběru jističů
+Co znamená pravidlo 'Vypni, Zajisti, Odzkoušej'?;Zajištění bezpečné práce na EZ;Spuštění zařízení;Údržba osvětlení;Příprava PLC programu;Výpočet odporu
+Co je živá část v elektrickém zařízení?;Proudovodná část určená k vedení proudu;Kovová konstrukce;Plášť rozvaděče;Vodič ochrany;Kryt přístroje
+`;
+const csvDataRegulace = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je elektrický pohon?;Souhrn zařízení zajišťujících přeměnu el. energie na mechanickou;Zesilovač napětí;Stabilizátor napětí;Snímač polohy;Ruční ovladač
+Jaké jsou hlavní části elektrického pohonu?;Elektrický motor, ovládací a jistící prvky, napájecí zdroje;Stykač, relé, jistič;Převodovka, relé, kondenzátor;PLC, motor, ventil;Spínač, transformátor, žárovka
+K čemu slouží regulační orgán?;K ovládání hodnot napětí, proudu, průtoku apod.;K připojení zařízení;K měření odporu;K detekci signálu;K přepínání světel
+Jaký je příklad elektrického regulačního orgánu?;Tranzistor;Stykač;Motor;Optočlen;Pojistka
+Jaký je příklad pneumatického regulačního orgánu?;Ventil;Relé;Motor;Stykač;Převodník
+Jaký je příklad hydraulického regulačního orgánu?;Šoupě;Čerpadlo;Zásobník;Tepelný výměník;Měnič
+Co je důležitá podmínka při volbě pohonu?;Rozsah momentu a otáček;Barva motoru;Hmotnost zařízení;Typ izolace;Materiál skříně
+Jaká je konstrukční podmínka pohonu?;Poloha motoru a tvar;Spotřeba oleje;Doba chodu;Počet kabelů;Způsob chlazení
+Jaké jsou energetické podmínky pro pohon?;Napojení na síť, mobilita, špičková zatížení;Barva krytu;Typ PLC;Délka kabelu;Typ ventilace
+Co je součinitel náročnosti (β)?;Podíl strojů současně v provozu;Napěťový zisk;Přesnost měření;Výstupní výkon;Typ izolace
+Jaké vlivy je třeba zohlednit při volbě pohonu?;Teplota, vlhkost, prašnost, chvění;Cena;Barva krytu;Typ napájení;Materiál rozvaděče
+Co je podmínka daná stupněm automatizace?;Oprávněnost použití konkrétního řešení z hlediska ekonomiky;Dostupnost čidel;Dostatek kabelů;Značka zařízení;Umístění rozvaděče
+K čemu slouží momentová charakteristika?;Popisuje vztah mezi momentem a otáčkami;Popisuje barvu motoru;Popisuje spotřebu energie;Popisuje délku kabelu;Popisuje izolační odpor
+Co je mechanika pohonu?;Řeší pohybovou rovnici motoru a zátěže;Zabývá se barvou vodičů;Popisuje uspořádání rozvaděče;Zajišťuje chlazení;Měří výkon motoru
+Jak se značí moment motoru?;MM;MZ;MP;MT;MO
+Co je to ztrátový moment?;ΔM;MZ;MM;MT;MP
+Jaký motor je součástí el. pohonu?;Stejnosměrný nebo střídavý motor;Jen krokový motor;Pouze hydraulický;Pouze pneumatický;Lineární motor
+Jaký typ pohonu má klapku nebo ventil jako regulační orgán?;Pneumatický;Elektrický;Optický;Mechanický;Tepelný
+Kde najdeme elektrické komutované motory?;V moderních řízených systémech;Ve starých osvětleních;Pouze v domácnostech;Jen v PLC;Ve vypínačích
+K čemu slouží řiditelný zdroj el. energie v pohonu?;Pro napájení vinutí motoru;Pro chlazení motoru;Pro ovládání PLC;Pro osvětlení rozvaděče;Pro měření výkonu
+`;
 // --- Data Structure for Questions ---
 let data = {
     "Programování": {
@@ -1115,6 +1246,14 @@ let data = {
         "Sériový a paralelní obvod RL, RC": [],
         "Souhrnné opakování": []
     }
+    "Automatizace": {
+        "Regulační obvody": [],
+        "Technické prstředky automatizace": [],
+        "Logická zařízení": [],
+        "Druhy výkresů v AT": [],
+        "Elektrické rozvody v průmyslu": [],
+        "Regulační orgány a pohony": []
+}
 };
 
 // --- Achievement Definitions ---
@@ -2017,6 +2156,14 @@ function parseAllCSVData() {
     parseCSV(csvDataFFDolni, "Elektronika", "Frekvenční filtr typu dolní propust");
     parseCSV(csvDataFFHorni, "Elektronika", "Frekvenční filtr typu horní propust");
     parseCSV(csvDataRLC, "Elektronika", "Sériový a paralelní obvod RL, RC");
+
+    //Automatizace
+    parseCSV(csvDataRegulacni, "Automatizace", "Regulační obvody");
+    parseCSV(csvDataTechnicke, "Automatizace", "Technické prostředky");
+    parseCSV(csvDataLogicka, "Automatizace", "Logická zařízení");
+    parseCSV(csvDataVykresy, "Automatizace", "Druhy výkresů v AT");
+    parseCSV(csvDataRozvody, "Automatizace", "Elektrické rozvody v průmyslu");
+    parseCSV(csvDataRegulace, "Automatizace", "Regulační pohony a orgány");
     console.log("Finished parsing CSV data.");
 }
 
