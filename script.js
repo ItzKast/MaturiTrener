@@ -2203,7 +2203,7 @@ async function evaluateTest(db) {
     // --- Show Results Modal ---
     if (resultCorrect) resultCorrect.textContent = correct;
     if (resultTotal) resultTotal.textContent = total;
-    finalSuccessRate = total > 0 ? Math.round((correct / total) * 100) : 0;
+    const finalSuccessRate = total > 0 ? Math.round((correct / total) * 100) : 0;
     if (resultPercentage) resultPercentage.textContent = `${finalSuccessRate}%`;
     if (modal) modal.classList.add('show'); // Use class to show modal with animation
 
