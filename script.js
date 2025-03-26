@@ -1217,6 +1217,28 @@ Kde se používají tlakové snímače?;V hydraulice, pneumatice, klimatizaci;V 
 Jak se značí čidla ve výkresech?;Písmenem B;Písmenem M;Písmenem R;Písmenem K;Písmenem L
 K čemu slouží vyhodnocovací jednotka snímače?;Zpracovává signál a přenáší ho do řídicího systému;Zvyšuje napětí;Chladí snímač;Mění frekvenci;Ovládá motor
 `;
+const csvDataRele = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je účelem elektrického měření?;Získání informací o elektrických veličinách a jejich změnách;Zvýšení napětí v obvodu;Spuštění motoru;Změna směru proudu;Programování PLC
+Jaké základní elektrické veličiny měříme?;Napětí, proud, odpor, výkon;Frekvenci, teplotu, otáčky;Rychlost, čas, tlak;Proud, barvu, polohu;Odpor, sílu, vlhkost
+Co je převodník?;Zařízení, které převádí jednu fyzikální veličinu na jinou;Zdroj napětí;Výstupní člen;Pojistka;Motor
+Jaké jsou typy převodníků?;Analogové a číslicové;Digitální a optické;Mechanické a hydraulické;Zesilovací a omezovací;Odporové a proudové
+K čemu slouží proudový transformátor?;K měření velkých proudů pomocí menších přístrojů;K transformaci napětí;K napájení motoru;K ochraně rozvodů;K přepínání fází
+Jak se značí ampérmetr ve schématu?;A;V;R;Ω;W
+Jak se značí voltmetr ve schématu?;V;A;Ω;P;U
+Jaké je zapojení ampérmetru do obvodu?;Do série;Paralelně;Bez připojení;S odporem;Do země
+Jaké je zapojení voltmetru do obvodu?;Paralelně;Do série;Bez odporu;S kondenzátorem;S pojistkou
+Co měří wattmetr?;Elektrický výkon;Odpor;Napětí;Proud;Teplotu
+Jaký přístroj se používá pro měření odporu?;Ohmmetr;Ampérmetr;Voltmetr;Wattmetr;Frekvenční měřič
+Co je čítač impulzů?;Zařízení, které počítá přijaté elektrické impulzy;Zařízení pro měření napětí;Zesilovač signálu;Časovač;Spínač
+Jaká je jednotka elektrického odporu?;Ohm (Ω);Volt (V);Ampér (A);Watt (W);Farad (F)
+Jak se značí měřicí převodník v dokumentaci?;T;M;Z;K;S
+Jaká je hlavní výhoda číslicového měření?;Větší přesnost a odolnost proti rušení;Nižší cena;Menší spotřeba;Jednodušší instalace;Větší velikost
+Jaké vlastnosti má analogový signál?;Spojitost, plynulá změna hodnoty;Skokové hodnoty;Pouze dvě úrovně;Pouze log. 1;Přenos digitálních dat
+Co je rozsah měřicího přístroje?;Rozmezí hodnot, které může měřit;Přesnost přístroje;Velikost displeje;Typ použití;Časová odezva
+Jak se značí odporový dělič napětí?;Dvě sériově zapojené odpory;Paralelní kondenzátor;Zenerova dioda;Transformátor;Spínací obvod
+Jaké chyby mohou ovlivnit měření?;Systematické a náhodné;Tepelné a akustické;Vizuální a zvukové;Lineární a nelineární;Parazitní a harmonické
+K čemu slouží kalibrace měřicího přístroje?;K zajištění přesnosti měření;K připojení k síti;K ochraně proti zkratu;K nastavení displeje;K prodloužení životnosti
+`;
 // --- Data Structure for Questions ---
 let data = {
     "Programování": {
@@ -1270,12 +1292,13 @@ let data = {
     },
     "Automatizace": {
         "Regulační obvody": [],
-        "Technické prstředky automatizace": [],
+        "Technické prstředky": [],
         "Logická zařízení": [],
         "Druhy výkresů v AT": [],
         "Elektrické rozvody v průmyslu": [],
         "Regulační orgány a pohony": [],
-        "Programovatelný automat": []
+        "Programovatelný automat": [],
+        "Relé impulzní": []
 }
 };
 
@@ -2188,6 +2211,7 @@ function parseAllCSVData() {
     parseCSV(csvDataRozvody, "Automatizace", "Elektrické rozvody v průmyslu");
     parseCSV(csvDataRegulace, "Automatizace", "Regulační pohony a orgány");
     ParseCSV(csvDataAutomat, "Automatizace", "Programovatelný automat");
+    ParseCSV(csvDataRele, "Automatizace", "Relé impulzní");
     console.log("Finished parsing CSV data.");
 }
 
