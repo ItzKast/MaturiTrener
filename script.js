@@ -1858,13 +1858,14 @@ function updateProgressSection(userData) {
         const testsCompleted = subjectData.testsCompleted || 0;
         const correctAnswers = subjectData.correctAnswers || 0;
         const successRate = subjectData.successRate || 0;
-        const totalQuestions = testsCompleted * 10; // Assuming 10 Qs/test
+        const totalQuestionsAnswered = subjectData.totalQuestionsAnswered || 0;
 
         const row = document.createElement('tr');
         row.innerHTML = `
             <td style="padding: 0.75rem;">${subject}</td>
             <td style="text-align: center; padding: 0.75rem;">${testsCompleted}</td>
-            <td style="text-align: center; padding: 0.75rem;">${correctAnswers}/${totalQuestions}</td>
+            {/* --- FIX: Use totalQuestionsAnswered for display --- */}
+            <td style="text-align: center; padding: 0.75rem;">${correctAnswers}/${totalQuestionsAnswered}</td>
             <td style="text-align: center; padding: 0.75rem;">${successRate}%</td>
         `;
         progressTableBody.appendChild(row);
