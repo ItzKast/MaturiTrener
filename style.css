@@ -1,4 +1,3 @@
-/* Stejné styly jako v původním souboru MaturiTrener v2.html */
 :root {
     --primary: #4D57F0;
     --secondary: #FF6B6B;
@@ -6,6 +5,12 @@
     --warning: #FFD166;
     --dark: #2D3748;
     --light: #F7FAFC;
+    --gray: #cbd5e0; /* Defined gray */
+    --activity-none: #ffffff; /* White or transparent for no activity */
+    --activity-low: #e2e8f0;  /* Light gray */
+    --activity-medium: #90caf9;/* Light blue */
+    --activity-high: #4fc3f7; /* Blue */
+    --activity-very-high: #29b6f6; /* Darker blue */
 }
 
 * {
@@ -18,19 +23,22 @@
 body {
     background-color: var(--light);
     min-height: 100vh;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack header, main, footer vertically */
 }
 
 header {
     background-color: var(--primary);
     color: white;
-    padding: 1rem;
+    padding: 1rem 0; /* Adjust padding */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 0 1rem; /* Horizontal padding only */
+    width: 100%;
 }
 
 .navbar {
@@ -47,6 +55,7 @@ header {
 .nav-links {
     display: flex;
     gap: 1.5rem;
+    list-style: none; /* Remove list bullets if using ul */
 }
 
 .nav-link {
@@ -54,23 +63,58 @@ header {
     text-decoration: none;
     padding: 0.5rem;
     font-weight: 500;
+    transition: opacity 0.2s;
+}
+.nav-link:hover {
+    opacity: 0.8;
 }
 
 main {
+    flex-grow: 1; /* Allow main content to fill available space */
     padding: 2rem 0;
 }
 
+/* Dashboard & Cards */
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust min size */
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.card {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem; /* Increased margin */
+    color: var(--dark);
+}
+
+.card p {
+    margin-bottom: 0.5rem;
+    color: #4a5568; /* Slightly darker text */
+}
+
+.card strong {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+/* Subject Cards */
 .subjects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -86,36 +130,48 @@ main {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added ease */
 }
 
 .subject-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
 }
 
 .subject-title {
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem; /* Increased margin */
     color: var(--dark);
 }
 
 .subject-progress {
-    margin-top: auto;
+    margin-top: auto; /* Pushes progress bar to bottom */
 }
-
+#progress-section {
+    display: grid; /* Use grid for the main section layout */
+    grid-template-columns: 1fr; /* Default: single column for mobile */
+    gap: 1.5rem; /* Consistent gap */
+}
+#progress-section > .dashboard {
+    display: grid; /* Make this a grid too */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns for Streak/XP */
+    gap: 1.5rem;
+     /* No grid-column needed in default single-column layout */
+}
 .progress-bar {
     height: 0.5rem;
     background-color: #e2e8f0;
-    /* Light gray */
     border-radius: 0.25rem;
     overflow: hidden;
+    margin-bottom: 0.5rem; /* Add space below bar */
 }
 
 .progress-value {
     height: 100%;
     background-color: var(--primary);
     border-radius: 0.25rem;
+    transition: width 0.5s ease-in-out; /* Animate progress change */
 }
 
 .progress-text {
@@ -126,22 +182,68 @@ main {
     margin-top: 0.25rem;
 }
 
+/* Buttons */
 .btn {
     padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 0.25rem;
+    border: 1px solid transparent; /* Base border */
+    border-radius: 0.375rem; /* Slightly more rounded */
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    font-size: 0.9rem;
+    line-height: 1.5; /* Ensure consistent height */
 }
 
 .btn-primary {
     background-color: var(--primary);
+    border-color: var(--primary);
     color: white;
 }
+
+.btn-primary:hover {
+    background-color: #3c45c0; /* Darker primary */
+    border-color: #3c45c0;
+}
+
+/* Style for non-primary buttons (like Register) */
+.btn:not(.btn-primary) {
+  background-color: var(--light);
+  border-color: var(--gray);
+  color: var(--dark);
+}
+.btn:not(.btn-primary):hover {
+  background-color: #e2e8f0; /* Slightly darker light gray */
+  border-color: #a0aec0; /* Darker gray border */
+}
+
+
+/* Test Section */
+.test-header {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem; /* Add gap between items */
+}
+
+.test-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-right: auto; /* Push selects/button to the right */
+}
+
+.test-header > div:last-child { /* Target the div containing selects/button */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between selects/button */
+    flex-wrap: wrap; /* Allow wrapping */
+}
+
 
 .test-container {
     background-color: white;
@@ -151,150 +253,177 @@ main {
     margin-top: 2rem;
 }
 
-.test-header>div {
-    display: flex;
-    align-items: center;
-    /* Zarovnání na střed svisle */
-}
-
-.test-header select,
-.test-header button {
-    margin-left: 0.5rem;
-    /* Mezera mezi selecty a tlačítkem */
-}
-
-.test-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--dark);
-}
-
 .question {
     margin-bottom: 2rem;
+    padding-bottom: 1.5rem; /* Add space below */
+    border-bottom: 1px solid #e2e8f0; /* Separator line */
+}
+.question:last-child {
+    border-bottom: none; /* No border for the last question */
+    margin-bottom: 0; /* No margin for the last question before submit button */
 }
 
 .question-text {
-    font-size: 1.2rem;
+    font-size: 1.1rem; /* Slightly smaller */
     margin-bottom: 1rem;
     color: var(--dark);
+    font-weight: 500; /* Make it slightly bolder */
+    line-height: 1.5;
 }
 
 .question-options {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem; /* Increased gap */
 }
 
 .option {
-    padding: 1rem;
+    padding: 0.9rem 1.2rem; /* Adjust padding */
     border: 1px solid var(--gray);
-    border-radius: 0.25rem;
+    border-radius: 0.375rem;
     cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    line-height: 1.5;
+    background-color: white; /* Default background */
 }
 
 .option:hover {
-    background-color: #F9FAFB;
+    background-color: #f7fafc; /* Very light gray on hover */
+    border-color: #a0aec0;
 }
 
 .option.selected {
-    background-color: var(--primary);
-    color: white;
+    background-color: #dbeafe; /* Light blue for selected */
+    color: var(--primary);
     border-color: var(--primary);
+    font-weight: 500;
 }
 
+/* Styles after evaluation */
 .option.correct {
-    background-color: #51D88A;
-    /* Green */
-    color: white;
+    background-color: #d1fae5; /* Light green */
+    color: #065f46; /* Dark green text */
+    border-color: var(--success);
+    font-weight: 500;
 }
 
 .option.incorrect {
-    background-color: #FF6B6B;
-    /* Red */
-    color: white;
+    background-color: #fee2e2; /* Light red */
+    color: #991b1b; /* Dark red text */
+    border-color: var(--secondary);
+    font-weight: 500;
 }
 
-.correct-answer-text {
-    font-style: italic;
-    color: #718096;
-    margin-top: 0.5rem;
+.option.correct.selected { /* Ensure selected correct stays green */
+     background-color: #d1fae5;
+     color: #065f46;
+     border-color: var(--success);
 }
 
-.option {
-    cursor: pointer;
-    /* Zpět na pointer, ale upravíme v JS */
-}
 
+/* Modal */
 .modal {
-    display: none;
+    display: none; /* Hidden by default */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    opacity: 0; /* Start invisible for animation */
+    transition: opacity 0.3s ease;
 }
+.modal.show { /* Add this class via JS to show modal */
+    display: flex;
+    opacity: 1;
+}
+
 
 .modal-content {
     background-color: white;
     padding: 2rem;
     border-radius: 0.5rem;
-    max-width: 500px;
-    width: 100%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 450px; /* Slightly smaller */
+    width: 90%; /* Use percentage for responsiveness */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center content */
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
+    align-items: center; /* Align title and close button */
     margin-bottom: 1.5rem;
+    border-bottom: 1px solid #e2e8f0; /* Separator */
+    padding-bottom: 1rem;
 }
 
 .modal-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem; /* Larger title */
     font-weight: 600;
     color: var(--dark);
 }
 
 .close {
-    font-size: 1.5rem;
-    color: #A0AEC0;
+    font-size: 1.8rem; /* Larger close button */
+    color: #718096;
     cursor: pointer;
+    line-height: 1;
+    background: none;
+    border: none;
+    padding: 0;
+}
+.close:hover {
+    color: var(--dark);
 }
 
-.question {
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    padding: 1rem;
-}
-
-.option {
+#test-result p {
+    font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    color: #4a5568;
+}
+#test-result strong {
+    font-weight: 600;
+    color: var(--dark);
 }
 
+
+/* Login Section */
 #login-section {
-    display: flex;
+    display: none; /* Initially hidden, shown by JS */
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: calc(100vh - 150px); /* Adjust based on header/footer height */
+    padding: 2rem 0;
 }
 
 #login-form {
     background-color: white;
-    padding: 2rem;
+    padding: 2.5rem; /* More padding */
     border-radius: 0.5rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    width: 300px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 350px; /* Limit width */
 }
+
+#login-form h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+    font-size: 1.5rem;
+}
+
 
 #login-form label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
+    color: #4a5568;
+    font-size: 0.9rem;
 }
 
 #login-form input {
@@ -302,19 +431,42 @@ main {
     padding: 0.75rem;
     margin-bottom: 1rem;
     border: 1px solid var(--gray);
-    border-radius: 0.25rem;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+}
+#login-form input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(77, 87, 240, 0.2);
 }
 
-/* Styly pro kalendář */
+
+#login-form button {
+    width: 100%;
+    margin-top: 0.5rem; /* Space between buttons */
+}
+#login-form button#login-btn {
+     margin-top: 1rem; /* More space above first button */
+}
+
+
+#login-message {
+    color: var(--secondary);
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+    min-height: 1.2em; /* Reserve space for message */
+}
+
+/* Calendar */
 .calendar {
     background-color: white;
     border-radius: 0.5rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     padding: 1.5rem;
-    margin-top: 2rem;
-    width: 100%;
-    max-width: 600px;
-    /* Uprav podle potřeby */
+    /* margin-top: 2rem; Removed, using grid gap */
+    /* width: 100%; No need, grid handles it */
+    /* max-width: 600px; Removed, let grid handle it */
 }
 
 .calendar-header {
@@ -328,76 +480,90 @@ main {
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--dark);
+    text-transform: capitalize; /* Capitalize month name */
 }
 
 .calendar-header button {
-    background-color: var(--light);
+    background-color: transparent; /* Cleaner look */
     border: none;
-    border-radius: 0.25rem;
-    padding: 0.5rem 0.75rem;
+    border-radius: 50%; /* Circular buttons */
+    width: 32px; /* Fixed size */
+    height: 32px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s;
+    color: var(--primary);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .calendar-header button:hover {
-    background-color: #e2e8f0;
+    background-color: #eef2ff; /* Very light primary */
 }
 
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    /* 7 sloupců pro dny v týdnu */
-    gap: 0.25rem;
+    gap: 0.35rem; /* Slightly larger gap */
 }
 
 .calendar-grid .day {
     text-align: center;
-    padding: 0.5rem;
+    aspect-ratio: 1 / 1; /* Make days square */
     border-radius: 0.25rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s, transform 0.1s;
     font-size: 0.8rem;
     color: var(--dark);
+    display: flex; /* Center number vertically */
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent; /* Base border */
+    background-color: var(--activity-none); /* Default background */
 }
 
 .calendar-grid .day:hover {
-    background-color: #f9fafb;
+    background-color: #f8fafc; /* Lighter hover */
+    transform: scale(1.05);
 }
 
-.calendar-grid .day.active {
-    background-color: var(--primary);
-    color: white;
+.calendar-grid .day.active { /* Today's date */
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    font-weight: 600;
+    background-color: #eef2ff; /* Light primary highlight */
 }
 
 .calendar-grid .day.inactive {
-    color: #cbd5e0;
+    color: var(--gray);
+    background-color: transparent; /* No background for inactive days */
+    cursor: default;
+    pointer-events: none; /* Not clickable */
 }
 
-.calendar-grid .day.activity-low {
-    background-color: #e2e8f0;
-    /* Světle šedá */
-}
+/* Activity colors */
+.calendar-grid .day.activity-low { background-color: var(--activity-low); }
+.calendar-grid .day.activity-medium { background-color: var(--activity-medium); }
+.calendar-grid .day.activity-high { background-color: var(--activity-high); }
+.calendar-grid .day.activity-very-high { background-color: var(--activity-very-high); }
 
-.calendar-grid .day.activity-medium {
-    background-color: #90caf9;
-    /* Světle modrá */
-}
-
-.calendar-grid .day.activity-high {
-    background-color: #4fc3f7;
-    /* Modrá */
-}
-
+/* Ensure text is readable on colored backgrounds */
+.calendar-grid .day.activity-medium,
+.calendar-grid .day.activity-high,
 .calendar-grid .day.activity-very-high {
-    background-color: #29b6f6;
-    /* Tmavě modrá */
+   color: #fff; /* White text for darker backgrounds */
+}
+.calendar-grid .day.activity-low {
+   color: #555; /* Darker text for light gray */
 }
 
-/* Styly pro vysvětlivky kalendáře */
+
+/* Calendar Legend */
 .calendar-legend {
     margin-top: 1rem;
-    font-size: 0.9rem;
-    color: var(--dark);
+    font-size: 0.8rem; /* Smaller legend text */
+    color: #4a5568;
 }
 
 .calendar-legend p {
@@ -411,152 +577,230 @@ main {
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    /* Zajistí zalomení řádků */
-    gap: 1rem;
+    gap: 0.5rem 1rem; /* Vertical and horizontal gap */
 }
 
 .calendar-legend li {
     display: flex;
     align-items: center;
-    margin-right: 1rem;
 }
 
 .legend-color {
     display: inline-block;
-    width: 1rem;
-    height: 1rem;
-    margin-right: 0.5rem;
-    border-radius: 0.25rem;
-    /* Pro zaoblené rohy */
+    width: 0.9rem;
+    height: 0.9rem;
+    margin-right: 0.4rem;
+    border-radius: 0.2rem;
+    border: 1px solid rgba(0,0,0,0.1); /* Subtle border */
 }
 
-/* Definice barev pro jednotlivé úrovně aktivity (musí odpovídat barvám v kalendáři) */
-.activity-low {
-    background-color: #e2e8f0;
-    /* Světle šedá */
+/* Apply legend colors */
+.legend-color.activity-none { background-color: var(--activity-none); border-color: var(--gray); }
+.legend-color.activity-low { background-color: var(--activity-low); }
+.legend-color.activity-medium { background-color: var(--activity-medium); }
+.legend-color.activity-high { background-color: var(--activity-high); }
+.legend-color.activity-very-high { background-color: var(--activity-very-high); }
+
+/* --- Achievement Card Styles --- */
+.achievement-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust min width if needed */
+    gap: 1rem;
 }
 
-.activity-medium {
-    background-color: #90caf9;
-    /* Světle modrá */
+.achievement-container li {
+    background-color: #f8fafc;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.activity-high {
-    background-color: #4fc3f7;
-    /* Modrá */
+.achievement-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Space between icon and name */
+    margin-bottom: 0.5rem;
 }
 
-.activity-very-high {
-    background-color: #29b6f6;
-    /* Tmavě modrá */
+
+.achievement-icon {
+    font-size: 1.5rem; /* Icon size */
 }
 
-.activity-none {
-    width: 0;
-    height: 0;
+.achievement-name {
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 1rem;
 }
 
-/* Styly pro mobilní zařízení (šířka obrazovky menší než 768px) */
+.achievement-details {
+    font-size: 0.85rem;
+    color: #4a5568;
+}
+
+.achievement-level {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.achievement-progress {
+    margin-top: 0.5rem; /* Space above progress bar */
+}
+
+.achievement-value {
+    font-size: 0.8rem;
+    color: #718096;
+    margin-top: 0.25rem; /* Space below progress bar */
+    text-align: right; /* Align value to the right */
+}
+.achievement-value .current {
+    font-weight: 500;
+    color: var(--dark);
+}
+.achievement-value .next {
+    color: #a0aec0;
+}
+.achievement-value .max {
+    font-weight: bold;
+    color: var(--success);
+}
+
+.no-achievements { /* Style for the placeholder message */
+    grid-column: 1 / -1; /* Make it span all columns if grid is used */
+    text-align: center;
+    padding: 2rem;
+    color: #718096;
+}
+
+
+/* Responsive Adjustments */
 @media (max-width: 767px) {
     .container {
-        padding: 0.5rem;
-        /* Menší odsazení */
+        padding: 0 0.75rem; /* Slightly more padding */
     }
 
     .navbar {
         flex-direction: column;
-        /* Uspořádání položek pod sebe */
         align-items: flex-start;
-        /* Zarovnání na začátek */
     }
 
     .nav-links {
         flex-direction: column;
-        /* Odkazy pod sebou */
         gap: 0.5rem;
-        /* Menší mezery */
         margin-top: 0.5rem;
+        width: 100%; /* Make links take full width */
+    }
+    .nav-link {
+        padding: 0.75rem 0.5rem; /* More vertical padding */
+        text-align: center;
+        background-color: rgba(255,255,255, 0.1); /* Slight background */
+        border-radius: 0.25rem;
     }
 
     .logo {
         font-size: 1.5rem;
-        /* Menší logo */
     }
 
-    .dashboard {
-        grid-template-columns: 1fr;
-        /* Jeden sloupec */
-    }
-
-    .subjects {
-        grid-template-columns: 1fr;
-        /* Jeden sloupec */
+    .dashboard, .subjects {
+        grid-template-columns: 1fr; /* Single column */
     }
 
     .calendar {
         max-width: 100%;
-        /* Kalendář na celou šířku */
         padding: 1rem;
     }
 
     .calendar-legend ul {
         flex-direction: column;
-        /* Položky legendy pod sebou */
         align-items: flex-start;
+        gap: 0.5rem;
     }
 
-    .calendar-legend li {
-        margin-right: 0;
-        /* Odstranění odsazení */
-        margin-bottom: 0.5rem;
+    .test-header {
+        flex-direction: column;
+        align-items: stretch; /* Stretch items */
     }
-
-    .test-header>div {
+    .test-title {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+     .test-header > div:last-child {
         flex-direction: column;
         align-items: stretch;
-    }
+     }
 
     .test-header select,
     .test-header button {
-        margin-left: 0;
+        width: 100%; /* Full width selects/button */
         margin-top: 0.5rem;
     }
+    .test-header select:first-child {
+        margin-top: 0; /* No top margin for first select */
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    #login-form {
+        max-width: 90%;
+    }
 }
 
-/* Styly pro tablety (šířka obrazovky mezi 768px a 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
-    .dashboard {
+    .dashboard, .subjects {
         grid-template-columns: repeat(2, 1fr);
-        /* Dva sloupce */
     }
-
-    .subjects {
-        grid-template-columns: repeat(2, 1fr);
-        /* Dva sloupce */
-    }
-}
-
-/* Pokud chcete, aby kalendář zabíral 2 sloupce v gridu */
-#activity-calendar {
-    grid-column: 1 / -1;
-    /* Začne v prvním sloupci a táhne se až do konce */
-}
-
-/* Pro větší obrazovky, aby kalendář byl vpravo */
-@media (min-width: 768px) {
-    .dashboard-cards {
-        grid-template-columns: repeat(3, 1fr);
-        /* Tři sloupce */
-    }
-
     #activity-calendar {
-        grid-column: auto;
-        /* Reset na automatické umístění */
+        grid-column: 1 / -1; /* Calendar spans both columns */
     }
 }
-
 @media (min-width: 768px) {
-    .dashboard-cards {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    #progress-section {
+         /* Maybe 2 columns, with achievements/table spanning */
+         grid-template-columns: 1fr 1fr;
+    }
+     #progress-section > .dashboard {
+         grid-column: 1 / -1; /* Span full width */
+     }
+     #progress-section > .card:has(#achievement-list) {
+         grid-column: 1 / -1; /* Span full width */
+     }
+     #progress-section > .card:has(table) {
+         grid-column: 1 / -1; /* Span full width */
+     }
+}
+@media (min-width: 992px) {
+    #progress-section {
+        /* Create 3 columns: Streak/XP | Achievements */
+        grid-template-columns: repeat(3, 1fr);
+        /* OR explicit sizes: grid-template-columns: 1fr 1fr 2fr; */
+        align-items: start; /* Align items to the top */
+    }
+
+    /* Place Streak/XP card(s) in the first column(s) */
+    #progress-section > .dashboard {
+        grid-column: 1 / 3; /* Span first two columns */
+        /* Ensure Streak/XP are side-by-side within this */
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Place Achievements card in the third column */
+    #progress-section > .card:has(#achievement-list) {
+        grid-column: 3 / 4; /* Occupy the third column */
+        grid-row: 1 / 3; /* Span potentially multiple rows if content below is shorter */
+        margin-top: 0; /* Align with top row */
+    }
+
+    /* Place Table card below Streak/XP */
+    #progress-section > .card:has(table) {
+        grid-column: 1 / 3; /* Span first two columns, below the dashboard */
+        margin-top: 1.5rem; /* Add space if needed, or rely on gap */
     }
 }
