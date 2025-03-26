@@ -1195,6 +1195,28 @@ Jaký typ pohonu má klapku nebo ventil jako regulační orgán?;Pneumatický;El
 Kde najdeme elektrické komutované motory?;V moderních řízených systémech;Ve starých osvětleních;Pouze v domácnostech;Jen v PLC;Ve vypínačích
 K čemu slouží řiditelný zdroj el. energie v pohonu?;Pro napájení vinutí motoru;Pro chlazení motoru;Pro ovládání PLC;Pro osvětlení rozvaděče;Pro měření výkonu
 `;
+const csvDataAutomat = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je čidlo?;Zařízení, které převádí fyzikální veličinu na elektrický signál;Zařízení na ochranu proti přepětí;Spínač vysokého napětí;Mechanická pojistka;Zdroj napájení
+K čemu slouží snímač?;Měří fyzikální veličinu a převádí ji na elektrický signál;Generuje mechanický pohyb;Ovládá motor;Řídí stykač;Stabilizuje napětí
+Jaký je rozdíl mezi čidlem a snímačem?;Čidlo snímá, snímač převádí na elektrický signál;Není žádný rozdíl;Snímač je vždy větší;Čidlo měří napětí;Snímač má paměť
+Jaké jsou druhy čidel podle fyzikální veličiny?;Teplotní, tlakové, polohové, rychlostní, průtokové;Optické, zvukové, radiofrekvenční;Digitální, analogové, binární;Mikrovlnné, ultrazvukové, zvukové;Hydraulické, pneumatické
+Jak se dělí snímače podle výstupu?;Analogové a digitální;Vstupní a výstupní;Ruční a automatické;Lineární a nelineární;Vysokonapěťové a nízkonapěťové
+Kde se využívají teplotní čidla?;V topných systémech, klimatizacích, výrobě;Pouze ve školství;Ve spínačích světel;V napájecích zdrojích;V LED osvětlovačích
+Jak pracuje odporové teplotní čidlo?;Jeho odpor se mění s teplotou;Vydává zvuk;Přerušuje obvod;Zesiluje signál;Snižuje napětí
+Co je termočlánek?;Dva různé kovy generující napětí v závislosti na teplotě;Odporový vodič;Teplotní senzor s optickým výstupem;Spínač;Pojistka
+Jak pracuje indukční snímač?;Vytváří magnetické pole a detekuje kovové předměty;Měří tlak vzduchu;Reaguje na světlo;Přijímá rádiové vlny;Vysílá ultrazvuk
+K čemu slouží kapacitní snímač?;Detekuje objekty s odlišnou permitivitou;Měří napětí;Zesiluje proud;Přepíná signály;Řídí motor
+Kde se využívají ultrazvukové snímače?;Pro měření vzdáleností a detekci překážek;V elektrických pohonech;Pro měření napětí;V mechanických spínačích;V topných tělesech
+Jaký typ snímače použijeme pro měření otáček?;Otáčkoměr nebo inkrementální snímač;Teplotní senzor;Kapacitní čidlo;Termočlánek;Tlakové čidlo
+Jaký snímač se používá pro detekci polohy?;Indukční nebo optický snímač;Teplotní čidlo;Tlakový spínač;Releové čidlo;Zesilovač signálu
+Jak funguje optický snímač?;Vysílá a přijímá světelný paprsek;Zesiluje světlo;Zachycuje zvukové vlny;Převádí teplo na proud;Detekuje vlhkost
+Co je to PIR čidlo?;Pasivní infračervené čidlo na pohyb osob;Tlakový senzor;Optická závora;Ultrazvukový senzor;Snímač hluku
+Jaký je hlavní princip Hallova senzoru?;Detekce změny magnetického pole;Měření napětí;Sledování proudu;Zesílení signálu;Přenos světla
+Jaký je výstup většiny digitálních snímačů?;Logická 1 nebo 0;Analogové napětí;PWM signál;Sinusový průběh;Střídavý proud
+Kde se používají tlakové snímače?;V hydraulice, pneumatice, klimatizaci;V osvětlení;V elektrických pohonech;V mikrofonech;V bezpečnostních spínačích
+Jak se značí čidla ve výkresech?;Písmenem B;Písmenem M;Písmenem R;Písmenem K;Písmenem L
+K čemu slouží vyhodnocovací jednotka snímače?;Zpracovává signál a přenáší ho do řídicího systému;Zvyšuje napětí;Chladí snímač;Mění frekvenci;Ovládá motor
+`;
 // --- Data Structure for Questions ---
 let data = {
     "Programování": {
@@ -1252,7 +1274,8 @@ let data = {
         "Logická zařízení": [],
         "Druhy výkresů v AT": [],
         "Elektrické rozvody v průmyslu": [],
-        "Regulační orgány a pohony": []
+        "Regulační orgány a pohony": [],
+        "Programovatelný automat": []
 }
 };
 
@@ -2159,11 +2182,12 @@ function parseAllCSVData() {
 
     //Automatizace
     parseCSV(csvDataRegulacni, "Automatizace", "Regulační obvody");
-    parseCSV(csvDataTechnicke, "Automatizace", "Technické prostředky");
+    parseCSV(csvDataProstredky, "Automatizace", "Technické prostředky");
     parseCSV(csvDataLogicka, "Automatizace", "Logická zařízení");
     parseCSV(csvDataVykresy, "Automatizace", "Druhy výkresů v AT");
     parseCSV(csvDataRozvody, "Automatizace", "Elektrické rozvody v průmyslu");
     parseCSV(csvDataRegulace, "Automatizace", "Regulační pohony a orgány");
+    ParseCSV(csvDataAutomat, "Automatizace", "Programovatelný automat");
     console.log("Finished parsing CSV data.");
 }
 
