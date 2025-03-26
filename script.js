@@ -1305,7 +1305,7 @@ Jaká je běžná struktura PLC programu?;Vstupy – zpracování – výstupy;V
 Jak PLC detekuje změnu vstupu?;Pomocí pravidelného snímání (skenovací cyklus);Ručním nastavením;Přes analogové proudy;Přes internet;Hlasovým ovládáním
 Jaké zařízení typicky komunikuje s PLC?;Čidla, motory, ventily, HMI;Televize;Mikrofon;Monitor;Mobilní telefon
 `;
-const csvDataPrvky = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+const csvDataPrvkyvObvodech = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
 Co je otevřený řídicí systém?;Systém bez zpětné vazby;Systém s adaptivními algoritmy;Systém řízený manuálně;Uzavřený regulační obvod;Systém s přímým měřením výstupu
 Co je uzavřený řídicí systém?;Systém se zpětnou vazbou;Systém bez čidel;Ruční ovládání;Jednoduché spínání;Program bez výstupů
 K čemu slouží zpětná vazba?;Porovnává výstup s požadovanou hodnotou;Napájí vstupy;Přepíná fáze;Ovládá pojistky;Zesiluje výstup
@@ -2491,7 +2491,7 @@ function parseAllCSVData() {
     ParseCSV(csvDataPrevodniky, "Automatizace", "Převodníky a přizpůsobovací členy");
     ParseCSV(csvDataVystavba, "Automatizace", "Výstavba regulačního obvodu");
     ParseCSV(csvDataMale, "Automatizace", "Malé řídící systémy");
-    ParseCSV(csvDataPrvky, "Automatizace", "Prvky používané v obvodech AT");
+    ParseCSV(csvDataPrvkyvObvodech, "Automatizace", "Prvky používané v obvodech AT");
     ParseCSV(csvDataSenzor, "Automatizace", "Senzory - rozdělení");
     ParseCSV(csvDataBinSenzory, "Automatizace", "Analogové a binární senzory");
     ParseCSV(csvDataPLC, "Automatizace", "PLC");
