@@ -2206,7 +2206,7 @@ function parseAllCSVData() {
     //Automatizace
     parseCSV(csvDataRegulacni, "Automatizace", "Regulační obvody");
     parseCSV(csvDataProstredky, "Automatizace", "Technické prostředky");
-    parseCSV(csvDataLogicka, "Automatizace", "Logická zařízení");
+    parseCSV(csvDataLogika, "Automatizace", "Logická zařízení");
     parseCSV(csvDataVykresy, "Automatizace", "Druhy výkresů v AT");
     parseCSV(csvDataRozvody, "Automatizace", "Elektrické rozvody v průmyslu");
     parseCSV(csvDataRegulace, "Automatizace", "Regulační pohony a orgány");
