@@ -2131,7 +2131,7 @@ function generateTest() {
         submitBtn.classList.add('btn', 'btn-primary');
         submitBtn.style.marginTop = '2rem'; // Add space above button
         submitBtn.textContent = 'Odeslat odpovědi';
-        submitBtn.addEventListener('click', () => eTest(db)); // Pass db instance
+        submitBtn.addEventListener('click', () => evaluateTest(db)); // Pass db instance
         testContainer.appendChild(submitBtn);
 
         testContainer.style.display = 'block'; // Show the generated test
