@@ -1041,40 +1041,31 @@ const csvDataFFHorni = `Otázka;Správná_odpověď;Odpověď_2;Odpověď_3;Odpo
 "Jaký nástroj se používá pro měření frekvence a fázového posunu?";"Osciloskop";"Multimetr";"Spektrální analyzátor";"Analyzátor signálu"  
 "Jak se počítá fázový posun ϕ z časového zpoždění Δt?";"ϕ = 360° × (Δt / T)";"ϕ = -360° × (Δt / T)";"ϕ = 180° × (Δt / T)";"ϕ = -180° × (Δt / T)"
 `;
-const csvDataRLC = `Otázka;Správná_odpověď;Odpověď_2;Odpověď_3;Odpověď_4  
-"Co je RL obvod?";"Obvod obsahující rezistor a induktor v sérii nebo paralelně";"Obvod obsahující rezistor a kondenzátor v sérii nebo paralelně";"Obvod obsahující pouze rezistor";"Obvod obsahující pouze induktor"  
-"Co je RC obvod?";"Obvod obsahující rezistor a kondenzátor v sérii nebo paralelně";"Obvod obsahující rezistor a induktor v sérii nebo paralelně";"Obvod obsahující pouze kondenzátor";"Obvod obsahující pouze rezistor"  
-"Jaký je vztah pro induktivní reaktanci?";"XL = 2πfL";"XL = 1/(2πfL)";"XL = f/L";"XL = L/f"  
-"Jaký je vztah pro kapacitní reaktanci?";"XC = 1/(2πfC)";"XC = 2πfC";"XC = C/f";"XC = f/C"  
-"Jak se vypočítá impedance RL obvodu?";"Z = √(R² + XL²)";"Z = R + XL";"Z = R * XL";"Z = XL / R"  
-"Jak se vypočítá impedance RC obvodu?";"Z = √(R² + XC²)";"Z = R + XC";"Z = R * XC";"Z = XC / R"  
-"Co je rezonance v RLC obvodu?";"Stav, kdy reaktance cívky se rovná reaktanci kondenzátoru";"Stav, kdy napětí je nulové";"Stav, kdy proud je maximální";"Stav, kdy impedance je nekonečná"  
-"Jaký je vztah pro rezonanční frekvenci?";"f0 = 1/(2π√(LC))";"f0 = 2π√(LC)";"f0 = √(LC)";"f0 = 1/(LC)"  
-"Co je kvalitní činitel Q?";"Poměr rezonanční frekvence k šířce pásma";"Poměr napětí k proudu";"Poměr výkonu ke ztrátám";"Poměr amplitudy k frekvenci"  
-"Jaká je jednotka impedance?";"Ohm (Ω)";"Farad (F)";"Henry (H)";"Siemens (S)"  
-"Jaký je vztah pro decibely v případě napětí?";"VdB = 20 * log10(V2/V1)";"VdB = 10 * log10(V2/V1)";"VdB = 30 * log10(V2/V1)";"VdB = 5 * log10(V2/V1)"  
-"Jaký je vztah pro decibely v případě výkonu?";"PdB = 10 * log10(P2/P1)";"PdB = 20 * log10(P2/P1)";"PdB = 30 * log10(P2/P1)";"PdB = 5 * log10(P2/P1)"  
-"Jaký je vztah pro fázový posun?";"ϕ = 360° * (Δt / T)";"ϕ = 180° * (Δt / T)";"ϕ = 90° * (Δt / T)";"ϕ = 45° * (Δt / T)"  
-"Jaké zařízení se používá pro měření frekvence a fázového posunu?";"Osciloskop";"Multimetr";"Analyzátor spektra";"Generátor signálu"  
-"Jaký je vztah mezi frekvencí a induktivní reaktancí?";"XL ∝ f";"XL ∝ 1/f";"XL ∝ f²";"XL ∝ 1/f²"  
-"Jaký je vztah mezi frekvencí a kapacitní reaktancí?";"XC ∝ 1/f";"XC ∝ f";"XC ∝ f²";"XC ∝ 1/f²"  
-"Jaká je fázová charakteristika sériového RL obvodu?";"Napětí na induktoru předbíhá proud o 90°";"Napětí na induktoru zpožďuje za proudem o 90°";"Napětí na rezistoru předbíhá proud o 90°";"Napětí na rezistoru zpožďuje za proudem o 90°"  
-"Jaká je fázová charakteristika sériového RC obvodu?";"Napětí na kondenzátoru zpožďuje za proudem o 90°";"Napětí na kondenzátoru předbíhá proud o 90°";"Napětí na rezistoru předbíhá proud o 90°";"Napětí na rezistoru zpožďuje za proudem o 90°"  
-"Co se stane při rezonanci v RLC obvodu?";"Impedance je minimální a proud je maximální";"Impedance je maximální a proud je minimální";"Napětí je nulové";"Proud je nulový"  
+const csvDataRLC = `Otázka;Správná_odpověď;Odpověď_2;Odpověď_3;Odpověď_4
+"Co je RL obvod?";"Obvod obsahující rezistor a induktor v sérii nebo paralelně";"Obvod obsahující rezistor a kondenzátor v sérii nebo paralelně";"Obvod obsahující pouze rezistor";"Obvod obsahující pouze induktor"
+"Co je RC obvod?";"Obvod obsahující rezistor a kondenzátor v sérii nebo paralelně";"Obvod obsahující rezistor a induktor v sérii nebo paralelně";"Obvod obsahující pouze kondenzátor";"Obvod obsahující pouze rezistor"
+"Jaký je vztah pro induktivní reaktanci?";"XL = 2πfL";"XL = 1/(2πfL)";"XL = f/L";"XL = L/f"
+"Jaký je vztah pro kapacitní reaktanci?";"XC = 1/(2πfC)";"XC = 2πfC";"XC = C/f";"XC = f/C"
+"Jak se vypočítá impedance RL obvodu?";"Z = √(R² + XL²)";"Z = R + XL";"Z = R * XL";"Z = XL / R"
+"Jak se vypočítá impedance RC obvodu?";"Z = √(R² + XC²)";"Z = R + XC";"Z = R * XC";"Z = XC / R"
+"Co je rezonance v RLC obvodu?";"Stav, kdy reaktance cívky se rovná reaktanci kondenzátoru";"Stav, kdy napětí je nulové";"Stav, kdy proud je maximální";"Stav, kdy impedance je nekonečná"
+"Jaký je vztah pro rezonanční frekvenci?";"f0 = 1/(2π√(LC))";"f0 = 2π√(LC)";"f0 = √(LC)";"f0 = 1/(LC)"
+"Co je kvalitní činitel Q?";"Poměr rezonanční frekvence k šířce pásma";"Poměr napětí k proudu";"Poměr výkonu ke ztrátám";"Poměr amplitudy k frekvenci"
+"Jaká je jednotka impedance?";"Ohm (Ω)";"Farad (F)";"Henry (H)";"Siemens (S)"
+"Jaký je vztah pro decibely v případě napětí?";"VdB = 20 * log10(V2/V1)";"VdB = 10 * log10(V2/V1)";"VdB = 30 * log10(V2/V1)";"VdB = 5 * log10(V2/V1)"
+"Jaký je vztah pro decibely v případě výkonu?";"PdB = 10 * log10(P2/P1)";"PdB = 20 * log10(P2/P1)";"PdB = 30 * log10(P2/P1)";"PdB = 5 * log10(P2/P1)"
+"Jaký je vztah pro fázový posun?";"ϕ = 360° * (Δt / T)";"ϕ = 180° * (Δt / T)";"ϕ = 90° * (Δt / T)";"ϕ = 45° * (Δt / T)"
+"Jaké zařízení se používá pro měření frekvence a fázového posunu?";"Osciloskop";"Multimetr";"Analyzátor spektra";"Generátor signálu"
+"Jaký je vztah mezi frekvencí a induktivní reaktancí?";"XL ∝ f";"XL ∝ 1/f";"XL ∝ f²";"XL ∝ 1/f²"
+"Jaký je vztah mezi frekvencí a kapacitní reaktancí?";"XC ∝ 1/f";"XC ∝ f";"XC ∝ f²";"XC ∝ 1/f²"
+"Jaká je fázová charakteristika sériového RL obvodu?";"Napětí na induktoru předbíhá proud o 90°";"Napětí na induktoru zpožďuje za proudem o 90°";"Napětí na rezistoru předbíhá proud o 90°";"Napětí na rezistoru zpožďuje za proudem o 90°"
+"Jaká je fázová charakteristika sériového RC obvodu?";"Napětí na kondenzátoru zpožďuje za proudem o 90°";"Napětí na kondenzátoru předbíhá proud o 90°";"Napětí na rezistoru předbíhá proud o 90°";"Napětí na rezistoru zpožďuje za proudem o 90°"
+"Co se stane při rezonanci v RLC obvodu?";"Impedance je minimální a proud je maximální";"Impedance je maximální a proud je minimální";"Napětí je nulové";"Proud je nulový"
 "Jaký vliv má frekvence na kapacitní reaktanci?";"S rostoucí frekvencí klesá";"S rostoucí frekvencí roste";"Nemá vliv";"S rostoucí frekvencí zůstává konstantní"
 `;
+
+// --- Data Structure for Questions ---
 let data = {
-    "Počítačové sítě": {
-        "Topologie sítí": [],
-        "Komunikace v síti": [],
-        "Pasivní prvky": [],
-        "Aktivní prvky": [],
-        "Návrh a realizace sítě": [],
-        "Bezdrátové technologie": [],
-        "Připojení počítače k lokální síti": [],
-        "Připojení k internetu": [],
-        "Souhrnné opakování": []
-    },
     "Programování": {
         "Základní pojmy z algoritmizace a programování": [],
         "Vývoj a druhy programovacích jazyků, vývojové prostředí Visual Studio": [],
@@ -1088,6 +1079,17 @@ let data = {
         "C# namespace Drawing – nástroje pro programování grafiky": [],
         "C# metody, jmenné prostory": [],
         "C# základy OOP": [],
+        "Souhrnné opakování": []
+    },
+    "Počítačové sítě": {
+        "Topologie sítí": [],
+        "Komunikace v síti": [],
+        "Pasivní prvky": [],
+        "Aktivní prvky": [],
+        "Návrh a realizace sítě": [],
+        "Bezdrátové technologie": [],
+        "Připojení počítače k lokální síti": [],
+        "Připojení k internetu": [],
         "Souhrnné opakování": []
     },
     "Elektronika": {
@@ -1114,167 +1116,677 @@ let data = {
         "Souhrnné opakování": []
     }
 };
+
+// --- Achievement Definitions ---
 const achievementLevels = {
     xpCollector: {
         name: "XP sběratel 🏆",
+        description: "Získej celkem {value} XP.", // {value} will be replaced with the next level's XP threshold
         levels: [100, 250, 500, 1000, 2500, 5000, 10000, 20000, 50000, 100000],
         unit: "XP"
     },
     unstoppable: {
         name: "Nezastavitelný 🔥",
+        description: "Dokonči úspěšně test ({value}+ dní) v řadě.", // {value} is the next streak target
         levels: [3, 7, 14, 30, 50, 75, 100, 150, 200, 365],
         unit: "dní"
     },
     flawless: {
         name: "Bezchybník 💯",
+        description: "Dokonči {value} testů bez jediné chyby.", // {value} is the next flawless test target
         levels: [5, 10, 20, 50, 100, 200, 350, 500, 750, 1000],
         unit: "testů"
     },
     winningStreak: {
         name: "Vítězná série 🥇",
+        description: "Dokonči {value} testů bez chyby v řadě za sebou.", // {value} is the next consecutive flawless test target
         levels: [3, 5, 10, 20, 30, 50, 75, 100, 150, 200],
         unit: "testů"
     },
     topicMaster: {
         name: "Znalec témat 📚",
+        description: "Dokonči alespoň jeden test z {value} různých okruhů.", // {value} is the next unique topic target
         levels: [2, 4, 6, 8, 10, 12, 15, 18, 20, 25],
         unit: "témat"
     },
     earlyBird: {
         name: "Ranní ptáče 🌅",
+        description: "Dokonči {value} testů mezi 5:00 a 8:00 ráno.", // {value} is the next early test target
         levels: [1, 3, 7, 14, 30, 50, 75, 100, 150, 200],
         unit: "testů"
     },
     nightOwl: {
         name: "Večerní sova 🌙",
+        description: "Dokonči {value} testů mezi 21:00 a 1:00 v noci.", // {value} is the next late test target
         levels: [1, 3, 7, 14, 30, 50, 75, 100, 150, 200],
         unit: "testů"
     },
     marathoner: {
         name: "Maratonec 🏃",
+        description: "Dokonči {value} testů během jednoho dne.", // {value} is the next daily test target
         levels: [2, 5, 10, 15, 20, 30, 50, 75, 100, 150],
         unit: "testů"
     }
 };
 
-let currentUser = "defaultUser"; // Default user, since no login is required.
+// --- Firebase Configuration & Initialization ---
+const firebaseConfig = {
+    apiKey: "AIzaSyCsaY8QZCiozpDnLbpiid3a6ilom7rp4Bk", // Replace with your actual API key
+    authDomain: "maturitrener.firebaseapp.com",
+    projectId: "maturitrener",
+    storageBucket: "maturitrener.appspot.com", // Corrected storage bucket URL if needed
+    messagingSenderId: "485827643986",
+    appId: "1:485827643986:web:838563f26c0fafda9c6d8b",
+    measurementId: "G-FLVEDE8H82D" // Optional: Firebase Analytics
+};
 
-// DOM Elements
-const header = document.querySelector('header');
-const main = document.querySelector('main');
-const dashboardSection = document.getElementById('dashboard-section');
-const testSection = document.getElementById('test-section');
-const progressSection = document.getElementById('progress-section');
-const testContainer = document.getElementById('test-container');
-const generateTestBtn = document.getElementById('generate-test');
-const modal = document.getElementById('test-completion-modal');
-const closeModalBtn = document.querySelector('.close');
-const backToTestsBtn = document.getElementById('back-to-tests');
-const resultCorrect = document.getElementById('result-correct');
-const resultTotal = document.getElementById('result-total');
-const resultPercentage = document.getElementById('result-percentage');
-const subjectSelect = document.getElementById('subject-select');
-const topicSelect = document.getElementById('topic-select');
-const noQuestionsMessage = document.getElementById('no-questions-message');
-const logoutLink = document.getElementById('logout-link');
-const progressTableBody = document.getElementById('progress-table-body');
-const subjectStatsContainer = document.getElementById('subject-stats'); // Get the container
+let db;
+let auth;
+let currentUser = null; // Holds the UID of the logged-in user
+let submitBtn = null; // Reference to the submit button during a test
 
-function parseCSV(csvText, subject, topic) {
-    const lines = csvText.split('\n');
-    const header = lines[0].split(';');
-    const questions = [];
 
-    for (let i = 1; i < lines.length; i++) {
-        const values = lines[i].split(';');
-        if (values.length >= 4) { // Musí mít aspoň otázku, správnou odpověď a 2 možnosti
-            const question = {
-                text: values[0],
-                correctAnswer: values[1],
-                options: [],
-                correctIndex: 0
+// Calendar state variables
+let currentDate = new Date();
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
+
+// --- DOM Element References --- (Declared globally for access within functions)
+let header, main, dashboardSection, testSection, progressSection, testContainer,
+    generateTestBtn, modal, closeModalBtn, backToTestsModalBtn, resultCorrect,
+    resultTotal, resultPercentage, subjectSelect, topicSelect, noQuestionsMessage,
+    authLink, progressTableBody, subjectStatsContainer, loginSection, loginForm,
+    emailInput, passwordInput, loginBtn, registerBtn, loginMessage,
+    calendarGrid, currentMonthDisplay, prevMonthBtn, nextMonthBtn,
+    testsTodayEl, correctAnswersEl, successRateEl, dayStreakEl, totalXpEl, achievementListEl; // Added elements for stats
+
+
+// --- Wait for DOM to Load ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Get DOM elements safely after DOM is ready
+    header = document.querySelector('header');
+    main = document.querySelector('main');
+    dashboardSection = document.getElementById('dashboard-section');
+    testSection = document.getElementById('test-section');
+    progressSection = document.getElementById('progress-section');
+    testContainer = document.getElementById('test-container');
+    generateTestBtn = document.getElementById('generate-test');
+    modal = document.getElementById('test-completion-modal');
+    closeModalBtn = modal.querySelector('.close'); // More specific selector
+    backToTestsModalBtn = document.getElementById('back-to-tests-modal');
+    resultCorrect = document.getElementById('result-correct');
+    resultTotal = document.getElementById('result-total');
+    resultPercentage = document.getElementById('result-percentage');
+    subjectSelect = document.getElementById('subject-select');
+    topicSelect = document.getElementById('topic-select');
+    noQuestionsMessage = document.getElementById('no-questions-message');
+    authLink = document.getElementById('auth-link');
+    progressTableBody = document.getElementById('progress-table-body');
+    subjectStatsContainer = document.getElementById('subject-stats');
+    loginSection = document.getElementById('login-section');
+    loginForm = document.getElementById('login-form');
+    emailInput = document.getElementById('email');
+    passwordInput = document.getElementById('password');
+    loginBtn = document.getElementById('login-btn');
+    registerBtn = document.getElementById('register-btn');
+    loginMessage = document.getElementById('login-message');
+    calendarGrid = document.getElementById('calendar-grid');
+    currentMonthDisplay = document.getElementById('current-month');
+    prevMonthBtn = document.getElementById('prev-month');
+    nextMonthBtn = document.getElementById('next-month');
+    achievementListEl = document.getElementById('achievement-list');
+    // Stat elements
+    testsTodayEl = document.getElementById('tests-today');
+    correctAnswersEl = document.getElementById('correct-answers');
+    successRateEl = document.getElementById('success-rate');
+    dayStreakEl = document.getElementById('day-streak'); // Get element for stats section too
+    totalXpEl = document.getElementById('total-xp'); // Get element for stats section too
+
+
+    // --- Initialize Firebase ---
+    try {
+        if (typeof firebase === 'undefined') {
+            throw new Error("Firebase library not loaded!");
+        }
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.firestore();
+        auth = firebase.auth();
+        console.log("Firebase Initialized");
+
+        // --- Initialize UI and Parse Data ---
+        parseAllCSVData(); // Parse all static CSV data
+        initializeSubjects(); // Populate subject dropdown
+
+        // --- Attach Event Listeners ---
+        setupEventListeners();
+
+        // --- Firebase Auth Listener ---
+        auth.onAuthStateChanged(async (user) => { // Make listener async
+            if (user) {
+                currentUser = user.uid;
+                console.log('Auth State Changed: Logged in as', user.email);
+                authLink.textContent = "Odhlásit se";
+                showDashboard(); // Show dashboard first
+                await loadUserDataFromFirestore(currentUser, db); // Load data and THEN update calendar
+            } else {
+                currentUser = null;
+                console.log('Auth State Changed: Logged out');
+                authLink.textContent = "Přihlásit se";
+                clearUserDataUI(); // Clear displayed stats
+                showLogin(); // Show login screen
+                generateCalendar(currentYear, currentMonth, db); // Generate empty calendar
+            }
+        });
+
+    } catch (error) {
+        console.error("Error initializing Firebase or setting up:", error);
+        alert("Došlo k chybě při inicializaci aplikace. Zkontrolujte konzoli pro více detailů.");
+        // Disable parts of the UI if needed
+        if(loginSection) loginSection.innerHTML = '<h1>Chyba načítání aplikace</h1><p>Nelze se připojit k Firebase.</p>';
+        if(dashboardSection) dashboardSection.style.display = 'none';
+        if(testSection) testSection.style.display = 'none';
+        if(progressSection) progressSection.style.display = 'none';
+    }
+}); // End DOMContentLoaded
+
+// --- Firebase Data Functions ---
+
+/**
+ * Fetches user data from Firestore, initializing if it doesn't exist.
+ * @param {string} uid - The user's ID.
+ * @param {firebase.firestore.Firestore} db - The Firestore instance.
+ * @returns {Promise<object|null>} A promise resolving to the user data object or null on error.
+ */
+async function getUserData(uid, db) {
+    if (!uid || !db) {
+        console.warn("getUserData called without uid or db instance.");
+        return null;
+    }
+    try {
+        const docRef = db.collection("users").doc(uid);
+        const doc = await docRef.get();
+
+        if (doc.exists) {
+            const data = doc.data();
+            // Ensure essential structures exist after retrieval
+            data.progress = data.progress || {};
+            data.achievements = data.achievements || {};
+            data.activity = data.activity || {};
+            data.completedTopics = data.completedTopics || []; // Should be stored as array
+            console.log("Fetched user data:", data);
+            return data;
+        } else {
+            console.log("No user document found for uid:", uid, ". Creating default.");
+            // Create and return a default user data structure
+            const defaultUserData = {
+                testsToday: 0,
+                correctAnswers: 0, // Consider if this should be total correct ever or today's
+                progress: {},
+                totalTestsCompleted: 0,
+                averageSuccessRate: 0,
+                dayStreak: 0,
+                totalXP: 0,
+                lastCompletedTestDate: null, // Stores date string of last >80% test
+                flawlessTestCount: 0,
+                winningStreakCount: 0,
+                completedTopics: [], // Store as array in Firestore
+                achievements: { // Initialize all achievements to level 0
+                    xpCollector: 0, unstoppable: 0, flawless: 0, winningStreak: 0,
+                    topicMaster: 0, earlyBird: 0, nightOwl: 0, marathoner: 0,
+                    earlyBirdCount: 0, // Specific counts if needed
+                    nightOwlCount: 0
+                 },
+                activity: {} // Activity log for calendar { year: { month: { day: count } } }
             };
+            // Save the default data for the new user
+            await saveUserData(uid, defaultUserData, db); // Use saveUserData to ensure correct format
+            return defaultUserData;
+        }
+    } catch (error) {
+        console.error("Error getting user document:", error);
+        return null; // Return null on error
+    }
+}
 
-            // Přidej možnosti (Možnost 1 až Možnost 4, pokud existují)
-            for (let j = 2; j < values.length; j++) {
-                question.options.push(values[j]);
+/**
+ * Saves user data to Firestore, ensuring correct data types.
+ * @param {string} uid - The user's ID.
+ * @param {object} data - The user data object to save.
+ * @param {firebase.firestore.Firestore} db - The Firestore instance.
+ * @returns {Promise<void>}
+ */
+async function saveUserData(uid, data, db) {
+    if (!uid || !db) {
+        console.error("saveUserData called without uid or db instance!");
+        return;
+    }
+
+    // --- Data Sanitization/Formatting before Saving ---
+    // Ensure completedTopics is an Array
+    if (data.completedTopics instanceof Set) {
+        data.completedTopics = Array.from(data.completedTopics);
+    } else if (!Array.isArray(data.completedTopics)) {
+        console.warn("completedTopics was not a Set or Array, saving as empty array.");
+        data.completedTopics = [];
+    }
+
+    // Ensure activity is a valid object
+    if (typeof data.activity !== 'object' || data.activity === null) {
+        console.warn("Activity data structure incorrect, resetting.");
+        data.activity = {};
+    }
+     // Ensure achievements is a valid object
+     if (typeof data.achievements !== 'object' || data.achievements === null) {
+         console.warn("Achievements data structure incorrect, resetting.");
+         data.achievements = {}; // Or initialize with defaults if preferred
+     }
+     // Ensure progress is a valid object
+     if (typeof data.progress !== 'object' || data.progress === null) {
+         console.warn("Progress data structure incorrect, resetting.");
+         data.progress = {};
+     }
+
+
+    try {
+        // Use set with merge:true to update or create the document
+        await db.collection("users").doc(uid).set(data, { merge: true });
+        console.log("User document successfully written/merged!");
+    } catch (error) {
+        console.error("Error writing user document:", error);
+        // Consider notifying the user about the save failure
+        alert("Chyba při ukládání dat. Zkuste to prosím znovu.");
+    }
+}
+async function loadUserDataFromFirestore(uid, db) {
+    console.log("Attempting to load data for user:", uid);
+    if (!uid || !db) {
+        console.error("loadUserDataFromFirestore: Missing UID or DB instance.");
+        return; // Exit if essential parameters are missing
+    }
+
+    try {
+        let userData = await getUserData(uid, db); // Fetch data (this function now handles defaults if doc doesn't exist)
+
+        if (userData) {
+            console.log("User data loaded:", userData);
+            const today = new Date();
+            const todayDateString = today.toDateString();
+            let needsSave = false; // Flag to check if we need to save updated daily stats
+
+            console.log("Before Daily Reset Check:", {
+                lastActivity: userData.lastActivityDate,
+                today: todayDateString,
+                testsToday: userData.testsToday,
+                correctToday: userData.correctAnswersToday
+            });
+
+            // --- Daily Reset Check ---
+            // Check if the last recorded activity date is different from today
+            if (userData.lastActivityDate !== todayDateString) {
+                console.log(`New day detected (Last: ${userData.lastActivityDate}, Today: ${todayDateString}). Resetting daily stats.`);
+                userData.testsToday = 0;
+                userData.correctAnswersToday = 0; // Reset today's correct answers counter
+                userData.lastActivityDate = todayDateString;
+                needsSave = true;
+            }
+            userData.completedTopics = new Set(userData.completedTopics || []);
+
+            if (needsSave) {
+                console.log("Saving updated daily stats after reset...");
+                // Ensure the Set is converted back to Array before saving
+                const dataToSave = { ...userData, completedTopics: Array.from(userData.completedTopics) };
+                await saveUserData(uid, dataToSave, db);
+                console.log("Daily stats saved.");
+                // Note: userData object in memory is already updated.
             }
 
-            questions.push(question);
+            // --- Update UI Elements ---
+            // Update all relevant UI sections with the fetched (and potentially reset) data           
+            updateStatisticsSection(userData); // Updates top dashboard cards and progress section summaries
+            updateDashboard(userData);         // Updates subject progress cards
+            updateProgressSection(userData);   // Updates the detailed progress table
+            updateAchievementsUI(userData);
+            await generateCalendar(currentYear, currentMonth, db); 
+
+            console.log("UI updated after loading user data.");
+
+        } else {
+            // This case should technically be handled by getUserData returning defaults,
+            // but we keep a fallback log here.
+            console.warn('loadUserDataFromFirestore: getUserData returned null/undefined unexpectedly.');
+            clearUserDataUI(); // Clear UI elements to show logged-out state
+            await generateCalendar(currentYear, currentMonth, db); // Generate empty calendar
         }
+    } catch (error) {
+        console.error("Error in loadUserDataFromFirestore:", error);
+        alert("Nastala chyba při načítání uživatelských dat.");
+        // Optionally clear UI or show specific error message
+        clearUserDataUI();
     }
-
-    // Vlož otázky do data objektu
-    data[subject][topic] = questions;
 }
+function updateAchievementsUI(userData) {
+    if (!achievementListEl) return; // Check if element exists
 
-// Function to get user data from local storage
-function getUserData(username) {
-    const userData = localStorage.getItem(username);
-    let parsedData = userData ? JSON.parse(userData) : {};
+    achievementListEl.innerHTML = ''; // Clear previous items
 
-    // Initialize completedTopics specifically, and then spread other properties
-    const defaultData = {
-        testsToday: 0,
-        correctAnswers: 0,
-        progress: {},
-        totalTestsCompleted: 0,
-        averageSuccessRate: 0,
-        dayStreak: 0,
-        totalXP: 0,
-        lastCompletedTestDate: null,
-        achievements: {
-            xpCollector: 0,
-            unstoppable: 0,
-            flawless: 0,
-            winningStreak: 0,
-            topicMaster: 0,
-            earlyBird: 0,
-            nightOwl: 0,
-            marathoner: 0
-        },
-        flawlessTestCount: 0,
-        winningStreakCount: 0,
-        completedTopics: new Set()
+    const achievementsData = userData?.achievements;
+    let noAchievementsLi = achievementListEl.querySelector('.no-achievements'); // Get placeholder
+
+    // Hide placeholder if there are achievements
+    if (!noAchievementsLi) {
+        noAchievementsLi = document.createElement('li');
+        noAchievementsLi.classList.add('no-achievements');
+        noAchievementsLi.style.display = 'none'; // Hide by default
+        noAchievementsLi.textContent = 'Zatím žádné úspěchy. Dokonči nějaké testy!';
+        achievementListEl.appendChild(noAchievementsLi);
+    }
+    const hasAchievements = achievementsData &&
+                            Object.keys(achievementsData).length > 0 &&
+                            Object.values(achievementsData).some(level => typeof level === 'number' && level > 0); // Check if at least one level > 0
+
+
+    if (!hasAchievements) {
+        noAchievementsLi.style.display = 'block'; // Show placeholder
+        console.log("No achievements to display or all are level 0.");
+        return;
+    }
+    noAchievementsLi.style.display = 'none'; // Hide placeholder if there are achievements
+
+
+    // Helper to get current value based on achievement key
+    const getCurrentValue = (key) => {
+        switch (key) {
+            case 'xpCollector':   return userData?.totalXP || 0;
+            case 'unstoppable':   return userData?.dayStreak || 0;
+            case 'flawless':      return userData?.flawlessTestCount || 0;
+            case 'winningStreak': return userData?.winningStreakCount || 0;
+            case 'topicMaster':   return (userData?.completedTopics instanceof Set ? userData.completedTopics.size : (userData?.completedTopics?.length || 0)); // Handle Set or Array
+            case 'earlyBird':     return achievementsData?.earlyBirdCount || 0;
+            case 'nightOwl':      return achievementsData?.nightOwlCount || 0;
+            case 'marathoner':    return userData?.testsToday || 0; 
+            default:              return 0;
+        }
     };
 
-    parsedData = {
-        ...defaultData, // Apply default values first
-        ...parsedData // Then overwrite with stored data, if it exists
-    };
+    // Iterate through the defined achievement levels
+    for (const [key, definition] of Object.entries(achievementLevels)) {
+        const currentLevel = achievementsData[key] || 0; // User's current level for this achievement
+        const currentValue = getCurrentValue(key);
+        const maxLevel = definition.levels.length;
+        const unit = definition.unit;
+        const descriptionTemplate = definition.description || "Popis chybí.";
 
-    // Guarantee completedTopics is a Set, even if localStorage corrupted it.
-    if (!(parsedData.completedTopics instanceof Set)) {
-        parsedData.completedTopics = new Set();
+        // Determine next level threshold and progress
+        let nextLevelThreshold = Infinity;
+        let prevLevelThreshold = 0; // Threshold for the start of the current level
+        let progressPercent = 0;
+        let valueText = `${currentValue} ${unit}`;
+        let tooltipText = '';
+
+        if (currentLevel < maxLevel) {
+            nextLevelThreshold = definition.levels[currentLevel]; // Threshold to reach next level (index = currentLevel)
+            if (currentLevel > 0) {
+                prevLevelThreshold = definition.levels[currentLevel - 1]; // Threshold of the current level (index = currentLevel - 1)
+            }
+             const range = nextLevelThreshold - prevLevelThreshold;
+             const currentProgressInLevel = currentValue - prevLevelThreshold;
+             // Calculate percentage, ensuring range > 0 and capping at 100
+             progressPercent = range > 0 ? Math.max(0, Math.min(100, Math.round((currentProgressInLevel / range) * 100))) : (currentValue >= nextLevelThreshold ? 100 : 0);
+             valueText = `<span class="current">${currentValue}</span> / <span class="next">${nextLevelThreshold} ${unit}</span>`;
+ 
+             // *** Set Tooltip for next level ***
+             tooltipText = descriptionTemplate.replace('{value}', nextLevelThreshold);
+
+        } else {
+            // Max level reached
+            progressPercent = 100;
+            valueText = `<span class="max">MAX ${unit}</span>`; // Or just show total value
+            tooltipText = `Maximální úroveň dosažena! (${descriptionTemplate.replace('{value}', finalThreshold)})`;
+        }
+
+        // Create List Item
+        const li = document.createElement('li');
+        li.dataset.tooltip = tooltipText;
+
+        // Extract icon (simple approach, might need refinement)
+        const nameParts = definition.name.split(' ');
+        const icon = nameParts.length > 1 ? nameParts.pop() : '⭐'; // Use last part or default
+        const name = nameParts.join(' ');
+
+        li.innerHTML = `
+            <div class="achievement-header">
+                <span class="achievement-icon">${icon}</span>
+                <span class="achievement-name">${name}</span>
+            </div>
+            <div class="achievement-details">
+                <div class="achievement-level">Úroveň ${currentLevel} / ${maxLevel}</div>
+                ${currentLevel < maxLevel ? `
+                <div class="achievement-progress">
+                    <div class="progress-bar">
+                        <div class="progress-value" style="width: ${progressPercent}%;"></div>
+                    </div>
+                    <div class="achievement-value">${valueText}</div>
+                </div>
+                ` : `
+                 <div class="achievement-value">${valueText}</div>
+                `}
+            </div>
+        `;
+        achievementListEl.appendChild(li);
+    }
+}
+// --- Authentication Functions ---
+
+/**
+ * Handles user registration.
+ * @param {firebase.auth.Auth} authInstance - The Firebase Auth instance.
+ */
+async function registerUserHandler(authInstance) {
+    if (!authInstance || !emailInput || !passwordInput || !loginMessage) return;
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    // Basic validation
+    if (!email || !password) {
+        loginMessage.textContent = "Prosím zadejte email i heslo.";
+        return;
+    }
+    if (password.length < 6) {
+        loginMessage.textContent = "Heslo musí mít alespoň 6 znaků.";
+        return;
     }
 
-    return parsedData;
+    loginMessage.textContent = "Registruji..."; // Feedback
+    try {
+        await authInstance.createUserWithEmailAndPassword(email, password);
+        // NOTE: onAuthStateChanged will handle the login flow after successful registration
+        loginMessage.textContent = "Registrace proběhla úspěšně. Přihlašuji...";
+        // Optional: Clear form
+        // loginForm.reset();
+    } catch (error) {
+        console.error("Registration error:", error);
+        loginMessage.textContent = "Chyba registrace: " + mapAuthError(error); // Use helper for user-friendly message
+    }
 }
 
-// Function to save user data to local storage
-function saveUserData(username, data) {
-    localStorage.setItem(username, JSON.stringify(data));
+/**
+ * Handles user login.
+ * @param {firebase.auth.Auth} authInstance - The Firebase Auth instance.
+ */
+async function loginUserHandler(authInstance) {
+     if (!authInstance || !emailInput || !passwordInput || !loginMessage) return;
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!email || !password) {
+        loginMessage.textContent = "Prosím zadejte email i heslo.";
+        return;
+    }
+
+    loginMessage.textContent = "Přihlašuji..."; // Feedback
+    try {
+        await authInstance.signInWithEmailAndPassword(email, password);
+        // NOTE: onAuthStateChanged will handle the UI update after successful login
+        loginMessage.textContent = "Přihlášení proběhlo úspěšně.";
+         // Optional: Clear form
+         // loginForm.reset();
+    } catch (error) {
+        console.error("Login error:", error);
+        loginMessage.textContent = "Chyba přihlášení: " + mapAuthError(error); // User-friendly message
+    }
 }
 
-// Function to update dashboard statistics
-function updateDashboard() {
-    const userData = getUserData(currentUser);
-    document.getElementById("tests-today").textContent =
-        userData.testsToday || 0;
-    document.getElementById("correct-answers").textContent =
-        userData.correctAnswers || 0;
-    document.getElementById("success-rate").textContent =
-        userData.averageSuccessRate + "%";
-    document.getElementById("day-streak").textContent = userData.dayStreak || 0; // Přidáno
-    document.getElementById("total-xp").textContent = userData.totalXP || 0; // Přidáno
-    subjectStatsContainer.innerHTML = "";
+/**
+ * Handles user logout.
+ * @param {firebase.auth.Auth} authInstance - The Firebase Auth instance.
+ */
+async function logoutUserHandler(authInstance) {
+    if (!authInstance) return;
+    try {
+        await authInstance.signOut();
+        // NOTE: onAuthStateChanged will handle the UI update
+        console.log("User signed out successfully.");
+    } catch (error) {
+        console.error("Sign out error:", error);
+        alert("Chyba při odhlašování.");
+    }
+}
 
-    for (const subject in userData.progress) {
-        const subjectData = userData.progress[subject];
-        const progressPercentage = subjectData.successRate || 0;
+/**
+ * Maps Firebase Auth error codes to user-friendly messages (Czech).
+ * @param {Error} error - The Firebase Auth error object.
+ * @returns {string} A user-friendly error message.
+ */
+function mapAuthError(error) {
+    switch (error.code) {
+        case 'auth/invalid-email':
+            return 'Neplatný formát emailu.';
+        case 'auth/user-disabled':
+            return 'Tento uživatelský účet byl deaktivován.';
+        case 'auth/user-not-found':
+            return 'Uživatel s tímto emailem nebyl nalezen.';
+        case 'auth/wrong-password':
+            return 'Nesprávné heslo.';
+        case 'auth/email-already-in-use':
+            return 'Tento email je již registrován.';
+        case 'auth/weak-password':
+            return 'Heslo je příliš slabé (musí mít alespoň 6 znaků).';
+        case 'auth/operation-not-allowed':
+            return 'Přihlášení tímto způsobem není povoleno.';
+        case 'auth/network-request-failed':
+            return 'Chyba sítě. Zkontrolujte připojení k internetu.';
+        default:
+            return error.message; // Fallback to the default message
+    }
+}
+
+// --- UI Update & Navigation Functions ---
+
+function showLogin() {
+    if(loginSection) loginSection.style.display = 'flex';
+    if(dashboardSection) dashboardSection.style.display = 'none';
+    if(testSection) testSection.style.display = 'none';
+    if(progressSection) progressSection.style.display = 'none';
+    if(loginMessage) loginMessage.textContent = ''; // Clear any previous messages
+    if(loginForm) loginForm.reset(); // Clear form fields
+}
+
+function showDashboard() {
+    if(loginSection) loginSection.style.display = 'none';
+    if(dashboardSection) dashboardSection.style.display = 'block';
+    if(testSection) testSection.style.display = 'none';
+    if(progressSection) progressSection.style.display = 'none';
+}
+
+function showTestSection() {
+     if(loginSection) loginSection.style.display = 'none';
+     if(dashboardSection) dashboardSection.style.display = 'none';
+     if(testSection) testSection.style.display = 'block';
+     if(progressSection) progressSection.style.display = 'none';
+}
+
+function showProgressSection() {
+     if(loginSection) loginSection.style.display = 'none';
+     if(dashboardSection) dashboardSection.style.display = 'none';
+     if(testSection) testSection.style.display = 'none';
+     if(progressSection) progressSection.style.display = 'block';
+}
+
+/**
+ * Updates ALL statistics displays (Dashboard cards, Progress section summary).
+ * @param {object | null} userData - The user data object or null for default state.
+ */
+function updateStatisticsSection(userData) {
+    // Default values if userData is null or missing properties
+    const testsToday = userData?.testsToday || 0;
+    const correctToday = userData?.correctAnswersToday || 0; // Using the daily count
+    const rate = userData?.averageSuccessRate || 0;
+    const streak = userData?.dayStreak || 0;
+    const xp = userData?.totalXP || 0;
+
+    // --- Dashboard Card Elements ---
+    // MAKE SURE THESE IDs MATCH YOUR HTML EXACTLY
+    const dashTestsTodayEl = document.getElementById('tests-today');
+    const dashCorrectAnswersEl = document.getElementById('correct-answers');
+    const dashSuccessRateEl = document.getElementById('success-rate');
+
+    // --- Log the values being used for the dashboard card ---
+    console.log(`Updating Dashboard Stats - testsToday: ${testsToday}, correctToday: ${correctToday}, rate: ${rate}%`);
+
+    if (dashTestsTodayEl) {
+        dashTestsTodayEl.textContent = testsToday;
+    } else {
+        console.warn("Element with ID 'tests-today' not found for dashboard.");
+    }
+    if (dashCorrectAnswersEl) {
+        dashCorrectAnswersEl.textContent = correctToday; // Display today's correct answers
+    } else {
+         console.warn("Element with ID 'correct-answers' not found for dashboard.");
+    }
+    if (dashSuccessRateEl) {
+        dashSuccessRateEl.textContent = `${rate}%`;
+    } else {
+         console.warn("Element with ID 'success-rate' not found for dashboard.");
+    }
+
+    const progressDayStreakEl = document.getElementById('day-streak');
+    const progressTotalXpEl = document.getElementById('total-xp');
+
+    if (progressDayStreakEl) progressDayStreakEl.textContent = streak;
+    if (progressTotalXpEl) progressTotalXpEl.textContent = xp;
+
+    console.log("UI Statistics Updated:", { testsToday, correctToday, rate, streak, xp });
+}
+
+
+/**
+ * Updates the subject progress cards on the dashboard.
+ * @param {object | null} userData - The user data object, or null for default state.
+ */
+function updateDashboard(userData) {
+    if (!subjectStatsContainer) return;
+    subjectStatsContainer.innerHTML = ''; // Clear previous cards
+
+    if (!userData || !userData.progress || Object.keys(userData.progress).length === 0) {
+        console.log("No user data or progress to display on dashboard subjects.");
+        // Optionally display a message
+         const noProgressMsg = document.createElement('p');
+         noProgressMsg.textContent = "Zatím žádný pokrok v předmětech.";
+         noProgressMsg.style.gridColumn = '1 / -1'; // Span full width if in grid
+         noProgressMsg.style.textAlign = 'center';
+         subjectStatsContainer.appendChild(noProgressMsg);
+        return;
+    }
+
+    // Generate subject cards
+    for (const subject in data) { // Iterate through defined subjects to ensure order/all are shown
+         const subjectData = userData.progress[subject] || { testsCompleted: 0, successRate: 0 }; // Default if no progress yet
+         const progressPercentage = subjectData.successRate || 0;
+         const testsCompleted = subjectData.testsCompleted || 0;
 
         const card = document.createElement("div");
         card.classList.add("subject-card");
+        card.setAttribute('data-subject', subject); // Use the subject name for navigation
 
         const title = document.createElement("h3");
         title.classList.add("subject-title");
@@ -1288,534 +1800,184 @@ function updateDashboard() {
         progressBar.classList.add("progress-bar");
         const progressValue = document.createElement("div");
         progressValue.classList.add("progress-value");
-        progressValue.style.width = `${progressPercentage}%`;
+        // Ensure correct initial width even if 0
+        progressValue.style.width = `${Math.max(0, progressPercentage)}%`;
         progressBar.appendChild(progressValue);
         progressContainer.appendChild(progressBar);
 
         const progressText = document.createElement("div");
         progressText.classList.add("progress-text");
-        progressText.innerHTML = `<span>${progressPercentage}%</span> <span>${subjectData.testsCompleted || 0
-            } testů</span>`;
+        progressText.innerHTML = `<span>${progressPercentage}%</span> <span>${testsCompleted} testů</span>`;
         progressContainer.appendChild(progressText);
 
         card.appendChild(progressContainer);
+
+        // Add event listener for navigation
+        card.addEventListener('click', function () {
+            const clickedSubject = this.getAttribute('data-subject');
+            if (subjectSelect) subjectSelect.value = clickedSubject; // Pre-select subject
+            populateTopics(clickedSubject); // Populate topics
+            showTestSection(); // Navigate to test section
+        });
+
         subjectStatsContainer.appendChild(card);
     }
 }
-function updateProgressSection() {
-    progressTableBody.innerHTML = ''; // Clear existing data
-    const userData = getUserData(currentUser);
 
-    document.getElementById("day-streak").textContent = userData.dayStreak || 0;
-    document.getElementById("total-xp").textContent = userData.totalXP || 0;
+/**
+ * Updates the detailed progress table in the 'Statistiky' section.
+ * @param {object | null} userData - The user data object, or null for default state.
+ */
+function updateProgressSection(userData) {
+    if (!progressTableBody) return;
+    progressTableBody.innerHTML = ''; // Clear previous rows
 
+    // Update summary stats if elements exist
+    const progressDayStreakEl = document.getElementById('day-streak');
+    const progressTotalXpEl = document.getElementById('total-xp');
+    if(progressDayStreakEl) progressDayStreakEl.textContent = userData?.dayStreak || 0;
+    if(progressTotalXpEl) progressTotalXpEl.textContent = userData?.totalXP || 0;
+
+
+    if (!userData || !userData.progress || Object.keys(userData.progress).length === 0) {
+        console.log("No user data or progress to display in progress table.");
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
+        cell.colSpan = 4;
+        cell.textContent = 'Zatím nebyly dokončeny žádné testy.';
+        cell.style.textAlign = 'center';
+        cell.style.padding = '1rem';
+        row.appendChild(cell);
+        progressTableBody.appendChild(row);
+        return;
+    }
+
+    // Generate table rows for subjects with progress
     for (const subject in userData.progress) {
         const subjectData = userData.progress[subject];
+        const testsCompleted = subjectData.testsCompleted || 0;
+        const correctAnswers = subjectData.correctAnswers || 0;
+        const successRate = subjectData.successRate || 0;
+        const totalQuestions = testsCompleted * 10; // Assuming 10 Qs/test
+
         const row = document.createElement('tr');
         row.innerHTML = `
             <td style="padding: 0.75rem;">${subject}</td>
-            <td style="text-align: center; padding: 0.75rem;">${subjectData.testsCompleted || 0}</td>
-            <td style="text-align: center; padding: 0.75rem;">${subjectData.correctAnswers || 0}/${(subjectData.testsCompleted || 0) * 10}</td>
-            <td style="text-align: center; padding: 0.75rem;">${subjectData.successRate || 0}%</td>
+            <td style="text-align: center; padding: 0.75rem;">${testsCompleted}</td>
+            <td style="text-align: center; padding: 0.75rem;">${correctAnswers}/${totalQuestions}</td>
+            <td style="text-align: center; padding: 0.75rem;">${successRate}%</td>
         `;
         progressTableBody.appendChild(row);
     }
+}
 
-    // Display achievements
-    let achievementsDiv = document.getElementById('achievements-div'); // Check if it already exists
-    if (!achievementsDiv) {
-        achievementsDiv = document.createElement('div'); // Create it if it doesn't
-        achievementsDiv.id = 'achievements-div'; // Set its ID
-        progressSection.appendChild(achievementsDiv); // Append to the progress section
+/**
+ * Clears user-specific data from the UI, typically called on logout.
+ */
+ function clearUserDataUI() {
+    // Reset dashboard stats
+    updateStatisticsSection(null); // Pass null for default/zero state
+
+    // Clear subject cards
+    if(subjectStatsContainer) subjectStatsContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">Pro zobrazení pokroku se přihlaste.</p>';
+
+    // Clear progress table
+    if(progressTableBody) {
+        progressTableBody.innerHTML = '';
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
+        cell.colSpan = 4;
+        cell.textContent = 'Pro zobrazení statistik se přihlaste.';
+        cell.style.textAlign = 'center';
+        cell.style.padding = '1rem';
+        row.appendChild(cell);
+        progressTableBody.appendChild(row);
     }
 
-    achievementsDiv.innerHTML = '<h3>Achievementy</h3>';
+    // Reset test section if needed (might happen automatically on navigation)
+    if(testContainer) testContainer.innerHTML = '';
+    if(testContainer) testContainer.style.display = 'none';
+    if(subjectSelect) subjectSelect.value = '';
+    if(topicSelect) topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
+    if(topicSelect) topicSelect.disabled = true;
+    if(generateTestBtn) generateTestBtn.disabled = true;
 
-    for (const achievementKey in userData.achievements) {
-        const level = userData.achievements[achievementKey];
-        const achievement = achievementLevels[achievementKey];
-        if (!achievement) continue; // Skip if achievement data is missing
-        const levelText = level > 0 ? `(Lv. ${level})` : "(Nezačato)";
-        achievementsDiv.innerHTML += `<p>${achievement.name}: ${levelText}</p>`;
-    }
-
+     // Calendar will be regenerated by auth listener with empty data
 }
 
 
+// --- CSV Parsing & Data Initialization ---
 
-// Navigation
-document.getElementById('dashboard-link').addEventListener('click', function () {
-    dashboardSection.style.display = 'block';
-    testSection.style.display = 'none';
-    progressSection.style.display = 'none';
-    updateDashboard(); // Refresh data when navigating
-});
-
-document.getElementById('test-link').addEventListener('click', function () {
-    dashboardSection.style.display = 'none';
-    testSection.style.display = 'block';
-    progressSection.style.display = 'none';
-});
-
-document.getElementById('progress-link').addEventListener('click', function () {
-    dashboardSection.style.display = 'none';
-    testSection.style.display = 'none';
-    progressSection.style.display = 'block';
-    updateProgressSection(); // Refresh data when navigating
-});
-
-document.getElementById('logout-link').addEventListener('click', function () {
-    localStorage.removeItem(currentUser);
-    // Reset userData object and re-render dashboard
-    let userData = {
-        testsToday: 0,
-        correctAnswers: 0,
-        progress: {}, // Store progress per subject
-        totalTestsCompleted: 0, // celkovy pocet testu
-        averageSuccessRate: 0 // Průměr úspěšnosti
-    };
-
-    saveUserData(currentUser, userData);
-    updateDashboard();
-    updateProgressSection();
-
-});
-// Subject cards navigation
-document.querySelectorAll('.subject-card').forEach(card => {
-    card.addEventListener('click', function () {
-        const subject = this.getAttribute('data-subject');
-
-        dashboardSection.style.display = 'none';
-        testSection.style.display = 'block';
-        progressSection.style.display = 'none';
-
-    });
-});
-
-// Function to populate topic select based on selected subject
-function populateTopics(subject) {
-    topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
-    topicSelect.disabled = true;
-    generateTestBtn.disabled = true;
-
-    if (subject && data[subject]) {
-        for (const topic in data[subject]) {
-            const option = document.createElement('option');
-            option.value = topic;
-            option.textContent = topic;
-            topicSelect.appendChild(option);
-        }
-        topicSelect.disabled = false;
+/**
+ * Parses a single CSV string into the global 'data' object.
+ * @param {string} csvText - The raw CSV data string.
+ * @param {string} subject - The subject name (e.g., "Programování").
+ * @param {string} topic - The topic name.
+ */
+function parseCSV(csvText, subject, topic) {
+    if (!csvText || !subject || !topic) {
+        console.error("parseCSV: Missing input data", { subject, topic });
+        return;
     }
-}
-// Event listener for subject selection
-subjectSelect.addEventListener('change', function () {
-    const subject = this.value;
-    populateTopics(subject);
-});
-topicSelect.addEventListener('change', function () {
-    generateTestBtn.disabled = !this.value;
-});
-
-// Funkce pro náhodné zamíchání pole (Fisher-Yates shuffle)
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-function getRandomQuestions(arr, n) {
-    if (!arr || arr.length === 0) return []; // Ochrana proti prázdnému poli
-
-    let len = arr.length;
-    if (n > len) {
-        n = len;
-    }
-
-    let shuffled = arr.slice(0),
-        i = len,
-        min = Math.min(i, n),
-        temp, index;
-    while (i-- && min--) {
-        index = Math.floor((i + 1) * Math.random());
-        temp = shuffled[index];
-        shuffled[index] = shuffled[i];
-        shuffled[i] = temp;
-    }
-    return shuffled.slice(0, n);
-}
-let submitBtn;
-// Generate test
-generateTestBtn.addEventListener('click', function () {
-    testContainer.style.display = 'block';
-    noQuestionsMessage.style.display = 'none';
-    testContainer.innerHTML = '';
-
-    const subject = subjectSelect.value;
-    const topic = topicSelect.value;
-
-    if (!subject || !topic) {
-        noQuestionsMessage.style.display = 'block';
-        testContainer.style.display = 'none';
+    // Trim whitespace and filter out empty lines
+    const lines = csvText.trim().split('\n').filter(line => line.trim() !== '');
+    if (lines.length < 2) { // Need header + at least one data line
+        console.warn(`parseCSV: Not enough lines in CSV for ${subject} - ${topic}`);
         return;
     }
 
-    let testQuestions = [];
+    // Header isn't strictly used here but good practice to acknowledge it
+    // const header = lines[0].split(';').map(h => h.trim());
+    const questions = [];
 
-    if (topic === "Souhrnné opakování") {
-        // Pokud je vybráno souhrnné opakování, sestavíme otázky z ostatních okruhů
-        const otherTopics = Object.keys(data[subject]).filter(t => t !== "Souhrnné opakování"); // Získame ostatní okruhy
-        if (otherTopics.length === 0) {
-            noQuestionsMessage.style.display = 'block';
-            testContainer.style.display = 'none';
-            return;
+    for (let i = 1; i < lines.length; i++) {
+        const values = lines[i].split(';').map(val => val.trim().replace(/^"(.*)"$/, '$1')); // Trim values and remove surrounding quotes
+
+        if (values.length >= 3 && values[0] && values[1]) { // Need at least Question, Correct Answer, Option 1
+            const questionText = values[0];
+            const correctAnswer = values[1];
+            const options = values.slice(2).filter(opt => opt); // Get options (from index 2 onwards), filter out empty ones
+
+             // Ensure we have at least a few options + the correct one makes sense
+             if (options.length < 1) {
+                console.warn(`parseCSV: Question "${questionText}" has no options. Skipping.`);
+                continue;
+             }
+
+
+            const question = {
+                text: questionText,
+                correctAnswer: correctAnswer,
+                options: options, // Incorrect options
+                // correctIndex will be determined after shuffling in generateTest
+            };
+            questions.push(question);
+        } else {
+             console.warn(`parseCSV: Skipping invalid line ${i+1} in ${subject} - ${topic}:`, lines[i]);
         }
-
-        // Pro každý okruh vybereme 2 náhodné otázky
-        for (const otherTopic of otherTopics) {
-            const questionsFromTopic = data[subject][otherTopic];
-            if (questionsFromTopic && questionsFromTopic.length > 0) {
-                const randomQuestions = getRandomQuestions(questionsFromTopic, 2);
-                testQuestions = testQuestions.concat(randomQuestions); // Přidáme do seznamu testovacích otázek
-            }
-        }
-
-        if (testQuestions.length === 0) {
-            noQuestionsMessage.style.display = 'block';
-            testContainer.style.display = 'none';
-            return;
-        }
-    } else {
-        // Pro standardní okruhy použijeme stávající logiku
-        const availableQuestions = data[subject][topic];
-        if (!availableQuestions || availableQuestions.length === 0) {
-            noQuestionsMessage.style.display = 'block';
-            testContainer.style.display = 'none';
-            return;
-        }
-        testQuestions = getRandomQuestions(availableQuestions, 10);
     }
 
-    testQuestions.forEach((q, index) => {
-        const questionDiv = document.createElement('div');
-        questionDiv.classList.add('question');
-
-        const questionText = document.createElement('div');
-        questionText.classList.add('question-text');
-        questionText.textContent = `${index + 1}. ${q.text}`; // Změna: použijeme q.text
-        questionDiv.appendChild(questionText);
-
-        // Zamíchání možností odpovědí
-        const options = [...q.options];
-        options.push(q.correctAnswer); // Přidáme správnou odpověď do pole možností
-        shuffleArray(options); // Zamícháme pole možností
-
-        const optionsDiv = document.createElement('div');
-        optionsDiv.classList.add('question-options');
-
-        // Určení indexu správné odpovědi po zamíchání
-        let correctIndex = options.indexOf(q.correctAnswer);
-
-        options.forEach((option, oIndex) => {
-            const optionDiv = document.createElement('div');
-            optionDiv.classList.add('option');
-            optionDiv.textContent = option;
-
-            optionDiv.dataset.correct = (oIndex === correctIndex); // Check if it's the correct answer
-
-            optionsDiv.appendChild(optionDiv);
-        });
-
-        questionDiv.appendChild(optionsDiv);
-        testContainer.appendChild(questionDiv);
-    });
-
-    // Add submit button
-    submitBtn = document.createElement('button');
-    const originalText = 'Odeslat odpovědi'; // Ulož si původní text
-    submitBtn.classList.add('btn', 'btn-primary');
-    submitBtn.style.marginTop = '1rem';
-    submitBtn.textContent = originalText; // Původní text
-    submitBtn.addEventListener('click', evaluateTest);
-    testContainer.appendChild(submitBtn);
-});
-evaluateTest = function () {
-    let correct = 0;
-    const total = document.querySelectorAll('.question').length;
-    const questionElements = document.querySelectorAll('.question');
-    let allCorrect = true;
-    questionElements.forEach(questionElement => {
-        const options = questionElement.querySelectorAll('.option');
-        let selectedCorrectly = false;
-
-        options.forEach(option => {
-            // Disable all options in the question
-            option.style.pointerEvents = 'none';
-
-            if (option.dataset.correct === 'true') {
-                option.classList.add('correct');
-            }
-
-            if (option.classList.contains('selected')) {
-                if (option.dataset.correct === 'true') {
-                    correct++;
-                    selectedCorrectly = true;
-                } else {
-                    option.classList.add('incorrect');
-                    allCorrect = false;  // Pokud je alespoň jedna odpověď špatně, nastavíme na false
-                }
-            }
-
-        });
-
-        if (!selectedCorrectly) {
-            // If the user didn't select the correct answer, show it in green
-            options.forEach(option => {
-                if (option.dataset.correct === 'true') {
-                    option.classList.add('correct');
-                }
-            });
-        }
-    });
-
-    // Get current user data
-    const userData = getUserData(currentUser);
-    // Update user data
-    userData.testsToday = (userData.testsToday || 0) + 1;
-    userData.correctAnswers = (userData.correctAnswers || 0) + correct;
-
-    const subject = subjectSelect.value;
-    // Ensure progress object exists for user
-    userData.progress = userData.progress || {};
-
-    // Ensure subject progress object exists
-    userData.progress[subject] = userData.progress[subject] || {
-        testsCompleted: 0,
-        correctAnswers: 0,
-        overallProgress: 0,
-        successRate: 0
-    };
-
-    // Update subject-specific progress
-    userData.progress[subject].testsCompleted = (userData.progress[subject].testsCompleted || 0) + 1;
-    userData.progress[subject].correctAnswers = (userData.progress[subject].correctAnswers || 0) + correct;
-    userData.progress[subject].successRate = Math.round((userData.progress[subject].correctAnswers / (userData.progress[subject].testsCompleted * 10)) * 100);
-
-    // Calculate overall progress for subject
-    userData.progress[subject].overallProgress = Math.min(100, Math.round((userData.progress[subject].testsCompleted / 5) * 100)); // Assuming 5 tests per subject for 100% progress
-
-    // Update overall stats
-    userData.totalTestsCompleted = (userData.totalTestsCompleted || 0) + 1;
-    const totalSuccessRate = Object.values(userData.progress).reduce((acc, subject) => acc + (subject.successRate || 0), 0);
-    userData.averageSuccessRate = Math.round(totalSuccessRate / Object.keys(userData.progress).length) || 0;
-
-    const successRate = Math.round((correct / total) * 100); // Calculate success rate
-    if (successRate >= 80) {
-        const today = new Date();
-        const todayDate = today.toDateString();
-
-        if (userData.lastCompletedTestDate !== todayDate) {
-            userData.dayStreak = (userData.dayStreak || 0) + 1;
-            userData.lastCompletedTestDate = todayDate;
-        }
-    } else {
-        userData.dayStreak = 0;
-        userData.lastCompletedTestDate = null;
+    // Add the parsed questions to the main data structure
+    if (!data[subject]) {
+        console.warn(`parseCSV: Subject "${subject}" not found in data structure. Creating.`);
+        data[subject] = {};
     }
-    userData.totalXP = (userData.totalXP || 0) + correct;
-    //Achievement - bezchybny
-    if (allCorrect) {
-        userData.flawlessTestCount = (userData.flawlessTestCount || 0) + 1;
-        userData.winningStreakCount = (userData.winningStreakCount || 0) + 1;  // vítězná serie
-    } else {
-        userData.winningStreakCount = 0;  // Reset vítězné série
+     if (!data[subject][topic]) {
+        data[subject][topic] = []; // Initialize if topic doesn't exist (shouldn't happen with predefined structure)
     }
-    // Achievement - znalec témat
-    const topic = topicSelect.value;
-    userData.completedTopics.add(topic);
-
-    // Aktualizace achievementů
-    updateAchievements(userData, correct, total);
-
-    // Save updated user data
-    saveUserData(currentUser, userData);
-
-    // Update statistics
-    updateStatisticsSection()
-
-    // Show results in modal
-    resultCorrect.textContent = correct;
-    resultTotal.textContent = total;
-    resultPercentage.textContent = `${Math.round((correct / total) * 100)}%`; // Přidání %
-    modal.style.display = 'flex';
-    if (submitBtn) {
-        submitBtn.remove()
-    }
-
-    const testContainer = document.getElementById('test-container');
-    const backToTestsBtn = document.createElement('button');
-    backToTestsBtn.classList.add('btn', 'btn-primary');
-    backToTestsBtn.style.marginTop = '1rem';
-    backToTestsBtn.textContent = 'Zpět na výběr testů';
-    backToTestsBtn.addEventListener('click', function () { // Přidej nový listener
-
-        modal.style.display = 'none'; // Skryj modální okno
-        testContainer.style.display = 'none'; // Skryj test
-        testSection.style.display = 'block'; // Zobraz test sekci
-        // Resetuj tlačítko zpět na původní
-        topicSelect.value = "";
-        topicSelect.disabled = true;
-        subjectSelect.value = "";
-        generateTestBtn.style.display = 'inline-block'; // Ukáže generovat test
-
-    }); // Přidej nový listener
-
-    testContainer.appendChild(backToTestsBtn);
-
-    // Update Dashboard and Progress sections
-    updateDashboard();
-    updateProgressSection();
-}
-function updateStatisticsSection() {
-    const userData = getUserData(currentUser);
-    document.getElementById("tests-today").textContent =
-        userData.testsToday || 0;
-    document.getElementById("correct-answers").textContent =
-        userData.correctAnswers || 0;
-    document.getElementById("success-rate").textContent =
-        userData.averageSuccessRate + "%";
-    document.getElementById("day-streak").textContent =
-        userData.dayStreak || 0;
-    document.getElementById("total-xp").textContent =
-        userData.totalXP || 0;
-}
-// Close modal
-closeModalBtn.addEventListener('click', function () {
-    modal.style.display = 'none';
-
-});
-
-backToTestsBtn.addEventListener('click', function () {
-    modal.style.display = 'none';
-    testContainer.style.display = 'none';
-});
-
-// Close modal when clicking outside
-window.addEventListener('click', function (event) {
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
-});
-
-function initializeSubjects() {
-    subjectSelect.innerHTML = '<option value="">Vyberte předmět</option>';
-    subjectSelect.innerHTML += '<option value="Programování">Programování</option>';
-    subjectSelect.innerHTML += '<option value="Počítačové sítě">Počítačové sítě</option>';
-    subjectSelect.innerHTML += '<option value="Elektronika">Elektronika</option>';
-}
-function populateTopics(subject) {
-    topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
-    topicSelect.disabled = true;
-    generateTestBtn.disabled = true;
-
-    let topics;
-
-
-    if (subject === "Programování") {
-        topics = [
-            "Základní pojmy z algoritmizace a programování",
-            "Vývoj a druhy programovacích jazyků, vývojové prostředí Visual Studio",
-            "C# strukturované příkazy větvení, složený příkaz",
-            "C# strukturované příkazy cyklů",
-            "C# jednoduché datové typy, řetězce; operace",
-            "C# strukturované datové typy (kolekce)",
-            "C# práce se soubory a dialogovými okny",
-            "C# Windows Forms Application, grafické ovládací prvky, události",
-            "C# ladění programu, druhy chyb, ošetřování výjimek",
-            "C# namespace Drawing – nástroje pro programování grafiky",
-            "C# metody, jmenné prostory",
-            "C# základy OOP",
-            "Souhrnné opakování"
-        ];
-    } else if (subject === "Počítačové sítě") {
-        topics = [
-            "Topologie sítí",
-            "Komunikace v síti",
-            "Pasivní prvky",
-            "Aktivní prvky",
-            "Návrh a realizace sítě",
-            "Bezdrátové technologie",
-            "Připojení počítače k lokální síti",
-            "Připojení k internetu",
-            "Souhrnné opakování"
-        ];
-    } else if (subject === "Elektronika") {
-        topics = [
-            "Základy digitální techniky",
-            "Integrované polovodičové prvky",
-            "Řídící jednotka CM-530",
-            "Mikroprocesor Arduino",
-            "Programování mikroprocesoru Arduino",
-            "Počítač",
-            "Procesor",
-            "Základní deska",
-            "Polovodičové paměti",
-            "Zařízení pro uložení dat",
-            "Grafický a zobrazovací systém",
-            "Digitalizace obrazu a tisk",
-            "Napájecí zdroje",
-            "Diferenciální parametry tranzistoru",
-            "Operační zesilovače",
-            "Přenos informací",
-            "Zesilovače",
-            "Frekvenční filtr typu dolní propust",
-            "Frekvenční filtr typu horní propust",
-            "Sériový a paralelní obvod RL, RC",
-            "Souhrnné opakování"
-        ];
-    } else {
-        return;
-    }
-
-
-    for (const topic of topics) {
-        const option = document.createElement('option');
-        option.value = topic;
-        option.textContent = topic;
-        topicSelect.appendChild(option);
-    }
-    topicSelect.disabled = false;
-    generateTestBtn.disabled = false;
+    data[subject][topic] = questions;
+    console.log(`Parsed ${questions.length} questions for ${subject} - ${topic}`);
 }
 
-// Event delegation for selecting options
-testContainer.addEventListener('click', function (event) {
-    if (event.target.classList.contains('option')) {
-        const option = event.target;
-        const question = option.closest('.question');
-
-        // Remove 'selected' class from other options in the same question
-        question.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-
-        // Add 'selected' class to the clicked option
-        option.classList.add('selected');
-    }
-});
-
-
-// Load data on page load
-window.addEventListener('load', function () {
-    // Inicializuj select předmětů
-    initializeSubjects();
-    generateTestBtn.style.display = 'inline-block';
-    // Načti data pro Programování
+/** Calls parseCSV for all predefined CSV data constants. */
+function parseAllCSVData() {
+    console.log("Parsing all CSV data...");
+    // Programování
     parseCSV(csvDataProgramovani, "Programování", "Základní pojmy z algoritmizace a programování");
     parseCSV(csvDataVyvojJazyku, "Programování", "Vývoj a druhy programovacích jazyků, vývojové prostředí Visual Studio");
     parseCSV(csvDataCsharpVetveni, "Programování", "C# strukturované příkazy větvení, složený příkaz");
     parseCSV(csvDataCyklu, "Programování", "C# strukturované příkazy cyklů");
-    parseCSV(csvJednoducheDatove, "Programování", "C# jednoduché datové typy, řetězce; operace");
+    parseCSV(csvJednoducheDatove, "Programování", "C# jednoduché datové typy, řetězec; operace");
     parseCSV(csvStrukturovaneDatove, "Programování", "C# strukturované datové typy (kolekce)");
     parseCSV(csvDataDialog, "Programování", "C# práce se soubory a dialogovými okny");
     parseCSV(csvDataPrvky, "Programování", "C# Windows Forms Application, grafické ovládací prvky, události");
@@ -1824,7 +1986,7 @@ window.addEventListener('load', function () {
     parseCSV(csvDataMetody, "Programování", "C# metody, jmenné prostory");
     parseCSV(csvDataOOP, "Programování", "C# základy OOP");
 
-    // Načti data pro Počítačové sítě
+    // Počítačové sítě
     parseCSV(csvDataTopologie, "Počítačové sítě", "Topologie sítí");
     parseCSV(csvDataKomunikace, "Počítačové sítě", "Komunikace v síti");
     parseCSV(csvDataPasivni, "Počítačové sítě", "Pasivní prvky");
@@ -1834,7 +1996,7 @@ window.addEventListener('load', function () {
     parseCSV(csvDataLokalni, "Počítačové sítě", "Připojení počítače k lokální síti");
     parseCSV(csvDataInternet, "Počítačové sítě", "Připojení k internetu");
 
-    // Načti data pro Elektroniku
+    // Elektronika
     parseCSV(csvDataZaklady, "Elektronika", "Základy digitální techniky");
     parseCSV(csvDataPolovidice, "Elektronika", "Integrované polovodičové prvky");
     parseCSV(csvDataCM530, "Elektronika", "Řídící jednotka CM-530");
@@ -1855,208 +2017,695 @@ window.addEventListener('load', function () {
     parseCSV(csvDataFFDolni, "Elektronika", "Frekvenční filtr typu dolní propust");
     parseCSV(csvDataFFHorni, "Elektronika", "Frekvenční filtr typu horní propust");
     parseCSV(csvDataRLC, "Elektronika", "Sériový a paralelní obvod RL, RC");
-
-    updateDashboard();
-    updateProgressSection();
-
-
-});
-// Kalendář JavaScript
-const calendarGrid = document.getElementById('calendar-grid');
-const currentMonthDisplay = document.getElementById('current-month');
-const prevMonthBtn = document.getElementById('prev-month');
-const nextMonthBtn = document.getElementById('next-month');
-
-let currentDate = new Date(); // Aktuální datum
-let currentMonth = currentDate.getMonth(); // Aktuální měsíc (0-11)
-let currentYear = currentDate.getFullYear(); // Aktuální rok
-
-// Funkce pro získání dat o aktivitě z localStorage (počet testů za den)
-function getActivityData(year, month) {
-    const userData = getUserData(currentUser);
-    // Inicializace objektu pro aktivitu, pokud neexistuje
-    userData.activity = userData.activity || {};
-    const activityData = userData.activity[year] && userData.activity[year][month] ? userData.activity[year][month] : {};
-    return activityData;
+    console.log("Finished parsing CSV data.");
 }
 
-// Funkce pro uložení dat o aktivitě do localStorage
-function saveActivityData(year, month, day, count) {
-    const userData = getUserData(currentUser);
-    userData.activity = userData.activity || {};
-    userData.activity[year] = userData.activity[year] || {};
-    userData.activity[year][month] = userData.activity[year][month] || {};
-    userData.activity[year][month][day] = count;
-    saveUserData(currentUser, userData);
+// --- Test Logic ---
+
+/**
+ * Generates and displays a test based on selected subject and topic.
+ */
+function generateTest() {
+    if (!testContainer || !noQuestionsMessage || !subjectSelect || !topicSelect) return;
+
+    const subject = subjectSelect.value;
+    const topic = topicSelect.value;
+
+    testContainer.innerHTML = ''; // Clear previous test
+    testContainer.style.display = 'none'; // Hide initially
+    noQuestionsMessage.style.display = 'none';
+
+    if (!subject || !topic) {
+        noQuestionsMessage.textContent = "Prosím vyberte předmět a okruh.";
+        noQuestionsMessage.style.display = 'block';
+        return;
+    }
+
+    let testQuestions = [];
+    const questionsPerTopicSummary = 2; // How many questions per topic for summary test
+    const questionsPerStandardTest = 10;
+
+    try {
+        if (topic === "Souhrnné opakování") {
+            console.log(`Generating summary test for ${subject}`);
+            const otherTopics = Object.keys(data[subject] || {}).filter(t => t !== "Souhrnné opakování");
+
+            if (otherTopics.length === 0) {
+                throw new Error("Nebyly nalezeny žádné okruhy pro souhrnný test.");
+            }
+
+            for (const otherTopic of otherTopics) {
+                const questionsFromTopic = data[subject]?.[otherTopic];
+                if (questionsFromTopic && questionsFromTopic.length > 0) {
+                    const randomQuestions = getRandomQuestions(questionsFromTopic, questionsPerTopicSummary);
+                    testQuestions.push(...randomQuestions); // Use spread syntax
+                } else {
+                     console.warn(`No questions found for ${subject} - ${otherTopic}`);
+                }
+            }
+            // Shuffle the combined list of summary questions
+            shuffleArray(testQuestions);
+
+        } else {
+            // Standard topic test
+            console.log(`Generating standard test for ${subject} - ${topic}`);
+            const availableQuestions = data[subject]?.[topic];
+
+            if (!availableQuestions || availableQuestions.length === 0) {
+                throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky.`);
+            }
+            testQuestions = getRandomQuestions(availableQuestions, questionsPerStandardTest);
+        }
+
+        if (testQuestions.length === 0) {
+             throw new Error("Nepodařilo se vygenerovat žádné otázky pro tento test.");
+        }
+
+        console.log(`Generated ${testQuestions.length} questions.`);
+
+        // --- Display Questions ---
+        testQuestions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('question');
+
+            const questionText = document.createElement('div');
+            questionText.classList.add('question-text');
+            questionText.textContent = `${index + 1}. ${q.text}`;
+            questionDiv.appendChild(questionText);
+
+            const allOptions = [...q.options, q.correctAnswer]; // Combine incorrect and correct
+            shuffleArray(allOptions); // Shuffle them together
+
+            const optionsDiv = document.createElement('div');
+            optionsDiv.classList.add('question-options');
+
+            allOptions.forEach((optionText) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.classList.add('option');
+                optionDiv.textContent = optionText;
+                optionDiv.dataset.correct = (optionText === q.correctAnswer); // Set data attribute
+
+                // Add click listener to select/deselect options within the same question
+                optionDiv.addEventListener('click', () => {
+                    // Deselect other options in the same question
+                     questionDiv.querySelectorAll('.option.selected').forEach(sel => {
+                        if(sel !== optionDiv) sel.classList.remove('selected');
+                     });
+                    // Toggle selection for the clicked option
+                    optionDiv.classList.toggle('selected');
+                });
+
+                optionsDiv.appendChild(optionDiv);
+            });
+
+            questionDiv.appendChild(optionsDiv);
+            testContainer.appendChild(questionDiv);
+        });
+
+        // --- Add Submit Button ---
+        // Remove previous submit button if any (safety check)
+        if (submitBtn && submitBtn.parentNode) {
+            submitBtn.remove();
+        }
+        submitBtn = document.createElement('button');
+        submitBtn.classList.add('btn', 'btn-primary');
+        submitBtn.style.marginTop = '2rem'; // Add space above button
+        submitBtn.textContent = 'Odeslat odpovědi';
+        submitBtn.addEventListener('click', () => evaluateTest(db)); // Pass db instance
+        testContainer.appendChild(submitBtn);
+
+        testContainer.style.display = 'block'; // Show the generated test
+
+    } catch (error) {
+        console.error("Error generating test:", error);
+        noQuestionsMessage.textContent = error.message || "Nepodařilo se vygenerovat test.";
+        noQuestionsMessage.style.display = 'block';
+        testContainer.style.display = 'none';
+    }
 }
 
-// Funkce pro vizualizaci aktivity (podle obrázku)
-function getActivityClass(day, activityData) {
-    const count = activityData[day] || 0;
+/**
+ * Evaluates the completed test, updates user stats/achievements, saves data, shows results.
+ * @param {firebase.firestore.Firestore} db - The Firestore instance.
+ */
+async function evaluateTest(db) {
+    let correct = 0;
+    const questionElements = document.querySelectorAll('.question');
+    const total = questionElements.length;
+    let allCorrect = true; // Assume all correct initially
 
-    if (count === 0) return ''; // Žádná aktivita
+    console.log(`Evaluating test with ${total} questions.`);
+
+    if (total === 0) {
+        console.warn("evaluateTest called with no questions rendered.");
+        return; // Nothing to evaluate
+    }
+
+    // --- Evaluate Answers and Update Option Styles ---
+    questionElements.forEach((questionElement, qIndex) => {
+        const options = questionElement.querySelectorAll('.option');
+        let isQuestionCorrect = false;
+        let anOptionWasSelected = false;
+
+        options.forEach(option => {
+            option.style.pointerEvents = 'none'; // Disable further clicks
+            const isCorrectAnswer = option.dataset.correct === 'true';
+
+            // Always highlight the correct answer after evaluation
+            if (isCorrectAnswer) {
+                option.classList.add('correct');
+            }
+
+            if (option.classList.contains('selected')) {
+                anOptionWasSelected = true;
+                if (isCorrectAnswer) {
+                    isQuestionCorrect = true;
+                    correct++;
+                    // Keep correct class (already added)
+                } else {
+                    option.classList.add('incorrect'); // Mark selected incorrect answer
+                }
+            } else if (!isCorrectAnswer) {
+                 // If not selected and not correct, remove potential hover styles
+                 option.classList.remove('selected'); // Ensure not marked selected
+            }
+        });
+
+        // If no option was selected for this question, or the selected one was wrong
+        if (!anOptionWasSelected || !isQuestionCorrect) {
+            allCorrect = false;
+        }
+         console.log(`Question ${qIndex+1}: ${isQuestionCorrect ? 'Correct' : 'Incorrect'}`);
+    });
+
+    console.log(`Test Result: ${correct}/${total}`);
+
+    // --- Show Results Modal ---
+    if (resultCorrect) resultCorrect.textContent = correct;
+    if (resultTotal) resultTotal.textContent = total;
+    const finalSuccessRate = total > 0 ? Math.round((correct / total) * 100) : 0;
+    if (resultPercentage) resultPercentage.textContent = `${finalSuccessRate}%`;
+    if (modal) modal.classList.add('show'); // Use class to show modal with animation
+
+    // --- Update User Data (only if logged in) ---
+    if (!currentUser) {
+        console.warn("User not logged in. Test results not saved.");
+        // Modal is already shown above, just return
+        addBackButtonToTestContainer(); // Add back button even for guests
+        return;
+    }
+
+    console.log("Updating user data in Firestore...");
+    // Get current user data AND WAIT FOR IT
+    const userData = await getUserData(currentUser, db);
+    if (!userData) {
+        console.error("Could not retrieve user data to save results.");
+        alert("Chyba: Nepodařilo se načíst uživatelská data pro uložení výsledků.");
+        addBackButtonToTestContainer(); // Add back button even on error
+        return;
+    }
+
+    // Ensure data structures exist and handle Set conversion
+    userData.progress = userData.progress || {};
+    userData.achievements = userData.achievements || { /* Initialize all to 0 */ };
+    userData.activity = userData.activity || {};
+    userData.completedTopics = new Set(userData.completedTopics || []); // Array from DB to Set
+
+    // --- Update Core Stats ---
+    userData.testsToday = (userData.testsToday || 0) + 1; // Increment today's count
+    userData.correctAnswersToday = (userData.correctAnswersToday || 0) + correct; 
+    userData.totalTestsCompleted = (userData.totalTestsCompleted || 0) + 1;
+    userData.totalXP = (userData.totalXP || 0) + correct;
+    console.log("EvaluateTest: Data after increment:", {
+        testsToday: userData.testsToday,
+        correctToday: userData.correctAnswersToday
+   });
+
+    // --- Update Subject Progress ---
+    const subject = subjectSelect.value;
+    if (subject && data[subject]) { // Check if subject is valid
+        userData.progress[subject] = userData.progress[subject] || { testsCompleted: 0, correctAnswers: 0, successRate: 0 };
+        const subjData = userData.progress[subject];
+        subjData.testsCompleted++;
+        subjData.correctAnswers += correct;
+        const totalSubjQuestions = subjData.testsCompleted * 10; // Assuming 10 Qs/test always
+        subjData.successRate = totalSubjQuestions > 0
+            ? Math.round((subjData.correctAnswers / totalSubjQuestions) * 100)
+            : 0;
+    }
+
+    // --- Update Average Success Rate (Recalculate) ---
+     let totalSuccessSum = 0;
+     let numSubjectsWithProgress = 0;
+     for (const subjKey in userData.progress) {
+         if (userData.progress[subjKey]?.testsCompleted > 0) { // Check if tests were completed
+             totalSuccessSum += (userData.progress[subjKey].successRate || 0);
+             numSubjectsWithProgress++;
+         }
+     }
+     userData.averageSuccessRate = numSubjectsWithProgress > 0
+         ? Math.round(totalSuccessSum / numSubjectsWithProgress)
+         : 0;
+
+
+    // --- Update Streaks & Activity Log ---
+    const today = new Date();
+    const todayDateString = today.toDateString();
+    const todayYear = today.getFullYear();
+    const todayMonth = today.getMonth();
+    const todayDay = today.getDate();
+
+    // Day Streak (>80% success)
+    if (finalSuccessRate >= 80) {
+        if (userData.lastCompletedTestDate !== todayDateString) {
+             // Basic streak increment - for true streak, check if yesterday
+             userData.dayStreak = (userData.dayStreak || 0) + 1;
+             userData.lastCompletedTestDate = todayDateString;
+        }
+    } else {
+        // Reset streak only if the last success wasn't also today
+        if (userData.lastCompletedTestDate !== todayDateString) {
+            userData.dayStreak = 0;
+        }
+    }
+
+    // Activity Log
+    userData.activity[todayYear] = userData.activity[todayYear] || {};
+    userData.activity[todayYear][todayMonth] = userData.activity[todayYear][todayMonth] || {};
+    userData.activity[todayYear][todayMonth][todayDay] = (userData.activity[todayYear][todayMonth][todayDay] || 0) + 1;
+
+
+    // --- Update Achievements ---
+    // Flawless & Winning Streak
+    if (allCorrect) {
+        userData.flawlessTestCount = (userData.flawlessTestCount || 0) + 1;
+        userData.winningStreakCount = (userData.winningStreakCount || 0) + 1;
+    } else {
+        userData.winningStreakCount = 0; // Reset winning streak
+    }
+
+    // Topic Master
+    const topic = topicSelect.value;
+    if (topic && topic !== "Souhrnné opakování" && subject && data[subject]?.[topic]) { // Ensure topic is valid
+        userData.completedTopics.add(topic);
+    }
+
+    // Calculate all achievement levels
+    updateAchievements(userData); // Pass updated userData
+
+    // --- Prepare for Saving ---
+    userData.completedTopics = Array.from(userData.completedTopics); // Set back to Array
+
+    // --- Save Updated Data ---
+    await saveUserData(currentUser, userData, db);
+
+    // --- Update UI Sections with new data ---
+    console.log("Updating UI after test evaluation...");
+    updateStatisticsSection(userData); // Pass data to avoid re-fetch
+    updateDashboard(userData);
+    updateProgressSection(userData);
+    updateAchievementsUI(userData);
+    generateCalendar(currentYear, currentMonth, db); // Update calendar
+
+    // --- Add Back Button ---
+     addBackButtonToTestContainer();
+
+} // End of evaluateTest
+
+
+/** Adds the 'Back to Test Selection' button if not already present */
+function addBackButtonToTestContainer() {
+    if (!testContainer) return;
+     // Remove old submit button if it exists
+     if (submitBtn && submitBtn.parentNode) {
+        submitBtn.remove();
+        submitBtn = null; // Clear reference
+     }
+    // Check if back button already exists
+    let existingBackBtn = testContainer.querySelector('#dynamic-back-btn');
+    if (!existingBackBtn) {
+        const backBtn = document.createElement('button');
+        backBtn.id = 'dynamic-back-btn'; // Give it an ID
+        backBtn.type = 'button';
+        backBtn.classList.add('btn', 'btn-primary');
+        backBtn.style.marginTop = '2rem'; // Add space
+        backBtn.textContent = 'Zpět na výběr testů';
+        backBtn.addEventListener('click', handleBackToTestSelection);
+        // Append after the last question or at the end
+        testContainer.appendChild(backBtn);
+    }
+}
+
+/** Logic for the 'Back to Test Selection' button */
+function handleBackToTestSelection() {
+     if(modal) modal.classList.remove('show'); // Hide modal if shown
+     if(testContainer) {
+         testContainer.innerHTML = ''; // Clear the test content
+         testContainer.style.display = 'none';
+     }
+     if(subjectSelect) subjectSelect.value = "";
+     if(topicSelect) {
+         topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
+         topicSelect.disabled = true;
+     }
+     if(generateTestBtn) {
+         generateTestBtn.disabled = true; // Disable until subject/topic selected
+         generateTestBtn.style.display = 'inline-block'; // Ensure visible
+     }
+     showTestSection(); // Show the test selection interface
+}
+
+
+// --- Achievement Calculation ---
+
+/**
+ * Calculates the achievement level based on a value and predefined levels.
+ * @param {number[]} levels - An array of thresholds for each level.
+ * @param {number} value - The current value to check against the levels.
+ * @returns {number} The achieved level (0 if none).
+ */
+function calculateLevel(levels, value) {
+    let level = 0;
+    if (value === undefined || value === null || !Array.isArray(levels)) return 0; // Basic validation
+    for (let i = 0; i < levels.length; i++) {
+        if (value >= levels[i]) {
+            level = i + 1;
+        } else {
+            break; // Stop checking once a threshold isn't met
+        }
+    }
+    return level;
+}
+
+/**
+ * Updates all achievement levels within the userData object.
+ * @param {object} userData - The user data object (will be mutated).
+ */
+function updateAchievements(userData) {
+    if (!userData || !userData.achievements) return; // Safety check
+
+    const achievements = userData.achievements; // Shortcut
+
+    // XP Collector
+    achievements.xpCollector = calculateLevel(
+        achievementLevels.xpCollector.levels,
+        userData.totalXP || 0
+    );
+    // Unstoppable (Day Streak)
+    achievements.unstoppable = calculateLevel(
+        achievementLevels.unstoppable.levels,
+        userData.dayStreak || 0
+    );
+    // Flawless (Perfect Tests)
+    achievements.flawless = calculateLevel(
+        achievementLevels.flawless.levels,
+        userData.flawlessTestCount || 0
+    );
+    // Winning Streak (Consecutive Perfect Tests)
+    achievements.winningStreak = calculateLevel(
+        achievementLevels.winningStreak.levels,
+        userData.winningStreakCount || 0
+    );
+    // Topic Master (Unique Topics Completed)
+    // Use the size of the Set *before* it was converted back to Array
+    const completedTopicsSet = new Set(userData.completedTopics || []);
+    achievements.topicMaster = calculateLevel(
+        achievementLevels.topicMaster.levels,
+        completedTopicsSet.size
+    );
+
+    // --- Time-Based Achievements ---
+    const now = new Date();
+    const hour = now.getHours();
+
+    // Early Bird (Tests between 5 AM and 8 AM)
+    if (hour >= 5 && hour < 8) {
+        // Note: This increments count every time evaluateTest runs in this window.
+        // If you only want to count *days* with early tests, logic needs adjustment.
+        achievements.earlyBirdCount = (achievements.earlyBirdCount || 0) + 1;
+    }
+    achievements.earlyBird = calculateLevel(
+        achievementLevels.earlyBird.levels,
+        achievements.earlyBirdCount || 0
+    );
+
+    // Night Owl (Tests between 9 PM and 1 AM)
+    if (hour >= 21 || hour < 1) {
+        achievements.nightOwlCount = (achievements.nightOwlCount || 0) + 1;
+    }
+    achievements.nightOwl = calculateLevel(
+        achievementLevels.nightOwl.levels,
+        achievements.nightOwlCount || 0
+    );
+
+    // Marathoner (Tests completed today)
+    achievements.marathoner = calculateLevel(
+        achievementLevels.marathoner.levels,
+        userData.testsToday || 0 // Assuming testsToday is reset daily (needs separate logic)
+    );
+}
+
+
+// --- Calendar Functions ---
+
+/**
+ * Fetches activity data for the calendar.
+ * @param {number} year
+ * @param {number} month (0-11)
+ * @param {firebase.firestore.Firestore} db
+ * @returns {Promise<object>} Object with day numbers as keys and counts as values.
+ */
+async function getActivityData(year, month, db) {
+    if (!currentUser || !db) return {}; // Return empty if no user/db
+    try {
+        const userData = await getUserData(currentUser, db); // Use the improved getter
+        if (userData?.activity?.[year]?.[month]) {
+            return userData.activity[year][month];
+        }
+        return {}; // Return empty if no data for this period
+    } catch (error) {
+        console.error("Error fetching activity data:", error);
+        return {}; // Return empty on error
+    }
+}
+
+/**
+ * Maps activity count to CSS class name.
+ * @param {number} count - Number of tests completed on a day.
+ * @returns {string} CSS class name.
+ */
+function getActivityClass(count) {
+    if (count === 0) return 'activity-none';
     if (count >= 1 && count <= 2) return 'activity-low';
     if (count >= 3 && count <= 4) return 'activity-medium';
     if (count >= 5 && count <= 6) return 'activity-high';
-    return 'activity-very-high';
+    return 'activity-very-high'; // 7+
 }
 
-// Funkce pro vygenerování kalendáře
-function generateCalendar(year, month) {
-    calendarGrid.innerHTML = ''; // Vymaže předchozí kalendář
+/**
+ * Generates and displays the calendar for the given month and year.
+ * @param {number} year
+ * @param {number} month (0-11)
+ * @param {firebase.firestore.Firestore} db
+ */
+async function generateCalendar(year, month, db) {
+    if (!calendarGrid || !currentMonthDisplay) return;
+    calendarGrid.innerHTML = ''; // Clear previous grid
 
-    const firstDay = new Date(year, month, 1); // První den měsíce
-    const lastDay = new Date(year, month + 1, 0); // Poslední den měsíce
-    const daysInMonth = lastDay.getDate(); // Počet dnů v měsíci
-    const startingDay = firstDay.getDay(); // Den v týdnu, kterým měsíc začíná (0=Neděle, 1=Pondělí, atd.)
+    const firstDayOfMonth = new Date(year, month, 1);
+    const lastDayOfMonth = new Date(year, month + 1, 0);
+    const daysInMonth = lastDayOfMonth.getDate();
+    // Adjust startingDay: 0=Sunday -> 6, 1=Monday -> 0, etc. to make Monday first day
+    const startingDay = (firstDayOfMonth.getDay() + 6) % 7;
 
-    const activityData = getActivityData(year, month); // Získání dat o aktivitě
+    // Fetch activity data for the month asynchronously
+    const activityData = await getActivityData(year, month, db);
 
-    currentMonthDisplay.textContent = new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' }); // Zobrazí název měsíce a rok
+    // Display month and year
+    currentMonthDisplay.textContent = firstDayOfMonth.toLocaleString('cs-CZ', { month: 'long', year: 'numeric' });
 
-    // Vytvoření prázdných buněk pro dny před prvním dnem měsíce
+    // Add day headers (optional but good UX)
+    const dayNames = ['Po', 'Út', 'St', 'Čt', 'Pá', 'So', 'Ne'];
+    dayNames.forEach(name => {
+        const dayHeader = document.createElement('div');
+        dayHeader.classList.add('day-header'); // Add a class for styling
+        dayHeader.textContent = name;
+        dayHeader.style.textAlign = 'center'; // Basic styling
+        dayHeader.style.fontWeight = 'bold';
+        dayHeader.style.fontSize = '0.8em';
+        calendarGrid.appendChild(dayHeader);
+    });
+
+
+    // Create blank cells for days before the 1st
     for (let i = 0; i < startingDay; i++) {
         const dayDiv = document.createElement('div');
         dayDiv.classList.add('day', 'inactive');
         calendarGrid.appendChild(dayDiv);
     }
 
-    // Vytvoření buněk pro jednotlivé dny v měsíci
+    // Create cells for each day of the month
+    const today = new Date(); // Get today's date for highlighting
+    const todayDate = today.getDate();
+    const todayMonth = today.getMonth();
+    const todayYear = today.getFullYear();
+
     for (let day = 1; day <= daysInMonth; day++) {
         const dayDiv = document.createElement('div');
         dayDiv.classList.add('day');
         dayDiv.textContent = day;
 
-        // Přidání třídy pro vizualizaci aktivity
-        const activityClass = getActivityClass(day, activityData);
+        // Apply activity class
+        const dayCount = activityData[day] || 0;
+        const activityClass = getActivityClass(dayCount);
         if (activityClass) {
             dayDiv.classList.add(activityClass);
         }
 
-        // Označení aktuálního dne
-        if (year === currentDate.getFullYear() && month === currentDate.getMonth() && day === currentDate.getDate()) {
+        // Highlight today's date
+        if (year === todayYear && month === todayMonth && day === todayDate) {
             dayDiv.classList.add('active');
         }
 
-        // Event listener pro kliknutí na den (pro budoucí funkčnost)
+        // Add tooltip or click event (optional)
+        dayDiv.title = `${day}.${month + 1}.${year}: ${dayCount} testů`; // Simple tooltip
         dayDiv.addEventListener('click', () => {
-            // Zde by se mohlo zobrazit detailnější info o aktivitě v daný den
-            console.log(`Kliknuto na den: ${day}.${month + 1}.${year}`);
-
+            console.log(`Kliknuto na den: ${day}.${month + 1}.${year} (${dayCount} testů)`);
+            // Could show more details here in the future
         });
 
         calendarGrid.appendChild(dayDiv);
     }
 }
 
-// Event listenery pro tlačítka pro změnu měsíce
-prevMonthBtn.addEventListener('click', () => {
-    currentMonth--;
-    if (currentMonth < 0) {
-        currentMonth = 11;
-        currentYear--;
+
+// --- Utility Functions ---
+
+/** Shuffles array in place using Fisher-Yates. */
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
     }
-    generateCalendar(currentYear, currentMonth);
-});
-
-nextMonthBtn.addEventListener('click', () => {
-    currentMonth++;
-    if (currentMonth > 11) {
-        currentMonth = 0;
-        currentYear++;
-    }
-    generateCalendar(currentYear, currentMonth);
-});
-
-// Inicializace kalendáře při načtení stránky
-generateCalendar(currentYear, currentMonth);
-
-// Uprav funkci evaluateTest tak, aby ukládala data o aktivitě
-const originalEvaluateTest = evaluateTest; // Ulož si původní funkci
-evaluateTest = function () {
-    originalEvaluateTest.apply(this); // Spusť původní funkci
-
-    const correct = parseInt(resultCorrect.textContent); // Získej počet správných odpovědí
-    const total = parseInt(resultTotal.textContent); // Získej celkový počet otázek
-
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth();
-    const day = today.getDate();
-
-    const activityData = getActivityData(year, month);
-
-    let testCount = activityData[day] || 0;
-    testCount += 1;
-
-    // Ulož data o aktivitě (počet testů za den)
-    saveActivityData(year, month, day, testCount);
-    generateCalendar(currentYear, currentMonth); // Aktualizuj kalendář
-};
-function updateAchievements(userData, correct, total) {
-
-    // XP Sběratel
-    userData.achievements.xpCollector = calculateLevel(
-        achievementLevels.xpCollector.levels,
-        userData.totalXP
-    );
-    // Nezastavitelný
-    userData.achievements.unstoppable = calculateLevel(
-        achievementLevels.unstoppable.levels,
-        userData.dayStreak
-    );
-    // Bezchybník
-    userData.achievements.flawless = calculateLevel(
-        achievementLevels.flawless.levels,
-        userData.flawlessTestCount
-    );
-    // Vítězná série
-    userData.achievements.winningStreak = calculateLevel(
-        achievementLevels.winningStreak.levels,
-        userData.winningStreakCount
-    );
-
-    // Znalec témat
-    userData.achievements.topicMaster = calculateLevel(
-        achievementLevels.topicMaster.levels,
-        userData.completedTopics.size
-    );
-
-    // Ranní ptáče
-    const now = new Date();
-    const hour = now.getHours();
-    if (hour >= 5 && hour < 8) {
-        userData.achievements.earlyBirdCount = (userData.achievements.earlyBirdCount || 0) + 1;
-    }
-    userData.achievements.earlyBird = calculateLevel(
-        achievementLevels.earlyBird.levels,
-        userData.achievements.earlyBirdCount || 0
-    );
-
-    // Večerní sova
-    if (hour >= 21 || hour < 1) {
-        userData.achievements.nightOwlCount = (userData.achievements.nightOwlCount || 0) + 1;
-    }
-    userData.achievements.nightOwl = calculateLevel(
-        achievementLevels.nightOwl.levels,
-        userData.achievements.nightOwlCount || 0
-    );
-
-    // Maratonec
-    const marathonTests = userData.testsToday || 0;
-    userData.achievements.marathoner = calculateLevel(
-        achievementLevels.marathoner.levels,
-        marathonTests
-    );
+    return array;
 }
-function calculateLevel(levels, value) {
-    let level = 0;
-    for (let i = 0; i < levels.length; i++) {
-        if (value >= levels[i]) {
-            level = i + 1;
-        } else {
-            break;
-        }
+
+/** Selects N random elements from an array without replacement. */
+function getRandomQuestions(arr, n) {
+    if (!arr || arr.length === 0) return [];
+    const shuffled = shuffleArray(arr.slice()); // Create a shuffled copy
+    return shuffled.slice(0, Math.min(n, arr.length)); // Return the first N elements
+}
+
+/** Initializes the subject dropdown menu. */
+function initializeSubjects() {
+    if (!subjectSelect) return;
+    subjectSelect.innerHTML = '<option value="">Vyberte předmět</option>'; // Placeholder
+    for (const subject in data) {
+        const option = document.createElement('option');
+        option.value = subject;
+        option.textContent = subject;
+        subjectSelect.appendChild(option);
     }
-    return level;
+}
+
+/** Populates the topic dropdown based on the selected subject. */
+function populateTopics(subject) {
+    if (!topicSelect || !generateTestBtn) return;
+
+    topicSelect.innerHTML = '<option value="">Vyberte okruh</option>'; // Reset
+    topicSelect.disabled = true;
+    generateTestBtn.disabled = true;
+
+    if (subject && data[subject]) {
+        for (const topic in data[subject]) {
+            const option = document.createElement('option');
+            option.value = topic;
+            option.textContent = topic;
+            topicSelect.appendChild(option);
+        }
+        topicSelect.disabled = false;
+        // Enable generate button only if a topic is actually selected later
+    }
+}
+
+// --- Event Listener Setup ---
+function setupEventListeners() {
+    // Navigation Links
+    document.getElementById('dashboard-link')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        showDashboard();
+        // Data is updated automatically if needed when loading user data
+    });
+    document.getElementById('test-link')?.addEventListener('click', (e) => {
+         e.preventDefault();
+         showTestSection();
+    });
+    document.getElementById('progress-link')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        showProgressSection();
+        // Data should be up-to-date from previous actions or load
+        if (currentUser) {
+             getUserData(currentUser, db).then(userData => updateProgressSection(userData));
+        }
+    });
+
+    // Auth Link (Login/Logout)
+    authLink?.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentUser) {
+            logoutUserHandler(auth); // Use handler
+        } else {
+            showLogin();
+        }
+    });
+
+    // Login/Register Buttons
+    loginBtn?.addEventListener('click', () => loginUserHandler(auth)); // Use handler
+    registerBtn?.addEventListener('click', () => registerUserHandler(auth)); // Use handler
+
+    // Test Generation Controls
+    subjectSelect?.addEventListener('change', function () {
+        populateTopics(this.value);
+        topicSelect.value = ""; // Reset topic selection
+        generateTestBtn.disabled = true; // Disable btn until topic is chosen
+    });
+    topicSelect?.addEventListener('change', function () {
+        generateTestBtn.disabled = !this.value; // Enable only if a topic is selected
+    });
+    generateTestBtn?.addEventListener('click', generateTest);
+
+    // Modal Controls
+    closeModalBtn?.addEventListener('click', () => {
+        if(modal) modal.classList.remove('show');
+    });
+    backToTestsModalBtn?.addEventListener('click', () => { // Use correct button ID
+         handleBackToTestSelection();
+    });
+    window.addEventListener('click', (event) => { // Close modal on outside click
+        if (event.target === modal) {
+            if(modal) modal.classList.remove('show');
+        }
+    });
+
+    // Calendar Navigation
+    prevMonthBtn?.addEventListener('click', () => {
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        }
+        generateCalendar(currentYear, currentMonth, db); // Regenerate with db
+    });
+    nextMonthBtn?.addEventListener('click', () => {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        generateCalendar(currentYear, currentMonth, db); // Regenerate with db
+    });
+
+     // Add listeners for subject card clicks (handled within updateDashboard)
+
 }
