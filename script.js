@@ -1245,7 +1245,7 @@ let data = {
         "Frekvenční filtr typu horní propust": [],
         "Sériový a paralelní obvod RL, RC": [],
         "Souhrnné opakování": []
-    }
+    },
     "Automatizace": {
         "Regulační obvody": [],
         "Technické prstředky automatizace": [],
