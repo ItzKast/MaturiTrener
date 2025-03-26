@@ -1239,6 +1239,270 @@ Jak se značí odporový dělič napětí?;Dvě sériově zapojené odpory;Paral
 Jaké chyby mohou ovlivnit měření?;Systematické a náhodné;Tepelné a akustické;Vizuální a zvukové;Lineární a nelineární;Parazitní a harmonické
 K čemu slouží kalibrace měřicího přístroje?;K zajištění přesnosti měření;K připojení k síti;K ochraně proti zkratu;K nastavení displeje;K prodloužení životnosti
 `;
+const csvDataPrevodniky = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je stykač?;Spínací přístroj dálkově ovládaný elektromagnetem;Mechanické tlačítko;Zdroj proudu;Pojistka;Jistič na DIN lištu
+K čemu slouží relé?;K sepnutí nebo rozepnutí obvodu podle vstupního signálu;K ochraně proti zkratu;K měření napětí;K omezení proudu;K chlazení zařízení
+Co je jistič?;Přístroj na ochranu obvodu proti přetížení a zkratu;Pojistka s pevnou hodnotou;Ovládací tlačítko;Zesilovač;Napěťový převodník
+Jaký je rozdíl mezi jističem a pojistkou?;Jistič lze opětovně zapnout, pojistku je nutné vyměnit;Pojistka je vždy lepší;Jistič je menší;Pojistka je automatická;Jistič je jednorázový
+Kde se používají stykače?;K dálkovému spínání motorů a silových obvodů;Pouze v domácích instalacích;V ručních ovladačích;Na svítidla;V bateriových obvodech
+Co je NO kontakt?;Normálně otevřený kontakt;Normálně uzavřený kontakt;Negativní ovladač;Neutrální odpor;Napěťový obvod
+Co je NC kontakt?;Normálně zavřený kontakt;Normálně otevřený kontakt;Napájecí kontakt;Nouzové tlačítko;Zemnící bod
+Jaký je princip elektromagnetického relé?;Při přivedení napětí dojde k sepnutí kontaktů pomocí elektromagnetu;Je řízeno ručně;Zesiluje signál;Používá světelný senzor;Reaguje na teplo
+Co je tepelná spoušť jističe?;Prvek reagující na zahřátí vodiče vlivem proudu;Prvek reagující na světlo;Zpětný kontakt;Ovládací knoflík;Tlačítko reset
+K čemu slouží zkratová spoušť jističe?;Okamžitě odpojí obvod při zkratu;Měří odpor;Slouží k indikaci poruchy;Spíná kontakt pomalu;Reguluje napětí
+Jaký je účel pojistky v obvodu?;Ochrana proti nadproudu a zkratu;Zesílení napětí;Změna směru proudu;Ovládání motoru;Zpožděné spínání
+K čemu slouží pomocné kontakty stykače?;Pro signalizaci stavu hlavních kontaktů;Pro napájení motoru;K měření proudu;K regulaci napětí;K ručnímu ovládání
+Co značí označení 'K1' ve schématu?;Stykač číslo 1;Relé časové;Tlačítko start;Motor;Jistič B16
+Jak se značí cívka stykače?;K;M;S;P;T
+Co je samovrací tlačítko?;Tlačítko, které se po stisku samo vrátí do původní polohy;Zůstává stisknuté;Ovládá motor;Používá se jen pro STOP;Ovládá proudový chránič
+Jaká barva tlačítka je určena pro nouzové vypnutí?;Červená;Zelená;Modrá;Bílá;Žlutá
+Co je zpožděné relé?;Sepne nebo vypne s časovým zpožděním;Přepíná směry;Zesiluje signál;Spíná pouze při vysokém napětí;Reaguje na teplotu
+Jaká je hlavní funkce jističe B16?;Chránit obvod s proudovým limitem 16 A;Napájet obvod;Startovat motor;Spínat relé;Řídit senzor
+K čemu slouží kontrolka ve spínacím obvodu?;Signalizuje stav (zapnuto/vypnuto);Řídí výkon;Ovládá ventil;Měří napětí;Zvyšuje proud
+Jaký přístroj se používá pro sepnutí motoru z více míst?;Střídavé řízení pomocí stykačů a tlačítek;Termostat;Reverzní vypínač;Pojistka;Transformátor
+`;
+const csvDataVystavba = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je elektromotor?;Stroj převádějící elektrickou energii na mechanickou;Zařízení na regulaci teploty;Měřicí přístroj;Akumulátor;Zdroj napětí
+Jaké jsou hlavní části elektromotoru?;Stator, rotor, ložiska;Transformátor, cívka, jádro;Stykač, relé, kontakt;Kondenzátor, dioda, tyristor;Senzor, čidlo, spínač
+Co je stator?;Pevná část motoru, vytváří magnetické pole;Otáčející se část;Mechanický rám;Elektronická pojistka;Snímač napětí
+Co je rotor?;Otáčející se část motoru;Pevná část s vinutím;Vypínač;Zemní kontakt;Kryt motoru
+Jaký je princip činnosti asynchronního motoru?;Magnetické pole statoru indukuje proud v rotoru;Motor má mechanické spínače;Funguje jako generátor;Pracuje pouze s baterií;Reguluje teplotu
+Co je jmenovitý výkon motoru?;Maximální výkon při stanovených podmínkách;Nejnižší výkon motoru;Spotřeba motoru;Zkratový proud;Proud při rozběhu
+Co znamená IP krytí?;Stupeň ochrany proti vniknutí cizích těles a vody;Výkon motoru;Zkratová ochrana;Proudová zatížitelnost;Typ napájení
+Jaký je rozdíl mezi 1f a 3f motorem?;1f má jednofázové napájení, 3f trojfázové;1f je silnější;3f se používá v domácnostech;1f nevyžaduje spouštění;3f má menší rozměry
+Jak se značí připojovací svorky 3f motoru?;U1, V1, W1 a U2, V2, W2;L1, L2, L3;N, PE, L;X1, X2, X3;P1, P2, P3
+Co je Y-Δ spouštění?;Způsob spuštění motoru pomocí změny zapojení vinutí;Zpětné spouštění;Programovatelné spouštění;Spínání pomocí PLC;Ruční zapnutí
+Jaké jsou výhody Y-Δ spouštění?;Snížení rozběhového proudu a zátěže;Zvýšení rychlosti motoru;Ochrana proti přetížení;Snížení hlučnosti;Jednodušší zapojení
+Jak se značí motor ve schématu?;M;K;R;B;T
+Co je moment setrvačnosti?;Schopnost motoru odolávat změnám otáček;Výkon motoru;Napětí při chodu naprázdno;Počet závitů;Proudový zisk
+Jak se značí směr otáčení motoru?;Šipkou na krytu nebo na svorkovnici;Barvou vodiče;Kódem na štítku;Zvukovou signalizací;Značkou R/L
+Co je reverzace motoru?;Změna směru otáčení;Změna napětí;Změna typu napájení;Změna zatížení;Změna krytí
+Jak se provádí změna směru otáčení 3f motoru?;Záměnou dvou fází;Změnou napětí;Změnou proudu;Přepnutím jističe;Přepnutím kondenzátoru
+Co je to jmenovitý proud?;Proud, který motor odebírá při jmenovitém zatížení;Maximální proud při zkratu;Proud při startu;Zkratový proud;Minimální proud při běhu
+Jaký vliv má poddimenzování motoru?;Přehřívání a snížení životnosti;Úspora energie;Zvýšení výkonu;Zlepšení chlazení;Lepší účinnost
+Jaká je funkce tepelné ochrany motoru?;Vypíná motor při přehřátí;Spíná motor při chladu;Zvyšuje otáčky;Zesiluje proud;Zajišťuje zemnění
+Jaké druhy motorů znáš?;Stejnosměrné, asynchronní, synchronní, krokové;Optické, logické, magnetické;Lineární, kruhové, pulzní;Ruční, automatické, reléové;Jednotkové, paralelní, sériové
+`;
+const csvDataMale = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je PLC?;Programovatelný logický automat;Pojistka logického obvodu;Proudový limiter;Programovací jazyk;Ovládací panel
+K čemu slouží PLC?;K řízení technologických procesů;K měření teploty;K napájení motorů;K přenosu dat;K zabezpečení sítě
+Jaké jsou výhody použití PLC?;Spolehlivost, flexibilita, snadná změna programu;Nízká cena;Zmenšení velikosti obvodu;Zvýšení proudu;Zesílení signálu
+Jak se programuje PLC?;Pomocí speciálního software v PC;Pomocí tlačítek na PLC;Manuálním nastavením přepínačů;Pomocí spínačů a relé;Pomocí mobilní aplikace
+Co je to ladder diagram (LD)?;Grafické znázornění programu ve formě žebříčku;Schéma zapojení motoru;Popis elektrického vedení;Kód pro mikrořadič;Konstrukční výkres
+Jaký jazyk se nejčastěji používá pro PLC?;Ladder diagram (LD);C++;Java;Python;Assembler
+Jaké jsou části PLC?;CPU, vstupní a výstupní moduly, napájecí zdroj;Motor, převodovka, relé;Kondenzátor, odpor, cívka;Transformátor, jádro, kabel;Klávesnice, monitor, myš
+Co je CPU v PLC?;Centrální procesorová jednotka, která zpracovává program;Napájecí zdroj;Výstupní modul;Chladicí jednotka;Paměťový čip
+K čemu slouží vstupní modul v PLC?;Přijímá signály z čidel a tlačítek;Napájí celý systém;Spíná výstupy;Zobrazuje data;Ukládá program
+K čemu slouží výstupní modul v PLC?;Ovládá akční členy (např. motory, ventily);Zpracovává program;Připojuje PC;Napájí vstupy;Ukládá historii
+Jaký typ signálu může mít vstupní modul PLC?;Digitální nebo analogový;Pouze digitální;Pouze analogový;Mechanický;Zvukový
+Jaký je hlavní rozdíl mezi digitálním a analogovým vstupem?;Digitální má 2 hodnoty, analogový spojité spektrum;Digitální měří napětí;Analogový je rychlejší;Digitální je starší;Analogový má jen 0 a 1
+Co je výhoda PLC oproti klasickému řízení relé?;Snadná změna programu a menší poruchovost;Vyšší spotřeba;Lepší zvuk;Nižší výkon;Jednodušší drátování
+Jak PLC vykonává program?;Skenuje vstupy, zpracuje logiku, nastaví výstupy;Řídí motor přímo;Generuje proud;Reguluje napětí;Změří odpor
+K čemu slouží HMI zařízení?;Zajišťuje komunikaci mezi člověkem a PLC;Napájí senzory;Změří teplotu;Spíná výstupy;Zesiluje signál
+Co je SCADA systém?;Nadřazený řídicí a monitorovací systém;Programovací jazyk;Záložní zdroj;Měřicí přístroj;Typ senzoru
+K čemu slouží komunikační protokoly v PLC?;Umožňují výměnu dat mezi zařízeními;Zesilují signál;Zajišťují chlazení;Programují relé;Označují vodiče
+Jaká je běžná struktura PLC programu?;Vstupy – zpracování – výstupy;Výstupy – vstupy – program;Kód – vstupy – záznam;Paměť – řízení – data;Nastavení – reset – start
+Jak PLC detekuje změnu vstupu?;Pomocí pravidelného snímání (skenovací cyklus);Ručním nastavením;Přes analogové proudy;Přes internet;Hlasovým ovládáním
+Jaké zařízení typicky komunikuje s PLC?;Čidla, motory, ventily, HMI;Televize;Mikrofon;Monitor;Mobilní telefon
+`;
+const csvDataPrvky = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je otevřený řídicí systém?;Systém bez zpětné vazby;Systém s adaptivními algoritmy;Systém řízený manuálně;Uzavřený regulační obvod;Systém s přímým měřením výstupu
+Co je uzavřený řídicí systém?;Systém se zpětnou vazbou;Systém bez čidel;Ruční ovládání;Jednoduché spínání;Program bez výstupů
+K čemu slouží zpětná vazba?;Porovnává výstup s požadovanou hodnotou;Napájí vstupy;Přepíná fáze;Ovládá pojistky;Zesiluje výstup
+Jaký je rozdíl mezi otevřeným a uzavřeným systémem?;Uzavřený systém využívá zpětnou vazbu, otevřený ne;Otevřený má více snímačů;Uzavřený je rychlejší;Otevřený je spolehlivější;Uzavřený nevyžaduje napájení
+Co je adaptivní řízení?;Schopnost systému přizpůsobit se změnám podmínek;Pevně nastavený program;Ruční ovládání;Řízení pouze snímačem;Neřízený systém
+Kdy je vhodné použít otevřený systém?;Když je výstup snadno předvídatelný;Při složité regulaci;Při neznámém chování systému;Když je třeba vysoká přesnost;Když je více výstupních prvků
+Kdy se používá uzavřený systém?;Při požadavku na přesnost a stabilitu;Při manuálním řízení;Při vysoké spotřebě;Když není zpětná vazba dostupná;Při nízké rychlosti procesu
+Co je hlavním přínosem uzavřeného systému?;Přesné řízení a kompenzace odchylek;Zjednodušené zapojení;Nízká pořizovací cena;Rychlé přepínání obvodů;Jednoduchý program
+Jaká zařízení mohou realizovat zpětnou vazbu?;Snímače a čidla;Relé a jističe;Motory a čerpadla;Kondenzátory;Pojistky
+Co je řízená veličina?;Veličina, kterou chceme udržet na požadované hodnotě;Výstupní napětí;Proud motoru;Teplota vzduchu;Značka zařízení
+Co je řízení podle programu?;Průběh řízení se řídí předem stanoveným algoritmem;Ruční ovládání systému;Nahodilé spínání;Řízení hlasem;Řízení barvou vodiče
+Co je rušivá veličina?;Nepředvídaný vliv působící na řízený systém;Zpětná vazba;Požadovaná hodnota;Referenční signál;Výsledný proud
+K čemu slouží regulátor v uzavřeném systému?;Porovnává žádanou a skutečnou hodnotu a upravuje výstup;Zesiluje napětí;Řídí barvu signálu;Napájí systém;Upravuje schéma zapojení
+Jaká je funkce akčního členu?;Provádí zásah do řízené soustavy na základě výstupu regulátoru;Sníma signály;Zobrazuje údaje;Spouští PLC program;Ukládá data
+Co je žádaná hodnota?;Hodnota, kterou chceme udržet v systému;Maximální hodnota napětí;Proud motoru;Počet výstupních členů;Značka systému
+Jak se označuje řízení pomocí PLC?;Digitální automatické řízení;Mechanické řízení;Ruční logické řízení;Tepelné řízení;Bezdrátové řízení
+Jaké výstupy může PLC ovládat v řízení?;Motory, ventily, světla, bzučáky;Jističe;Kondenzátory;Transformátory;Zenerovy diody
+Jaká je výhoda adaptivního řízení?;Přizpůsobuje se změnám podmínek;Změní fyzickou konstrukci;Nepracuje s čidly;Je levnější než ostatní;Neobsahuje software
+Které signály se běžně využívají pro zpětnou vazbu?;Analogové a digitální;Optické a zvukové;Mikrovlnné;Radiofrekvenční;Barevné
+Jaká je role senzoru v uzavřeném systému?;Snímá skutečnou hodnotu řízené veličiny;Spouští celý obvod;Zesiluje výkon;Rozsvěcuje kontrolku;Napájí motor
+`;
+const csvDataSenzor = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je pneumatika v automatizaci?;Použití stlačeného vzduchu k přenosu a řízení energie;Použití kapaliny k přenosu energie;Použití elektroniky k řízení;Použití světla v řízení;Přenos tepla potrubím
+Jaký je hlavní zdroj energie v pneumatických systémech?;Stlačený vzduch;Voda;Elektrický proud;Hydraulický olej;Sluneční energie
+K čemu slouží kompresor v pneumatickém systému?;Stlačuje vzduch pro pohon systémů;Ochlazuje vzduch;Zesiluje signál;Změkčuje tlak;Napájí senzory
+Co je pneumatický válec?;Pohon převádějící tlak vzduchu na mechanický pohyb;Měřící prvek tlaku;Zásobník vzduchu;Zesilovač signálu;Kabelový konektor
+Jaký je rozdíl mezi jednočinným a dvojčinným válcem?;Jednočinný pracuje v jednom směru, dvojčinný v obou;Dvojčinný nepotřebuje vzduch;Jednočinný pracuje s vodou;Jednočinný má zpětnou pružinu;Dvojčinný je menší
+K čemu slouží rozváděč v pneumatice?;Řídí směr proudění vzduchu;Napájí motor;Změří tlak;Ovládá PLC;Zobrazuje otáčky
+Jak se značí rozváděč 5/2?;Má 5 připojovacích portů a 2 pracovní polohy;Má 2 porty a 5 poloh;Je řízený tlakem;Používá se jen pro jednočinné válce;Má jen výstup a vstup
+Co je filtr v pneumatickém systému?;Čistí vzduch od nečistot a vody;Zvyšuje tlak;Snižuje průtok;Zesiluje signál;Zpětně odvádí vzduch
+K čemu slouží regulátor tlaku?;Udržuje stálý výstupní tlak;Spíná vzduchové čerpadlo;Zesiluje signál;Řídí rychlost válce;Změkčuje vzduch
+Jaký je účel maznice v pneumatice?;Zajišťuje mazání prvků stlačeným olejem;Zvyšuje tlak;Snižuje vlhkost;Chladí kompresor;Připojuje hadice
+Co je pracovní médium pneumatického systému?;Vzduch;Voda;Olej;Plyn s vysokou teplotou;Pára
+K čemu slouží tlumič hluku v pneumatice?;Snižuje hluk při vypouštění vzduchu;Zesiluje hluk;Zvýší tlak;Měří průtok;Spíná výstup
+Co je rychlostní škrticí ventil?;Omezuje průtok vzduchu pro řízení rychlosti pohybu;Zvyšuje tlak;Zesiluje průtok;Měří teplotu;Ovládá napětí
+Jaký prvek se používá k návratu pístu jednočinného válce?;Pružina;Přetlak;Elektrický impuls;Magnet;Třecí síla
+K čemu slouží koncový spínač?;Signalizuje dosažení koncové polohy;Zastavuje činnost PLC;Zapíná kompresor;Změří tlak;Zvyšuje otáčky
+Jaký je symbol pro válec v pneumatickém schématu?;Obdélník s čárou a pístnicí;Kolečko s šipkou;Čára s tečkou;Trojúhelník;Křížek
+K čemu slouží škrticí ventil s obtokem?;Umožňuje regulaci rychlosti v obou směrech;Přepíná tlakové větve;Zajišťuje mazání;Označuje směr proudu;Změří tlak vzduchu
+Jaké barvy se nejčastěji používají pro pneumatické hadice?;Modrá a černá;Červená a zelená;Žlutá a bílá;Oranžová a šedá;Fialová a růžová
+Jak se značí směr proudění vzduchu ve schématech?;Šipkou;Kolečkem;Čarou s bodem;Obdélníkem;Trojúhelníkem
+K čemu slouží přepínací ventil?;Mění směr proudění podle signálu;Přepíná fáze;Měří vlhkost;Spíná PLC;Vypíná kompresor
+`;
+const csvDataBinSenzory = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je hydraulika?;Použití kapaliny k přenosu a řízení energie;Použití vzduchu k řízení;Použití elektřiny k přenosu dat;Použití světla v senzorice;Přenos plynu pod tlakem
+Jaké médium se používá v hydraulických systémech?;Hydraulický olej;Stlačený vzduch;Voda;Pára;Ethanol
+K čemu slouží čerpadlo v hydraulickém systému?;Zajišťuje oběh kapaliny a tlak;Reguluje průtok;Měří tlak;Filtruje nečistoty;Vypíná systém
+Co je hydraulický válec?;Pohon převádějící tlak kapaliny na mechanický pohyb;Nádrž na olej;Snímač tlaku;Těsnění systému;Rozvaděč
+Jaký je rozdíl mezi jednočinným a dvojčinným hydraulickým válcem?;Jednočinný pracuje pouze v jednom směru, dvojčinný v obou;Dvojčinný nevyužívá kapalinu;Jednočinný má dva výstupy;Dvojčinný se vrací pružinou;Jednočinný je elektricky řízen
+K čemu slouží rozváděč v hydraulice?;Řídí směr proudění kapaliny;Zesiluje tlak;Napájí systém;Spojuje obvody;Měří teplotu
+Co je akumulátor v hydraulickém systému?;Zařízení pro ukládání energie ve formě stlačené kapaliny;Časovač;Filtr;Zásobník oleje;Elektronický měřič
+K čemu slouží tlakový ventil?;Udržuje nebo omezuje tlak v systému;Napájí snímače;Změkčuje olej;Měří průtok;Spíná motor
+Co je zpětný ventil?;Propouští kapalinu jen jedním směrem;Zesiluje tlak;Měří teplotu;Reguluje rychlost;Ovládá čerpadlo
+Jak se značí hydraulické čerpadlo ve schématu?;Kolečko s šipkou;Obdélník s čarou;Trojúhelník;Křížek;Písmeno M
+Co je škrticí ventil?;Reguluje průtok kapaliny a tím rychlost pohybu;Uzavírá obvod;Spíná výstupy;Zajišťuje mazání;Změkčuje tlak
+K čemu slouží filtr v hydraulickém systému?;Odstraňuje nečistoty z kapaliny;Zesiluje tlak;Zpětně vypouští olej;Napájí ventily;Snižuje hluk
+Jaký je význam pracovní kapaliny v systému?;Přenáší energii a mazání;Sníma teplotu;Zesiluje průtok;Snižuje hlučnost;Zajišťuje osvětlení
+K čemu slouží tlakový spínač?;Spíná nebo vypíná zařízení podle nastaveného tlaku;Reguluje teplotu;Napájí senzory;Zajišťuje mazání;Řídí světla
+Co je hydrogenerátor?;Zdroj hydraulické energie – čerpadlo;Zásobník oleje;Ovládací ventil;Regulátor otáček;Elektronická řídicí jednotka
+Jaké výhody má hydraulický pohon?;Velká síla, plynulý pohyb, přesnost;Nízká hmotnost;Nízká cena;Vysoká hlučnost;Nízká účinnost
+Co je nevýhoda hydrauliky?;Možnost úniku kapaliny a znečištění;Nízký výkon;Obtížná regulace;Náročná údržba;Slabá síla
+K čemu slouží nádrž v hydraulickém systému?;Zásoba a chlazení kapaliny;Zvýšení tlaku;Ovládání ventilu;Snížení odporu;Spuštění motoru
+Jaký je rozdíl mezi hydraulikou a pneumatikou?;Hydraulika používá kapaliny, pneumatika vzduch;Hydraulika je hlučnější;Pneumatika je pomalejší;Hydraulika nepřenáší sílu;Pneumatika má vyšší účinnost
+Kde se používají hydraulické systémy?;Lisování, zvedání, těžké stroje;Lehká mechanika;Domácí spotřebiče;Signalizace;Osvětlení
+`;
+const csvDataPLC = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je měnič frekvence?;Zařízení měnící frekvenci a napětí pro řízení otáček motoru;Transformátor napětí;Jistič s regulací;Stykač pro přepínání fází;Zdroj konstantního proudu
+K čemu se používá měnič frekvence?;K plynulé regulaci otáček elektromotoru;K měření frekvence;K ochraně proti zkratu;K řízení svítivosti LED;K přepínání obvodů
+Jaké jsou výhody použití měniče frekvence?;Úspora energie, plynulý rozběh a brzdění, řízení otáček;Vyšší spotřeba, rychlejší záběh;Zesílení proudu;Zmenšení rozměrů motoru;Zvýšení hlučnosti
+Jaký je princip činnosti měniče frekvence?;Nejprve usměrnění střídavého proudu, pak změna frekvence a napětí;Zesílení proudu pomocí relé;Přepínání fází motoru;Změna směru otáček;Vypínání a zapínání motoru
+Kde se měniče frekvence nejčastěji používají?;V pohonech čerpadel, ventilátorů, dopravníků;V osvětlovacích obvodech;V topných tělesech;V signálních systémech;V nouzových zdrojích
+Jaký typ motoru lze ovládat měničem frekvence?;Asynchronní motor;Krokový motor;Stejnosměrný motor;Lineární motor;Spalovací motor
+Jak měnič ovlivňuje rozběh motoru?;Zajišťuje plynulý a řízený náběh bez proudových rázů;Zrychluje náběh na maximum;Zvyšuje počáteční proud;Odpojí motor při zátěži;Změní směr otáčení
+Co je výstupní frekvence měniče?;Frekvence řízená dle požadavků aplikace;Frekvence ze sítě;Konstantní 50 Hz;Frekvence snímače;Digitální signál
+Jaký parametr měniče ovlivňuje maximální otáčky motoru?;Nastavená výstupní frekvence;Vstupní napětí;Typ pojistky;Značka motoru;Počet relé
+Co je spínaný zdroj?;Napájecí zdroj využívající vysokofrekvenční spínání;Zdroj s klasickým transformátorem;Zdroj s nízkým napětím;Bateriové napájení;Stabilizátor proudu
+Jaká je výhoda spínaného zdroje oproti lineárnímu?;Menší rozměry, vyšší účinnost, nižší hmotnost;Nižší účinnost, větší hlučnost;Větší velikost;Pomalejší reakce;Vyšší zahřívání
+Kde se spínané zdroje nejčastěji používají?;V napájení elektronických zařízení a PLC;V topení;Ve svítidlech;V mechanických převodovkách;V hydraulice
+Jaký je hlavní princip spínaného zdroje?;Rychlé zapínání a vypínání proudu přes tranzistor;Zesílení střídavého proudu;Transformace bez spínání;Ruční spínání;Zpomalení napětí
+Jak se chrání měnič frekvence před přetížením?;Pomocí elektronické ochrany a nastavení limitů;Vypínačem;Pojistkou s vysokou hodnotou;Optickým čidlem;Teplotní pojistkou
+Co je EMC filtr?;Filtr omezující elektromagnetické rušení;Filtr na prach;Vodní filtr;Zesilovač signálu;Zdroj napětí
+Proč je důležité odrušení měniče?;Kvůli ochraně ostatních zařízení před rušením;Pro zlepšení chlazení;Pro zrychlení odezvy;Kvůli vyššímu napětí;Pro zvýšení účinnosti
+Jaké výstupní napětí má typický spínaný zdroj pro PLC?;24 V DC;230 V AC;12 V AC;5 V DC;48 V AC
+Jaké jsou hlavní části měniče frekvence?;Usměrňovač, meziobvod, střídač;Transformátor, filtr, relé;Kondenzátor, stykač, jistič;Pojistka, čidlo, chladič;Motor, řemen, ventil
+Co je důležité při výběru měniče?;Výkon, napětí, proud motoru, způsob řízení;Barva zařízení;Typ krytí;Typ ovládacího panelu;Délka kabeláže
+Jaký je rozdíl mezi měničem a frekvenčním měřičem?;Měnič řídí frekvenci, měřič ji pouze měří;Měřič mění napětí;Měnič měří proud;Měřič reguluje motor;Měnič měří frekvenci bez regulace
+`;
+const csvDataSekvencni = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je elektrický pohon?;Soustava zařízení přeměňujících elektrickou energii na mechanickou;Zařízení pro přenos signálu;Proudový zdroj;Spínací obvod;Snímač polohy
+Jaké hlavní části má elektrický pohon?;Motor, měnič, převodovka, řídicí jednotka;Stykač, relé, senzor;Baterie, jistič, svorkovnice;Zásuvka, kabel, tlačítko;PLC, monitor, čidlo
+K čemu slouží převodovka v pohonu?;Upravuje otáčky a moment motoru;Zvyšuje napětí;Měří otáčky;Zesiluje proud;Stabilizuje frekvenci
+Jaký je rozdíl mezi stejnosměrným a střídavým pohonem?;Stejnosměrný má konstantní směr proudu, střídavý mění směr;Střídavý je méně účinný;Stejnosměrný má vyšší hlučnost;Střídavý je pouze do 24V;Stejnosměrný nepotřebuje regulaci
+Jak se mění otáčky stejnosměrného motoru?;Změnou napětí;Změnou odporu;Změnou směru proudu;Změnou teploty;Změnou délky kabelu
+Jak se mění otáčky střídavého motoru?;Změnou frekvence napájení;Změnou typu kabelu;Změnou odporu;Změnou fáze;Změnou barvy vodiče
+Co je momentová charakteristika?;Závislost momentu na otáčkách;Závislost proudu na napětí;Změna rychlosti pohonu;Teplotní závislost motoru;Zatížení kabelu
+Jaký je rozdíl mezi tvrdou a měkkou momentovou charakteristikou?;Tvrdá má malou změnu otáček při změně zatížení, měkká větší;Měkká je přesnější;Tvrdá má vyšší výkon;Měkká se nepoužívá;Tvrdá je jen pro velké motory
+Co je to řízení otáček?;Úprava rychlosti motoru podle požadavků;Zapínání motoru;Ovládání stykače;Změna směru otáčení;Přepínání fází
+Co je regulace momentu?;Řízení síly otáčení motoru;Změna směru proudu;Změna velikosti motoru;Změna napětí sítě;Změna otáček bez zatížení
+Co je reverzace pohonu?;Změna směru otáčení motoru;Přepnutí výkonu;Změna typu motoru;Změna velikosti napětí;Odpojení napájení
+Jak se značí motor ve schématu?;M;R;T;K;V
+K čemu slouží momentová ochrana?;Chrání motor před přetížením;Zvyšuje výkon;Zkracuje rozběh;Zesiluje signál;Zabraňuje zpětnému chodu
+Co je výstupní charakteristika motoru?;Závislost výkonu na zatížení;Závislost proudu na teplotě;Vztah mezi napětím a proudem;Přímé napájení;Výkonové číslo výrobce
+K čemu slouží měnič u pohonu?;Reguluje napětí a frekvenci pro motor;Zesiluje napětí;Ovládá jistič;Napájí PLC;Spíná osvětlení
+Jaká je výhoda elektrického pohonu oproti mechanickému?;Snadná regulace a automatizace;Nižší výkon;Větší rozměry;Vyšší hlučnost;Složitější údržba
+Co ovlivňuje volbu typu pohonu?;Požadovaný moment, otáčky, způsob regulace, prostředí;Barva motoru;Typ pojistky;Značka výrobce;Způsob chlazení
+Jaký typ motoru je často použit v plynulé regulaci otáček?;Asynchronní motor s měničem;Stejnosměrný motor bez regulace;Krokový motor;Motor s relé;Lineární motor
+Kdy se používá servopohon?;Při požadavku na vysokou přesnost a dynamiku;Při vysokém hluku;Při nízkém napětí;Při trvalém výkonu;Při absenci řízení
+Co je funkce snímače otáček v pohonu?;Měří aktuální otáčky motoru pro zpětnou vazbu;Reguluje napětí;Přepíná fáze;Chladí motor;Napájí pohon
+`;
+const csvDataMereni = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+K čemu slouží signalizace ve výrobních systémech?;Informuje obsluhu o stavech zařízení;Zesiluje výkon stroje;Zastavuje výrobu;Napájí senzory;Ovládá osvětlení
+Jaké základní typy signalizace známe?;Optická, akustická, kombinovaná;Elektrická, pneumatická;Ruční, automatická;Světelná, teplotní;Mechanická, digitální
+Co je optická signalizace?;Vizuální indikace stavu pomocí světla;Zvuková výstraha;Mechanický pohyb;Změna napětí;Zobrazování dat na monitoru
+K čemu slouží akustická signalizace?;Upozorňuje zvukem na změnu nebo poruchu;Spíná motory;Měří hladinu;Napájí zařízení;Zesiluje signál
+Jaké barvy se běžně používají pro signalizační světla?;Červená, žlutá, zelená, modrá, bílá;Růžová, oranžová, černá;Fialová, tyrkysová;Hnědá, šedá;Zlatá, stříbrná
+Co signalizuje červené světlo?;Poruchu nebo nouzový stav;Normální provoz;Připravenost zařízení;Zapnutí systému;Žádný stav
+Co signalizuje zelené světlo?;Provozní stav;Poruchu;Zastavení;Chybu systému;Resetování stroje
+Co je to ovládací pult?;Zařízení umožňující obsluze ovládat technologii;Rozvodná skříň;Elektronická pojistka;Bezpečnostní zámek;Zdroj napájení
+Jaké prvky obsahuje ovládací pult?;Tlačítka, přepínače, displeje, kontrolky;Senzory, ventily, čerpadla;Motor, převodovku, řemen;Jističe, pojistky, zásuvky;Kamery, mikrofony, reproduktory
+K čemu slouží tlačítka START a STOP?;START spouští a STOP vypíná zařízení;START mění směr chodu;STOP přepíná režim;START nastavuje časovač;STOP aktivuje chlazení
+Co je aretace tlačítka?;Zajištění v sepnuté poloze;Blokace proti použití;Odpojení od systému;Tlačítko se samo vrací;Změna funkce
+K čemu slouží přepínač režimů?;Přepíná mezi automatickým a ručním řízením;Spouští alarm;Změní teplotu;Zesiluje signál;Změní barvu světla
+Co je HMI panel?;Zařízení umožňující komunikaci člověka se strojem;Signalizační věž;Zdroj napětí;Regulační ventil;Kamerový systém
+Jaká je výhoda HMI panelu?;Zobrazuje aktuální stav, umožňuje nastavení a řízení;Zmenšuje zařízení;Zvyšuje hlučnost;Zajišťuje napájení;Měří proud
+Co znamená barevný displej na HMI?;Zobrazení stavu zařízení pomocí barev a symbolů;Pouze číselné údaje;Změnu rychlosti;Spuštění motoru;Přepínání režimů
+Jaká je funkce kontrolky přítomnosti napětí?;Signalizuje, že je zařízení pod napětím;Měří napětí;Spouští alarm;Zhasíná světlo;Zpětně napájí senzor
+K čemu slouží maják (signalizační věž)?;Zobrazuje provozní stavy různými barvami světla;Spíná silové obvody;Napájí PLC;Změří teplotu;Zesiluje signál
+Jaké zvuky vydává akustická signalizace?;Houkačky, bzučáky, píšťalky;Melodie;Hlasové povely;Ultrazvuk;Vibrační tóny
+Kde se nachází ovládací prvky ve výrobních systémech?;Na ovládacím panelu, HMI nebo rozvaděči;Uvnitř motoru;Na kabelu;Ve stykači;V PLC modulu
+Proč je důležitá signalizace ve výrobě?;Zvyšuje bezpečnost a přehled o provozu;Zvyšuje hlučnost;Zvyšuje spotřebu energie;Zmenšuje výkon;Omezuje řízení
+`;
+const csvDataTypy = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je vizualizace technologického procesu?;Zobrazení stavu a průběhu procesu na monitoru nebo panelu;Ovládání světel v hale;Měření napětí na čidle;Zesílení signálu v PLC;Změna teploty v motoru
+K čemu slouží vizualizační systémy?;Ke sledování a řízení technologických procesů;K napájení čidel;Ke chlazení zařízení;K programování PLC;K řízení motoru
+Co je SCADA?;Nadřazený řídicí a monitorovací systém;Jednoduché reléové řízení;Snímač teploty;Typ pohonu;Záložní zdroj energie
+Jaké funkce má SCADA systém?;Sběr, přenos, zobrazení a archivace dat, ovládání;Pouze ovládání zařízení;Pouze měření napětí;Zesílení signálu;Zálohování napětí
+Co je HMI?;Rozhraní mezi člověkem a strojem;Motor;Pojistka;Programovací jazyk;Typ čidla
+Jaká zařízení tvoří vizualizační systém?;HMI panel, řídicí jednotka, senzory, zobrazovač;Motory, převodovky, PLC;Senzory, čidla, pneumatika;Stykače, relé, jističe;Kondenzátory, odpory, svorky
+Jak SCADA získává data z výrobního procesu?;Z PLC a dalších zařízení pomocí komunikačních protokolů;Pomocí mikrovln;Z USB disku;Hlasovým vstupem;Z cloudového úložiště
+Jaká je výhoda vizualizace?;Přehledné zobrazení a možnost dálkového řízení;Nižší cena zařízení;Rychlejší signál;Nižší spotřeba;Menší rozměry zařízení
+Co je trend v SCADA systému?;Grafické znázornění vývoje veličiny v čase;Změna barvy panelu;Změna směru toku dat;Změna rozměru displeje;Náhodné hodnoty
+K čemu slouží alarmy ve SCADA?;Upozorňují na mimořádné nebo chybové stavy;Zvýší napětí v systému;Měří teplotu zařízení;Upravují program;Vypínají systém
+Jaké barvy se běžně používají ve SCADA vizualizaci?;Zelená – OK, červená – porucha, žlutá – varování;Modrá – nečinnost, růžová – reset;Fialová – aktivní, bílá – chyba;Oranžová – start, černá – konec;Zlatá – výkon, stříbrná – útlum
+Jak se ovládá zařízení přes SCADA?;Kliknutím na grafické prvky na obrazovce;Přes externí čidla;Pomocí hlasových příkazů;Z USB tlačítka;Pomocí optických kabelů
+Co je archivace dat?;Ukládání historických hodnot pro analýzu a dohled;Mazání starých dat;Změna vstupů;Ovládání senzorů;Spínání alarmů
+Kde se nejčastěji používá SCADA?;V průmyslové automatizaci, energetice, dopravě;V domácnostech;Ve školství;V klimatizacích;V malých spotřebičích
+Jaký je rozdíl mezi SCADA a HMI?;SCADA je rozsáhlejší systém, HMI je jeho lokální část;HMI ukládá data, SCADA je zobrazuje;SCADA je v PLC, HMI v rozvaděči;SCADA ovládá čidla, HMI motor;HMI je nadřazený SCADA
+Jak SCADA přispívá k bezpečnosti provozu?;Upozorňuje na chyby a umožňuje včasný zásah;Zvýší výkon motoru;Ovládá světla;Zesiluje proud;Změní barvu ovladačů
+Jaká data zobrazuje SCADA?;Stavy zařízení, hodnoty veličin, alarmy, trendy;Časy příchodů zaměstnanců;Teplotu vzduchu v místnosti;Barevnost signálu;Rozměry rozvaděče
+Co je dálkový dohled ve SCADA?;Možnost sledování a řízení procesu přes síť;Pozorování kamerou;Napájení z jiného místa;Změna barev displeje;Přenos optickým kabelem
+Jaký je význam vizualizace pro údržbu?;Umožňuje rychle identifikovat závadu a zasáhnout;Zastavuje zařízení;Mění program;Zvyšuje proud;Snižuje tlak
+Jaká je výhoda archivace dat?;Umožňuje analýzu trendů a optimalizaci provozu;Snižuje nároky na operátora;Ukládá hesla;Zrychluje řízení;Zvyšuje spotřebu
+`;
+const csvDataRoboty = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Proč je důležitá bezpečnost v automatizaci?;Zajišťuje ochranu osob, zařízení i dat;Zvyšuje spotřebu energie;Snižuje rychlost systému;Zesiluje signál;Zkracuje program
+Co je normotvorná organizace?;Instituce, která vytváří technické a bezpečnostní normy;Výrobce senzorů;Škola techniky;Dodavatel PLC;Distribuční firma
+Jaké normy se používají v automatizaci?;ISO, IEC, EN;DIN, JIS, JIT;EU, USA, ASIA;PLC, SCADA, HMI;RGB, CMYK, HEX
+Co znamená značení CE?;Shoda s evropskými normami a bezpečnostními požadavky;Česká elektrotechnika;Certifikace zařízení;Připojení k síti;Označení výrobce
+K čemu slouží bezpečnostní relé?;Zajišťuje funkci bezpečnostního obvodu a nouzové vypnutí;Přepíná směry;Zesiluje napětí;Zpožďuje proud;Řídí barvu světel
+Co je bezpečnostní okruh?;Obvod sloužící k vypnutí systému při nebezpečí;Záložní napájení;Zesilovač signálu;Kódovaný vstup;Zpětná vazba
+Co je STOP tlačítko?;Prvek pro okamžité nouzové zastavení zařízení;Tlačítko pro start systému;Přepínač režimu;Ovladač teploty;Napájecí zdroj
+Jaká je barva nouzového STOP tlačítka?;Červená;Zelená;Modrá;Žlutá;Bílá
+Jak se značí bezpečnostní obvody ve výkresech?;Silnější čarou nebo odlišnou barvou;Dvojitou čárou;Přerušovaně;Tečkovaně;Barevně neutrálně
+Co znamená kategorie bezpečnosti?;Určuje úroveň bezpečnostního systému dle rizika;Vyjadřuje cenu zařízení;Značí typ motoru;Měří teplotu;Označuje druh vstupu
+K čemu slouží světelná závora?;Detekuje vstup do nebezpečné zóny;Ovládá motor;Změří světelný tok;Napájí čidla;Reguluje napětí
+Co je bezpečnostní dveřní spínač?;Snímač, který detekuje otevření dveří do nebezpečné části;Ovladač dveří;Magnetický spínač;Světelný senzor;Zvukový bzučák
+Co je PL (Performance Level)?;Úroveň výkonnosti bezpečnostního systému;Míra spotřeby;Hluk zařízení;Teplotní odchylka;Zatížení motoru
+K čemu slouží bezpečnostní skener?;Detekuje přítomnost osob ve vymezené oblasti;Skenuje QR kódy;Sníma barvy;Měří vzdálenost;Zesiluje signál
+Jaký je účel krytování pohyblivých částí?;Zamezuje kontaktu s nebezpečnými částmi;Zvyšuje teplotu;Napájí motor;Zmenšuje rozměry;Zvyšuje výkon
+Co je funkční bezpečnost?;Zajištění správné funkce zařízení i při poruše;Změna programu při chybě;Přepnutí zařízení do režimu spánku;Zvýšení rychlosti;Změna barvy HMI
+Jaký je význam zkratky SIL?;Safety Integrity Level – úroveň bezpečnostní integrity;Standard Indukce Logiky;Systém Informačního Logování;Signalizační Inteligentní Linka;Střední Indikátor Logiky
+Co je bezpečnostní PLC?;PLC určené pro bezpečnostní funkce a řízení;Záložní PLC jednotka;PLC s rozšířenou pamětí;PLC bez výstupních modulů;PLC s napěťovou ochranou
+K čemu slouží mechanická blokace?;Zabrání pohybu nebo spuštění zařízení bez povolení;Uzamkne kryt;Změní směr motoru;Zpětně napájí systém;Změří napětí
+Jak se zajišťuje ochrana proti přepětí?;Použitím přepěťových ochran a správného uzemnění;Zvýšením napětí;Zapojením do série;Použitím barevných vodičů;Zesílením proudových obvodů
+`;
+const csvDataGraficke = `Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je Průmysl 4.0?;Koncept digitalizace a automatizace výroby propojené sítí;Mechanizace výrobních procesů;Použití reléového řízení;Zavádění ruční práce;Zesílení signálu ve výrobě
+Jaký je hlavní cíl Průmyslu 4.0?;Zvýšení efektivity, flexibility a automatizace výroby;Snížení počtu zařízení;Zvýšení spotřeby energie;Zesílení světelného výkonu;Omezení řídicí techniky
+Co znamená zkratka IoT?;Internet věcí;Interní operace technologie;Informační obvod terminálu;Indikátor otáček;Izolace optických toků
+Jakou funkci má IoT v průmyslu?;Propojení zařízení a sběr dat pro efektivní řízení;Zajištění chlazení;Zvýšení napětí;Zesílení proudového toku;Rozpojení sítě
+Co je digitální dvojče?;Virtuální model reálného systému pro simulaci a řízení;Záložní řídicí jednotka;Dvojice čidel;Kopie PLC programu;Soubor dat v cloudu
+K čemu slouží Big Data v automatizaci?;K analýze velkého množství výrobních dat;K záloze programů;K záznamu hlasu;K ovládání motoru;K úspoře energie
+Jaký je význam cloudu v automatizaci?;Ukládání a sdílení dat mezi zařízeními a systémy;Zvýšení proudu;Zesílení signálu;Ochrana proti přepětí;Ruční ovládání stroje
+Co znamená prediktivní údržba?;Údržba na základě analýzy dat a předpovědi poruch;Ruční plánování oprav;Náhodná kontrola zařízení;Časově omezená oprava;Výměna podle záruky
+Jaká zařízení se běžně připojují k IoT?;Senzory, HMI, PLC, motory;Stykače, relé, jističe;Ovladače, žárovky, vypínače;Kabely, konektory, svorky;Pojistky, cívky, vodiče
+Jaký přínos má Průmysl 4.0 pro výrobní firmy?;Vyšší produktivita, menší chybovost, sledovatelnost;Větší spotřeba energie;Zvýšení hluku;Zpomalení výroby;Ruční ovládání strojů
+Co je kyber-fyzikální systém (CPS)?;Propojení fyzického systému s digitálním řízením;Bezdrátová kamera;Výkonný motor;Bezpečnostní čidlo;Ruční ovladač
+K čemu slouží senzory v Průmyslu 4.0?;Získávají data z prostředí pro další zpracování;Spínají motor;Zesilují proud;Napájí zařízení;Změkčují vibrace
+Jaký je rozdíl mezi klasickým a chytrým řízením?;Chytré řízení využívá dat, analýzy a síťovou komunikaci;Klasické je rychlejší;Chytré je vždy levnější;Klasické nepotřebuje čidla;Chytré funguje bez PLC
+Kde se ukládají data v systému Průmyslu 4.0?;Na serverech nebo v cloudu;V baterii;V senzoru;Na disku PLC;V místní síti
+Jaký je význam pojmu interoperabilita?;Schopnost různých zařízení spolu komunikovat;Schopnost systému měřit teplotu;Změna frekvence signálu;Změna směru výroby;Zvýšení napětí ve vedení
+Co je OPC UA?;Komunikační protokol pro přenos dat v automatizaci;Programovací jazyk PLC;Typ relé;Způsob chlazení rozvaděče;Druh motoru
+Jaký je význam umělé inteligence v automatizaci?;Optimalizace řízení a rozhodování na základě dat;Náhrada čidel;Zvýšení hlučnosti systému;Ruční řízení;Změna barvy displeje
+Co znamená konektivita v Průmyslu 4.0?;Možnost propojení zařízení a systémů;Spínání relé;Napájení přes konektor;Zesílení signálu;Změna teploty
+K čemu slouží digitální transformace?;Zavádění digitálních technologií do výrobních procesů;Změna analogového signálu;Spouštění motoru;Uložení programu;Změna rychlosti otáček
+Jaké jsou klíčové technologie Průmyslu 4.0?;IoT, cloud, AI, Big Data, CPS;Stykače, pojistky, senzory;PLC, HMI, relé;Jističe, frekvenční měniče;Motory, řemeny, převodovky
+`;
 // --- Data Structure for Questions ---
 let data = {
     "Programování": {
@@ -1292,13 +1556,25 @@ let data = {
     },
     "Automatizace": {
         "Regulační obvody": [],
-        "Technické prstředky": [],
+        "Technické prostředky": [],
         "Logická zařízení": [],
         "Druhy výkresů v AT": [],
         "Elektrické rozvody v průmyslu": [],
-        "Regulační orgány a pohony": [],
+        "Regulační pohony a orgány": [],
         "Programovatelný automat": [],
-        "Relé impulzní": []
+        "Relé impulzní": [],
+        "Převodníky a přizpůsobovací členy": [],
+        "Výstavba regulačního obvodu": [],
+        "Malé řídící systémy": [],
+        "Prvky používané v obvodech AT": [],
+        "Senzory - rozdělení": [],
+        "Analogové a binární senzory": [],
+        "PLC": [],
+        "Sekvenční logické obvody": [],
+        "Měření neelektrických veličin": [],
+        "Typy regulačních obvodů": [],
+        "Roboty a jejich aplikace": [],
+        "Grafické znázornění stavů": []
 }
 };
 
@@ -2212,6 +2488,18 @@ function parseAllCSVData() {
     parseCSV(csvDataRegulace, "Automatizace", "Regulační pohony a orgány");
     ParseCSV(csvDataAutomat, "Automatizace", "Programovatelný automat");
     ParseCSV(csvDataRele, "Automatizace", "Relé impulzní");
+    ParseCSV(csvDataPrevodniky, "Automatizace", "Převodníky a přizpůsobovací členy");
+    ParseCSV(csvDataVystavba, "Automatizace", "Výstavba regulačního obvodu");
+    ParseCSV(csvDataMale, "Automatizace", "Malé řídící systémy");
+    ParseCSV(csvDataPrvky, "Automatizace", "Prvky používané v obvodech AT");
+    ParseCSV(csvDataSenzor, "Automatizace", "Senzory - rozdělení");
+    ParseCSV(csvDataBinSenzory, "Automatizace", "Analogové a binární senzory");
+    ParseCSV(csvDataPLC, "Automatizace", "PLC");
+    ParseCSV(csvDataSekvencni, "Automatizace", "Sekvenční logické obvody");
+    ParseCSV(csvDataMereni, "Automatizace", "Měření neelektrických veličin");
+    ParseCSV(csvDataTypy, "Automatizace", "Typy regulačních obvodů");
+    ParseCSV(csvDataRoboty, "Automatizace", "Roboty a jejich aplikace");
+    ParseCSV(csvDataGraficke, "Automatizace", "Grafické znázornění stavů");
     console.log("Finished parsing CSV data.");
 }
 
