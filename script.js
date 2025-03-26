@@ -1864,7 +1864,6 @@ function updateProgressSection(userData) {
         row.innerHTML = `
             <td style="padding: 0.75rem;">${subject}</td>
             <td style="text-align: center; padding: 0.75rem;">${testsCompleted}</td>
-            {/* --- FIX: Use totalQuestionsAnswered for display --- */}
             <td style="text-align: center; padding: 0.75rem;">${correctAnswers}/${totalQuestionsAnswered}</td>
             <td style="text-align: center; padding: 0.75rem;">${successRate}%</td>
         `;
