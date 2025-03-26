@@ -2203,7 +2203,7 @@ async function evaluateTest(db) {
     // --- Show Results Modal ---
     if (resultCorrect) resultCorrect.textContent = correct;
     if (resultTotal) resultTotal.textContent = total;
-    const finalSuccessRate = total > 0 ? Math.round((correct / total) * 100) : 0;
+    finalSuccessRate = total > 0 ? Math.round((correct / total) * 100) : 0;
     if (resultPercentage) resultPercentage.textContent = `${finalSuccessRate}%`;
     if (modal) modal.classList.add('show'); // Use class to show modal with animation
 
@@ -2243,14 +2243,24 @@ async function evaluateTest(db) {
 
     // --- Update Subject Progress ---
     const subject = subjectSelect.value;
-    if (subject && data[subject]) { // Check if subject is valid
-        userData.progress[subject] = userData.progress[subject] || { testsCompleted: 0, correctAnswers: 0, successRate: 0 };
+    if (subject && data[subject]) {
+        // Ensure the structure includes the new field, initializing if necessary
+        userData.progress[subject] = userData.progress[subject] || {
+            testsCompleted: 0,
+            correctAnswers: 0,
+            totalQuestionsAnswered: 0, // Initialize new field
+            successRate: 0
+        };
         const subjData = userData.progress[subject];
+
         subjData.testsCompleted++;
         subjData.correctAnswers += correct;
-        const totalSubjQuestions = subjData.testsCompleted * 10; // Assuming 10 Qs/test always
-        subjData.successRate = totalSubjQuestions > 0
-            ? Math.round((subjData.correctAnswers / totalSubjQuestions) * 100)
+        // Increment by the ACTUAL number of questions in THIS test
+        subjData.totalQuestionsAnswered = (subjData.totalQuestionsAnswered || 0) + total;
+
+        // Calculate success rate using the CORRECT total questions answered
+        subjData.successRate = subjData.totalQuestionsAnswered > 0
+            ? Math.round((subjData.correctAnswers / subjData.totalQuestionsAnswered) * 100)
             : 0;
     }
 
@@ -2276,18 +2286,32 @@ async function evaluateTest(db) {
     const todayDay = today.getDate();
 
     // Day Streak (>80% success)
+    const finalSuccessRate = total > 0 ? Math.round((correct / total) * 100) : 0; // Recalculate for streak check
     if (finalSuccessRate >= 80) {
+        // More robust streak check: only increment if previous success wasn't today
+        const yesterday = new Date(today);
+        yesterday.setDate(today.getDate() - 1);
+        const yesterdayString = yesterday.toDateString();
+
         if (userData.lastCompletedTestDate !== todayDateString) {
-             // Basic streak increment - for true streak, check if yesterday
-             userData.dayStreak = (userData.dayStreak || 0) + 1;
+             if (userData.lastCompletedTestDate === yesterdayString) {
+                // It was yesterday, increment streak
+                userData.dayStreak = (userData.dayStreak || 0) + 1;
+             } else {
+                // It wasn't yesterday (or first time), start streak at 1
+                userData.dayStreak = 1;
+             }
              userData.lastCompletedTestDate = todayDateString;
         }
+        // If lastCompletedTestDate IS todayDateString, streak doesn't change on subsequent >80% tests today
     } else {
-        // Reset streak only if the last success wasn't also today
-        if (userData.lastCompletedTestDate !== todayDateString) {
+        // Reset streak only if the last successful test wasn't also today.
+         if (userData.lastCompletedTestDate !== todayDateString) {
             userData.dayStreak = 0;
-        }
+         }
+         // If a test today fails, but a previous one today was >80%, the streak is maintained until tomorrow.
     }
+
 
     // Activity Log
     userData.activity[todayYear] = userData.activity[todayYear] || {};
