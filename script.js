@@ -1659,11 +1659,12 @@ let header, main, dashboardSection, testSection, progressSection, testContainer,
     authLink, progressTableBody, subjectStatsContainer, loginSection, loginForm,
     emailInput, passwordInput, loginBtn, registerBtn, loginMessage,
     calendarGrid, currentMonthDisplay, prevMonthBtn, nextMonthBtn,
-    testsTodayEl, correctAnswersEl, successRateEl, dayStreakEl, totalXpEl, achievementListEl; // Added elements for stats
+    testsTodayEl, correctAnswersEl, successRateEl, dayStreakEl, totalXpEl, achievementListEl, themeToggleButton; // Added elements for stats
 
 
 // --- Wait for DOM to Load ---
 document.addEventListener('DOMContentLoaded', () => {
+    applyInitialTheme();
     // Get DOM elements safely after DOM is ready
     header = document.querySelector('header');
     main = document.querySelector('main');
@@ -1696,6 +1697,7 @@ document.addEventListener('DOMContentLoaded', () => {
     prevMonthBtn = document.getElementById('prev-month');
     nextMonthBtn = document.getElementById('next-month');
     achievementListEl = document.getElementById('achievement-list');
+    themeToggleButton = document.getElementById('theme-toggle-btn');
     // Stat elements
     testsTodayEl = document.getElementById('tests-today');
     correctAnswersEl = document.getElementById('correct-answers');
@@ -1806,6 +1808,31 @@ async function getUserData(uid, db) {
     } catch (error) {
         console.error("Error getting user document:", error);
         return null; // Return null on error
+    }
+}
+function applyInitialTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const themeToggleBtn = document.getElementById('theme-toggle-btn'); // Get button inside function too
+
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.body.classList.add('dark-mode');
+        if (themeToggleBtn) themeToggleBtn.textContent = '☀️'; // Sun icon for dark mode
+    } else {
+        document.body.classList.remove('dark-mode');
+        if (themeToggleBtn) themeToggleBtn.textContent = '🌙'; // Moon icon for light mode
+    }
+}
+function toggleTheme() {
+    const themeToggleBtn = document.getElementById('theme-toggle-btn'); // Get button inside function
+    const isDarkMode = document.body.classList.toggle('dark-mode'); // Toggle and check result
+
+    if (isDarkMode) {
+        localStorage.setItem('theme', 'dark');
+        if (themeToggleBtn) themeToggleBtn.textContent = '☀️'; // Sun icon
+    } else {
+        localStorage.setItem('theme', 'light');
+        if (themeToggleBtn) themeToggleBtn.textContent = '🌙'; // Moon icon
     }
 }
 
@@ -3155,6 +3182,7 @@ function setupEventListeners() {
              getUserData(currentUser, db).then(userData => updateProgressSection(userData));
         }
     });
+    themeToggleButton?.addEventListener('click', toggleTheme);
 
     // Auth Link (Login/Logout)
     authLink?.addEventListener('click', (e) => {
