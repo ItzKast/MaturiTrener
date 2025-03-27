@@ -1,0 +1,21 @@
+Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je elektrický pohon?;Soustava zařízení přeměňujících elektrickou energii na mechanickou;Zařízení pro přenos signálu;Proudový zdroj;Spínací obvod;Snímač polohy
+Jaké hlavní části má elektrický pohon?;Motor, měnič, převodovka, řídicí jednotka;Stykač, relé, senzor;Baterie, jistič, svorkovnice;Zásuvka, kabel, tlačítko;PLC, monitor, čidlo
+K čemu slouží převodovka v pohonu?;Upravuje otáčky a moment motoru;Zvyšuje napětí;Měří otáčky;Zesiluje proud;Stabilizuje frekvenci
+Jaký je rozdíl mezi stejnosměrným a střídavým pohonem?;Stejnosměrný má konstantní směr proudu, střídavý mění směr;Střídavý je méně účinný;Stejnosměrný má vyšší hlučnost;Střídavý je pouze do 24V;Stejnosměrný nepotřebuje regulaci
+Jak se mění otáčky stejnosměrného motoru?;Změnou napětí;Změnou odporu;Změnou směru proudu;Změnou teploty;Změnou délky kabelu
+Jak se mění otáčky střídavého motoru?;Změnou frekvence napájení;Změnou typu kabelu;Změnou odporu;Změnou fáze;Změnou barvy vodiče
+Co je momentová charakteristika?;Závislost momentu na otáčkách;Závislost proudu na napětí;Změna rychlosti pohonu;Teplotní závislost motoru;Zatížení kabelu
+Jaký je rozdíl mezi tvrdou a měkkou momentovou charakteristikou?;Tvrdá má malou změnu otáček při změně zatížení, měkká větší;Měkká je přesnější;Tvrdá má vyšší výkon;Měkká se nepoužívá;Tvrdá je jen pro velké motory
+Co je to řízení otáček?;Úprava rychlosti motoru podle požadavků;Zapínání motoru;Ovládání stykače;Změna směru otáčení;Přepínání fází
+Co je regulace momentu?;Řízení síly otáčení motoru;Změna směru proudu;Změna velikosti motoru;Změna napětí sítě;Změna otáček bez zatížení
+Co je reverzace pohonu?;Změna směru otáčení motoru;Přepnutí výkonu;Změna typu motoru;Změna velikosti napětí;Odpojení napájení
+Jak se značí motor ve schématu?;M;R;T;K;V
+K čemu slouží momentová ochrana?;Chrání motor před přetížením;Zvyšuje výkon;Zkracuje rozběh;Zesiluje signál;Zabraňuje zpětnému chodu
+Co je výstupní charakteristika motoru?;Závislost výkonu na zatížení;Závislost proudu na teplotě;Vztah mezi napětím a proudem;Přímé napájení;Výkonové číslo výrobce
+K čemu slouží měnič u pohonu?;Reguluje napětí a frekvenci pro motor;Zesiluje napětí;Ovládá jistič;Napájí PLC;Spíná osvětlení
+Jaká je výhoda elektrického pohonu oproti mechanickému?;Snadná regulace a automatizace;Nižší výkon;Větší rozměry;Vyšší hlučnost;Složitější údržba
+Co ovlivňuje volbu typu pohonu?;Požadovaný moment, otáčky, způsob regulace, prostředí;Barva motoru;Typ pojistky;Značka výrobce;Způsob chlazení
+Jaký typ motoru je často použit v plynulé regulaci otáček?;Asynchronní motor s měničem;Stejnosměrný motor bez regulace;Krokový motor;Motor s relé;Lineární motor
+Kdy se používá servopohon?;Při požadavku na vysokou přesnost a dynamiku;Při vysokém hluku;Při nízkém napětí;Při trvalém výkonu;Při absenci řízení
+Co je funkce snímače otáček v pohonu?;Měří aktuální otáčky motoru pro zpětnou vazbu;Reguluje napětí;Přepíná fáze;Chladí motor;Napájí pohon

@@ -1,0 +1,21 @@
+Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je to automatizace?;Řízení procesu bez přímého zásahu člověka;Řízení počítačem;Manuální ovládání;Nepřetržité sledování obsluhou;Přepínání elektrických obvodů
+Kdy člověk zasahuje do automatizovaného procesu?;Pouze při spouštění, zastavování nebo mimořádných situacích;Nepřetržitě během celého procesu;Nikdy;Každou hodinu;Po ukončení každého cyklu
+Jaké jsou technické prostředky automatizace?;Čidla, převodníky, akční členy, regulátory, řídicí počítače;Pouze senzory;Jen převodníky a motory;Výhradně softwarové prostředky;Optické kabely a relé
+Podle čeho volíme druh automatizačního prostředku?;Podle požadovaných technických a provozních vlastností;Podle ceny součástek;Podle barvy komponent;Podle velikosti zařízení;Podle délky kabelu
+Jaký je rozdíl mezi ovládáním a regulací?;Ovládání je bez zpětné vazby, regulace pracuje se zpětnou vazbou;Regulace je manuální;Ovládání využívá čidla;Regulace je rychlejší;Ovládání je přesnější
+Co je analogový signál?;Spojitě se měnící fyzikální veličina;Signál s hodnotami 0 nebo 1;Skokový signál;Náhodný signál;Signál s chybovým kódem
+Co je binární signál?;Signál se dvěma hodnotami – log. 1 a 0;Spojitě se měnící signál;Zvukový signál;Světelný signál;Skládající se z impulsů
+Jaký je rozdíl mezi analogovým a digitálním signálem?;Analogový je spojitý, digitální skokový;Digitální má více hladin;Analogový má jen 0 a 1;Digitální je vždy přesnější;Analogový je optický
+Co je střída u obdélníkového signálu?;Poměr mezi dobou zapnuto a vypnuto;Frekvence signálu;Napěťová úroveň;Šířka signálu;Doba přenosu dat
+Jaký tvar mají taktovací signály v digitální technice?;Obdélníkové a jehlové impulsy;Sinusové;Trojúhelníkové;Zvukové;Chaotické
+Co je komunikační řetězec?;Cesta, kterou signál prochází od snímače až k akčnímu členu;Sled operací v programu;Síťový kabel;Typ rozvaděče;Zpětná vazba
+Co znamená pojem tok energie?;Přenos energie spolu se signály v regulačním obvodu;Měření výkonu motoru;Ztráta energie ve vodiči;Ohřev vodičů při přenosu;Stabilita signálu
+Jaký člen zesiluje signál bez nositele energie?;Obecný člen;Snímač;Výkonový zesilovač;Motor;Měřicí člen
+Co je řízení?;Informační proces s cílem ovlivnit systém na základě měření a výpočtů;Manuální ovládání spínačů;Činnost elektrického obvodu;Programování zařízení;Distribuce energie
+Jaký je rozdíl mezi ručním a automatickým řízením?;Ruční řízení provádí člověk, automatické vykonává automat;Ruční řízení je levnější;Automatické je vždy přesnější;Automatické nepotřebuje program;Ruční má větší výkon
+Co je adaptivní řízení?;Automatické řízení se schopností samočinně volit podmínky řízení;Ruční řízení;Předem naprogramovaný proces;Ovládání tlačítky;Nepřesné řízení
+K čemu slouží čidlo v automatizační technice?;Získává informace o řízeném procesu;Vytváří výstupní signál;Spíná motor;Zastavuje systém;Zesiluje signál
+Jaký je hlavní účel signálu v automatizaci?;Přenášet informaci o veličinách v systému;Napájet čidla;Zajišťovat chlazení;Měnit mechanickou energii;Udržovat stálou teplotu
+Jaký druh signálu je nejvíce využíván ve výpočetní technice?;Binární;Analogový;Zvukový;Tepelný;Světelný
+Proč se používá kódování signálu?;Aby bylo možné přenášet informaci jednoznačně;Kvůli zvýšení výkonu;Pro chlazení vodičů;Z důvodu zjednodušení konstrukce;Pro zvýšení odporu vedení

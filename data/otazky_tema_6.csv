@@ -1,0 +1,21 @@
+Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je elektrický pohon?;Souhrn zařízení zajišťujících přeměnu el. energie na mechanickou;Zesilovač napětí;Stabilizátor napětí;Snímač polohy;Ruční ovladač
+Jaké jsou hlavní části elektrického pohonu?;Elektrický motor, ovládací a jistící prvky, napájecí zdroje;Stykač, relé, jistič;Převodovka, relé, kondenzátor;PLC, motor, ventil;Spínač, transformátor, žárovka
+K čemu slouží regulační orgán?;K ovládání hodnot napětí, proudu, průtoku apod.;K připojení zařízení;K měření odporu;K detekci signálu;K přepínání světel
+Jaký je příklad elektrického regulačního orgánu?;Tranzistor;Stykač;Motor;Optočlen;Pojistka
+Jaký je příklad pneumatického regulačního orgánu?;Ventil;Relé;Motor;Stykač;Převodník
+Jaký je příklad hydraulického regulačního orgánu?;Šoupě;Čerpadlo;Zásobník;Tepelný výměník;Měnič
+Co je důležitá podmínka při volbě pohonu?;Rozsah momentu a otáček;Barva motoru;Hmotnost zařízení;Typ izolace;Materiál skříně
+Jaká je konstrukční podmínka pohonu?;Poloha motoru a tvar;Spotřeba oleje;Doba chodu;Počet kabelů;Způsob chlazení
+Jaké jsou energetické podmínky pro pohon?;Napojení na síť, mobilita, špičková zatížení;Barva krytu;Typ PLC;Délka kabelu;Typ ventilace
+Co je součinitel náročnosti (β)?;Podíl strojů současně v provozu;Napěťový zisk;Přesnost měření;Výstupní výkon;Typ izolace
+Jaké vlivy je třeba zohlednit při volbě pohonu?;Teplota, vlhkost, prašnost, chvění;Cena;Barva krytu;Typ napájení;Materiál rozvaděče
+Co je podmínka daná stupněm automatizace?;Oprávněnost použití konkrétního řešení z hlediska ekonomiky;Dostupnost čidel;Dostatek kabelů;Značka zařízení;Umístění rozvaděče
+K čemu slouží momentová charakteristika?;Popisuje vztah mezi momentem a otáčkami;Popisuje barvu motoru;Popisuje spotřebu energie;Popisuje délku kabelu;Popisuje izolační odpor
+Co je mechanika pohonu?;Řeší pohybovou rovnici motoru a zátěže;Zabývá se barvou vodičů;Popisuje uspořádání rozvaděče;Zajišťuje chlazení;Měří výkon motoru
+Jak se značí moment motoru?;MM;MZ;MP;MT;MO
+Co je to ztrátový moment?;ΔM;MZ;MM;MT;MP
+Jaký motor je součástí el. pohonu?;Stejnosměrný nebo střídavý motor;Jen krokový motor;Pouze hydraulický;Pouze pneumatický;Lineární motor
+Jaký typ pohonu má klapku nebo ventil jako regulační orgán?;Pneumatický;Elektrický;Optický;Mechanický;Tepelný
+Kde najdeme elektrické komutované motory?;V moderních řízených systémech;Ve starých osvětleních;Pouze v domácnostech;Jen v PLC;Ve vypínačích
+K čemu slouží řiditelný zdroj el. energie v pohonu?;Pro napájení vinutí motoru;Pro chlazení motoru;Pro ovládání PLC;Pro osvětlení rozvaděče;Pro měření výkonu

@@ -1,0 +1,21 @@
+Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+K čemu slouží průmyslový elektrický rozvod?;K napájení zařízení a strojů ve výrobních provozech;K osvětlení domácností;K napájení malých spotřebičů;K připojení telefonů;K řízení domácí sítě
+Jaké napětí je běžné v silnoproudých rozvodech?;230 V / 400 V;12 V;5 V;1000 V;750 V
+K čemu slouží slaboproudé rozvody?;Pro komunikaci, signalizaci a automatizaci;Pro napájení motorů;Pro osvětlení;Pro chlazení;Pro připojení jističů
+Co jsou přípojnicové rozvody?;Systémy distribuce el. energie pomocí přípojnic;Přenosové sítě pro WiFi;Optické spoje;Spínací prvky;Zemnící systémy
+K čemu slouží záložní rozvody?;Pro případ výpadku elektrické energie;Pro připojení ventilátorů;Pro zajištění chlazení;Pro dálkové ovládání;Pro regulaci teploty
+Co je instalovaný výkon?;Součet jmenovitých výkonů všech spotřebičů;Maximální příkon sítě;Proud při poruše;Zkratový proud;Průměrný proud v obvodu
+Jaký je součinitel náročnosti v průmyslu?;0,48;1,0;0,2;0,9;0,05
+K čemu slouží výpočtové zatížení?;K dimenzování elektrického rozvodu;K výběru motoru;K určení délky vedení;K výběru pojistky;K regulaci napětí
+Co je prachotěsný přípojnicový rozvod?;Rozvod v uzavřeném kanále s krytím IP65 nebo vyšším;Standardní rozvod bez ochrany;Otevřený vodič;Vodič bez izolace;Podzemní vedení
+Jaký je přípustný pokles napětí v místě připojení motoru?;5 %;0 %;10 %;20 %;1 %
+Jaký je hlavní požadavek při připojování elektromotoru?;Dobrý účiník a účinnost;Nízká cena;Malá velikost;Tichý chod;Nízký výkon
+Co je Y-Δ spouštění motoru?;Spouštění sníženým proudem pomocí změny zapojení;Paralelní spouštění;Ruční spínání;Spínání přes tlačítko;Spouštění pomocí tepla
+K čemu slouží softstartéry?;Omezují náběhový proud motoru;Zvyšují otáčky motoru;Zastavují motor;Chladí motor;Řídí světla
+Jaký je rozběh motoru do 4 sekund?;Lehký;Střední;Těžký;Nemožný;Zrychlený
+Jaký je hlavní rozdíl mezi dodávkou 1., 2. a 3. stupně?;V úrovni zabezpečení dodávky el. energie;V typu použitých motorů;V délce kabeláže;V typu jističů;Ve velikosti rozvaděče
+Kde musí být dodávka 1. stupně vždy zajištěna?;V nemocnicích nebo kritických provozech;V běžných domácnostech;V dílně;Ve školní laboratoři;V kanceláři
+Jak se označuje dodávka 3. stupně?;Není nutné ji zajišťovat;Musí být zálohovaná;Zajišťována ze dvou zdrojů;Určena pro nemocnice;Napájení pomocí UPS
+K čemu slouží pravidla bezpečné práce na elektrickém zařízení?;K ochraně zdraví a života při práci;K rychlejší montáži;K levnějšímu provozu;K označení vodičů;K výběru jističů
+Co znamená pravidlo 'Vypni, Zajisti, Odzkoušej'?;Zajištění bezpečné práce na EZ;Spuštění zařízení;Údržba osvětlení;Příprava PLC programu;Výpočet odporu
+Co je živá část v elektrickém zařízení?;Proudovodná část určená k vedení proudu;Kovová konstrukce;Plášť rozvaděče;Vodič ochrany;Kryt přístroje
