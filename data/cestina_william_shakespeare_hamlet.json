@@ -1,0 +1,75 @@
+{
+    "bookTitle": "Hamlet",
+    "questions": [
+        {
+            "id": "druh",
+            "type": "mc_single",
+            "questionText": "Literární druh:",
+            "options": ["Próza", "Poezie", "Drama"],
+            "correctAnswer": "Drama"
+        },
+        {
+            "id": "zanr",
+            "type": "free_text",
+            "questionText": "Literární žánr:",
+            "correctAnswer": "Tragédie"
+        },
+        {
+            "id": "tema",
+            "type": "mc_single",
+            "questionText": "Hlavní téma:",
+            "options": ["Pomsta", "Dobrodružství", "Politická satira", "Romantická láska"],
+            "correctAnswer": "Pomsta"
+        },
+        {
+            "id": "postavy",
+            "type": "mc_multiple",
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Hamlet", "Claudius", "Gertruda", "Ofélie", "Romeo", "Julie", "Polonius", "Horacio", "Ferdinand", "Eleonora"],
+            "correctAnswers": ["Hamlet", "Claudius", "Gertruda", "Ofélie"]
+        },
+        {
+            "id": "cas",
+            "type": "mc_single",
+            "questionText": "Časové zařazení děje:",
+            "options": ["Středověk", "Renesance", "19. století", "Současnost"],
+            "correctAnswer": "Renesance"
+        },
+        {
+            "id": "prostor",
+            "type": "mc_single",
+            "questionText": "Místo děje:",
+            "options": ["Dánsko", "Anglie", "Francie", "Itálie"],
+            "correctAnswer": "Dánsko"
+        },
+        {
+            "id": "kompozice",
+            "type": "mc_single",
+            "questionText": "Kompozice:",
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
+            "correctAnswer": "Chronologická"
+        },
+        {
+            "id": "vypravec",
+            "type": "conditional_mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "correctBasedOn": {
+                "Drama": "Monology/Dialogy",
+                "Próza": "Er-forma",
+                "Poezie": "Lyrický subjekt"
+            },
+            "optionsBasedOn": {
+                "Drama": ["Monology/Dialogy"],
+                "Próza": ["Ich-forma", "Er-forma"],
+                "Poezie": ["Lyrický subjekt"]
+            }
+        },
+        {
+            "id": "smer",
+            "type": "mc_single",
+            "questionText": "Literární směr:",
+            "options": ["Romantismus", "Renesance", "Realismus", "Klasicismus"],
+            "correctAnswer": "Renesance"
+        }
+    ]
+}
