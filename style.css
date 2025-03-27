@@ -691,11 +691,11 @@ body.dark-mode {
     /* --secondary: #ff7f7f; */ /* Example: Slightly lighter secondary */
 
     /* Activity colors for dark mode calendar */
-    --activity-none: #2d3748;    /* Darker base for calendar days */
-    --activity-low: #4a5568;     /* Slightly darker gray */
-    --activity-medium: #1e40af;  /* Darker blue */
-    --activity-high: #1d4ed8;   /* Medium blue */
-    --activity-very-high: #2563eb; /* Lighter blue */
+    --activity-none: #2d3748;    /* Dark Gray-Blue (Keep as base) */
+    --activity-low: #3f6253;     /* Desaturated Dark Green */
+    --activity-medium: #38a169;  /* Medium Green (like Tailwind green-500) */
+    --activity-high: #ecc94b;   /* Medium Yellow (like Tailwind yellow-400) */
+    --activity-very-high: #f59e0b; /* Bright Amber/Orange (like Tailwind amber-500) */
 
     /* General text color for dark mode */
     color: var(--dark);
@@ -812,26 +812,25 @@ body.dark-mode .option.correct.selected { /* Ensure selected correct stays green
 
 /* Calendar days in dark mode */
 body.dark-mode .calendar-grid .day {
-    color: var(--dark); /* Default day text */
+    color: var(--dark);
     background-color: var(--activity-none);
 }
 body.dark-mode .calendar-grid .day.inactive {
-    color: #4a5568; /* Dimmer for inactive */
+    color: #4a5568;
     background-color: transparent;
 }
-body.dark-mode .calendar-grid .day.active { /* Today's date */
+body.dark-mode .calendar-grid .day.active {
     border-color: var(--primary);
     color: var(--primary);
-    background-color: rgba(77, 87, 240, 0.1); /* Slightly transparent primary */
+    background-color: rgba(77, 87, 240, 0.1);
 }
-/* Ensure text is readable on colored backgrounds */
-body.dark-mode .calendar-grid .day.activity-medium,
+body.dark-mode .calendar-grid .day.activity-low,
+body.dark-mode .calendar-grid .day.activity-medium {
+    color: #e2e8f0; /* Light text for darker green backgrounds */
+}
 body.dark-mode .calendar-grid .day.activity-high,
 body.dark-mode .calendar-grid .day.activity-very-high {
-    color: #fff; /* White text for darker backgrounds */
-}
-body.dark-mode .calendar-grid .day.activity-low {
-    color: #cbd5e0; /* Light gray text on dark gray */
+    color: #1a202c; /* Dark text for brighter yellow/orange backgrounds */
 }
 
 /* Calendar legend colors in dark mode */
