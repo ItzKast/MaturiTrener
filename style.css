@@ -508,27 +508,41 @@ main {
     gap: 0.35rem; /* Slightly larger gap */
 }
 
-.calendar-grid .day { /* Default day text in dark mode */
-        color: var(--dark);
-    }
+.calendar-grid .day {
+    text-align: center;
+    aspect-ratio: 1 / 1; /* Make days square */
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    font-size: 0.8rem;
+    color: var(--dark);
+    display: flex; /* Center number vertically */
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent; /* Base border */
+    background-color: var(--activity-none); /* Default background */
+}
 
 .calendar-grid .day:hover {
     background-color: #f8fafc; /* Lighter hover */
     transform: scale(1.05);
 }
 
-.calendar-grid .day.active { /* Today's date styling */
-        border-color: var(--primary);
-        color: var(--primary);
-        }
+.calendar-grid .day.active { /* Today's date */
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    font-weight: 600;
+    background-color: #eef2ff; /* Light primary highlight */
+}
 
 .calendar-grid .day.inactive {
-        color: #4a5568;
-        background-color: transparent !important; /* Ensure inactive overrides activity */
-    }
+    color: var(--gray);
+    background-color: transparent; /* No background for inactive days */
+    cursor: default;
+    pointer-events: none; /* Not clickable */
+}
 
 /* Activity colors */
-.calendar-grid .day.activity-none { background-color: var(--activity-none); } /* Explicitly set none */
 .calendar-grid .day.activity-low { background-color: var(--activity-low); }
 .calendar-grid .day.activity-medium { background-color: var(--activity-medium); }
 .calendar-grid .day.activity-high { background-color: var(--activity-high); }
@@ -538,10 +552,10 @@ main {
 .calendar-grid .day.activity-medium,
 .calendar-grid .day.activity-high,
 .calendar-grid .day.activity-very-high {
-   color: #fff; /* Default light mode: White text for darker backgrounds */
+   color: #fff; /* White text for darker backgrounds */
 }
 .calendar-grid .day.activity-low {
-   color: #555; /* Default light mode: Darker text for light gray */
+   color: #555; /* Darker text for light gray */
 }
 
 
@@ -672,26 +686,21 @@ body.dark-mode {
     --light: #1a202c;    /* Dark background color */
     --gray: #4a5568;     /* Mid-dark gray for borders/less important text */
 
-    /* Adjust other colors for better contrast on dark background if needed */
-    /* --primary: #5a63f1; */ /* Example: Slightly lighter primary */
-    /* --secondary: #ff7f7f; */ /* Example: Slightly lighter secondary */
-
     /* Activity colors for dark mode calendar */
-    --activity-none: #2d3748;    /* Dark Gray-Blue (Keep as base) */
-    --activity-low: #3f6253;     /* Desaturated Dark Green */
-    --activity-medium: #38a169;  /* Medium Green (like Tailwind green-500) */
-    --activity-high: #ecc94b;   /* Medium Yellow (like Tailwind yellow-400) */
-    --activity-very-high: #f59e0b; /* Bright Amber/Orange (like Tailwind amber-500) */
+    --activity-none: #2d3748;    
+    --activity-low: #3f6253;     
+    --activity-medium: #38a169;  
+    --activity-high: #ecc94b;   
+    --activity-very-high: #f59e0b;
 
     /* General text color for dark mode */
     color: var(--dark);
-
     .calendar-grid .day.activity-none { background-color: var(--activity-none); } /* Explicitly set none */
     .calendar-grid .day.activity-low { background-color: var(--activity-low); }
     .calendar-grid .day.activity-medium { background-color: var(--activity-medium); }
     .calendar-grid .day.activity-high { background-color: var(--activity-high); }
     .calendar-grid .day.activity-very-high { background-color: var(--activity-very-high); }
-    
+
     .calendar-grid .day.activity-low,
     .calendar-grid .day.activity-medium {
         color: #e2e8f0; /* Light text */
@@ -711,8 +720,9 @@ body.dark-mode {
      .calendar-grid .day.active { /* Today's date styling */
         border-color: var(--primary);
         color: var(--primary);
+        /* Let background be set by activity, border/color highlights it */
+        /* background-color: rgba(77, 87, 240, 0.1); */ /* Removing this allows activity color to show */
     }
-    
 }
 
 /* Specific overrides for elements in dark mode */
@@ -826,22 +836,27 @@ body.dark-mode .option.correct.selected { /* Ensure selected correct stays green
 
 /* Calendar days in dark mode */
 body.dark-mode .calendar-grid .day {
-    color: var(--dark);
+    color: var(--dark); /* Default day text */
     background-color: var(--activity-none);
 }
 body.dark-mode .calendar-grid .day.inactive {
-    color: #4a5568;
+    color: #4a5568; /* Dimmer for inactive */
     background-color: transparent;
 }
-body.dark-mode .calendar-grid .day.active {
+body.dark-mode .calendar-grid .day.active { /* Today's date */
     border-color: var(--primary);
     color: var(--primary);
-    background-color: rgba(77, 87, 240, 0.1);
+    background-color: rgba(77, 87, 240, 0.1); /* Slightly transparent primary */
 }
-.calendar-grid .day.activity-low { background-color: var(--activity-low); }
-.calendar-grid .day.activity-medium { background-color: var(--activity-medium); }
-.calendar-grid .day.activity-high { background-color: var(--activity-high); }
-.calendar-grid .day.activity-very-high { background-color: var(--activity-very-high); }
+/* Ensure text is readable on colored backgrounds */
+body.dark-mode .calendar-grid .day.activity-low,
+body.dark-mode .calendar-grid .day.activity-medium {
+    color: #e2e8f0; /* Light text for darker green backgrounds */
+}
+body.dark-mode .calendar-grid .day.activity-high,
+body.dark-mode .calendar-grid .day.activity-very-high {
+    color: #1a202c; /* Dark text for brighter yellow/orange backgrounds */
+}
 
 /* Calendar legend colors in dark mode */
 body.dark-mode .legend-color.activity-none { background-color: var(--activity-none); border-color: var(--gray); }
@@ -884,6 +899,19 @@ body.dark-mode tr:nth-child(even) {
     font-size: 0.8rem;
     line-height: 1.2;
 }
+.calendar-grid .day.activity-low { background-color: var(--activity-low); }
+.calendar-grid .day.activity-medium { background-color: var(--activity-medium); }
+.calendar-grid .day.activity-high { background-color: var(--activity-high); }
+.calendar-grid .day.activity-very-high { background-color: var(--activity-very-high); }
+/* Global text color for activity days in light mode */
+.calendar-grid .day.activity-medium,
+.calendar-grid .day.activity-high,
+.calendar-grid .day.activity-very-high {
+   color: #fff; /* Default light mode: White text for darker backgrounds */
+}
+.calendar-grid .day.activity-low {
+   color: #555; /* Default light mode: Darker text for light gray */
+}
 
 /* Style the theme toggle button */
 #theme-toggle-btn {
@@ -908,6 +936,7 @@ body.dark-mode #theme-toggle-btn:hover {
     background-color: rgba(255, 255, 255, 0.05);
     border-color: #a0aec0;
 }
+
 
 /* Responsive Adjustments */
 @media (max-width: 767px) {
