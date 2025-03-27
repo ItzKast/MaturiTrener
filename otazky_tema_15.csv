@@ -1,0 +1,21 @@
+Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je měnič frekvence?;Zařízení měnící frekvenci a napětí pro řízení otáček motoru;Transformátor napětí;Jistič s regulací;Stykač pro přepínání fází;Zdroj konstantního proudu
+K čemu se používá měnič frekvence?;K plynulé regulaci otáček elektromotoru;K měření frekvence;K ochraně proti zkratu;K řízení svítivosti LED;K přepínání obvodů
+Jaké jsou výhody použití měniče frekvence?;Úspora energie, plynulý rozběh a brzdění, řízení otáček;Vyšší spotřeba, rychlejší záběh;Zesílení proudu;Zmenšení rozměrů motoru;Zvýšení hlučnosti
+Jaký je princip činnosti měniče frekvence?;Nejprve usměrnění střídavého proudu, pak změna frekvence a napětí;Zesílení proudu pomocí relé;Přepínání fází motoru;Změna směru otáček;Vypínání a zapínání motoru
+Kde se měniče frekvence nejčastěji používají?;V pohonech čerpadel, ventilátorů, dopravníků;V osvětlovacích obvodech;V topných tělesech;V signálních systémech;V nouzových zdrojích
+Jaký typ motoru lze ovládat měničem frekvence?;Asynchronní motor;Krokový motor;Stejnosměrný motor;Lineární motor;Spalovací motor
+Jak měnič ovlivňuje rozběh motoru?;Zajišťuje plynulý a řízený náběh bez proudových rázů;Zrychluje náběh na maximum;Zvyšuje počáteční proud;Odpojí motor při zátěži;Změní směr otáčení
+Co je výstupní frekvence měniče?;Frekvence řízená dle požadavků aplikace;Frekvence ze sítě;Konstantní 50 Hz;Frekvence snímače;Digitální signál
+Jaký parametr měniče ovlivňuje maximální otáčky motoru?;Nastavená výstupní frekvence;Vstupní napětí;Typ pojistky;Značka motoru;Počet relé
+Co je spínaný zdroj?;Napájecí zdroj využívající vysokofrekvenční spínání;Zdroj s klasickým transformátorem;Zdroj s nízkým napětím;Bateriové napájení;Stabilizátor proudu
+Jaká je výhoda spínaného zdroje oproti lineárnímu?;Menší rozměry, vyšší účinnost, nižší hmotnost;Nižší účinnost, větší hlučnost;Větší velikost;Pomalejší reakce;Vyšší zahřívání
+Kde se spínané zdroje nejčastěji používají?;V napájení elektronických zařízení a PLC;V topení;Ve svítidlech;V mechanických převodovkách;V hydraulice
+Jaký je hlavní princip spínaného zdroje?;Rychlé zapínání a vypínání proudu přes tranzistor;Zesílení střídavého proudu;Transformace bez spínání;Ruční spínání;Zpomalení napětí
+Jak se chrání měnič frekvence před přetížením?;Pomocí elektronické ochrany a nastavení limitů;Vypínačem;Pojistkou s vysokou hodnotou;Optickým čidlem;Teplotní pojistkou
+Co je EMC filtr?;Filtr omezující elektromagnetické rušení;Filtr na prach;Vodní filtr;Zesilovač signálu;Zdroj napětí
+Proč je důležité odrušení měniče?;Kvůli ochraně ostatních zařízení před rušením;Pro zlepšení chlazení;Pro zrychlení odezvy;Kvůli vyššímu napětí;Pro zvýšení účinnosti
+Jaké výstupní napětí má typický spínaný zdroj pro PLC?;24 V DC;230 V AC;12 V AC;5 V DC;48 V AC
+Jaké jsou hlavní části měniče frekvence?;Usměrňovač, meziobvod, střídač;Transformátor, filtr, relé;Kondenzátor, stykač, jistič;Pojistka, čidlo, chladič;Motor, řemen, ventil
+Co je důležité při výběru měniče?;Výkon, napětí, proud motoru, způsob řízení;Barva zařízení;Typ krytí;Typ ovládacího panelu;Délka kabeláže
+Jaký je rozdíl mezi měničem a frekvenčním měřičem?;Měnič řídí frekvenci, měřič ji pouze měří;Měřič mění napětí;Měnič měří proud;Měřič reguluje motor;Měnič měří frekvenci bez regulace

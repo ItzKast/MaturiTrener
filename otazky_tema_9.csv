@@ -1,0 +1,21 @@
+Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je stykač?;Spínací přístroj dálkově ovládaný elektromagnetem;Mechanické tlačítko;Zdroj proudu;Pojistka;Jistič na DIN lištu
+K čemu slouží relé?;K sepnutí nebo rozepnutí obvodu podle vstupního signálu;K ochraně proti zkratu;K měření napětí;K omezení proudu;K chlazení zařízení
+Co je jistič?;Přístroj na ochranu obvodu proti přetížení a zkratu;Pojistka s pevnou hodnotou;Ovládací tlačítko;Zesilovač;Napěťový převodník
+Jaký je rozdíl mezi jističem a pojistkou?;Jistič lze opětovně zapnout, pojistku je nutné vyměnit;Pojistka je vždy lepší;Jistič je menší;Pojistka je automatická;Jistič je jednorázový
+Kde se používají stykače?;K dálkovému spínání motorů a silových obvodů;Pouze v domácích instalacích;V ručních ovladačích;Na svítidla;V bateriových obvodech
+Co je NO kontakt?;Normálně otevřený kontakt;Normálně uzavřený kontakt;Negativní ovladač;Neutrální odpor;Napěťový obvod
+Co je NC kontakt?;Normálně zavřený kontakt;Normálně otevřený kontakt;Napájecí kontakt;Nouzové tlačítko;Zemnící bod
+Jaký je princip elektromagnetického relé?;Při přivedení napětí dojde k sepnutí kontaktů pomocí elektromagnetu;Je řízeno ručně;Zesiluje signál;Používá světelný senzor;Reaguje na teplo
+Co je tepelná spoušť jističe?;Prvek reagující na zahřátí vodiče vlivem proudu;Prvek reagující na světlo;Zpětný kontakt;Ovládací knoflík;Tlačítko reset
+K čemu slouží zkratová spoušť jističe?;Okamžitě odpojí obvod při zkratu;Měří odpor;Slouží k indikaci poruchy;Spíná kontakt pomalu;Reguluje napětí
+Jaký je účel pojistky v obvodu?;Ochrana proti nadproudu a zkratu;Zesílení napětí;Změna směru proudu;Ovládání motoru;Zpožděné spínání
+K čemu slouží pomocné kontakty stykače?;Pro signalizaci stavu hlavních kontaktů;Pro napájení motoru;K měření proudu;K regulaci napětí;K ručnímu ovládání
+Co značí označení 'K1' ve schématu?;Stykač číslo 1;Relé časové;Tlačítko start;Motor;Jistič B16
+Jak se značí cívka stykače?;K;M;S;P;T
+Co je samovrací tlačítko?;Tlačítko, které se po stisku samo vrátí do původní polohy;Zůstává stisknuté;Ovládá motor;Používá se jen pro STOP;Ovládá proudový chránič
+Jaká barva tlačítka je určena pro nouzové vypnutí?;Červená;Zelená;Modrá;Bílá;Žlutá
+Co je zpožděné relé?;Sepne nebo vypne s časovým zpožděním;Přepíná směry;Zesiluje signál;Spíná pouze při vysokém napětí;Reaguje na teplotu
+Jaká je hlavní funkce jističe B16?;Chránit obvod s proudovým limitem 16 A;Napájet obvod;Startovat motor;Spínat relé;Řídit senzor
+K čemu slouží kontrolka ve spínacím obvodu?;Signalizuje stav (zapnuto/vypnuto);Řídí výkon;Ovládá ventil;Měří napětí;Zvyšuje proud
+Jaký přístroj se používá pro sepnutí motoru z více míst?;Střídavé řízení pomocí stykačů a tlačítek;Termostat;Reverzní vypínač;Pojistka;Transformátor

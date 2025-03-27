@@ -1,0 +1,21 @@
+Otázka;Správná odpověď;Možnost 1;Možnost 2;Možnost 3;Možnost 4
+Co je otevřený řídicí systém?;Systém bez zpětné vazby;Systém s adaptivními algoritmy;Systém řízený manuálně;Uzavřený regulační obvod;Systém s přímým měřením výstupu
+Co je uzavřený řídicí systém?;Systém se zpětnou vazbou;Systém bez čidel;Ruční ovládání;Jednoduché spínání;Program bez výstupů
+K čemu slouží zpětná vazba?;Porovnává výstup s požadovanou hodnotou;Napájí vstupy;Přepíná fáze;Ovládá pojistky;Zesiluje výstup
+Jaký je rozdíl mezi otevřeným a uzavřeným systémem?;Uzavřený systém využívá zpětnou vazbu, otevřený ne;Otevřený má více snímačů;Uzavřený je rychlejší;Otevřený je spolehlivější;Uzavřený nevyžaduje napájení
+Co je adaptivní řízení?;Schopnost systému přizpůsobit se změnám podmínek;Pevně nastavený program;Ruční ovládání;Řízení pouze snímačem;Neřízený systém
+Kdy je vhodné použít otevřený systém?;Když je výstup snadno předvídatelný;Při složité regulaci;Při neznámém chování systému;Když je třeba vysoká přesnost;Když je více výstupních prvků
+Kdy se používá uzavřený systém?;Při požadavku na přesnost a stabilitu;Při manuálním řízení;Při vysoké spotřebě;Když není zpětná vazba dostupná;Při nízké rychlosti procesu
+Co je hlavním přínosem uzavřeného systému?;Přesné řízení a kompenzace odchylek;Zjednodušené zapojení;Nízká pořizovací cena;Rychlé přepínání obvodů;Jednoduchý program
+Jaká zařízení mohou realizovat zpětnou vazbu?;Snímače a čidla;Relé a jističe;Motory a čerpadla;Kondenzátory;Pojistky
+Co je řízená veličina?;Veličina, kterou chceme udržet na požadované hodnotě;Výstupní napětí;Proud motoru;Teplota vzduchu;Značka zařízení
+Co je řízení podle programu?;Průběh řízení se řídí předem stanoveným algoritmem;Ruční ovládání systému;Nahodilé spínání;Řízení hlasem;Řízení barvou vodiče
+Co je rušivá veličina?;Nepředvídaný vliv působící na řízený systém;Zpětná vazba;Požadovaná hodnota;Referenční signál;Výsledný proud
+K čemu slouží regulátor v uzavřeném systému?;Porovnává žádanou a skutečnou hodnotu a upravuje výstup;Zesiluje napětí;Řídí barvu signálu;Napájí systém;Upravuje schéma zapojení
+Jaká je funkce akčního členu?;Provádí zásah do řízené soustavy na základě výstupu regulátoru;Sníma signály;Zobrazuje údaje;Spouští PLC program;Ukládá data
+Co je žádaná hodnota?;Hodnota, kterou chceme udržet v systému;Maximální hodnota napětí;Proud motoru;Počet výstupních členů;Značka systému
+Jak se označuje řízení pomocí PLC?;Digitální automatické řízení;Mechanické řízení;Ruční logické řízení;Tepelné řízení;Bezdrátové řízení
+Jaké výstupy může PLC ovládat v řízení?;Motory, ventily, světla, bzučáky;Jističe;Kondenzátory;Transformátory;Zenerovy diody
+Jaká je výhoda adaptivního řízení?;Přizpůsobuje se změnám podmínek;Změní fyzickou konstrukci;Nepracuje s čidly;Je levnější než ostatní;Neobsahuje software
+Které signály se běžně využívají pro zpětnou vazbu?;Analogové a digitální;Optické a zvukové;Mikrovlnné;Radiofrekvenční;Barevné
+Jaká je role senzoru v uzavřeném systému?;Snímá skutečnou hodnotu řízené veličiny;Spouští celý obvod;Zesiluje výkon;Rozsvěcuje kontrolku;Napájí motor
