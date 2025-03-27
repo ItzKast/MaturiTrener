@@ -290,8 +290,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         auth = firebase.auth();
         console.log("Firebase Initialized");
 
-        // --- Initialize UI and Parse Data ---
-        parseAllCSVData(); // Parse all static CSV data
         initializeSubjects(); // Populate subject dropdown
 
         // --- Attach Event Listeners ---
@@ -1030,81 +1028,6 @@ function parseCSV(csvText, subject, topic) {
     data[subject][topic] = questions;
     console.log(`Parsed ${questions.length} questions for ${subject} - ${topic}`);
 }
-
-/** Calls parseCSV for all predefined CSV data constants. */
-function parseAllCSVData() {
-    console.log("Parsing all CSV data...");
-    // Programování
-    parseCSV(csvDataProgramovani, "Programování", "Základní pojmy z algoritmizace a programování");
-    parseCSV(csvDataVyvojJazyku, "Programování", "Vývoj a druhy programovacích jazyků, vývojové prostředí Visual Studio");
-    parseCSV(csvDataCsharpVetveni, "Programování", "C# strukturované příkazy větvení, složený příkaz");
-    parseCSV(csvDataCyklu, "Programování", "C# strukturované příkazy cyklů");
-    parseCSV(csvJednoducheDatove, "Programování", "C# jednoduché datové typy, řetězec; operace");
-    parseCSV(csvStrukturovaneDatove, "Programování", "C# strukturované datové typy (kolekce)");
-    parseCSV(csvDataDialog, "Programování", "C# práce se soubory a dialogovými okny");
-    parseCSV(csvDataPrvky, "Programování", "C# Windows Forms Application, grafické ovládací prvky, události");
-    parseCSV(csvDataChyby, "Programování", "C# ladění programu, druhy chyb, ošetřování výjimek");
-    parseCSV(csvDataDrawing, "Programování", "C# namespace Drawing – nástroje pro programování grafiky");
-    parseCSV(csvDataMetody, "Programování", "C# metody, jmenné prostory");
-    parseCSV(csvDataOOP, "Programování", "C# základy OOP");
-
-    // Počítačové sítě
-    parseCSV(csvDataTopologie, "Počítačové sítě", "Topologie sítí");
-    parseCSV(csvDataKomunikace, "Počítačové sítě", "Komunikace v síti");
-    parseCSV(csvDataPasivni, "Počítačové sítě", "Pasivní prvky");
-    parseCSV(csvDataAktivni, "Počítačové sítě", "Aktivní prvky");
-    parseCSV(csvDataNavrh, "Počítačové sítě", "Návrh a realizace sítě");
-    parseCSV(csvDataBezdratove, "Počítačové sítě", "Bezdrátové technologie");
-    parseCSV(csvDataLokalni, "Počítačové sítě", "Připojení počítače k lokální síti");
-    parseCSV(csvDataInternet, "Počítačové sítě", "Připojení k internetu");
-
-    // Elektronika
-    parseCSV(csvDataZaklady, "Elektronika", "Základy digitální techniky");
-    parseCSV(csvDataPolovidice, "Elektronika", "Integrované polovodičové prvky");
-    parseCSV(csvDataCM530, "Elektronika", "Řídící jednotka CM-530");
-    parseCSV(csvDataArduino, "Elektronika", "Mikroprocesor Arduino");
-    parseCSV(csvDataArduinoProgramovani, "Elektronika", "Programování mikroprocesoru Arduino");
-    parseCSV(csvDataPocitac, "Elektronika", "Počítač");
-    parseCSV(csvDataProcesor, "Elektronika", "Procesor");
-    parseCSV(csvDataZakladniDeska, "Elektronika", "Základní deska");
-    parseCSV(csvDataPameti, "Elektronika", "Polovodičové paměti");
-    parseCSV(csvDataDisky, "Elektronika", "Zařízení pro uložení dat");
-    parseCSV(csvDataGrafika, "Elektronika", "Grafický a zobrazovací systém");
-    parseCSV(csvDataTisk, "Elektronika", "Digitalizace obrazu a tisk");
-    parseCSV(csvDataZdroje, "Elektronika", "Napájecí zdroje");
-    parseCSV(csvDataTranzistor, "Elektronika", "Diferenciální parametry tranzistoru");
-    parseCSV(csvDataOperacni, "Elektronika", "Operační zesilovače");
-    parseCSV(csvDataInformace, "Elektronika", "Přenos informací");
-    parseCSV(csvDataZesilovace, "Elektronika", "Zesilovače");
-    parseCSV(csvDataFFDolni, "Elektronika", "Frekvenční filtr typu dolní propust");
-    parseCSV(csvDataFFHorni, "Elektronika", "Frekvenční filtr typu horní propust");
-    parseCSV(csvDataRLC, "Elektronika", "Sériový a paralelní obvod RL, RC");
-
-    //Automatizace
-    parseCSV(csvDataRegulacni, "Automatizace", "Regulační obvody");
-    parseCSV(csvDataProstredky, "Automatizace", "Technické prostředky");
-    parseCSV(csvDataLogika, "Automatizace", "Logická zařízení");
-    parseCSV(csvDataVykresy, "Automatizace", "Druhy výkresů v AT");
-    parseCSV(csvDataRozvody, "Automatizace", "Elektrické rozvody v průmyslu");
-    parseCSV(csvDataRegulace, "Automatizace", "Regulační pohony a orgány");
-    parseCSV(csvDataAutomat, "Automatizace", "Programovatelný automat");
-    parseCSV(csvDataRele, "Automatizace", "Relé impulzní");
-    parseCSV(csvDataPrevodniky, "Automatizace", "Převodníky a přizpůsobovací členy");
-    parseCSV(csvDataVystavba, "Automatizace", "Výstavba regulačního obvodu");
-    parseCSV(csvDataMale, "Automatizace", "Malé řídící systémy");
-    parseCSV(csvDataPrvkyvObvodech, "Automatizace", "Prvky používané v obvodech AT");
-    parseCSV(csvDataSenzor, "Automatizace", "Senzory - rozdělení");
-    parseCSV(csvDataBinSenzory, "Automatizace", "Analogové a binární senzory");
-    parseCSV(csvDataPLC, "Automatizace", "PLC");
-    parseCSV(csvDataSekvencni, "Automatizace", "Sekvenční logické obvody");
-    parseCSV(csvDataMereni, "Automatizace", "Měření neelektrických veličin");
-    parseCSV(csvDataTypy, "Automatizace", "Typy regulačních obvodů");
-    parseCSV(csvDataRoboty, "Automatizace", "Roboty a jejich aplikace");
-    parseCSV(csvDataGraficke, "Automatizace", "Grafické znázornění stavů");
-    console.log("Finished parsing CSV data.");
-}
-
-// --- Test Logic ---
 
 /**
  * Generates and displays a test based on selected subject and topic.
