@@ -1,6 +1,6 @@
 const GITHUB_RAW_BASE_URL = 'https://github.com/ItzKast/MaturiTrener/tree/main/data';
 
-const csvFileConfig = {
+const dataFileConfig = {
     "Programování": {
         "Základní pojmy z algoritmizace a programování": "DataProgramovani.csv",
         "Vývoj a druhy programovacích jazyků, vývojové prostředí Visual Studio": "DataVyvojJazyku.csv",
@@ -237,7 +237,7 @@ let header, main, dashboardSection, testSection, progressSection, testContainer,
 
 
 // --- Wait for DOM to Load ---
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     applyInitialTheme();
     // Get DOM elements safely after DOM is ready
     header = document.querySelector('header');
@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     dayStreakEl = document.getElementById('day-streak'); // Get element for stats section too
     totalXpEl = document.getElementById('total-xp'); // Get element for stats section too
 
-
+    await loadAllDataFromURLs();
     // --- Initialize Firebase ---
     try {
         if (typeof firebase === 'undefined') {
