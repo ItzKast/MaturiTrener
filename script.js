@@ -1,4 +1,4 @@
-const GITHUB_RAW_BASE_URL = 'https://github.com/ItzKast/MaturiTrener/tree/main/data';
+const GITHUB_RAW_BASE_URL = 'https://raw.githubusercontent.com/ItzKast/MaturiTrener/main/data/';
 
 const dataFileConfig = {
     "Programování": {
