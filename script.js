@@ -5,7 +5,7 @@ const dataFileConfig = {
         "Základní pojmy z algoritmizace a programování": "DataProgramovani.csv",
         "Vývoj a druhy programovacích jazyků, vývojové prostředí Visual Studio": "DataVyvojJazyku.csv",
         "C# strukturované příkazy větvení, složený příkaz": "DataCSharpVetveni.csv",
-        "C# strukturované příkazy cyklů": "DataCykly.csv",
+        "C# strukturované příkazy cyklů": "DataCyklu.csv",
         "C# jednoduché datové typy, řetězec; operace": "JednoducheDatove.csv",
         "C# strukturované datové typy (kolekce)": "StrukturovaneDatove.csv",
         "C# práce se soubory a dialogovými okny": "DataDialog.csv",
@@ -22,7 +22,7 @@ const dataFileConfig = {
         "Pasivní prvky": "DataPasivni.csv",
         "Aktivní prvky": "DataAktivni.csv",
         "Návrh a realizace sítě": "DataNavrh.csv",
-        "Bezdrátové technologie": "DataBezdratobe.csv",
+        "Bezdrátové technologie": "DataBezdratove.csv",
         "Připojení počítače k lokální síti": "DataLokalni.csv",
         "Připojení k internetu": "DataInternet.csv",
         "Souhrnné opakování": null
@@ -45,7 +45,7 @@ const dataFileConfig = {
         "Operační zesilovače": "DataOperacni.csv",
         "Přenos informací": "DataInformace.csv",
         "Zesilovače": "DataZesilovace.csv",
-        "Frekvenční filtr typu dolní propust": "DataFFDolnicsv",
+        "Frekvenční filtr typu dolní propust": "DataFFDolni.csv",
         "Frekvenční filtr typu horní propust": "DataFFHorni.csv",
         "Sériový a paralelní obvod RL, RC": "DataRLC.csv",
         "Souhrnné opakování": null
