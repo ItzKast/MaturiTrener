@@ -701,6 +701,21 @@ body.dark-mode {
     .calendar-grid .day.activity-high { background-color: var(--activity-high); }
     .calendar-grid .day.activity-very-high { background-color: var(--activity-very-high); }
 
+    .calendar-grid .day.active {
+        border: 2px solid var(--primary); /* Make border thicker */
+        color: var(--primary);            /* Keep text primary color */
+        /* REMOVE ANY background-color property here */
+        padding: calc(0.5em - 1px); /* Adjust padding slightly because of thicker border */
+                                    /* Use em for relative sizing, adjust value as needed */
+        box-sizing: border-box;     /* Ensure padding/border included in size */
+    }
+    .calendar-grid .day.inactive {
+        background-color: transparent !important; /* Needs !important */
+        border-color: transparent !important;     /* Needs !important */
+        color: #4a5568;
+        pointer-events: none;
+    }
+
     .calendar-grid .day.activity-low,
     .calendar-grid .day.activity-medium {
         color: #e2e8f0; /* Light text */
@@ -709,20 +724,14 @@ body.dark-mode {
     .calendar-grid .day.activity-very-high {
         color: #1a202c; /* Dark text */
     }
-    .calendar-grid .day { /* Default day text in dark mode */
+    .calendar-grid .day {
         color: var(--dark);
-        /* background-color: var(--activity-none); -> This is now handled by the explicit rule above */
-    }
-     .calendar-grid .day.inactive {
-        color: #4a5568;
-        background-color: transparent !important; /* Ensure inactive overrides activity */
-    }
-     .calendar-grid .day.active { /* Today's date styling */
-        border-color: var(--primary);
-        color: var(--primary);
-        /* Let background be set by activity, border/color highlights it */
-        /* background-color: rgba(77, 87, 240, 0.1); */ /* Removing this allows activity color to show */
-    }
+        /* background-color: var(--activity-none); -> Handled by specific rule */
+        border: 1px solid transparent; /* Reset border for non-active days */
+        padding: 0.5em; /* Reset padding for non-active days */
+   }
+
+
 }
 
 /* Specific overrides for elements in dark mode */
