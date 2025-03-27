@@ -1,0 +1,75 @@
+{
+    "bookTitle": "R.U.R.", 
+    "questions": [
+      {
+        "id": "druh", 
+        "type": "mc_single",
+        "questionText": "Literární druh:",
+        "options": ["Próza", "Poezie", "Drama"],
+        "correctAnswer": "Drama"
+      },
+      {
+        "id": "zanr",
+        "type": "free_text", 
+        "questionText": "Literární žánr:",
+        "correctAnswer": "kolektivní drama" 
+      },
+      {
+        "id": "tema",
+        "type": "mc_single",
+        "questionText": "Hlavní téma:",
+        "options": ["Vzpoura strojů", "Láska na venkově", "Historická událost", "Cestování časem"],
+        "correctAnswer": "Vzpoura strojů"
+      },
+      {
+        "id": "postavy",
+        "type": "mc_multiple", 
+        "questionText": "Hlavní postavy (vyberte všechny správné):",
+        "options": ["Harry Domin", "Helena Gloryová", "Dr. Gall", "Alquist", "Robot Primus", "Maryša"],
+        "correctAnswers": ["Harry Domin", "Helena Gloryová", "Dr. Gall", "Alquist", "Robot Primus"] 
+      },
+      {
+        "id": "cas",
+        "type": "mc_single",
+        "questionText": "Časové zařazení děje:",
+        "options": ["Neurčitá budoucnost", "19. století", "Současnost", "Starověk"],
+        "correctAnswer": "Neurčitá budoucnost"
+      },
+      {
+        "id": "prostor",
+        "type": "mc_single",
+        "questionText": "Místo děje:",
+        "options": ["Ostrov", "Praha", "Paříž", "Londýn"],
+        "correctAnswer": "Ostrov"
+      },
+      {
+        "id": "kompozice",
+        "type": "mc_single",
+        "questionText": "Kompozice:",
+        "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
+        "correctAnswer": "Chronologická" 
+      },
+      {
+        "id": "vypravec",
+        "type": "conditional_mc_single", 
+        "questionText": "Vypravěč / Forma projevu:",
+        "correctBasedOn": { 
+            "Drama": "Monology/Dialogy",
+            "Próza": "Er-forma", 
+            "Poezie": "Lyrický subjekt" 
+        },
+         "optionsBasedOn": { 
+            "Drama": ["Monology/Dialogy"],
+            "Próza": ["Ich-forma", "Er-forma"],
+            "Poezie": ["Lyrický subjekt"]
+        }
+      },
+      {
+        "id": "smer",
+        "type": "mc_single",
+        "questionText": "Literární směr:",
+        "options": ["Expresionismus", "Realismus", "Romantismus", "Sci-fi (jako žánr, ne směr)"],
+        "correctAnswer": "Expresionismus" 
+      }
+    ]
+  }
