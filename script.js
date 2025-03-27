@@ -75,7 +75,7 @@ const dataFileConfig = {
     },
     "Čeština": {
         "Karel Čapek - R.U.R.": "cestina_karel_capek_rur.json",
-        "William Shakespeare - Hamlet": "cestina_william_shakespeare_hamlet.json"
+        "William Shakespeare - Hamlet": "cestina_william_shakespeare_hamlet.json",
         "William Shakespeare - Romeo a Julie": "cestina_william_shakespeare_romeo_a_julie.json"
     }
 };
