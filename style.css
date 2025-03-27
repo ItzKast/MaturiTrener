@@ -677,7 +677,228 @@ main {
     padding: 2rem;
     color: #718096;
 }
+/* --- Dark Mode Styles --- */
 
+/* Define dark mode variables when body has .dark-mode class */
+body.dark-mode {
+    /* Swap light and dark, define darker gray */
+    --dark: #e2e8f0;     /* Light text color in dark mode */
+    --light: #1a202c;    /* Dark background color */
+    --gray: #4a5568;     /* Mid-dark gray for borders/less important text */
+
+    /* Adjust other colors for better contrast on dark background if needed */
+    /* --primary: #5a63f1; */ /* Example: Slightly lighter primary */
+    /* --secondary: #ff7f7f; */ /* Example: Slightly lighter secondary */
+
+    /* Activity colors for dark mode calendar */
+    --activity-none: #2d3748;    /* Darker base for calendar days */
+    --activity-low: #4a5568;     /* Slightly darker gray */
+    --activity-medium: #1e40af;  /* Darker blue */
+    --activity-high: #1d4ed8;   /* Medium blue */
+    --activity-very-high: #2563eb; /* Lighter blue */
+
+    /* General text color for dark mode */
+    color: var(--dark);
+}
+
+/* Specific overrides for elements in dark mode */
+body.dark-mode header {
+    background-color: #2d3748; /* Darker header background */
+    border-bottom: 1px solid var(--gray);
+}
+
+body.dark-mode .logo,
+body.dark-mode .nav-link {
+    color: #f0f0f0; /* Brighter text for header */
+}
+body.dark-mode .nav-link:hover {
+    opacity: 0.8;
+}
+
+
+body.dark-mode .card,
+body.dark-mode .subject-card,
+body.dark-mode .test-container,
+body.dark-mode .modal-content,
+body.dark-mode #login-form,
+body.dark-mode .calendar {
+    background-color: #2d3748; /* Card background */
+    border: 1px solid var(--gray);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Adjust shadow */
+}
+
+body.dark-mode .card-title,
+body.dark-mode .subject-title,
+body.dark-mode .test-title,
+body.dark-mode .modal-title,
+body.dark-mode #login-form h1,
+body.dark-mode .calendar-header h2,
+body.dark-mode th, /* Table headers */
+body.dark-mode strong, /* Make strong text brighter */
+body.dark-mode .card strong,
+body.dark-mode .achievement-name {
+    color: #ffffff; /* White or very light gray for titles/strong */
+}
+
+body.dark-mode p,
+body.dark-mode label,
+body.dark-mode .progress-text span,
+body.dark-mode .calendar-legend,
+body.dark-mode .achievement-details,
+body.dark-mode td, /* Table data */
+body.dark-mode .option, /* Default option text */
+body.dark-mode #test-result p {
+    color: var(--dark); /* General light text */
+}
+
+body.dark-mode #login-form label {
+     color: #cbd5e0; /* Slightly dimmer labels */
+}
+
+/* Buttons in dark mode */
+body.dark-mode .btn:not(.btn-primary) {
+  background-color: #4a5568; /* Darker gray button */
+  border-color: #718096;
+  color: var(--dark);
+}
+body.dark-mode .btn:not(.btn-primary):hover {
+  background-color: #718096; /* Lighter gray on hover */
+  border-color: #a0aec0;
+}
+
+/* Inputs in dark mode */
+body.dark-mode #login-form input,
+body.dark-mode select.btn { /* Style selects like other buttons */
+    background-color: #4a5568;
+    border-color: #718096;
+    color: var(--dark);
+}
+body.dark-mode #login-form input:focus,
+body.dark-mode select.btn:focus {
+   border-color: var(--primary);
+   box-shadow: 0 0 0 2px rgba(77, 87, 240, 0.3); /* Primary focus ring */
+}
+
+/* Test Options in dark mode */
+body.dark-mode .option {
+    background-color: #2d3748;
+    border-color: var(--gray);
+}
+body.dark-mode .option:hover {
+    background-color: #4a5568;
+    border-color: #a0aec0;
+}
+body.dark-mode .option.selected {
+    background-color: rgba(77, 87, 240, 0.2); /* Primary transparent */
+    color: var(--primary);
+    border-color: var(--primary);
+}
+body.dark-mode .option.correct {
+    background-color: rgba(81, 216, 138, 0.15); /* Success transparent */
+    color: var(--success);
+    border-color: var(--success);
+}
+body.dark-mode .option.incorrect {
+    background-color: rgba(255, 107, 107, 0.15); /* Secondary transparent */
+    color: var(--secondary);
+    border-color: var(--secondary);
+}
+body.dark-mode .option.correct.selected { /* Ensure selected correct stays green */
+     background-color: rgba(81, 216, 138, 0.15);
+     color: var(--success);
+     border-color: var(--success);
+}
+
+
+/* Calendar days in dark mode */
+body.dark-mode .calendar-grid .day {
+    color: var(--dark); /* Default day text */
+    background-color: var(--activity-none);
+}
+body.dark-mode .calendar-grid .day.inactive {
+    color: #4a5568; /* Dimmer for inactive */
+    background-color: transparent;
+}
+body.dark-mode .calendar-grid .day.active { /* Today's date */
+    border-color: var(--primary);
+    color: var(--primary);
+    background-color: rgba(77, 87, 240, 0.1); /* Slightly transparent primary */
+}
+/* Ensure text is readable on colored backgrounds */
+body.dark-mode .calendar-grid .day.activity-medium,
+body.dark-mode .calendar-grid .day.activity-high,
+body.dark-mode .calendar-grid .day.activity-very-high {
+    color: #fff; /* White text for darker backgrounds */
+}
+body.dark-mode .calendar-grid .day.activity-low {
+    color: #cbd5e0; /* Light gray text on dark gray */
+}
+
+/* Calendar legend colors in dark mode */
+body.dark-mode .legend-color.activity-none { background-color: var(--activity-none); border-color: var(--gray); }
+body.dark-mode .legend-color.activity-low { background-color: var(--activity-low); }
+body.dark-mode .legend-color.activity-medium { background-color: var(--activity-medium); }
+body.dark-mode .legend-color.activity-high { background-color: var(--activity-high); }
+body.dark-mode .legend-color.activity-very-high { background-color: var(--activity-very-high); }
+
+
+/* Achievement list */
+body.dark-mode .achievement-container li {
+    background-color: #2d3748;
+    border-color: var(--gray);
+}
+body.dark-mode .achievement-value .current {
+    color: #fff;
+}
+body.dark-mode .achievement-value .next {
+    color: #718096;
+}
+body.dark-mode .no-achievements {
+    color: #718096;
+}
+
+/* Table styling */
+body.dark-mode table {
+    border-color: var(--gray);
+}
+body.dark-mode th,
+body.dark-mode td {
+    border-bottom: 1px solid var(--gray); /* Add bottom border for rows */
+}
+body.dark-mode tr:nth-child(even) {
+     background-color: #374151; /* Slightly different dark for even rows */
+}
+
+/* Make toggle button smaller */
+.btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+/* Style the theme toggle button */
+#theme-toggle-btn {
+    background-color: transparent;
+    border: 1px solid white; /* Or var(--gray) in dark mode */
+    color: white; /* Or var(--dark) in dark mode */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+#theme-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode #theme-toggle-btn {
+    border-color: var(--gray);
+    color: var(--dark);
+}
+
+body.dark-mode #theme-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: #a0aec0;
+}
 
 /* Responsive Adjustments */
 @media (max-width: 767px) {
