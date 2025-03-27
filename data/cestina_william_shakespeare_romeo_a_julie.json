@@ -54,12 +54,12 @@
             "type": "conditional_mc_single",
             "questionText": "Vypravěč / Forma projevu:",
             "correctBasedOn": {
-                "Drama": "Monology/Dialogy",
+                "Drama": "Dialogy",
                 "Próza": "Er-forma",
                 "Poezie": "Lyrický subjekt"
             },
             "optionsBasedOn": {
-                "Drama": ["Monology/Dialogy"],
+                "Drama": ["Monolog","Dialogy"],
                 "Próza": ["Ich-forma", "Er-forma"],
                 "Poezie": ["Lyrický subjekt"]
             }
