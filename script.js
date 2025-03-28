@@ -1713,16 +1713,6 @@ function updateAchievements(userData) {
     );
 }
 
-
-// --- Calendar Functions ---
-
-/**
- * Fetches activity data for the calendar.
- * @param {number} year
- * @param {number} month (0-11)
- * @param {firebase.firestore.Firestore} db
- * @returns {Promise<object>} Object with day numbers as keys and counts as values.
- */
 async function getActivityData(year, month, db) {
     if (!currentUser || !db) return {}; // Return empty if no user/db
     try {
@@ -1737,11 +1727,6 @@ async function getActivityData(year, month, db) {
     }
 }
 
-/**
- * Maps activity count to CSS class name.
- * @param {number} count - Number of tests completed on a day.
- * @returns {string} CSS class name.
- */
 function getActivityClass(count) {
     if (count === 0) return 'activity-none';
     if (count >= 1 && count <= 2) return 'activity-low';
@@ -1750,12 +1735,6 @@ function getActivityClass(count) {
     return 'activity-very-high'; // 7+
 }
 
-/**
- * Generates and displays the calendar for the given month and year.
- * @param {number} year
- * @param {number} month (0-11)
- * @param {firebase.firestore.Firestore} db
- */
 async function generateCalendar(year, month, db) {
     if (!calendarGrid || !currentMonthDisplay) return;
     calendarGrid.innerHTML = ''; // Clear previous grid
@@ -1857,23 +1836,6 @@ function initializeSubjects() {
     }
 }
 
-// --- DOM Element References ---
-// ... (make sure toggleFavoriteBtn is added here)
-let toggleFavoriteBtn;
-
-// --- Inside DOMContentLoaded ---
-document.addEventListener('DOMContentLoaded', async () => {
-    // ... (other element selections)
-    toggleFavoriteBtn = document.getElementById('toggle-favorite-btn');
-    // ... (rest of the setup)
-});
-
-
-/**
- * Populates the topic dropdown based on the selected subject and user favorites.
- * @param {string} subject - The selected subject name.
- * @param {object | null} userData - The current user's data (needed for favorites).
- */
 function populateTopics(subject, userData) { // Pass userData
     if (!topicSelect || !generateTestBtn || !toggleFavoriteBtn) return;
 
@@ -2000,14 +1962,9 @@ async function handleToggleFavorite() {
         await saveUserData(currentUser, userData, db);
         console.log("User favorites saved.");
 
-        // Re-populate the topics to reflect the change (including sorting and star)
-        // Pass the *updated* userData object directly
         populateTopics(selectedSubject, userData);
 
-        // Re-enable the button after operation is complete
-        // Check again if a topic is selected (it should be, but safety check)
         toggleFavoriteBtn.disabled = !topicSelect.value;
-
 
     } catch (error) {
         console.error("Error toggling favorite:", error);
@@ -2104,8 +2061,5 @@ function setupEventListeners() {
         }
         generateCalendar(currentYear, currentMonth, db); // Regenerate with db
     });
-
-     // Add listeners for subject card clicks (handled within updateDashboard)
-
 }
     
