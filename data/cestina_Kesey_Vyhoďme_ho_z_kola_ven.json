@@ -1,0 +1,107 @@
+{
+    "bookTitle": "Vyhoďme ho z kola ven",
+    "questions": [
+        {
+            "id": "druh",
+            "type": "mc_single",
+            "questionText": "Literární druh:",
+            "options": [
+                "Próza",
+                "Poezie",
+                "Drama"
+            ],
+            "correctAnswer": "Próza"
+        },
+        {
+            "id": "zanr",
+            "type": "free_text",
+            "questionText": "Literární žánr:",
+            "correctAnswer": "Román"
+        },
+        {
+            "id": "tema",
+            "type": "mc_single",
+            "questionText": "Hlavní téma:",
+            "options": [
+                "Láska",
+                "Válka",
+                "Společnost",
+                "Osud"
+            ],
+            "correctAnswer": "Společnost"
+        },
+        {
+            "id": "postavy",
+            "type": "mc_multiple",
+            "questionText": "Hlavní postavy:",
+            "options": [
+                "Hlavní hrdina",
+                "Vedlejší postava",
+                "Antagonista",
+                "Falešná postava"
+            ],
+            "correctAnswers": [
+                "Hlavní hrdina",
+                "Vedlejší postava"
+            ]
+        },
+        {
+            "id": "cas",
+            "type": "mc_single",
+            "questionText": "Časové zařazení děje:",
+            "options": [
+                "19. století",
+                "20. století",
+                "Současnost"
+            ],
+            "correctAnswer": "20. století"
+        },
+        {
+            "id": "prostor",
+            "type": "mc_single",
+            "questionText": "Místo děje:",
+            "options": [
+                "Město",
+                "Vesnice",
+                "Cizina"
+            ],
+            "correctAnswer": "Město"
+        },
+        {
+            "id": "kompozice",
+            "type": "mc_single",
+            "questionText": "Kompozice:",
+            "options": [
+                "Chronologická",
+                "Retrospektivní",
+                "Mozaikovitá"
+            ],
+            "correctAnswer": "Chronologická"
+        },
+        {
+            "id": "vypravec",
+            "type": "conditional_mc_single",
+            "questionText": "Vypravěč:",
+            "correctBasedOn": {
+                "Próza": "Er-forma"
+            },
+            "optionsBasedOn": {
+                "Próza": [
+                    "Ich-forma",
+                    "Er-forma"
+                ]
+            }
+        },
+        {
+            "id": "smer",
+            "type": "mc_single",
+            "questionText": "Literární směr:",
+            "options": [
+                "Realismus",
+                "Romantismus",
+                "Naturalismus"
+            ],
+            "correctAnswer": "Realismus"
+        }
+    ]
+}
