@@ -10,13 +10,13 @@
                 "Poezie",
                 "Drama"
             ],
-            "correctAnswer": "Próza"
+            "correctAnswer": "Drama"
         },
         {
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "Tragédie"
         },
         {
             "id": "tema",
