@@ -1,0 +1,67 @@
+{
+    "bookTitle": "O myších a lidech",
+    "questions": [
+        {
+            "id": "druh", 
+            "type": "mc_single",
+            "questionText": "Literární druh:",
+            "options": ["Próza", "Poezie", "Drama"],
+            "correctAnswer": "Próza"
+        },
+        {
+            "id": "zanr",
+            "type": "free_text",
+            "questionText": "Literární žánr:",
+            "correctAnswer": "Novela"
+        },
+        {
+            "id": "tema",
+            "type": "mc_single",
+            "questionText": "Hlavní téma:",
+            "options": ["Láska a zklamání", "Vztahy mezi lidmi", "Americký sen", "Sociální problémy"],
+            "correctAnswer": "Vztahy mezi lidmi"
+        },
+        {
+            "id": "postavy",
+            "type": "mc_multiple",
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["George", "Lennie", "Curley", "Slim", "Crooks", "Macbeth"],
+            "correctAnswers": ["George", "Lennie", "Curley", "Slim", "Crooks"]
+        },
+        {
+            "id": "cas",
+            "type": "mc_single",
+            "questionText": "Časové zařazení děje:",
+            "options": ["Velká hospodářská krize", "2. světová válka", "Po válce", "20. léta"],
+            "correctAnswer": "Velká hospodářská krize"
+        },
+        {
+            "id": "prostor",
+            "type": "mc_single",
+            "questionText": "Místo děje:",
+            "options": ["Kalifornie", "New York", "Texas", "Chicago"],
+            "correctAnswer": "Kalifornie"
+        },
+        {
+            "id": "kompozice",
+            "type": "mc_single",
+            "questionText": "Kompozice:",
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
+            "correctAnswer": "Chronologická"
+        },
+        {
+            "id": "vypravec",
+            "type": "mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "options": ["Er-forma", "Ich-forma", "Lyrický subjekt", "Monology/Dialogy"],
+            "correctAnswer": "Er-forma"
+        },
+        {
+            "id": "smer",
+            "type": "mc_single",
+            "questionText": "Literární směr:",
+            "options": ["Realismus", "Naturalismus", "Romantismus", "Postmoderna"],
+            "correctAnswer": "Realismus"
+        }
+    ]
+}

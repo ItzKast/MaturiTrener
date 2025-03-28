@@ -1,0 +1,67 @@
+{
+    "bookTitle": "Evžen Oněgin",
+    "questions": [
+        {
+            "id": "druh", 
+            "type": "mc_single",
+            "questionText": "Literární druh:",
+            "options": ["Próza", "Poezie", "Drama"],
+            "correctAnswer": "Poezie"
+        },
+        {
+            "id": "zanr",
+            "type": "free_text",
+            "questionText": "Literární žánr:",
+            "correctAnswer": "Román v verších"
+        },
+        {
+            "id": "tema",
+            "type": "mc_single",
+            "questionText": "Hlavní téma:",
+            "options": ["Láska a zklamání", "Zločin a trest", "Moc a politika", "Historie"],
+            "correctAnswer": "Láska a zklamání"
+        },
+        {
+            "id": "postavy",
+            "type": "mc_multiple",
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Evžen Oněgin", "Tatjana", "Lenský", "Olga", "Čičikov", "Grigori"],
+            "correctAnswers": ["Evžen Oněgin", "Tatjana", "Lenský", "Olga"]
+        },
+        {
+            "id": "cas",
+            "type": "mc_single",
+            "questionText": "Časové zařazení děje:",
+            "options": ["19. století", "20. století", "18. století", "Středověk"],
+            "correctAnswer": "19. století"
+        },
+        {
+            "id": "prostor",
+            "type": "mc_single",
+            "questionText": "Místo děje:",
+            "options": ["Rusko", "Anglie", "Francia", "Německo"],
+            "correctAnswer": "Rusko"
+        },
+        {
+            "id": "kompozice",
+            "type": "mc_single",
+            "questionText": "Kompozice:",
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
+            "correctAnswer": "Chronologická"
+        },
+        {
+            "id": "vypravec",
+            "type": "mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "options": ["Ich-forma", "Er-forma", "Lyrický subjekt", "Monology/Dialogy"],
+            "correctAnswer": "Ich-forma"
+        },
+        {
+            "id": "smer",
+            "type": "mc_single",
+            "questionText": "Literární směr:",
+            "options": ["Romantismus", "Realismus", "Impresionismus", "Klasicismus"],
+            "correctAnswer": "Romantismus"
+        }
+    ]
+}

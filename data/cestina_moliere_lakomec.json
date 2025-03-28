@@ -1,0 +1,75 @@
+{
+    "bookTitle": "Lakomec",
+    "questions": [
+        {
+            "id": "druh",
+            "type": "mc_single",
+            "questionText": "Literární druh:",
+            "options": ["Próza", "Poezie", "Drama"],
+            "correctAnswer": "Drama"
+        },
+        {
+            "id": "zanr",
+            "type": "free_text",
+            "questionText": "Literární žánr:",
+            "correctAnswer": "Komedie"
+        },
+        {
+            "id": "tema",
+            "type": "mc_single",
+            "questionText": "Hlavní téma:",
+            "options": ["Lakota a chamtivost", "Politická satira", "Nešťastná láska", "Válka"],
+            "correctAnswer": "Lakota a chamtivost"
+        },
+        {
+            "id": "postavy",
+            "type": "mc_multiple",
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Harpagon", "Cléante", "Élise", "Frosina", "Hamlet", "Ofélie", "Anselme", "Valér", "Jean-Claude", "Louise"],
+            "correctAnswers": ["Harpagon", "Cléante", "Élise", "Frosina", "Valér", "Anselme"]
+        },
+        {
+            "id": "cas",
+            "type": "mc_single",
+            "questionText": "Časové zařazení děje:",
+            "options": ["17. století", "Středověk", "19. století", "Současnost"],
+            "correctAnswer": "17. století"
+        },
+        {
+            "id": "prostor",
+            "type": "mc_single",
+            "questionText": "Místo děje:",
+            "options": ["Paříž", "Londýn", "Řím", "Madrid"],
+            "correctAnswer": "Paříž"
+        },
+        {
+            "id": "kompozice",
+            "type": "mc_single",
+            "questionText": "Kompozice:",
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
+            "correctAnswer": "Chronologická"
+        },
+        {
+            "id": "vypravec",
+            "type": "conditional_mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "correctBasedOn": {
+                "Drama": "Monology/Dialogy",
+                "Próza": "Er-forma",
+                "Poezie": "Lyrický subjekt"
+            },
+            "optionsBasedOn": {
+                "Drama": ["Monology/Dialogy"],
+                "Próza": ["Ich-forma", "Er-forma"],
+                "Poezie": ["Lyrický subjekt"]
+            }
+        },
+        {
+            "id": "smer",
+            "type": "mc_single",
+            "questionText": "Literární směr:",
+            "options": ["Klasicismus", "Romantismus", "Realismus", "Renesance"],
+            "correctAnswer": "Klasicismus"
+        }
+    ]
+}

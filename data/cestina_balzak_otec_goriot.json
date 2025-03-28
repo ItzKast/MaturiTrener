@@ -1,0 +1,75 @@
+{
+    "bookTitle": "Otec Goriot",
+    "questions": [
+        {
+            "id": "druh",
+            "type": "mc_single",
+            "questionText": "Literární druh:",
+            "options": ["Próza", "Poezie", "Drama"],
+            "correctAnswer": "Próza"
+        },
+        {
+            "id": "zanr",
+            "type": "free_text",
+            "questionText": "Literární žánr:",
+            "correctAnswer": "Román"
+        },
+        {
+            "id": "tema",
+            "type": "mc_single",
+            "questionText": "Hlavní téma:",
+            "options": ["Společenská kritika", "Dobrodružství", "Historická událost", "Romantická láska"],
+            "correctAnswer": "Společenská kritika"
+        },
+        {
+            "id": "postavy",
+            "type": "mc_multiple",
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Otec Goriot", "Eugène de Rastignac", "Anastasie de Restaud", "Hamlet", "Ofélie", "Delphine de Nucingen", "Madame Vauquer", "Jean-Claude", "Sophie"],
+            "correctAnswers": ["Otec Goriot", "Eugène de Rastignac", "Anastasie de Restaud", "Delphine de Nucingen", "Madame Vauquer"]
+        },
+        {
+            "id": "cas",
+            "type": "mc_single",
+            "questionText": "Časové zařazení děje:",
+            "options": ["19. století", "Středověk", "Současnost", "Antika"],
+            "correctAnswer": "19. století"
+        },
+        {
+            "id": "prostor",
+            "type": "mc_single",
+            "questionText": "Místo děje:",
+            "options": ["Paříž", "Londýn", "Řím", "Berlín"],
+            "correctAnswer": "Paříž"
+        },
+        {
+            "id": "kompozice",
+            "type": "mc_single",
+            "questionText": "Kompozice:",
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
+            "correctAnswer": "Chronologická"
+        },
+        {
+            "id": "vypravec",
+            "type": "conditional_mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "correctBasedOn": {
+                "Drama": "Monology/Dialogy",
+                "Próza": "Er-forma",
+                "Poezie": "Lyrický subjekt"
+            },
+            "optionsBasedOn": {
+                "Drama": ["Monology/Dialogy"],
+                "Próza": ["Ich-forma", "Er-forma"],
+                "Poezie": ["Lyrický subjekt"]
+            }
+        },
+        {
+            "id": "smer",
+            "type": "mc_single",
+            "questionText": "Literární směr:",
+            "options": ["Realismus", "Romantismus", "Klasicismus", "Renesance"],
+            "correctAnswer": "Realismus"
+        }
+    ]
+}

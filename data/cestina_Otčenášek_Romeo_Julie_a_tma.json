@@ -1,0 +1,67 @@
+{
+    "bookTitle": "Romeo, Julie a tma",
+    "questions": [
+        {
+            "id": "druh", 
+            "type": "mc_single",
+            "questionText": "Literární druh:",
+            "options": ["Próza", "Poezie", "Drama"],
+            "correctAnswer": "Drama"
+        },
+        {
+            "id": "zanr",
+            "type": "free_text",
+            "questionText": "Literární žánr:",
+            "correctAnswer": "Psychologické drama"
+        },
+        {
+            "id": "tema",
+            "type": "mc_single",
+            "questionText": "Hlavní téma:",
+            "options": ["Láska", "Historie", "Osud", "Rodinné drama"],
+            "correctAnswer": "Láska"
+        },
+        {
+            "id": "postavy",
+            "type": "mc_multiple",
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Romeo", "Julie", "Otec Laurence", "Mercutio", "Tybalt", "Voldemort"],
+            "correctAnswers": ["Romeo", "Julie", "Otec Laurence", "Mercutio", "Tybalt"]
+        },
+        {
+            "id": "cas",
+            "type": "mc_single",
+            "questionText": "Časové zařazení děje:",
+            "options": ["Středověk", "19. století", "Renesance", "Starověk"],
+            "correctAnswer": "Renesance"
+        },
+        {
+            "id": "prostor",
+            "type": "mc_single",
+            "questionText": "Místo děje:",
+            "options": ["Verona", "Paříž", "Řím", "Atheny"],
+            "correctAnswer": "Verona"
+        },
+        {
+            "id": "kompozice",
+            "type": "mc_single",
+            "questionText": "Kompozice:",
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
+            "correctAnswer": "Chronologická"
+        },
+        {
+            "id": "vypravec",
+            "type": "mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "options": ["Er-forma", "Ich-forma", "Lyrický subjekt", "Monology/Dialogy"],
+            "correctAnswer": "Monology/Dialogy"
+        },
+        {
+            "id": "smer",
+            "type": "mc_single",
+            "questionText": "Literární směr:",
+            "options": ["Romantismus", "Realismus", "Baroko", "Klasicismus"],
+            "correctAnswer": "Romantismus"
+        }
+    ]
+}

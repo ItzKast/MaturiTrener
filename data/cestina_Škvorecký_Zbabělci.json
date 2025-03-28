@@ -1,0 +1,67 @@
+{
+    "bookTitle": "Zbabělci",
+    "questions": [
+        {
+            "id": "druh", 
+            "type": "mc_single",
+            "questionText": "Literární druh:",
+            "options": ["Próza", "Poezie", "Drama"],
+            "correctAnswer": "Próza"
+        },
+        {
+            "id": "zanr",
+            "type": "free_text",
+            "questionText": "Literární žánr:",
+            "correctAnswer": "Román"
+        },
+        {
+            "id": "tema",
+            "type": "mc_single",
+            "questionText": "Hlavní téma:",
+            "options": ["Láska", "Válka", "Moc", "Vina a trest"],
+            "correctAnswer": "Válka"
+        },
+        {
+            "id": "postavy",
+            "type": "mc_multiple",
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Danny", "Helena", "Janek", "Karel", "Tereza", "Franta"],
+            "correctAnswers": ["Danny", "Helena", "Janek"]
+        },
+        {
+            "id": "cas",
+            "type": "mc_single",
+            "questionText": "Časové zařazení děje:",
+            "options": ["2. světová válka", "Rok 1945", "Po válce", "Meziválečná doba"],
+            "correctAnswer": "Po válce"
+        },
+        {
+            "id": "prostor",
+            "type": "mc_single",
+            "questionText": "Místo děje:",
+            "options": ["Paříž", "Pardubice", "Brno", "Plzeň"],
+            "correctAnswer": "Pardubice"
+        },
+        {
+            "id": "kompozice",
+            "type": "mc_single",
+            "questionText": "Kompozice:",
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
+            "correctAnswer": "Retrospektivní"
+        },
+        {
+            "id": "vypravec",
+            "type": "mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "options": ["Ich-forma", "Er-forma", "Lyrický subjekt", "Monology/Dialogy"],
+            "correctAnswer": "Ich-forma"
+        },
+        {
+            "id": "smer",
+            "type": "mc_single",
+            "questionText": "Literární směr:",
+            "options": ["Realismus", "Romantismus", "Modernismus", "Postmoderna"],
+            "correctAnswer": "Realismus"
+        }
+    ]
+}
