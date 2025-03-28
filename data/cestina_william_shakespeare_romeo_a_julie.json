@@ -26,7 +26,7 @@
             "type": "mc_multiple",
             "questionText": "Hlavní postavy (vyberte všechny správné):",
             "options": ["Romeo", "Julie", "Tybalt", "Merkucio", "Hamlet", "Othello", "Laurence", "Paris", "Antonio", "Isabella"],
-            "correctAnswers": ["Romeo", "Julie", "Tybalt", "Merkucio"]
+            "correctAnswers": ["Romeo", "Julie", "Tybalt", "Merkucio", "Laurence", "Paris"]
         },
         {
             "id": "cas",
