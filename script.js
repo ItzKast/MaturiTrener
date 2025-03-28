@@ -1214,6 +1214,7 @@ function generateTest() {
        testQuestions.forEach((q, index) => {
            const questionDiv = document.createElement('div');
            questionDiv.classList.add('question', 'question-type-standard-mc'); // Add standard type class
+           questionDiv.dataset.questionType = 'standard-mc';
 
            const questionText = document.createElement('div');
            questionText.classList.add('question-text');
