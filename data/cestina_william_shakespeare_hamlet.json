@@ -25,15 +25,15 @@
             "id": "postavy",
             "type": "mc_multiple",
             "questionText": "Hlavní postavy (vyberte všechny správné):",
-            "options": ["Hamlet", "Claudius", "Gertruda", "Ofélie", "Romeo", "Julie", "Polonius", "Horacio", "Ferdinand", "Eleonora"],
-            "correctAnswers": ["Hamlet", "Claudius", "Gertruda", "Ofélie"]
+            "options": ["Hamlet", "Claudius", "Gertruda", "Ofélie", "Romeo", "Julie", "Polonius", "Ferdinand", "Eleonora"],
+            "correctAnswers": ["Hamlet", "Claudius", "Gertruda", "Ofélie", "Polonius"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
             "options": ["Středověk", "Renesance", "19. století", "Současnost"],
-            "correctAnswer": "Renesance"
+            "correctAnswer": "Středověk"
         },
         {
             "id": "prostor",
