@@ -103,7 +103,7 @@ const dataFileConfig = {
         "Jiří Wolker - Těžká hodina": "cestina_Wolker_Těžká_hodina.json",
         "Viktor Dyk - Krysař": "cestina_Dyk_Krysař.json",
         "Ota Pavel - Plná bedna šampaňského": "cestina_Pavel_Plná_bedna_šampaňského.json",
-        "Jan Otčenášek - Romeo, Julie a tma": "cestina_Otčenášek_Romeo,_Julie_a_tma.json",
+        "Jan Otčenášek - Romeo, Julie a tma": "cestina_Otčenášek_Romeo_Julie_a_tma.json",
         "Arnošt Lustig - Modlitba pro Kateřinu Horovitzovou": "cestina_Lustig_Modlitba_pro_Kateřinu_Horovitzovou.json",
         "Karel Čapek - Bílá nemoc": "cestina_Čapek_Bílá_nemoc.json",
         "Karel Čapek - R.U.R.": "cestina_karel_capek_rur.json",
