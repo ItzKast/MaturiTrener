@@ -5,102 +5,70 @@
             "id": "druh",
             "type": "mc_single",
             "questionText": "Literární druh:",
-            "options": [
-                "Próza",
-                "Poezie",
-                "Drama"
-            ],
-            "correctAnswer": "Próza"
+            "options": ["Próza", "Poezie", "Drama"],
+            "correctAnswer": "Drama"
         },
         {
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "Satirická komedie"
         },
         {
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
-            "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
-            ],
-            "correctAnswer": "Společnost"
+            "options": ["Korupce ve státní správě", "Láska a intriky", "Vojenská strategie", "Historická událost"],
+            "correctAnswer": "Korupce ve státní správě"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
-            "questionText": "Hlavní postavy:",
-            "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
-            ],
-            "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
-            ]
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Chlestakov", "Hejtman", "Anna Andrejevna", "Marja Antonovna", "Bobčinskij", "Dobčinskij", "Gavriil Ivanovič", "Viktor Fjodorovič"],
+            "correctAnswers": ["Chlestakov", "Hejtman", "Anna Andrejevna", "Marja Antonovna", "Bobčinskij", "Dobčinskij"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
-            "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
-            ],
-            "correctAnswer": "20. století"
+            "options": ["19. století", "20. století", "18. století", "Současnost"],
+            "correctAnswer": "19. století"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
-            "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
-            ],
-            "correctAnswer": "Město"
+            "options": ["Malé ruské město", "Petrohrad", "Moskva", "Kyjev"],
+            "correctAnswer": "Malé ruské město"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
             "questionText": "Kompozice:",
-            "options": [
-                "Chronologická",
-                "Retrospektivní",
-                "Mozaikovitá"
-            ],
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
             "correctAnswer": "Chronologická"
         },
         {
             "id": "vypravec",
             "type": "conditional_mc_single",
-            "questionText": "Vypravěč:",
+            "questionText": "Vypravěč / Forma projevu:",
             "correctBasedOn": {
-                "Próza": "Er-forma"
+                "Drama": "Dialogy",
+                "Próza": "Er-forma",
+                "Poezie": "Lyrický subjekt"
             },
             "optionsBasedOn": {
-                "Próza": [
-                    "Ich-forma",
-                    "Er-forma"
-                ]
+                "Drama": ["Monology", "Dialogy"],
+                "Próza": ["Ich-forma", "Er-forma"],
+                "Poezie": ["Lyrický subjekt"]
             }
         },
         {
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
-            "options": [
-                "Realismus",
-                "Romantismus",
-                "Naturalismus"
-            ],
+            "options": ["Realismus", "Romantismus", "Expresionismus", "Symbolismus"],
             "correctAnswer": "Realismus"
         }
     ]
