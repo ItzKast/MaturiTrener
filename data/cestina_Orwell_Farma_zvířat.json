@@ -33,35 +33,35 @@
             "type": "mc_single",
             "questionText": "Koho symbolizuje Major:",
             "options":["Marx", "Lenin", "Stalin", "Trockij"]
-            "correctAnswers": ["Lenin"]
+            "correctAnswers": "Lenin"
         },
         {
             "id": "postavy_napoleon",
             "type": "mc_single",
             "questionText": "Koho symbolizuje Napoleon:",
             "options":["Marx", "Lenin", "Stalin", "Trockij"]
-            "correctAnswers": ["Stalin"]
+            "correctAnswers": "Stalin"
         },
          {
             "id": "postavy_kuliš",
             "type": "mc_single",
             "questionText": "Koho symbolizuje Kuliš:",
             "options":["Marx", "Lenin", "Stalin", "Trockij"]
-            "correctAnswers": ["Trockij"]
+            "correctAnswers": "Trockij"
         },
          {
             "id": "postavy_boxer",
             "type": "mc_single",
             "questionText": "Koho symbolizuje Boxer:",
             "options":["Pracující lid", "Tupý dav", "Revolucionáře", "Tajná policie"]
-            "correctAnswers": ["Pracující lid"]
+            "correctAnswers": "Pracující lid"
         },
         {
             "id": "postavy_psi",
             "type": "mc_single",
             "questionText": "Koho symbolizují Psi:",
             "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"]
-            "correctAnswers": ["Tajná policie"]
+            "correctAnswers": "Tajná policie"
         },
         {
             "id": "postavy_slepice",
@@ -75,7 +75,7 @@
             "type": "mc_single",
             "questionText": "Koho symbolizují Ovce:",
             "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"]
-            "correctAnswers": ["Tupý dav"]
+            "correctAnswers": "Tupý dav"
         },
         {
             "id": "cas",
