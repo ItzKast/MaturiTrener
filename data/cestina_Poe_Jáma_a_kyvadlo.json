@@ -25,8 +25,8 @@
             "id": "postavy",
             "type": "mc_multiple",
             "questionText": "Hlavní postavy (vyberte všechny správné):",
-            "options": ["Vypravěč", "Španělská inkvizice", "Kat", "Pravý hrdina", "Miguel", "Horacio"],
-            "correctAnswers": ["Vypravěč", "Španělská inkvizice", "Kat"]
+            "options": ["Vypravěč", "Španělská inkvizice", "Kat", "Pravý hrdina", "Miguel", "Horacio", "generál Lasalle"],
+            "correctAnswers": ["Vypravěč", "Španělská inkvizice", "Kat", "generál Lasalle"]
         },
         {
             "id": "cas",
