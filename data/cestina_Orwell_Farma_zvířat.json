@@ -29,49 +29,49 @@
             "correctAnswers": ["Major", "Napoleon", "Kuliš", "Pištík", "Boxer", "Benjamin", "Pan Jones", "Psi", "Ovce", "Lupina", "Slepice", "Mojžíš"]
         },
         {
-            "id": "postavy, alegorie",
+            "id": "postavy_major",
             "type": "mc_single",
             "questionText": "Koho symbolizuje Major:",
             "options":["Marx", "Lenin", "Stalin", "Trockij"]
-            "correctAnswers": ["Marx", "Lenin"]
+            "correctAnswers": ["Lenin"]
         },
         {
-            "id": "postavy, alegorie",
+            "id": "postavy_napoleon",
             "type": "mc_single",
             "questionText": "Koho symbolizuje Napoleon:",
             "options":["Marx", "Lenin", "Stalin", "Trockij"]
             "correctAnswers": ["Stalin"]
         },
          {
-            "id": "postavy, alegorie",
+            "id": "postavy_kuliš",
             "type": "mc_single",
             "questionText": "Koho symbolizuje Kuliš:",
             "options":["Marx", "Lenin", "Stalin", "Trockij"]
             "correctAnswers": ["Trockij"]
         },
          {
-            "id": "postavy, alegorie",
+            "id": "postavy_boxer",
             "type": "mc_single",
             "questionText": "Koho symbolizuje Boxer:",
             "options":["Pracující lid", "Tupý dav", "Revolucionáře", "Tajná policie"]
             "correctAnswers": ["Pracující lid"]
         },
         {
-            "id": "postavy, alegorie",
+            "id": "postavy_psi",
             "type": "mc_single",
             "questionText": "Koho symbolizují Psi:",
             "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"]
             "correctAnswers": ["Tajná policie"]
         },
         {
-            "id": "postavy, alegorie",
+            "id": "postavy_slepice",
             "type": "mc_single",
             "questionText": "Koho symbolizují Slepice:",
             "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"]
             "correctAnswers": ["Revolucionáři"]
         },
         {
-            "id": "postavy, alegorie",
+            "id": "postavy_ovce",
             "type": "mc_single",
             "questionText": "Koho symbolizují Ovce:",
             "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"]
