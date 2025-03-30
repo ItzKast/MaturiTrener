@@ -43,7 +43,7 @@
             "correctAnswers": "Stalin"
         },
          {
-            "id": "postavy_kuliš",
+            "id": "postavy_kulis",
             "type": "mc_single",
             "questionText": "Koho symbolizuje Kuliš:",
             "options":["Marx", "Lenin", "Stalin", "Trockij"]
@@ -113,7 +113,7 @@
             "correctAnswer": "Realismus, antiutopie"
         },
         {
-              "id": "citat",
+            "id": "citat",
             "type": "mc_single",
             "questionText": "Citát z knihy:",
             "options":["Všechna zvířata jsou si rovna, ale některá jsou si rovnější.", "Všichni lidé jsou si rovni, ale někteří jsou si rovnější.", "Všechna zvířata pracují tvrdě!", "Všechna zvířata si nejsou rovna, protože některá si jsou rovnější."],
