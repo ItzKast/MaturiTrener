@@ -68,7 +68,7 @@
             "type": "mc_single",
             "questionText": "Koho symbolizují Slepice:",
             "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"]
-            "correctAnswers": ["Revolucionáři"]
+            "correctAnswers": "Revolucionáři"
         },
         {
             "id": "postavy_ovce",
