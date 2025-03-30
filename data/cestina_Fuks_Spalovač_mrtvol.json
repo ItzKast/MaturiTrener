@@ -5,11 +5,7 @@
             "id": "druh",
             "type": "mc_single",
             "questionText": "Literární druh:",
-            "options": [
-                "Próza",
-                "Poezie",
-                "Drama"
-            ],
+            "options": ["Próza","Poezie","Drama"],
             "correctAnswer": "Próza"
         },
         {
@@ -22,95 +18,49 @@
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
-            "options": [
-                "Láska",
-                "2. světová válka",
-                "Společnost",
-                "1. světová válka"
-            ],
+            "options": ["Láska","2. světová válka","Společnost","1. světová válka"],
             "correctAnswer": "2. světová válka"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
             "questionText": "Postavy:",
-            "options": [
-                "Karel Kopfrkingl",
-                "Wilhelm Reinke",
-                "Maršál",
-                "Petr Kopfrkingl",
-                "Herman von Klempt",
-                "Lakmé",
-                "Mili",
-                "Robert",
-                "Zinuška"
-            ],
-            "correctAnswers": [
-                "Karel Kopfrkingl",
-                "Wilhelm Reinke",
-                "Lakmé",
-                "Mili",
-                "Zinuška"
-            ]
+            "options": ["Karel Kopfrkingl","Wilhelm Reinke","Maršál","Petr Kopfrkingl","Herman von Klempt","Lakmé","Mili","Robert","Zinuška"],
+            "correctAnswers": ["Karel Kopfrkingl","Wilhelm Reinke","Lakmé","Mili","Zinuška"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
-            "options": [
-                "2. světová válka",
-                "1. světová válka",
-                "Meziválečné období",
-                "2. polovina 20. století"
-            ],
+            "options": ["2. světová válka","1. světová válka","Meziválečné období","2. polovina 20. století"],
             "correctAnswer": "2. světová válka"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
-            "options": [
-                "Koncentrační tábor",
-                "Pražské krematorium",
-                "Márnice",
-                "Hřbitov"
-            ],
+            "options": ["Koncentrační tábor","Pražské krematorium","Márnice","Hřbitov"],
             "correctAnswer": "Pražské krematorium"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
             "questionText": "Kompozice:",
-            "options": [
-                "Chronologická",
-                "Retrospektivní",
-                "Mozaikovitá",
-                "Rámcová"
-            ],
+            "options": ["Chronologická","Retrospektivní","Mozaikovitá","Rámcová"],
             "correctAnswer": "Chronologická"
         },
         {
             "id": "vypravec",
             "type": "mc_single",
             "questionText": "Vypravěč:",
-            "options": [
-                "Ich-forma, jen dialogy",
-                "Ich-forma, časté monology",
-                "Er-forma, jen dialogy",
-                "Er-forma, časté monology"
-            ],
+            "options": ["Ich-forma, jen dialogy","Ich-forma, časté monology","Er-forma, jen dialogy","Er-forma, časté monology"],
             "correctAnswer": "Er-forma, časté monology"
         },
         {
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
-            "options": [
-                "Postomederní literatura",
-                "Experimentální literatura",
-                "Fantasy literatura",
-                "literatura 2. světové války"
-            ],
+            "options": ["Postomederní literatura","Experimentální literatura","Fantasy literatura","literatura 2. světové války"],
             "correctAnswer": "literatura 2. světové války"
         }
     ]
