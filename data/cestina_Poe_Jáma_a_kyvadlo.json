@@ -26,21 +26,21 @@
             "type": "mc_multiple",
             "questionText": "Hlavní postavy (vyberte všechny správné):",
             "options": ["Vypravěč", "Španělská inkvizice", "Kat", "Pravý hrdina", "Miguel", "Horacio", "generál Lasalle"],
-            "correctAnswers": ["Vypravěč", "Španělská inkvizice", "Kat", "generál Lasalle"]
+            "correctAnswers": ["Vypravěč", "Španělská inkvizice", "generál Lasalle"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
             "options": ["15. století", "19. století", "20. století", "Futuristická vize"],
-            "correctAnswer": "15. století"
+            "correctAnswer": "19. století"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
-            "options": ["Temné vězení", "Francouzská revoluce", "Ostrov hrůzy", "Katakomby"],
-            "correctAnswer": "Temné vězení"
+            "options": ["Temné vězení v Toledu", "Francouzská revoluce", "Ostrov hrůzy", "Katakomby"],
+            "correctAnswer": "Temné vězení v Toledu"
         },
         {
             "id": "kompozice",
