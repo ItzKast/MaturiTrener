@@ -5,103 +5,63 @@
             "id": "druh",
             "type": "mc_single",
             "questionText": "Literární druh:",
-            "options": [
-                "Próza",
-                "Poezie",
-                "Drama"
-            ],
+            "options": ["Próza", "Poezie", "Drama"],
             "correctAnswer": "Próza"
         },
         {
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "Povídka"
         },
         {
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
-            "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
-            ],
-            "correctAnswer": "Společnost"
+            "options": ["Pokrytectví a společenská morálka", "Láska a vášeň", "Okupace", "Život za války"],
+            "correctAnswer": "Pokrytectví a společenská morálka"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
-            "questionText": "Hlavní postavy:",
-            "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
-            ],
-            "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
-            ]
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Kulička", "Cornudet", "Paní Loiseau", "Pan Carré-Lamadon", "Louis Commery", "Maria Nuerová"],
+            "correctAnswers": ["Kulička", "Cornudet", "Paní Loiseau", "Pan Carré-Lamadon"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
-            "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
-            ],
-            "correctAnswer": "20. století"
+            "options": ["Franco-pruská válka", "Středověk", "20. století", "Budoucnost"],
+            "correctAnswer": "Franco-pruská válka"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
-            "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
-            ],
-            "correctAnswer": "Město"
+            "options": ["Dostavník", "Loď", "Les", "Berlín"],
+            "correctAnswer": "Dostavník"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
             "questionText": "Kompozice:",
-            "options": [
-                "Chronologická",
-                "Retrospektivní",
-                "Mozaikovitá"
-            ],
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
             "correctAnswer": "Chronologická"
         },
         {
             "id": "vypravec",
-            "type": "conditional_mc_single",
-            "questionText": "Vypravěč:",
-            "correctBasedOn": {
-                "Próza": "Er-forma"
-            },
-            "optionsBasedOn": {
-                "Próza": [
-                    "Ich-forma",
-                    "Er-forma"
-                ]
-            }
+            "type": "mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "options": ["Ich-forma", "Er-forma", "Monology/Dialogy"],
+            "correctAnswer": "Er-forma"
         },
         {
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
-            "options": [
-                "Realismus",
-                "Romantismus",
-                "Naturalismus"
-            ],
-            "correctAnswer": "Realismus"
+            "options": ["Realismus", "Romantismus", "Naturalismus", "Symbolismus"],
+            "correctAnswer": "Naturalismus"
         }
     ]
 }
