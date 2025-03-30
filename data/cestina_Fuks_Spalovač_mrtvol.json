@@ -91,14 +91,14 @@
         },
         {
             "id": "vypravec",
-            "type": "conditional_mc_single",
+            "type": "mc_single",
             "questionText": "Vypravěč:",
             "options": [
                 "Ich-forma, časté monology",
                 "Er-forma, časté monology",
                 "Ich-forma, jen dialogy",
                 "Er-forma, jen dialogy"
-                ],
+            ],
             "correctAnswer": "Er-forma, časté monology"
         },
         {
