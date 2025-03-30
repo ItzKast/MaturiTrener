@@ -32,49 +32,49 @@
             "id": "postavy_major",
             "type": "mc_single",
             "questionText": "Koho symbolizuje Major:",
-            "options":["Marx", "Lenin", "Stalin", "Trockij"]
+            "options":["Marx", "Lenin", "Stalin", "Trockij"],
             "correctAnswers": "Lenin"
         },
         {
             "id": "postavy_napoleon",
             "type": "mc_single",
             "questionText": "Koho symbolizuje Napoleon:",
-            "options":["Marx", "Lenin", "Stalin", "Trockij"]
+            "options":["Marx", "Lenin", "Stalin", "Trockij"],
             "correctAnswers": "Stalin"
         },
          {
             "id": "postavy_kulis",
             "type": "mc_single",
             "questionText": "Koho symbolizuje Kuliš:",
-            "options":["Marx", "Lenin", "Stalin", "Trockij"]
+            "options":["Marx", "Lenin", "Stalin", "Trockij"],
             "correctAnswers": "Trockij"
         },
          {
             "id": "postavy_boxer",
             "type": "mc_single",
             "questionText": "Koho symbolizuje Boxer:",
-            "options":["Pracující lid", "Tupý dav", "Revolucionáře", "Tajná policie"]
+            "options":["Pracující lid", "Tupý dav", "Revolucionáře", "Tajná policie"],
             "correctAnswers": "Pracující lid"
         },
         {
             "id": "postavy_psi",
             "type": "mc_single",
             "questionText": "Koho symbolizují Psi:",
-            "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"]
+            "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"],
             "correctAnswers": "Tajná policie"
         },
         {
             "id": "postavy_slepice",
             "type": "mc_single",
             "questionText": "Koho symbolizují Slepice:",
-            "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"]
+            "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"],
             "correctAnswers": "Revolucionáři"
         },
         {
             "id": "postavy_ovce",
             "type": "mc_single",
             "questionText": "Koho symbolizují Ovce:",
-            "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"]
+            "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"],
             "correctAnswers": "Tupý dav"
         },
         {
