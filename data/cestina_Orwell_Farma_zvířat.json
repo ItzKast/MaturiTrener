@@ -5,103 +5,119 @@
             "id": "druh",
             "type": "mc_single",
             "questionText": "Literární druh:",
-            "options": [
-                "Próza",
-                "Poezie",
-                "Drama"
-            ],
+            "options": ["Próza","Poezie","Drama"],
             "correctAnswer": "Próza"
         },
         {
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "Alegorická novela"
         },
         {
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
-            "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
-            ],
-            "correctAnswer": "Společnost"
+            "options": ["Totalitní režim","Láska","Válka","Zvířata"],
+            "correctAnswer": "Totalitní režim"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
             "questionText": "Hlavní postavy:",
-            "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
-            ],
-            "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
-            ]
+            "options": ["Major", "Napoleon", "Kuliš", "Pištík", "Boxer", "Benjamin", "Pan Jones", "Psi", "Ovce", "Slepice", "Lupina", "Mojžíš", "Velbloud", "Jelen", "Liška", "Pan Mones", "Marx"],
+            "correctAnswers": ["Major", "Napoleon", "Kuliš", "Pištík", "Boxer", "Benjamin", "Pan Jones", "Psi", "Ovce", "Lupina", "Slepice", "Mojžíš"]
+        },
+        {
+            "id": "postavy, alegorie",
+            "type": "mc_single",
+            "questionText": "Koho symbolizuje Major:",
+            "options":["Marx", "Lenin", "Stalin", "Trockij"]
+            "correctAnswers": ["Marx", "Lenin"]
+        },
+        {
+            "id": "postavy, alegorie",
+            "type": "mc_single",
+            "questionText": "Koho symbolizuje Napoleon:",
+            "options":["Marx", "Lenin", "Stalin", "Trockij"]
+            "correctAnswers": ["Stalin"]
+        },
+         {
+            "id": "postavy, alegorie",
+            "type": "mc_single",
+            "questionText": "Koho symbolizuje Kuliš:",
+            "options":["Marx", "Lenin", "Stalin", "Trockij"]
+            "correctAnswers": ["Trockij"]
+        },
+         {
+            "id": "postavy, alegorie",
+            "type": "mc_single",
+            "questionText": "Koho symbolizuje Boxer:",
+            "options":["Pracující lid", "Tupý dav", "Revolucionáře", "Tajná policie"]
+            "correctAnswers": ["Pracující lid"]
+        },
+        {
+            "id": "postavy, alegorie",
+            "type": "mc_single",
+            "questionText": "Koho symbolizují Psi:",
+            "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"]
+            "correctAnswers": ["Tajná policie"]
+        },
+        {
+            "id": "postavy, alegorie",
+            "type": "mc_single",
+            "questionText": "Koho symbolizují Slepice:",
+            "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"]
+            "correctAnswers": ["Revolucionáři"]
+        },
+        {
+            "id": "postavy, alegorie",
+            "type": "mc_single",
+            "questionText": "Koho symbolizují Ovce:",
+            "options":["Pracující lid", "Tupý dav", "Revolucionáři", "Tajná policie"]
+            "correctAnswers": ["Tupý dav"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
-            "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
-            ],
+            "options": ["20. století", "21. století", "19. století", "Pravěk"],
             "correctAnswer": "20. století"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
-            "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
-            ],
-            "correctAnswer": "Město"
+            "options": ["Město","Farma v Anglii","Farma ve Francii", "Farma v Česku"],
+            "correctAnswer": "Farma v Anglii"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
             "questionText": "Kompozice:",
-            "options": [
-                "Chronologická",
-                "Retrospektivní",
-                "Mozaikovitá"
-            ],
+            "options": ["Chronologická","Retrospektivní","Mozaikovitá", "Rámcová"],
             "correctAnswer": "Chronologická"
         },
         {
-            "id": "vypravec",
-            "type": "conditional_mc_single",
+              "id": "vypravec",
+            "type": "mc_single",
             "questionText": "Vypravěč:",
-            "correctBasedOn": {
-                "Próza": "Er-forma"
-            },
-            "optionsBasedOn": {
-                "Próza": [
-                    "Ich-forma",
-                    "Er-forma"
-                ]
-            }
+            "options":["Er-forma, časté monology", "Ich-forma, časté monology", "Er-forma, jen dialogy", "Ich-forma, jen dialogy"],
+            "correctAnswer": "Er-forma, časté monology"
         },
         {
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
-            "options": [
-                "Realismus",
-                "Romantismus",
-                "Naturalismus"
-            ],
-            "correctAnswer": "Realismus"
+            "options": ["Realismus, antiutopie", "Realismus, utopie", "Romantismus, antiutopie", "Romantismus, utopie"],
+            "correctAnswer": "Realismus, antiutopie"
+        },
+        {
+              "id": "citat",
+            "type": "mc_single",
+            "questionText": "Citát z knihy:",
+            "options":["Všechna zvířata jsou si rovna, ale některá jsou si rovnější.", "Všichni lidé jsou si rovni, ale někteří jsou si rovnější.", "Všechna zvířata pracují tvrdě!", "Všechna zvířata si nejsou rovna, protože některá si jsou rovnější."],
+            "correctAnswer": "Všechna zvířata jsou si rovna, ale některá jsou si rovnější."
         }
     ]
 }
