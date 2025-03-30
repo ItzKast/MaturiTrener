@@ -16,7 +16,7 @@
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "Novela"
         },
         {
             "id": "tema",
@@ -24,25 +24,33 @@
             "questionText": "Hlavní téma:",
             "options": [
                 "Láska",
-                "Válka",
+                "2. světová válka",
                 "Společnost",
-                "Osud"
+                "1. světová válka"
             ],
-            "correctAnswer": "Společnost"
+            "correctAnswer": "2. světová válka"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
-            "questionText": "Hlavní postavy:",
+            "questionText": "Postavy:",
             "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
+                "Karel Kopfrkingl",
+                "Wilhelm Reinke",
+                "Maršál",
+                "Petr Kopfrkingl",
+                "Herman von Klempt",
+                "Lakmé",
+                "Mili",
+                "Robert",
+                "Zinuška"
             ],
             "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
+                "Karel Kopfrkingl",
+                "Wilhelm Reinke",
+                "Lakmé",
+                "Mili",
+                "Zinuška"
             ]
         },
         {
@@ -50,22 +58,24 @@
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
             "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
+                "2. světová válka",
+                "1. světová válka",
+                "Meziválečné období",
+                "2. polovina 20. století"
             ],
-            "correctAnswer": "20. století"
+            "correctAnswer": "2. světová válka"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
             "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
+                "Koncentrační tábor",
+                "Pražské krematorium",
+                "Márnice",
+                "Hřbitov"
             ],
-            "correctAnswer": "Město"
+            "correctAnswer": "Pražské krematorium"
         },
         {
             "id": "kompozice",
@@ -74,7 +84,8 @@
             "options": [
                 "Chronologická",
                 "Retrospektivní",
-                "Mozaikovitá"
+                "Mozaikovitá",
+                "Rámcová"
             ],
             "correctAnswer": "Chronologická"
         },
@@ -82,26 +93,25 @@
             "id": "vypravec",
             "type": "conditional_mc_single",
             "questionText": "Vypravěč:",
-            "correctBasedOn": {
-                "Próza": "Er-forma"
-            },
-            "optionsBasedOn": {
-                "Próza": [
-                    "Ich-forma",
-                    "Er-forma"
-                ]
-            }
+            "options": [
+                "Ich-forma, časté monology",
+                "Er-forma, časté monology",
+                "Ich-forma, jen dialogy",
+                "Er-forma, jen dialogy"
+                ],
+            "correctAnswer": "Er-forma, časté monology"
         },
         {
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
             "options": [
-                "Realismus",
-                "Romantismus",
-                "Naturalismus"
+                "Postomederní literatura",
+                "Experimentální literatura",
+                "Fantasy literatura",
+                "literatura 2. světové války"
             ],
-            "correctAnswer": "Realismus"
+            "correctAnswer": "literatura 2. světové války"
         }
     ]
 }
