@@ -16,33 +16,45 @@
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "Reportážní román"
         },
         {
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
             "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
+                "Život vojáků na frontě",
+                "Revoluce v Německu",
+                "Strach z pokroku",
+                "Výlet na západ"
             ],
-            "correctAnswer": "Společnost"
+            "correctAnswer": "Život vojáků na frontě"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
             "questionText": "Hlavní postavy:",
             "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
+                "Pavel Baumer",
+                "Muller",
+                "Tjaden",
+                "Kropp",
+                "Kammerich",
+                "Kantorek",
+                "Himmelstoss",
+                "Katczinsky",
+                "Frederik",
+                "Hindenburg",
             ],
             "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
+                "Pavel Baumer",
+                "Muller",
+                "Tjaden",
+                "Kropp",
+                "Kammerich",
+                "Kantorek",
+                "Himmelstoss",
+                "Katczinsky"
             ]
         },
         {
@@ -50,40 +62,41 @@
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
             "options": [
-                "19. století",
-                "20. století",
+                "1. světová válka",
+                "2. světová válka",
                 "Současnost"
             ],
-            "correctAnswer": "20. století"
+            "correctAnswer": "1. světová válka"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
             "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
+                "Západní fronta",
+                "Paříž",
+                "Řím",
+                "Leningrad"
             ],
-            "correctAnswer": "Město"
+            "correctAnswer": "Západní fronta"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
             "questionText": "Kompozice:",
             "options": [
-                "Chronologická",
-                "Retrospektivní",
+                "Chronologická + mozaikovitá",
+                "Retrospektivní + mozaikovitá",
                 "Mozaikovitá"
             ],
-            "correctAnswer": "Chronologická"
+            "correctAnswer": "Chronologická + mozaikovitá"
         },
         {
             "id": "vypravec",
             "type": "conditional_mc_single",
             "questionText": "Vypravěč:",
             "correctBasedOn": {
-                "Próza": "Er-forma"
+                "Próza": "Ich-forma"
             },
             "optionsBasedOn": {
                 "Próza": [
@@ -97,11 +110,11 @@
             "type": "mc_single",
             "questionText": "Literární směr:",
             "options": [
-                "Realismus",
-                "Romantismus",
-                "Naturalismus"
+                "Moderna",
+                "Dekadence",
+                "Ztracená generace"
             ],
-            "correctAnswer": "Realismus"
+            "correctAnswer": "Ztracená generace"
         }
     ]
 }
