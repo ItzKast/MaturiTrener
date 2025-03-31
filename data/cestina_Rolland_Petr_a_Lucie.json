@@ -16,33 +16,36 @@
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "Román - řeka"
         },
         {
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
             "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
+                "Láska mladých lidí v době války",
+                "2 světová válka",
+                "Revoluce ve Francii",
+                "Pomoc židům za války"
             ],
-            "correctAnswer": "Společnost"
+            "correctAnswer": "Láska mladých lidí v době války"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
             "questionText": "Hlavní postavy:",
             "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
+                "Petr Aubier",
+                "Lucie",
+                "Filip",
+                "Jan",
+                "Pavel",
+                "Jiří"
             ],
             "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
+                "Petr Aubier",
+                "Lucie",
+                "Filip"
             ]
         },
         {
@@ -50,22 +53,23 @@
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
             "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
+                "1. světová válka",
+                "2. světová válka",
+                "Francouzská revoluce"
             ],
-            "correctAnswer": "20. století"
+            "correctAnswer": "1. světová válka"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
             "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
+                "Paříž",
+                "Štrasburg",
+                "Normandie",
+                "Berlín"
             ],
-            "correctAnswer": "Město"
+            "correctAnswer": "Paříž"
         },
         {
             "id": "kompozice",
@@ -97,11 +101,11 @@
             "type": "mc_single",
             "questionText": "Literární směr:",
             "options": [
-                "Realismus",
-                "Romantismus",
-                "Naturalismus"
+                "Moderna",
+                "Dekadence",
+                "Ztracená generace"
             ],
-            "correctAnswer": "Realismus"
+            "correctAnswer": "Ztracená generace"
         }
     ]
 }
