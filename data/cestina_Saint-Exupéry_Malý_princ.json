@@ -16,33 +16,52 @@
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "Filozofická pohádka"
         },
         {
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
             "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
+                "Důležitost lásky, přátelství a nevinnosti",
+                "O princi, co jde zabít draka",
+                "Odsouzení války",
+                "Snaha změnit lidstvo"
             ],
-            "correctAnswer": "Společnost"
+            "correctAnswer": "Důležitost lásky, přátelství a nevinnosti"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
             "questionText": "Hlavní postavy:",
             "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
+                "Malý princ",
+                "Pilot",
+                "Liška",
+                "Růže",
+                "Had",
+                "Lampář",
+                "Král",
+                "Domýšlivec",
+                "Pijan",
+                "Byznysmen",
+                "Zeměpisec",
+                "Válečník",
+                "Velryba",
+                "Velbloud"
             ],
             "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
+                "Malý princ",
+                "Pilot",
+                "Liška",
+                "Růže",
+                "Had",
+                "Lampář",
+                "Král",
+                "Domýšlivec",
+                "Pijan",
+                "Byznysmen",
+                "Zeměpisec"
             ]
         },
         {
@@ -50,45 +69,46 @@
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
             "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
+                "Nelze určit/autorova současnost",
+                "Budoucnost",
+                "Středověk"
             ],
-            "correctAnswer": "20. století"
+            "correctAnswer": "Nelze určit/autorova současnost"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
             "options": [
+                "Vesmír",
                 "Město",
-                "Vesnice",
-                "Cizina"
+                "Hrad"
             ],
-            "correctAnswer": "Město"
+            "correctAnswer": "Vesmír"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
             "questionText": "Kompozice:",
             "options": [
-                "Chronologická",
-                "Retrospektivní",
-                "Mozaikovitá"
+                "Chronologická s kapitolami, objevují se retrospektivní prvky",
+                "Retrospektivní s kapitolami",
+                "Mozaikovitá s prvky retrospektivy"
             ],
-            "correctAnswer": "Chronologická"
+            "correctAnswer": "Chronologická s kapitolami, objevují se retrospektivní prvky"
         },
         {
             "id": "vypravec",
             "type": "conditional_mc_single",
             "questionText": "Vypravěč:",
             "correctBasedOn": {
-                "Próza": "Er-forma"
+                "Próza": "Ich-forma + Er-forma"
             },
             "optionsBasedOn": {
                 "Próza": [
                     "Ich-forma",
-                    "Er-forma"
+                    "Er-forma",
+                    "Ich-forma + Er-forma"
                 ]
             }
         },
@@ -99,9 +119,9 @@
             "options": [
                 "Realismus",
                 "Romantismus",
-                "Naturalismus"
+                "Nezařazen"
             ],
-            "correctAnswer": "Realismus"
+            "correctAnswer": "Nezařazen"
         }
     ]
 }
