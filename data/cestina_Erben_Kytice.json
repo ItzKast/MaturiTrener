@@ -33,7 +33,7 @@
         {
             "id": "postavy_polednice",
             "type": "mc_multiple",
-            "questionText": "Hlavní postavy:",
+            "questionText": "Hlavní postavy Polednice:",
             "options": [
                 "Polednice",
                 "Matka",
@@ -53,7 +53,7 @@
         {
             "id": "postavy_vodnik",
             "type": "mc_multiple",
-            "questionText": "Hlavní postavy:",
+            "questionText": "Hlavní postavy Vodník:",
             "options": [
                 "Vodník",
                 "Matka",
@@ -73,7 +73,7 @@
         {
             "id": "postavy_svatebni_kosile",
             "type": "mc_multiple",
-            "questionText": "Hlavní postavy:",
+            "questionText": "Hlavní postavy Svatební košile:",
             "options": [
                 "Dívka",
                 "Dívčin milí",
@@ -128,10 +128,10 @@
             "type": "conditional_mc_single",
             "questionText": "Vypravěč:",
             "correctBasedOn": {
-                "Próza": "Er-forma s dialogy"
+                "Poezie": "Er-forma s dialogy"
             },
             "optionsBasedOn": {
-                "Próza": [
+                "Poezie": [
                     "Ich-forma",
                     "Er-forma s dialogy",
                     "Er-forma s monology"
