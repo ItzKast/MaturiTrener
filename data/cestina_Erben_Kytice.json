@@ -10,39 +10,82 @@
                 "Poezie",
                 "Drama"
             ],
-            "correctAnswer": "Próza"
+            "correctAnswer": "Poezie"
         },
         {
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "Balada"
         },
         {
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
             "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
+                "Vina a trest",
+                "Souboj zla s dobrem",
+                "Rodinné vztahy",
+                "Láska mladých lidí"
             ],
-            "correctAnswer": "Společnost"
+            "correctAnswer": "Vina a trest"
         },
         {
-            "id": "postavy",
+            "id": "postavy_polednice",
             "type": "mc_multiple",
             "questionText": "Hlavní postavy:",
             "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
+                "Polednice",
+                "Matka",
+                "Dítě",
+                "Otec",
+                "Smrtka",
+                "Babička",
+                "Král"
             ],
             "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
+                "Polednice",
+                "Matka",
+                "Dítě",
+                "Otec"
+            ]
+        },
+        {
+            "id": "postavy_vodnik",
+            "type": "mc_multiple",
+            "questionText": "Hlavní postavy:",
+            "options": [
+                "Vodník",
+                "Matka",
+                "Dcera",
+                "Dítě",
+                "Princ",
+                "Babička",
+                "Otec"
+            ],
+            "correctAnswers": [
+                "Vodnník",
+                "Matka",
+                "Dítě",
+                "Dcera"
+            ]
+        },
+        {
+            "id": "postavy_svatebni_kosile",
+            "type": "mc_multiple",
+            "questionText": "Hlavní postavy:",
+            "options": [
+                "Dívka",
+                "Dívčin milí",
+                "Dítě",
+                "Matka",
+                "Smrtka",
+                "Babička",
+                "Princ"
+            ],
+            "correctAnswers": [
+                "Dívka",
+                "Dívčin milí"
             ]
         },
         {
@@ -51,21 +94,22 @@
             "questionText": "Časové zařazení děje:",
             "options": [
                 "19. století",
-                "20. století",
-                "Současnost"
+                "15. století",
+                "Nezařazeno/Liší se"
             ],
-            "correctAnswer": "20. století"
+            "correctAnswer": "Nezařazeno/Liší se"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
             "options": [
-                "Město",
+                "Liší se",
                 "Vesnice",
-                "Cizina"
+                "Les",
+                "Louka"
             ],
-            "correctAnswer": "Město"
+            "correctAnswer": "Liší se"
         },
         {
             "id": "kompozice",
@@ -74,21 +118,23 @@
             "options": [
                 "Chronologická",
                 "Retrospektivní",
-                "Mozaikovitá"
+                "Mozaikovitá",
+                "Zrcadlová"
             ],
-            "correctAnswer": "Chronologická"
+            "correctAnswer": "Zrcadlová"
         },
         {
             "id": "vypravec",
             "type": "conditional_mc_single",
             "questionText": "Vypravěč:",
             "correctBasedOn": {
-                "Próza": "Er-forma"
+                "Próza": "Er-forma s dialogy"
             },
             "optionsBasedOn": {
                 "Próza": [
                     "Ich-forma",
-                    "Er-forma"
+                    "Er-forma s dialogy",
+                    "Er-forma s monology"
                 ]
             }
         },
@@ -101,7 +147,7 @@
                 "Romantismus",
                 "Naturalismus"
             ],
-            "correctAnswer": "Realismus"
+            "correctAnswer": "Romantismus"
         }
     ]
 }
