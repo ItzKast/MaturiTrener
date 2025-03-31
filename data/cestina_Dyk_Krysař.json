@@ -16,33 +16,38 @@
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "Novela"
         },
         {
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
             "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
+                "Láska a pomsta společnosti",
+                "Život se zvířaty",
+                "Život ve středověku",
+                "Deratizace krys"
             ],
-            "correctAnswer": "Společnost"
+            "correctAnswer": "Láska a pomsta společnosti"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
             "questionText": "Hlavní postavy:",
             "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
+                "Krysař",
+                "Agnes",
+                "Jorgen",
+                "Radní",
+                "Egon",
+                "Zigfried",
+                "Anna"
             ],
             "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
+                "Krysař",
+                "Agnes",
+                "Jorgen",
+                "Radní"
             ]
         },
         {
@@ -50,22 +55,22 @@
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
             "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
+                "12. století",
+                "13. století",
+                "14.století"
             ],
-            "correctAnswer": "20. století"
+            "correctAnswer": "13. století"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
             "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
+                "Hameln",
+                "Koln",
+                "Burgland"
             ],
-            "correctAnswer": "Město"
+            "correctAnswer": "Hameln"
         },
         {
             "id": "kompozice",
@@ -97,11 +102,11 @@
             "type": "mc_single",
             "questionText": "Literární směr:",
             "options": [
-                "Realismus",
+                "Česká moderna",
                 "Romantismus",
                 "Naturalismus"
             ],
-            "correctAnswer": "Realismus"
+            "correctAnswer": "Česká moderna"
         }
     ]
 }
