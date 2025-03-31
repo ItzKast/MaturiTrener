@@ -89,6 +89,47 @@
             ]
         },
         {
+            "id": "postavy_zlaty_kolovrat",
+            "type": "mc_multiple",
+            "questionText": "Hlavní postavy Zlatý kolovrat:",
+            "options": [
+                "Dora",
+                "Král",
+                "Babizna",
+                "Dcera babizny",
+                "Dědeček",
+                "Pekař",
+                "Princ",
+                "Rytíř"
+            ],
+            "correctAnswers": [
+                "Dora",
+                "Král",
+                "Babizna",
+                "Dcera babizny",
+                "Dědeček"
+            ]
+        },
+        {
+            "id": "postavy_holoubek",
+            "type": "mc_multiple",
+            "questionText": "Hlavní postavy Holoubek:",
+            "options": [
+                "Vdova",
+                "Mrtvý manžel",
+                "Nový nápadník",
+                "Smrtka",
+                "Dědeček",
+                "Princ",
+                "Rytíř"
+            ],
+            "correctAnswers": [
+                "Vdova",
+                "Mrtvý manžel",
+                "Nový nápadník"
+            ]
+        },
+        {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
