@@ -5,11 +5,7 @@
             "id": "druh",
             "type": "mc_single",
             "questionText": "Literární druh:",
-            "options": [
-                "Próza",
-                "Poezie",
-                "Drama"
-            ],
+            "options": ["Próza", "Poezie", "Drama"],
             "correctAnswer": "Próza"
         },
         {
@@ -22,86 +18,50 @@
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
-            "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
-            ],
-            "correctAnswer": "Společnost"
+            "options": ["Touha po svobodě a hledání smyslu života", "Historický román", "Detektivní zápletka", "Vědeckofantastická utopie"],
+            "correctAnswer": "Touha po svobodě a hledání smyslu života"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
-            "questionText": "Hlavní postavy:",
-            "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
-            ],
-            "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
-            ]
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Sal Paradise", "Dean Moriarty", "Carlo Marx", "Marylou", "Remi Boncoeur", "Holden Caulfield", "Harry Lou", "Freddy Johness"],
+            "correctAnswers": ["Sal Paradise", "Dean Moriarty", "Carlo Marx", "Marylou", "Remi Boncoeur"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
-            "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
-            ],
-            "correctAnswer": "20. století"
+            "options": ["40. léta 20. století", "50. léta 20. století", "60. léta 20. století", "Současnost"],
+            "correctAnswer": "50. léta 20. století"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
-            "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
-            ],
-            "correctAnswer": "Město"
+            "options": ["Spojené státy americké", "Rusko", "Spojené Království", "Latinská Amerika"],
+            "correctAnswer": "Spojené státy americké"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
             "questionText": "Kompozice:",
-            "options": [
-                "Chronologická",
-                "Retrospektivní",
-                "Mozaikovitá"
-            ],
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
             "correctAnswer": "Chronologická"
         },
         {
             "id": "vypravec",
-            "type": "conditional_mc_single",
-            "questionText": "Vypravěč:",
-            "correctBasedOn": {
-                "Próza": "Er-forma"
-            },
-            "optionsBasedOn": {
-                "Próza": [
-                    "Ich-forma",
-                    "Er-forma"
-                ]
-            }
+            "type": "mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "options": ["Ich-forma", "Er-forma", "Lyrický subjekt"],
+            "correctAnswer": "Ich-forma"
         },
         {
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
-            "options": [
-                "Realismus",
-                "Romantismus",
-                "Naturalismus"
-            ],
-            "correctAnswer": "Realismus"
+            "options": ["Beat generation", "Existencialismus", "Ztracená generace", "Postmodernismus"],
+            "correctAnswer": "Beat generation"
         }
     ]
 }
