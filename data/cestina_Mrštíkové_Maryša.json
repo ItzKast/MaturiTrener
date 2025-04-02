@@ -5,102 +5,62 @@
             "id": "druh",
             "type": "mc_single",
             "questionText": "Literární druh:",
-            "options": [
-                "Próza",
-                "Poezie",
-                "Drama"
-            ],
-            "correctAnswer": "Próza"
+            "options": ["Próza", "Poezie", "Drama"],
+            "correctAnswer": "Drama"
         },
         {
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "tragédie"
         },
         {
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
-            "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
-            ],
-            "correctAnswer": "Společnost"
+            "options": ["Osudová láska", "Sociální nerovnost", "Domluvený sňatek a jeho důsledky", "Boj o moc"],
+            "correctAnswer": "Domluvený sňatek a jeho důsledky"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
-            "questionText": "Hlavní postavy:",
-            "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
-            ],
-            "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
-            ]
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Maryša", "Lízal", "Vávra", "Francek", "Lízalka", "Lucie", "Pepíček", "Petr"],
+            "correctAnswers": ["Maryša", "Lízal", "Vávra", "Francek", "Lízalka"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
-            "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
-            ],
-            "correctAnswer": "20. století"
+            "options": ["19. století", "20. století", "Současnost", "Středověk"],
+            "correctAnswer": "19. století"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
-            "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
-            ],
-            "correctAnswer": "Město"
+            "options": ["Velkoměsto", "Moravská vesnice", "Vesnice u Plzně", "Francouzský venkov"],
+            "correctAnswer": "Moravská vesnice"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
             "questionText": "Kompozice:",
-            "options": [
-                "Chronologická",
-                "Retrospektivní",
-                "Mozaikovitá"
-            ],
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
             "correctAnswer": "Chronologická"
         },
         {
             "id": "vypravec",
-            "type": "conditional_mc_single",
-            "questionText": "Vypravěč:",
-            "correctBasedOn": {
-                "Próza": "Er-forma"
-            },
-            "optionsBasedOn": {
-                "Próza": [
-                    "Ich-forma",
-                    "Er-forma"
-                ]
-            }
+            "type": "mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "options": ["Monology", "Dialogy", "Lyrický subjekt"],
+            "correctAnswer": "Dialogy"
         },
         {
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
-            "options": [
-                "Realismus",
-                "Romantismus",
-                "Naturalismus"
-            ],
+            "options": ["Realismus", "Romantismus", "Expresionismus", "Naturalismus"],
             "correctAnswer": "Realismus"
         }
     ]
