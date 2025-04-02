@@ -5,103 +5,63 @@
             "id": "druh",
             "type": "mc_single",
             "questionText": "Literární druh:",
-            "options": [
-                "Próza",
-                "Poezie",
-                "Drama"
-            ],
+            "options": ["Próza", "Poezie", "Drama"],
             "correctAnswer": "Próza"
         },
         {
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "Povídka"
         },
         {
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
-            "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
-            ],
-            "correctAnswer": "Společnost"
+            "options": ["Odtržení člověka od společnosti", "Dospívání mladého muže", "Detektivní vyšetřování", "Revoluce"],
+            "correctAnswer": "Odtržení člověka od společnosti"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
-            "questionText": "Hlavní postavy:",
-            "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
-            ],
-            "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
-            ]
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Gregor Samsa", "Markéta", "Greta", "Pan Samsa", "Paní Samsová", "Prokurista", "Josef Kycelt", "Petr Derna"],
+            "correctAnswers": ["Gregor Samsa","Markéta", "Greta", "Pan Samsa", "Paní Samsová", "Prokurista"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
-            "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
-            ],
-            "correctAnswer": "20. století"
+            "options": ["Neurčitá současnost", "19. století", "20. léta 20. století", "18. století"],
+            "correctAnswer": "Neurčitá současnost"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
-            "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
-            ],
-            "correctAnswer": "Město"
+            "options": ["Rodinný byt Samsových", "Kancelář banky", "Les", "Vojenský tábor"],
+            "correctAnswer": "Rodinný byt Samsových"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
             "questionText": "Kompozice:",
-            "options": [
-                "Chronologická",
-                "Retrospektivní",
-                "Mozaikovitá"
-            ],
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
             "correctAnswer": "Chronologická"
         },
         {
             "id": "vypravec",
-            "type": "conditional_mc_single",
-            "questionText": "Vypravěč:",
-            "correctBasedOn": {
-                "Próza": "Er-forma"
-            },
-            "optionsBasedOn": {
-                "Próza": [
-                    "Ich-forma",
-                    "Er-forma"
-                ]
-            }
+            "type": "mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "options": ["Ich-forma", "Er-forma", "Lyrický subjekt"],
+            "correctAnswer": "Er-forma"
         },
         {
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
-            "options": [
-                "Realismus",
-                "Romantismus",
-                "Naturalismus"
-            ],
-            "correctAnswer": "Realismus"
+            "options": ["Existencialismus", "Realismus", "Moderna", "Naturalismus"],
+            "correctAnswer": "Existencialismus"
         }
     ]
 }
