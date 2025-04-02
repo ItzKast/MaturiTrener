@@ -5,103 +5,63 @@
             "id": "druh",
             "type": "mc_single",
             "questionText": "Literární druh:",
-            "options": [
-                "Próza",
-                "Poezie",
-                "Drama"
-            ],
-            "correctAnswer": "Próza"
+            "options": ["Próza", "Poezie", "Drama"],
+            "correctAnswer": "Poezie"
         },
         {
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "básnická sbírka"
         },
         {
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
-            "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
-            ],
-            "correctAnswer": "Společnost"
+            "options": ["Politická satira a odpor proti totalitě", "Romantická poezie", "Básně o přírodě", "Pohádky"],
+            "correctAnswer": "Politická satira a odpor proti totalitě"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
-            "questionText": "Hlavní postavy:",
-            "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
-            ],
-            "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
-            ]
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Liší se v každé básni", "Děd vševěd", "Drak", "Don Quijote", "Mefisto"],
+            "correctAnswers": ["Liší se v každé básni"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
-            "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
-            ],
-            "correctAnswer": "20. století"
+            "options": ["Doba vzniku díla (exilová léta Karla Kryla)", "Středověk", "Futuristická vize", "Liší se v každé básni"],
+            "correctAnswer": "Liší se v každé básni"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
-            "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
-            ],
-            "correctAnswer": "Město"
+            "options": ["Československo", "Exil", "Fiktivní krajina", "Konkrétní evropská města"],
+            "correctAnswer": "Exil"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
             "questionText": "Kompozice:",
-            "options": [
-                "Chronologická",
-                "Retrospektivní",
-                "Mozaikovitá"
-            ],
-            "correctAnswer": "Chronologická"
+            "options": ["Sbírka jednotlivých básní", "Chronologická", "Retrospektivní", "Mozaikovitá"],
+            "correctAnswer": "Sbírka jednotlivých básní"
         },
         {
             "id": "vypravec",
-            "type": "conditional_mc_single",
-            "questionText": "Vypravěč:",
-            "correctBasedOn": {
-                "Próza": "Er-forma"
-            },
-            "optionsBasedOn": {
-                "Próza": [
-                    "Ich-forma",
-                    "Er-forma"
-                ]
-            }
+            "type": "mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "options": ["Ich-forma", "Lyrický subjekt", "Er-forma"],
+            "correctAnswer": "Lyrický subjekt"
         },
         {
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
-            "options": [
-                "Realismus",
-                "Romantismus",
-                "Naturalismus"
-            ],
-            "correctAnswer": "Realismus"
+            "options": ["Protikomunistická literatura", "Romantismus", "Modernismus", "Symbolismus"],
+            "correctAnswer": "Protikomunistická literatura"
         }
     ]
 }
