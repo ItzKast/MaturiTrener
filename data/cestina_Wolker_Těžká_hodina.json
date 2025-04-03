@@ -5,103 +5,63 @@
             "id": "druh",
             "type": "mc_single",
             "questionText": "Literární druh:",
-            "options": [
-                "Próza",
-                "Poezie",
-                "Drama"
-            ],
-            "correctAnswer": "Próza"
+            "options": ["Próza", "Poezie", "Drama"],
+            "correctAnswer": "Poezie"
         },
         {
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "sociální poezie"
         },
         {
             "id": "tema",
             "type": "mc_single",
-            "questionText": "Hlavní téma:",
-            "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
-            ],
-            "correctAnswer": "Společnost"
+            "questionText": "Hlavní téma sbírky:",
+            "options": ["Sociální nespravedlnost", "Láska", "Konec světa", "Snaha se osvobodit"],
+            "correctAnswer": "Sociální nespravedlnost"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
-            "questionText": "Hlavní postavy:",
-            "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
-            ],
-            "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
-            ]
+            "questionText": "Hlavní postavy básní (vyberte všechny správné):",
+            "options": ["Dělník", "Chudý člověk", "Matka", "Milenka", "Vyšší třída", "Bohatý továrník", "Podnikatel"],
+            "correctAnswers": ["Dělník", "Chudý člověk", "Matka", "Milenka"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
-            "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
-            ],
-            "correctAnswer": "20. století"
+            "options": ["1. polovina 20. století", "Středověk", "Současnost", "2. polovina 20. století"],
+            "correctAnswer": "První polovina 20. století"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
-            "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
-            ],
-            "correctAnswer": "Město"
+            "options": ["Továrny, ulice, domovy chudých", "Vesnice", "Amerika", "Paříž"],
+            "correctAnswer": "Továrny, ulice, domovy chudých"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
-            "questionText": "Kompozice:",
-            "options": [
-                "Chronologická",
-                "Retrospektivní",
-                "Mozaikovitá"
-            ],
-            "correctAnswer": "Chronologická"
+            "questionText": "Kompozice básní:",
+            "options": ["Chronologická", "Retrospektivní", "Fragmentární", "Symbolická"],
+            "correctAnswer": "Symbolická"
         },
         {
             "id": "vypravec",
-            "type": "conditional_mc_single",
-            "questionText": "Vypravěč:",
-            "correctBasedOn": {
-                "Próza": "Er-forma"
-            },
-            "optionsBasedOn": {
-                "Próza": [
-                    "Ich-forma",
-                    "Er-forma"
-                ]
-            }
+            "type": "mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "options": ["Ich-forma", "Er-forma", "Lyrický subjekt"],
+            "correctAnswer": "Lyrický subjekt"
         },
         {
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
-            "options": [
-                "Realismus",
-                "Romantismus",
-                "Naturalismus"
-            ],
-            "correctAnswer": "Realismus"
+            "options": ["Proletářská poezie", "Romantismus", "Existencialismus", "Postmodernismus"],
+            "correctAnswer": "Proletářská poezie"
         }
     ]
 }
