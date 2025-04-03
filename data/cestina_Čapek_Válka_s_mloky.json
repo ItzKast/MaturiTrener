@@ -1,107 +1,74 @@
 {
-    "bookTitle": "Válka s mloky",
+    "bookTitle": "Válka s Mloky",
     "questions": [
         {
             "id": "druh",
             "type": "mc_single",
             "questionText": "Literární druh:",
-            "options": [
-                "Próza",
-                "Poezie",
-                "Drama"
-            ],
+            "options": ["Próza", "Poezie", "Drama"],
             "correctAnswer": "Próza"
         },
         {
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Román"
+            "correctAnswer": "Protiválečný román s prvky sci-fi"
         },
         {
             "id": "tema",
             "type": "mc_single",
-            "questionText": "Hlavní téma:",
-            "options": [
-                "Láska",
-                "Válka",
-                "Společnost",
-                "Osud"
-            ],
-            "correctAnswer": "Společnost"
+            "questionText": "Hlavní téma románu:",
+            "options": ["Boj lidstva za svou záchranu", "Dobrodružství v džungli", "Pokusy na zvířatech", "2. světová válka"],
+            "correctAnswer": "Boj lidstva za svou záchranu"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
-            "questionText": "Hlavní postavy:",
-            "options": [
-                "Hlavní hrdina",
-                "Vedlejší postava",
-                "Antagonista",
-                "Falešná postava"
-            ],
-            "correctAnswers": [
-                "Hlavní hrdina",
-                "Vedlejší postava"
-            ]
+            "questionText": "Hlavní postavy (vyberte všechny správné):",
+            "options": ["Kapitán van Toch", "G. H. Bondy", "Andrias Scheuchzeri", "Profesor T. R. Kysela", "Henry Wigil", "John Freeman", "Jack Johness"],
+            "correctAnswers": ["Kapitán van Toch", "G. H. Bondy", "Andrias Scheuchzeri", "Profesor T. R. Kysela"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
-            "options": [
-                "19. století",
-                "20. století",
-                "Současnost"
-            ],
+            "options": ["20. století", "19. století", "Neurčeno", "Budoucnost"],
             "correctAnswer": "20. století"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
-            "options": [
-                "Město",
-                "Vesnice",
-                "Cizina"
-            ],
-            "correctAnswer": "Město"
+            "options": ["Světové oceány", "Paříž", "Sibiř", "Továrna na roboty"],
+            "correctAnswer": "Světové oceány"
+        },
+        {
+            "id": "lebensland",
+            "type": "mc_single",
+            "questionText": "Co je to lebensland?",
+            "options": ["Životní prostor", "Země zaslíbená", "Fiktivní místo", "Místo, kde se ukrývá svatý grál"],
+            "correctAnswer": "Životní prostor"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
             "questionText": "Kompozice:",
-            "options": [
-                "Chronologická",
-                "Retrospektivní",
-                "Mozaikovitá"
-            ],
-            "correctAnswer": "Chronologická"
+            "options": ["Kombinace chronologie a dokumentů", "Chronologická", "Retrospektivní", "Cyklická"],
+            "correctAnswer": "Kombinace chronologie a dokumentů"
         },
         {
             "id": "vypravec",
-            "type": "conditional_mc_single",
-            "questionText": "Vypravěč:",
-            "correctBasedOn": {
-                "Próza": "Er-forma"
-            },
-            "optionsBasedOn": {
-                "Próza": [
-                    "Ich-forma",
-                    "Er-forma"
-                ]
-            }
+            "type": "mc_single",
+            "questionText": "Vypravěč / Forma projevu:",
+            "options": ["Er-forma", "Ich-forma", "Monology/Dialogy"],
+            "correctAnswer": "Er-forma"
         },
         {
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
-            "options": [
-                "Realismus",
-                "Romantismus",
-                "Naturalismus"
-            ],
-            "correctAnswer": "Realismus"
+            "options": ["Sci-fi", "Realismus", "Existencialismus", "Romantismus"],
+            "correctAnswer": "Sci-fi"
         }
     ]
 }
