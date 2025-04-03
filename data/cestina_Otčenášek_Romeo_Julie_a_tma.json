@@ -2,66 +2,66 @@
     "bookTitle": "Romeo, Julie a tma",
     "questions": [
         {
-            "id": "druh", 
+            "id": "druh",
             "type": "mc_single",
             "questionText": "Literární druh:",
             "options": ["Próza", "Poezie", "Drama"],
-            "correctAnswer": "Drama"
+            "correctAnswer": "Próza"
         },
         {
             "id": "zanr",
             "type": "free_text",
             "questionText": "Literární žánr:",
-            "correctAnswer": "Psychologické drama"
+            "correctAnswer": "Novela"
         },
         {
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
-            "options": ["Láska", "Historie", "Osud", "Rodinné drama"],
-            "correctAnswer": "Láska"
+            "options": ["Láska za okupace", "Poválečné vyrovnání", "Boj za svobodu", "Atentát na Heydricha"],
+            "correctAnswer": "Láska za okupace"
         },
         {
             "id": "postavy",
             "type": "mc_multiple",
             "questionText": "Hlavní postavy (vyberte všechny správné):",
-            "options": ["Romeo", "Julie", "Otec Laurence", "Mercutio", "Tybalt", "Voldemort"],
-            "correctAnswers": ["Romeo", "Julie", "Otec Laurence", "Mercutio", "Tybalt"]
+            "options": ["Pavel", "Ester", "Pavlovi rodiče", "Reinhold", "Honza", "Marie", "Petr"],
+            "correctAnswers": ["Pavel", "Ester", "Pavlovi rodiče", "Reinhold"]
         },
         {
             "id": "cas",
             "type": "mc_single",
             "questionText": "Časové zařazení děje:",
-            "options": ["Středověk", "19. století", "Renesance", "Starověk"],
-            "correctAnswer": "Renesance"
+            "options": ["První světová válka", "Druhá světová válka", "19. století", "Současnost"],
+            "correctAnswer": "Druhá světová válka"
         },
         {
             "id": "prostor",
             "type": "mc_single",
             "questionText": "Místo děje:",
-            "options": ["Verona", "Paříž", "Řím", "Atheny"],
-            "correctAnswer": "Verona"
+            "options": ["Praha", "Brno", "Osvětim", "Berlín"],
+            "correctAnswer": "Praha"
         },
         {
             "id": "kompozice",
             "type": "mc_single",
             "questionText": "Kompozice:",
-            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
+            "options": ["Chronologická", "Retrospektivní", "Rámcová", "Experimentální"],
             "correctAnswer": "Chronologická"
         },
         {
             "id": "vypravec",
             "type": "mc_single",
             "questionText": "Vypravěč / Forma projevu:",
-            "options": ["Er-forma", "Ich-forma", "Lyrický subjekt", "Monology/Dialogy"],
-            "correctAnswer": "Monology/Dialogy"
+            "options": ["Ich-forma", "Er-forma", "Monology/Dialogy"],
+            "correctAnswer": "Er-forma"
         },
         {
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
-            "options": ["Romantismus", "Realismus", "Baroko", "Klasicismus"],
-            "correctAnswer": "Romantismus"
+            "options": ["Existencialismus", "Realismus", "Ztracená generace", "Socialistický realismus"],
+            "correctAnswer": "Existencialismus"
         }
     ]
 }
