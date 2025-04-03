@@ -14,7 +14,7 @@ const dataFileConfig = {
         "C# namespace Drawing – nástroje pro programování grafiky": "DataDrawing.csv",
         "C# metody, jmenné prostory": "DataMetody.csv",
         "C# základy OOP": "DataOOP.csv",
-        "Souhrnné opakování": null 
+        "Souhrnné opakování": null
     },
     "Počítačové sítě": {
         "Topologie sítí": "DataTopologie.csv",
@@ -62,10 +62,10 @@ const dataFileConfig = {
         "Převodníky a přizpůsobovací členy": "otazky_tema_9.csv",
         "Výstavba regulačního obvodu": "otazky_tema_10.csv",
         "Malé řídící systémy": "otazky_tema_11.csv",
-        "Prvky používané v obvodech AT": "otazky_tema_12.csv", 
-        "Senzory - rozdělení": "otazky_tema_13.csv", 
+        "Prvky používané v obvodech AT": "otazky_tema_12.csv",
+        "Senzory - rozdělení": "otazky_tema_13.csv",
         "Analogové a binární senzory": "otazky_tema_14.csv",
-        "PLC": "otazky_tema_15.csv", 
+        "PLC": "otazky_tema_15.csv",
         "Sekvenční logické obvody": "otazky_tema_16.csv",
         "Měření neelektrických veličin": "otazky_tema_17.csv",
         "Typy regulačních obvodů": "otazky_tema_18.csv",
@@ -128,7 +128,7 @@ for (const subject in dataFileConfig) {
                 } else if (filename && filename.endsWith('.csv')) {
                     data[subject][topic] = [];   // Array for CSV questions
                 } else {
-                     data[subject][topic] = []; // Default or for summary
+                    data[subject][topic] = []; // Default or for summary
                 }
             }
         }
@@ -189,13 +189,13 @@ const achievementLevels = {
 
 // --- Firebase Configuration & Initialization ---
 const firebaseConfig = {
-  apiKey: "AIzaSyCsaY8QZCiozpDnLbpiid3a6ilom7rp4Bk",
-  authDomain: "maturitrener.firebaseapp.com",
-  projectId: "maturitrener",
-  storageBucket: "maturitrener.firebasestorage.app",
-  messagingSenderId: "485827643986",
-  appId: "1:485827643986:web:838563f26c0fafda9c6d8b",
-  measurementId: "G-FLVEDE8H82"
+    apiKey: "AIzaSyCsaY8QZCiozpDnLbpiid3a6ilom7rp4Bk",
+    authDomain: "maturitrener.firebaseapp.com",
+    projectId: "maturitrener",
+    storageBucket: "maturitrener.firebasestorage.app",
+    messagingSenderId: "485827643986",
+    appId: "1:485827643986:web:838563f26c0fafda9c6d8b",
+    measurementId: "G-FLVEDE8H82"
 };
 /**
  * Fetches and parses all data (CSV or JSON) from the configured URLs.
@@ -271,6 +271,9 @@ let header, main, dashboardSection, testSection, progressSection, testContainer,
     emailInput, passwordInput, loginBtn, registerBtn, loginMessage,
     calendarGrid, currentMonthDisplay, prevMonthBtn, nextMonthBtn,
     testsTodayEl, correctAnswersEl, successRateEl, dayStreakEl, totalXpEl, achievementListEl, themeToggleButton, toggleFavoriteBtn; // Added elements for stats
+let profileSection, profileEmail, profileNickname, profileJoined,
+    nicknameChangeForm, newNicknameInput, changeNicknameBtn, nicknameChangeMessage,
+    changePasswordBtn, passwordChangeMessage, deleteAccountBtn, deleteAccountMessage, profileLinkleaderboardList, noLeaderboardLi, nicknameInput;
 
 
 // --- Wait for DOM to Load ---
@@ -316,6 +319,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     successRateEl = document.getElementById('success-rate');
     dayStreakEl = document.getElementById('day-streak'); // Get element for stats section too
     totalXpEl = document.getElementById('total-xp'); // Get element for stats section too
+    // Profile Section
+    profileSection = document.getElementById('profile-section');
+    profileLink = document.getElementById('profile-link');
+    profileEmail = document.getElementById('profile-email');
+    profileNickname = document.getElementById('profile-nickname');
+    profileJoined = document.getElementById('profile-joined');
+    nicknameChangeForm = document.getElementById('nickname-change-form');
+    newNicknameInput = document.getElementById('new-nickname');
+    changeNicknameBtn = document.getElementById('change-nickname-btn');
+    nicknameChangeMessage = document.getElementById('nickname-change-message');
+    changePasswordBtn = document.getElementById('change-password-btn');
+    passwordChangeMessage = document.getElementById('password-change-message');
+    deleteAccountBtn = document.getElementById('delete-account-btn');
+    deleteAccountMessage = document.getElementById('delete-account-message');
+
+
+    // Leaderboard
+    leaderboardList = document.getElementById('leaderboard-list');
+    noLeaderboardLi = leaderboardList?.querySelector('.no-leaderboard'); // Get initial placeholder
+
+    // Registration Nickname
+    nicknameInput = document.getElementById('nickname');
 
     await loadAllDataFromURLs();
     // --- Initialize Firebase ---
@@ -355,10 +380,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error("Error initializing Firebase or setting up:", error);
         alert("Došlo k chybě při inicializaci aplikace. Zkontrolujte konzoli pro více detailů.");
         // Disable parts of the UI if needed
-        if(loginSection) loginSection.innerHTML = '<h1>Chyba načítání aplikace</h1><p>Nelze se připojit k Firebase.</p>';
-        if(dashboardSection) dashboardSection.style.display = 'none';
-        if(testSection) testSection.style.display = 'none';
-        if(progressSection) progressSection.style.display = 'none';
+        if (loginSection) loginSection.innerHTML = '<h1>Chyba načítání aplikace</h1><p>Nelze se připojit k Firebase.</p>';
+        if (dashboardSection) dashboardSection.style.display = 'none';
+        if (testSection) testSection.style.display = 'none';
+        if (progressSection) progressSection.style.display = 'none';
     }
 }); // End DOMContentLoaded
 
@@ -409,7 +434,10 @@ async function getUserData(uid, db) {
                     topicMaster: 0, earlyBird: 0, nightOwl: 0, marathoner: 0,
                     earlyBirdCount: 0, // Specific counts if needed
                     nightOwlCount: 0
-                 },
+                },
+                nickname: null, // Initialize nickname as null
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(), // Set on creation
+                weeklyXP: 0,
                 activity: {} // Activity log for calendar { year: { month: { day: count } } }
             };
             // Save the default data for the new user
@@ -474,16 +502,16 @@ async function saveUserData(uid, data, db) {
         console.warn("Activity data structure incorrect, resetting.");
         data.activity = {};
     }
-     // Ensure achievements is a valid object
-     if (typeof data.achievements !== 'object' || data.achievements === null) {
-         console.warn("Achievements data structure incorrect, resetting.");
-         data.achievements = {}; // Or initialize with defaults if preferred
-     }
-     // Ensure progress is a valid object
-     if (typeof data.progress !== 'object' || data.progress === null) {
-         console.warn("Progress data structure incorrect, resetting.");
-         data.progress = {};
-     }
+    // Ensure achievements is a valid object
+    if (typeof data.achievements !== 'object' || data.achievements === null) {
+        console.warn("Achievements data structure incorrect, resetting.");
+        data.achievements = {}; // Or initialize with defaults if preferred
+    }
+    // Ensure progress is a valid object
+    if (typeof data.progress !== 'object' || data.progress === null) {
+        console.warn("Progress data structure incorrect, resetting.");
+        data.progress = {};
+    }
 
 
     try {
@@ -545,7 +573,7 @@ async function loadUserDataFromFirestore(uid, db) {
             updateDashboard(userData);         // Updates subject progress cards
             updateProgressSection(userData);   // Updates the detailed progress table
             updateAchievementsUI(userData);
-            await generateCalendar(currentYear, currentMonth, db); 
+            await generateCalendar(currentYear, currentMonth, db);
 
             console.log("UI updated after loading user data.");
 
@@ -580,8 +608,8 @@ function updateAchievementsUI(userData) {
         achievementListEl.appendChild(noAchievementsLi);
     }
     const hasAchievements = achievementsData &&
-                            Object.keys(achievementsData).length > 0 &&
-                            Object.values(achievementsData).some(level => typeof level === 'number' && level > 0); // Check if at least one level > 0
+        Object.keys(achievementsData).length > 0 &&
+        Object.values(achievementsData).some(level => typeof level === 'number' && level > 0); // Check if at least one level > 0
 
 
     if (!hasAchievements) {
@@ -595,15 +623,15 @@ function updateAchievementsUI(userData) {
     // Helper to get current value based on achievement key
     const getCurrentValue = (key) => {
         switch (key) {
-            case 'xpCollector':   return userData?.totalXP || 0;
-            case 'unstoppable':   return userData?.dayStreak || 0;
-            case 'flawless':      return userData?.flawlessTestCount || 0;
+            case 'xpCollector': return userData?.totalXP || 0;
+            case 'unstoppable': return userData?.dayStreak || 0;
+            case 'flawless': return userData?.flawlessTestCount || 0;
             case 'winningStreak': return userData?.winningStreakCount || 0;
-            case 'topicMaster':   return (userData?.completedTopics instanceof Set ? userData.completedTopics.size : (userData?.completedTopics?.length || 0)); // Handle Set or Array
-            case 'earlyBird':     return achievementsData?.earlyBirdCount || 0;
-            case 'nightOwl':      return achievementsData?.nightOwlCount || 0;
-            case 'marathoner':    return userData?.testsToday || 0; 
-            default:              return 0;
+            case 'topicMaster': return (userData?.completedTopics instanceof Set ? userData.completedTopics.size : (userData?.completedTopics?.length || 0)); // Handle Set or Array
+            case 'earlyBird': return achievementsData?.earlyBirdCount || 0;
+            case 'nightOwl': return achievementsData?.nightOwlCount || 0;
+            case 'marathoner': return userData?.testsToday || 0;
+            default: return 0;
         }
     };
 
@@ -627,14 +655,14 @@ function updateAchievementsUI(userData) {
             if (currentLevel > 0) {
                 prevLevelThreshold = definition.levels[currentLevel - 1]; // Threshold of the current level (index = currentLevel - 1)
             }
-             const range = nextLevelThreshold - prevLevelThreshold;
-             const currentProgressInLevel = currentValue - prevLevelThreshold;
-             // Calculate percentage, ensuring range > 0 and capping at 100
-             progressPercent = range > 0 ? Math.max(0, Math.min(100, Math.round((currentProgressInLevel / range) * 100))) : (currentValue >= nextLevelThreshold ? 100 : 0);
-             valueText = `<span class="current">${currentValue}</span> / <span class="next">${nextLevelThreshold} ${unit}</span>`;
- 
-             // *** Set Tooltip for next level ***
-             tooltipText = descriptionTemplate.replace('{value}', nextLevelThreshold);
+            const range = nextLevelThreshold - prevLevelThreshold;
+            const currentProgressInLevel = currentValue - prevLevelThreshold;
+            // Calculate percentage, ensuring range > 0 and capping at 100
+            progressPercent = range > 0 ? Math.max(0, Math.min(100, Math.round((currentProgressInLevel / range) * 100))) : (currentValue >= nextLevelThreshold ? 100 : 0);
+            valueText = `<span class="current">${currentValue}</span> / <span class="next">${nextLevelThreshold} ${unit}</span>`;
+
+            // *** Set Tooltip for next level ***
+            tooltipText = descriptionTemplate.replace('{value}', nextLevelThreshold);
 
         } else {
             // Max level reached
@@ -681,30 +709,123 @@ function updateAchievementsUI(userData) {
  * @param {firebase.auth.Auth} authInstance - The Firebase Auth instance.
  */
 async function registerUserHandler(authInstance) {
-    if (!authInstance || !emailInput || !passwordInput || !loginMessage) return;
+    // Add nicknameInput to the checks at the top
+    if (!authInstance || !emailInput || !passwordInput || !loginMessage || !nicknameInput) return;
+
     const email = emailInput.value.trim();
     const password = passwordInput.value;
+    const nickname = nicknameInput.value.trim(); // Get nickname
 
-    // Basic validation
-    if (!email || !password) {
-        loginMessage.textContent = "Prosím zadejte email i heslo.";
+    // --- Basic validation ---
+    if (!email || !password || !nickname) { // Check nickname too
+        loginMessage.textContent = "Prosím vyplňte email, heslo a přezdívku.";
         return;
     }
     if (password.length < 6) {
         loginMessage.textContent = "Heslo musí mít alespoň 6 znaků.";
         return;
     }
+    // Nickname validation (adjust pattern/message as needed)
+    const nicknamePattern = /^[a-zA-Z0-9_]{3,15}$/;
+    if (!nicknamePattern.test(nickname)) {
+         loginMessage.textContent = "Přezdívka může obsahovat 3-15 písmen, čísel a podtržítek.";
+         return;
+    }
 
-    loginMessage.textContent = "Registruji..."; // Feedback
+    loginMessage.textContent = "Registruji a ověřuji přezdívku..."; // Feedback
+    changeNicknameBtn.disabled = true; // Disable button
+    registerBtn.disabled = true;
+
+
     try {
-        await authInstance.createUserWithEmailAndPassword(email, password);
-        // NOTE: onAuthStateChanged will handle the login flow after successful registration
+        // 1. Check Nickname Uniqueness
+        const isUnique = await checkNicknameUniqueness(nickname);
+        if (!isUnique) {
+            loginMessage.textContent = "Tato přezdívka je již obsazena.";
+             changeNicknameBtn.disabled = false;
+             registerBtn.disabled = false;
+            return;
+        }
+
+        // 2. Create User Account
+        const userCredential = await authInstance.createUserWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+        const uid = user.uid;
+
+        // 3. Save Initial User Data and Nickname Reservation in a Transaction
+        const userDocRef = db.collection("users").doc(uid);
+        const nicknameDocRef = db.collection("nicknames").doc(nickname.toLowerCase());
+
+        await db.runTransaction(async (transaction) => {
+             // Set default user data including nickname and timestamp
+             transaction.set(userDocRef, {
+                 // Include fields from defaultUserData in getUserData
+                 nickname: nickname,
+                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                 weeklyXP: 0,
+                 testsToday: 0,
+                 correctAnswersToday: 0, // Add this if missing
+                 progress: {},
+                 totalTestsCompleted: 0,
+                 averageSuccessRate: 0,
+                 dayStreak: 0,
+                 totalXP: 0,
+                 lastCompletedTestDate: null,
+                 flawlessTestCount: 0,
+                 winningStreakCount: 0,
+                 favoriteBooks: [],
+                 completedTopics: [],
+                 achievements: {
+                     xpCollector: 0, unstoppable: 0, flawless: 0, winningStreak: 0,
+                     topicMaster: 0, earlyBird: 0, nightOwl: 0, marathoner: 0,
+                     earlyBirdCount: 0, nightOwlCount: 0
+                 },
+                 activity: {},
+                 lastActivityDate: null // Add this if missing
+             });
+             // Reserve the nickname
+             transaction.set(nicknameDocRef, { userId: uid });
+        });
+
+
+        console.log("User registered and initial data saved successfully.");
+        // onAuthStateChanged will handle the rest of the login flow
         loginMessage.textContent = "Registrace proběhla úspěšně. Přihlašuji...";
-        // Optional: Clear form
-        // loginForm.reset();
+         // loginForm.reset(); // Optional: Clear form
+
     } catch (error) {
         console.error("Registration error:", error);
-        loginMessage.textContent = "Chyba registrace: " + mapAuthError(error); // Use helper for user-friendly message
+        loginMessage.textContent = "Chyba registrace: " + mapAuthError(error);
+        // TODO: If error occurred *after* user creation but *before* data save,
+        // need cleanup logic (delete user, delete nickname entry if created).
+        // This is complex and often handled server-side. For now, log it.
+        if (error.code !== 'auth/email-already-in-use' && error.message !== "Tato přezdívka je již obsazena.") {
+            loginMessage.textContent += " Zkuste to prosím znovu.";
+        }
+    } finally {
+         // Re-enable buttons unless successful
+         if (loginMessage.textContent !== "Registrace proběhla úspěšně. Přihlašuji...") {
+             changeNicknameBtn.disabled = false;
+             registerBtn.disabled = false;
+         }
+    }
+}
+/**
+ * Checks if a nickname is already taken in the 'nicknames' collection.
+ * @param {string} nickname - The nickname to check.
+ * @returns {Promise<boolean>} True if unique, false otherwise.
+ */
+async function checkNicknameUniqueness(nickname) {
+    if (!nickname) return false;
+    const nicknameLower = nickname.toLowerCase();
+    const nicknameDocRef = db.collection("nicknames").doc(nicknameLower);
+    try {
+        const doc = await nicknameDocRef.get();
+        return !doc.exists; // Return true if the document DOES NOT exist
+    } catch (error) {
+        console.error("Error checking nickname uniqueness:", error);
+        // Fail safe: assume not unique on error to prevent duplicates
+        return false;
     }
 }
 
@@ -713,7 +834,7 @@ async function registerUserHandler(authInstance) {
  * @param {firebase.auth.Auth} authInstance - The Firebase Auth instance.
  */
 async function loginUserHandler(authInstance) {
-     if (!authInstance || !emailInput || !passwordInput || !loginMessage) return;
+    if (!authInstance || !emailInput || !passwordInput || !loginMessage) return;
     const email = emailInput.value.trim();
     const password = passwordInput.value;
 
@@ -727,8 +848,8 @@ async function loginUserHandler(authInstance) {
         await authInstance.signInWithEmailAndPassword(email, password);
         // NOTE: onAuthStateChanged will handle the UI update after successful login
         loginMessage.textContent = "Přihlášení proběhlo úspěšně.";
-         // Optional: Clear form
-         // loginForm.reset();
+        // Optional: Clear form
+        // loginForm.reset();
     } catch (error) {
         console.error("Login error:", error);
         loginMessage.textContent = "Chyba přihlášení: " + mapAuthError(error); // User-friendly message
@@ -782,33 +903,62 @@ function mapAuthError(error) {
 // --- UI Update & Navigation Functions ---
 
 function showLogin() {
-    if(loginSection) loginSection.style.display = 'flex';
-    if(dashboardSection) dashboardSection.style.display = 'none';
-    if(testSection) testSection.style.display = 'none';
-    if(progressSection) progressSection.style.display = 'none';
-    if(loginMessage) loginMessage.textContent = ''; // Clear any previous messages
-    if(loginForm) loginForm.reset(); // Clear form fields
+    if (loginSection) loginSection.style.display = 'flex';
+    if (dashboardSection) dashboardSection.style.display = 'none';
+    if (testSection) testSection.style.display = 'none';
+    if (progressSection) progressSection.style.display = 'none';
+    if (loginMessage) loginMessage.textContent = ''; // Clear any previous messages
+    if (loginForm) loginForm.reset(); // Clear form fields
 }
 
 function showDashboard() {
-    if(loginSection) loginSection.style.display = 'none';
-    if(dashboardSection) dashboardSection.style.display = 'block';
-    if(testSection) testSection.style.display = 'none';
-    if(progressSection) progressSection.style.display = 'none';
+    if (loginSection) loginSection.style.display = 'none';
+    if (dashboardSection) dashboardSection.style.display = 'block';
+    if (testSection) testSection.style.display = 'none';
+    if (progressSection) progressSection.style.display = 'none';
 }
 
 function showTestSection() {
-     if(loginSection) loginSection.style.display = 'none';
-     if(dashboardSection) dashboardSection.style.display = 'none';
-     if(testSection) testSection.style.display = 'block';
-     if(progressSection) progressSection.style.display = 'none';
+    if (loginSection) loginSection.style.display = 'none';
+    if (dashboardSection) dashboardSection.style.display = 'none';
+    if (testSection) testSection.style.display = 'block';
+    if (progressSection) progressSection.style.display = 'none';
 }
 
-function showProgressSection() {
-     if(loginSection) loginSection.style.display = 'none';
-     if(dashboardSection) dashboardSection.style.display = 'none';
-     if(testSection) testSection.style.display = 'none';
-     if(progressSection) progressSection.style.display = 'block';
+async function showProgressSection() { // Make async
+    if(loginSection) loginSection.style.display = 'none';
+    if(dashboardSection) dashboardSection.style.display = 'none';
+    if(testSection) testSection.style.display = 'none';
+    if(profileSection) profileSection.style.display = 'none'; // Hide profile
+    if(progressSection) progressSection.style.display = 'block';
+
+    if (currentUser) {
+       try {
+            // Fetch user data for stats AND leaderboard data concurrently
+            const [userData, leaderboardData] = await Promise.all([
+                getUserData(currentUser, db),
+                fetchLeaderboardData(10) // Fetch top 10
+            ]);
+
+            // Update user stats sections
+            updateProgressSection(userData); // Update table/summary stats
+            updateAchievementsUI(userData); // Update achievements (already called here?)
+
+            // Update the leaderboard UI
+            updateLeaderboardUI(leaderboardData);
+
+       } catch (error) {
+            console.error("Error loading progress section data:", error);
+            // Handle errors, maybe show error messages in UI parts
+             if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba načítání žebříčku.</li>';
+       }
+
+    } else {
+        // Clear progress table and achievements if user logs out
+        updateProgressSection(null); // Clear table
+        updateAchievementsUI(null);  // Clear achievements
+        updateLeaderboardUI([]); // Clear leaderboard
+    }
 }
 
 /**
@@ -840,12 +990,12 @@ function updateStatisticsSection(userData) {
     if (dashCorrectAnswersEl) {
         dashCorrectAnswersEl.textContent = correctToday; // Display today's correct answers
     } else {
-         console.warn("Element with ID 'correct-answers' not found for dashboard.");
+        console.warn("Element with ID 'correct-answers' not found for dashboard.");
     }
     if (dashSuccessRateEl) {
         dashSuccessRateEl.textContent = `${rate}%`;
     } else {
-         console.warn("Element with ID 'success-rate' not found for dashboard.");
+        console.warn("Element with ID 'success-rate' not found for dashboard.");
     }
 
     const progressDayStreakEl = document.getElementById('day-streak');
@@ -869,19 +1019,19 @@ function updateDashboard(userData) {
     if (!userData || !userData.progress || Object.keys(userData.progress).length === 0) {
         console.log("No user data or progress to display on dashboard subjects.");
         // Optionally display a message
-         const noProgressMsg = document.createElement('p');
-         noProgressMsg.textContent = "Zatím žádný pokrok v předmětech.";
-         noProgressMsg.style.gridColumn = '1 / -1'; // Span full width if in grid
-         noProgressMsg.style.textAlign = 'center';
-         subjectStatsContainer.appendChild(noProgressMsg);
+        const noProgressMsg = document.createElement('p');
+        noProgressMsg.textContent = "Zatím žádný pokrok v předmětech.";
+        noProgressMsg.style.gridColumn = '1 / -1'; // Span full width if in grid
+        noProgressMsg.style.textAlign = 'center';
+        subjectStatsContainer.appendChild(noProgressMsg);
         return;
     }
 
     // Generate subject cards
     for (const subject in data) { // Iterate through defined subjects to ensure order/all are shown
-         const subjectData = userData.progress[subject] || { testsCompleted: 0, successRate: 0 }; // Default if no progress yet
-         const progressPercentage = subjectData.successRate || 0;
-         const testsCompleted = subjectData.testsCompleted || 0;
+        const subjectData = userData.progress[subject] || { testsCompleted: 0, successRate: 0 }; // Default if no progress yet
+        const progressPercentage = subjectData.successRate || 0;
+        const testsCompleted = subjectData.testsCompleted || 0;
 
         const card = document.createElement("div");
         card.classList.add("subject-card");
@@ -934,8 +1084,8 @@ function updateProgressSection(userData) {
     // Update summary stats if elements exist
     const progressDayStreakEl = document.getElementById('day-streak');
     const progressTotalXpEl = document.getElementById('total-xp');
-    if(progressDayStreakEl) progressDayStreakEl.textContent = userData?.dayStreak || 0;
-    if(progressTotalXpEl) progressTotalXpEl.textContent = userData?.totalXP || 0;
+    if (progressDayStreakEl) progressDayStreakEl.textContent = userData?.dayStreak || 0;
+    if (progressTotalXpEl) progressTotalXpEl.textContent = userData?.totalXP || 0;
 
 
     if (!userData || !userData.progress || Object.keys(userData.progress).length === 0) {
@@ -973,15 +1123,15 @@ function updateProgressSection(userData) {
 /**
  * Clears user-specific data from the UI, typically called on logout.
  */
- function clearUserDataUI() {
+function clearUserDataUI() {
     // Reset dashboard stats
     updateStatisticsSection(null); // Pass null for default/zero state
 
     // Clear subject cards
-    if(subjectStatsContainer) subjectStatsContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">Pro zobrazení pokroku se přihlaste.</p>';
+    if (subjectStatsContainer) subjectStatsContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">Pro zobrazení pokroku se přihlaste.</p>';
 
     // Clear progress table
-    if(progressTableBody) {
+    if (progressTableBody) {
         progressTableBody.innerHTML = '';
         const row = document.createElement('tr');
         const cell = document.createElement('td');
@@ -992,20 +1142,20 @@ function updateProgressSection(userData) {
         row.appendChild(cell);
         progressTableBody.appendChild(row);
     }
-     if (toggleFavoriteBtn) {
+    if (toggleFavoriteBtn) {
         toggleFavoriteBtn.style.display = 'none';
         toggleFavoriteBtn.disabled = true;
     }
 
     // Reset test section if needed (might happen automatically on navigation)
-    if(testContainer) testContainer.innerHTML = '';
-    if(testContainer) testContainer.style.display = 'none';
-    if(subjectSelect) subjectSelect.value = '';
-    if(topicSelect) topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
-    if(topicSelect) topicSelect.disabled = true;
-    if(generateTestBtn) generateTestBtn.disabled = true;
+    if (testContainer) testContainer.innerHTML = '';
+    if (testContainer) testContainer.style.display = 'none';
+    if (subjectSelect) subjectSelect.value = '';
+    if (topicSelect) topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
+    if (topicSelect) topicSelect.disabled = true;
+    if (generateTestBtn) generateTestBtn.disabled = true;
 
-     // Calendar will be regenerated by auth listener with empty data
+    // Calendar will be regenerated by auth listener with empty data
 }
 
 function parseCSV(csvText, subject, topic) {
@@ -1032,11 +1182,11 @@ function parseCSV(csvText, subject, topic) {
             const correctAnswer = values[1];
             const options = values.slice(2).filter(opt => opt); // Get options (from index 2 onwards), filter out empty ones
 
-             // Ensure we have at least a few options + the correct one makes sense
-             if (options.length < 1) {
+            // Ensure we have at least a few options + the correct one makes sense
+            if (options.length < 1) {
                 console.warn(`parseCSV: Question "${questionText}" has no options. Skipping.`);
                 continue;
-             }
+            }
 
 
             const question = {
@@ -1047,7 +1197,7 @@ function parseCSV(csvText, subject, topic) {
             };
             questions.push(question);
         } else {
-             console.warn(`parseCSV: Skipping invalid line ${i+1} in ${subject} - ${topic}:`, lines[i]);
+            console.warn(`parseCSV: Skipping invalid line ${i + 1} in ${subject} - ${topic}:`, lines[i]);
         }
     }
 
@@ -1056,7 +1206,7 @@ function parseCSV(csvText, subject, topic) {
         console.warn(`parseCSV: Subject "${subject}" not found in data structure. Creating.`);
         data[subject] = {};
     }
-     if (!data[subject][topic]) {
+    if (!data[subject][topic]) {
         data[subject][topic] = []; // Initialize if topic doesn't exist (shouldn't happen with predefined structure)
     }
     data[subject][topic] = questions;
@@ -1107,17 +1257,17 @@ function generateTest() {
                 questionDiv.dataset.questionId = q.id;
                 questionDiv.dataset.questionType = q.type;
                 if (q.correctAnswer) {
-                     // Store correct answer, lowercased for free text
+                    // Store correct answer, lowercased for free text
                     questionDiv.dataset.correct = (q.type === 'free_text') ? q.correctAnswer.toLowerCase() : q.correctAnswer;
                 }
                 if (q.correctAnswers) {
                     // Store array of multiple correct answers (stringified)
                     questionDiv.dataset.correct = JSON.stringify(q.correctAnswers.sort()); // Sort for consistent comparison
                 }
-                 // Handle conditional 'vypravec' separately for correct answer storage
-                 if (q.type === 'conditional_mc_single' && q.correctBasedOn && correctDruh) {
+                // Handle conditional 'vypravec' separately for correct answer storage
+                if (q.type === 'conditional_mc_single' && q.correctBasedOn && correctDruh) {
                     questionDiv.dataset.correct = q.correctBasedOn[correctDruh] || "CHYBA_V_DATECH";
-                 }
+                }
 
 
                 const questionTextDiv = document.createElement('div');
@@ -1133,22 +1283,22 @@ function generateTest() {
                     case 'mc_single':
                     case 'conditional_mc_single': // Treat conditional like single MC for generation
                         let optionsToShow = q.options;
-                         // Determine options for conditional vypravec based on the CORRECT druh
-                         if (q.type === 'conditional_mc_single') {
-                             if (q.optionsBasedOn && correctDruh) {
-                                 optionsToShow = q.optionsBasedOn[correctDruh] || [];
-                             } else {
-                                 optionsToShow = []; // Or show an error/placeholder
-                                 console.error(`Missing options for conditional question ${q.id} based on druh ${correctDruh}`);
-                             }
-                         }
+                        // Determine options for conditional vypravec based on the CORRECT druh
+                        if (q.type === 'conditional_mc_single') {
+                            if (q.optionsBasedOn && correctDruh) {
+                                optionsToShow = q.optionsBasedOn[correctDruh] || [];
+                            } else {
+                                optionsToShow = []; // Or show an error/placeholder
+                                console.error(`Missing options for conditional question ${q.id} based on druh ${correctDruh}`);
+                            }
+                        }
                         if (!optionsToShow || optionsToShow.length === 0) {
                             optionsDiv.textContent = "Chyba: Možnosti nebyly nalezeny.";
                         } else {
-                             // Shuffle options unless it's conditional with only one possibility
+                            // Shuffle options unless it's conditional with only one possibility
                             const shuffledOptions = (q.type === 'conditional_mc_single' && optionsToShow.length <= 1)
-                                                    ? optionsToShow
-                                                    : shuffleArray([...optionsToShow]);
+                                ? optionsToShow
+                                : shuffleArray([...optionsToShow]);
 
                             shuffledOptions.forEach(optionText => {
                                 const label = document.createElement('label');
@@ -1174,9 +1324,9 @@ function generateTest() {
                         break;
 
                     case 'mc_multiple':
-                         if (!q.options || q.options.length === 0) {
+                        if (!q.options || q.options.length === 0) {
                             optionsDiv.textContent = "Chyba: Možnosti nebyly nalezeny.";
-                         } else {
+                        } else {
                             const shuffledOptions = shuffleArray([...q.options]);
                             shuffledOptions.forEach(optionText => {
                                 const label = document.createElement('label');
@@ -1189,7 +1339,7 @@ function generateTest() {
                                 label.appendChild(document.createTextNode(` ${optionText}`));
                                 optionsDiv.appendChild(label);
                             });
-                         }
+                        }
                         break;
 
                     default:
@@ -1207,98 +1357,98 @@ function generateTest() {
             const questionsPerStandardTest = 10; // Keep standard number
 
             if (topic === "Souhrnné opakování") {
-            console.log(`Generating summary test for ${subject}`);
-            const otherTopics = Object.keys(data[subject] || {}).filter(t => t !== "Souhrnné opakování");
+                console.log(`Generating summary test for ${subject}`);
+                const otherTopics = Object.keys(data[subject] || {}).filter(t => t !== "Souhrnné opakování");
 
-            if (otherTopics.length === 0) {
-                throw new Error("Nebyly nalezeny žádné okruhy (CSV) pro souhrnný test.");
-            }
-
-            for (const otherTopic of otherTopics) {
-                const questionsFromTopic = data[subject]?.[otherTopic];
-                if (questionsFromTopic && Array.isArray(questionsFromTopic) && questionsFromTopic.length > 0) {
-                    const randomQuestions = getRandomQuestions(questionsFromTopic, questionsPerTopicSummary);
-                    testQuestions.push(...randomQuestions);
-                } else {
-                     console.warn(`No CSV questions found for ${subject} - ${otherTopic} in summary`);
+                if (otherTopics.length === 0) {
+                    throw new Error("Nebyly nalezeny žádné okruhy (CSV) pro souhrnný test.");
                 }
+
+                for (const otherTopic of otherTopics) {
+                    const questionsFromTopic = data[subject]?.[otherTopic];
+                    if (questionsFromTopic && Array.isArray(questionsFromTopic) && questionsFromTopic.length > 0) {
+                        const randomQuestions = getRandomQuestions(questionsFromTopic, questionsPerTopicSummary);
+                        testQuestions.push(...randomQuestions);
+                    } else {
+                        console.warn(`No CSV questions found for ${subject} - ${otherTopic} in summary`);
+                    }
+                }
+                shuffleArray(testQuestions);
+
+            } else {
+                // Standard topic test (CSV)
+                console.log(`Generating standard test for ${subject} - ${topic}`);
+                const availableQuestions = data[subject]?.[topic];
+
+                if (!availableQuestions || !Array.isArray(availableQuestions) || availableQuestions.length === 0) {
+                    throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky (CSV).`);
+                }
+                testQuestions = getRandomQuestions(availableQuestions, questionsPerStandardTest);
             }
-            shuffleArray(testQuestions);
 
-       } else {
-           // Standard topic test (CSV)
-           console.log(`Generating standard test for ${subject} - ${topic}`);
-           const availableQuestions = data[subject]?.[topic];
+            if (testQuestions.length === 0) {
+                throw new Error("Nepodařilo se vygenerovat žádné otázky pro tento test.");
+            }
 
-           if (!availableQuestions || !Array.isArray(availableQuestions) || availableQuestions.length === 0) {
-               throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky (CSV).`);
-           }
-           testQuestions = getRandomQuestions(availableQuestions, questionsPerStandardTest);
-       }
+            console.log(`Generated ${testQuestions.length} standard questions.`);
 
-        if (testQuestions.length === 0) {
-             throw new Error("Nepodařilo se vygenerovat žádné otázky pro tento test.");
+            // --- Display Standard Questions ---
+            testQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('question', 'question-type-standard-mc'); // Add standard type class
+                questionDiv.dataset.questionType = 'standard-mc';
+
+                const questionText = document.createElement('div');
+                questionText.classList.add('question-text');
+                questionText.textContent = `${index + 1}. ${q.text}`;
+                questionDiv.appendChild(questionText);
+
+                const allOptions = [...q.options, q.correctAnswer];
+                shuffleArray(allOptions);
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.classList.add('question-options');
+
+                allOptions.forEach((optionText) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.classList.add('option');
+                    optionDiv.textContent = optionText;
+                    optionDiv.dataset.correct = (optionText === q.correctAnswer); // Set data attribute
+
+                    optionDiv.addEventListener('click', () => {
+                        questionDiv.querySelectorAll('.option.selected').forEach(sel => {
+                            if (sel !== optionDiv) sel.classList.remove('selected');
+                        });
+                        optionDiv.classList.toggle('selected');
+                    });
+
+                    optionsDiv.appendChild(optionDiv);
+                });
+
+                questionDiv.appendChild(optionsDiv);
+                testContainer.appendChild(questionDiv);
+            });
+        } // End of else (standard test)
+
+        // --- Add Submit Button (Common for both test types) ---
+        if (submitBtn && submitBtn.parentNode) {
+            submitBtn.remove();
         }
+        submitBtn = document.createElement('button');
+        submitBtn.classList.add('btn', 'btn-primary', 'submit-test-btn'); // Add class
+        submitBtn.style.marginTop = '2rem';
+        submitBtn.textContent = 'Odeslat odpovědi';
+        submitBtn.addEventListener('click', () => evaluateTest(db));
+        testContainer.appendChild(submitBtn);
 
-       console.log(`Generated ${testQuestions.length} standard questions.`);
+        testContainer.style.display = 'block'; // Show the generated test
 
-       // --- Display Standard Questions ---
-       testQuestions.forEach((q, index) => {
-           const questionDiv = document.createElement('div');
-           questionDiv.classList.add('question', 'question-type-standard-mc'); // Add standard type class
-           questionDiv.dataset.questionType = 'standard-mc';
-
-           const questionText = document.createElement('div');
-           questionText.classList.add('question-text');
-           questionText.textContent = `${index + 1}. ${q.text}`;
-           questionDiv.appendChild(questionText);
-
-           const allOptions = [...q.options, q.correctAnswer];
-           shuffleArray(allOptions);
-
-           const optionsDiv = document.createElement('div');
-           optionsDiv.classList.add('question-options');
-
-           allOptions.forEach((optionText) => {
-               const optionDiv = document.createElement('div');
-               optionDiv.classList.add('option');
-               optionDiv.textContent = optionText;
-               optionDiv.dataset.correct = (optionText === q.correctAnswer); // Set data attribute
-
-               optionDiv.addEventListener('click', () => {
-                   questionDiv.querySelectorAll('.option.selected').forEach(sel => {
-                       if(sel !== optionDiv) sel.classList.remove('selected');
-                   });
-                   optionDiv.classList.toggle('selected');
-               });
-
-               optionsDiv.appendChild(optionDiv);
-           });
-
-           questionDiv.appendChild(optionsDiv);
-           testContainer.appendChild(questionDiv);
-       });
-   } // End of else (standard test)
-
-   // --- Add Submit Button (Common for both test types) ---
-   if (submitBtn && submitBtn.parentNode) {
-       submitBtn.remove();
-   }
-   submitBtn = document.createElement('button');
-   submitBtn.classList.add('btn', 'btn-primary', 'submit-test-btn'); // Add class
-   submitBtn.style.marginTop = '2rem';
-   submitBtn.textContent = 'Odeslat odpovědi';
-   submitBtn.addEventListener('click', () => evaluateTest(db));
-   testContainer.appendChild(submitBtn);
-
-   testContainer.style.display = 'block'; // Show the generated test
-
-} catch (error) {
-   console.error("Error generating test:", error);
-   noQuestionsMessage.textContent = error.message || "Nepodařilo se vygenerovat test.";
-   noQuestionsMessage.style.display = 'block';
-   testContainer.style.display = 'none';
-}
+    } catch (error) {
+        console.error("Error generating test:", error);
+        noQuestionsMessage.textContent = error.message || "Nepodařilo se vygenerovat test.";
+        noQuestionsMessage.style.display = 'block';
+        testContainer.style.display = 'none';
+    }
 }
 
 /**
@@ -1315,11 +1465,11 @@ async function evaluateTest(db) {
 
     if (total === 0) {
         console.warn("evaluateTest called with no questions rendered.");
-        return; 
+        return;
     }
     const submitButton = document.querySelector('.submit-test-btn');
     if (submitButton) submitButton.disabled = true;
-    
+
 
     // --- Evaluate Answers and Update Option Styles ---
     questionElements.forEach((questionElement, qIndex) => {
@@ -1355,7 +1505,7 @@ async function evaluateTest(db) {
                     }
                 });
                 if (!selectedRadio) allCorrect = false; // Nothing selected
-                 else if (!isQuestionCorrect) allCorrect = false; // Incorrect selected
+                else if (!isQuestionCorrect) allCorrect = false; // Incorrect selected
                 break;
 
             case 'free_text':
@@ -1372,11 +1522,11 @@ async function evaluateTest(db) {
                     // Optionally show the correct answer
                     const correctAnswerDisplay = document.createElement('span');
                     correctAnswerDisplay.classList.add('correct-answer-display');
-                     // Get original case from data if needed, or just use the lowercased one
+                    // Get original case from data if needed, or just use the lowercased one
                     correctAnswerDisplay.textContent = ` (Správně: ${correctAnswer})`;
                     input.parentNode.appendChild(correctAnswerDisplay);
                 }
-                 if (!input.value.trim()) allCorrect = false; // Blank answer
+                if (!input.value.trim()) allCorrect = false; // Blank answer
                 break;
 
             case 'mc_multiple':
@@ -1385,8 +1535,8 @@ async function evaluateTest(db) {
                 const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value).sort(); // Get values and sort
 
                 // Exact match required (same items, same count)
-                 isQuestionCorrect = selectedValues.length === correctAnswersArray.length &&
-                                  selectedValues.every((value, index) => value === correctAnswersArray[index]);
+                isQuestionCorrect = selectedValues.length === correctAnswersArray.length &&
+                    selectedValues.every((value, index) => value === correctAnswersArray[index]);
 
                 // Highlight labels
                 questionElement.querySelectorAll('.option-label').forEach(label => {
@@ -1394,7 +1544,7 @@ async function evaluateTest(db) {
                     const isActuallyCorrect = correctAnswersArray.includes(checkbox.value);
 
                     if (isActuallyCorrect) {
-                         label.classList.add('correct'); // Highlight all correct options
+                        label.classList.add('correct'); // Highlight all correct options
                     }
 
                     if (checkbox.checked) {
@@ -1403,7 +1553,7 @@ async function evaluateTest(db) {
                         }
                     } else {
                         if (isActuallyCorrect) {
-                             // label.classList.add('missed'); // Optional: Style for missed correct answers
+                            // label.classList.add('missed'); // Optional: Style for missed correct answers
                         }
                     }
                 });
@@ -1413,25 +1563,25 @@ async function evaluateTest(db) {
                 }
                 break;
 
-             case 'standard-mc': // Handle the original CSV multiple choice
-                 const selectedOptionDiv = questionElement.querySelector('.option.selected');
-                 questionElement.querySelectorAll('.option').forEach(option => {
-                     option.style.pointerEvents = 'none';
-                     const isCorrect = option.dataset.correct === 'true';
-                     if (isCorrect) {
-                         option.classList.add('correct');
-                     }
-                     if (option.classList.contains('selected')) {
-                         if (isCorrect) {
-                             isQuestionCorrect = true;
-                         } else {
-                             option.classList.add('incorrect');
-                         }
-                     }
-                 });
-                  if (!selectedOptionDiv) allCorrect = false; // Nothing selected
-                  else if (!isQuestionCorrect) allCorrect = false; // Incorrect selected
-                 break;
+            case 'standard-mc': // Handle the original CSV multiple choice
+                const selectedOptionDiv = questionElement.querySelector('.option.selected');
+                questionElement.querySelectorAll('.option').forEach(option => {
+                    option.style.pointerEvents = 'none';
+                    const isCorrect = option.dataset.correct === 'true';
+                    if (isCorrect) {
+                        option.classList.add('correct');
+                    }
+                    if (option.classList.contains('selected')) {
+                        if (isCorrect) {
+                            isQuestionCorrect = true;
+                        } else {
+                            option.classList.add('incorrect');
+                        }
+                    }
+                });
+                if (!selectedOptionDiv) allCorrect = false; // Nothing selected
+                else if (!isQuestionCorrect) allCorrect = false; // Incorrect selected
+                break;
 
 
             default:
@@ -1442,7 +1592,7 @@ async function evaluateTest(db) {
         if (isQuestionCorrect) {
             correct++;
         }
-        console.log(`Question ${qIndex+1} (${questionType}): ${isQuestionCorrect ? 'Correct' : 'Incorrect'}`);
+        console.log(`Question ${qIndex + 1} (${questionType}): ${isQuestionCorrect ? 'Correct' : 'Incorrect'}`);
 
     }); // End forEach questionElement
 
@@ -1473,11 +1623,11 @@ async function evaluateTest(db) {
         return;
     }
 
-     // Ensure structures exist
-     userData.progress = userData.progress || {};
-     userData.achievements = userData.achievements || { /* Initialize */ };
-     userData.activity = userData.activity || {};
-     userData.completedTopics = new Set(userData.completedTopics || []); // Use Set
+    // Ensure structures exist
+    userData.progress = userData.progress || {};
+    userData.achievements = userData.achievements || { /* Initialize */ };
+    userData.activity = userData.activity || {};
+    userData.completedTopics = new Set(userData.completedTopics || []); // Use Set
 
     // --- Update Core Stats ---
     userData.testsToday = (userData.testsToday || 0) + 1;
@@ -1502,17 +1652,17 @@ async function evaluateTest(db) {
 
     // --- Update Average Success Rate (Recalculate) ---
     // (Logic remains the same as before)
-     let totalSuccessSum = 0;
-     let numSubjectsWithProgress = 0;
-     for (const subjKey in userData.progress) {
-         if (userData.progress[subjKey]?.testsCompleted > 0) {
-             totalSuccessSum += (userData.progress[subjKey].successRate || 0);
-             numSubjectsWithProgress++;
-         }
-     }
-     userData.averageSuccessRate = numSubjectsWithProgress > 0
-         ? Math.round(totalSuccessSum / numSubjectsWithProgress)
-         : 0;
+    let totalSuccessSum = 0;
+    let numSubjectsWithProgress = 0;
+    for (const subjKey in userData.progress) {
+        if (userData.progress[subjKey]?.testsCompleted > 0) {
+            totalSuccessSum += (userData.progress[subjKey].successRate || 0);
+            numSubjectsWithProgress++;
+        }
+    }
+    userData.averageSuccessRate = numSubjectsWithProgress > 0
+        ? Math.round(totalSuccessSum / numSubjectsWithProgress)
+        : 0;
 
 
     // --- Update Streaks & Activity Log ---
@@ -1528,17 +1678,17 @@ async function evaluateTest(db) {
         yesterday.setDate(today.getDate() - 1);
         const yesterdayString = yesterday.toDateString();
         if (userData.lastCompletedTestDate !== todayDateString) {
-             if (userData.lastCompletedTestDate === yesterdayString) {
+            if (userData.lastCompletedTestDate === yesterdayString) {
                 userData.dayStreak = (userData.dayStreak || 0) + 1;
-             } else {
+            } else {
                 userData.dayStreak = 1;
-             }
-             userData.lastCompletedTestDate = todayDateString;
+            }
+            userData.lastCompletedTestDate = todayDateString;
         }
     } else {
-         if (userData.lastCompletedTestDate !== todayDateString) {
+        if (userData.lastCompletedTestDate !== todayDateString) {
             userData.dayStreak = 0;
-         }
+        }
     }
 
     userData.activity[todayYear] = userData.activity[todayYear] || {};
@@ -1578,17 +1728,17 @@ async function evaluateTest(db) {
     // --- Add Back Button ---
     addBackButtonToTestContainer(); // Reuse existing function
 
-} 
+}
 
 
 /** Adds the 'Back to Test Selection' button if not already present */
 function addBackButtonToTestContainer() {
     if (!testContainer) return;
-     // Remove old submit button if it exists
-     if (submitBtn && submitBtn.parentNode) {
+    // Remove old submit button if it exists
+    if (submitBtn && submitBtn.parentNode) {
         submitBtn.remove();
         submitBtn = null; // Clear reference
-     }
+    }
     // Check if back button already exists
     let existingBackBtn = testContainer.querySelector('#dynamic-back-btn');
     if (!existingBackBtn) {
@@ -1606,21 +1756,21 @@ function addBackButtonToTestContainer() {
 
 /** Logic for the 'Back to Test Selection' button */
 function handleBackToTestSelection() {
-     if(modal) modal.classList.remove('show'); // Hide modal if shown
-     if(testContainer) {
-         testContainer.innerHTML = ''; // Clear the test content
-         testContainer.style.display = 'none';
-     }
-     if(subjectSelect) subjectSelect.value = "";
-     if(topicSelect) {
-         topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
-         topicSelect.disabled = true;
-     }
-     if(generateTestBtn) {
-         generateTestBtn.disabled = true; // Disable until subject/topic selected
-         generateTestBtn.style.display = 'inline-block'; // Ensure visible
-     }
-     showTestSection(); // Show the test selection interface
+    if (modal) modal.classList.remove('show'); // Hide modal if shown
+    if (testContainer) {
+        testContainer.innerHTML = ''; // Clear the test content
+        testContainer.style.display = 'none';
+    }
+    if (subjectSelect) subjectSelect.value = "";
+    if (topicSelect) {
+        topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
+        topicSelect.disabled = true;
+    }
+    if (generateTestBtn) {
+        generateTestBtn.disabled = true; // Disable until subject/topic selected
+        generateTestBtn.style.display = 'inline-block'; // Ensure visible
+    }
+    showTestSection(); // Show the test selection interface
 }
 
 
@@ -1868,17 +2018,17 @@ function populateTopics(subject, userData) { // Pass userData
             toggleFavoriteBtn.style.display = 'inline-block';
             // Enable button only if a valid topic is later selected
         } else {
-             // Standard alphabetical sort for other subjects
-             topics.sort((a, b) => a.localeCompare(b, 'cs'));
+            // Standard alphabetical sort for other subjects
+            topics.sort((a, b) => a.localeCompare(b, 'cs'));
         }
 
 
         // --- Populate Options ---
         topics.forEach(topic => {
-             // Skip summary topic if it exists in config but shouldn't be selectable here
-             if (topic === "Souhrnné opakování" && dataFileConfig[subject]?.[topic] === null) {
-                 return;
-             }
+            // Skip summary topic if it exists in config but shouldn't be selectable here
+            if (topic === "Souhrnné opakování" && dataFileConfig[subject]?.[topic] === null) {
+                return;
+            }
 
             const option = document.createElement('option');
             option.value = topic;
@@ -1898,11 +2048,11 @@ function populateTopics(subject, userData) { // Pass userData
         // Restore previous selection if it still exists
         if (topics.includes(currentTopicValue)) {
             topicSelect.value = currentTopicValue;
-             // Enable buttons if a valid topic is selected
-             generateTestBtn.disabled = false;
-             if (subject === "Čeština") {
-                 toggleFavoriteBtn.disabled = false;
-             }
+            // Enable buttons if a valid topic is selected
+            generateTestBtn.disabled = false;
+            if (subject === "Čeština") {
+                toggleFavoriteBtn.disabled = false;
+            }
         } else {
             // If previous selection is gone, ensure buttons are disabled
             generateTestBtn.disabled = true;
@@ -1915,7 +2065,7 @@ function populateTopics(subject, userData) { // Pass userData
         topicSelect.disabled = true;
         generateTestBtn.disabled = true;
         toggleFavoriteBtn.style.display = 'none';
-         toggleFavoriteBtn.disabled = true;
+        toggleFavoriteBtn.disabled = true;
     }
 }
 async function handleToggleFavorite() {
@@ -1982,15 +2132,15 @@ function setupEventListeners() {
         // Data is updated automatically if needed when loading user data
     });
     document.getElementById('test-link')?.addEventListener('click', (e) => {
-         e.preventDefault();
-         showTestSection();
+        e.preventDefault();
+        showTestSection();
     });
     document.getElementById('progress-link')?.addEventListener('click', (e) => {
         e.preventDefault();
         showProgressSection();
         // Data should be up-to-date from previous actions or load
         if (currentUser) {
-             getUserData(currentUser, db).then(userData => updateProgressSection(userData));
+            getUserData(currentUser, db).then(userData => updateProgressSection(userData));
         }
     });
     themeToggleButton?.addEventListener('click', toggleTheme);
@@ -2006,41 +2156,271 @@ function setupEventListeners() {
     });
 
     // Login/Register Buttons
-    loginBtn?.addEventListener('click', () => loginUserHandler(auth)); // Use handler
-    registerBtn?.addEventListener('click', () => registerUserHandler(auth)); // Use handler
+    // Modify the event listener setup for registerBtn
+registerBtn?.addEventListener('click', () => {
+    if (loginForm.classList.contains('register-mode')) {
+        // Already in register mode, perform registration
+        registerUserHandler(auth);
+    } else {
+        // Switch to register mode
+        loginForm.classList.add('register-mode');
+        loginMessage.textContent = ''; // Clear login messages
+        registerBtn.textContent = 'Dokončit registraci'; // Change button text
+        if(loginBtn) loginBtn.style.display = 'none'; // Hide login button
+    }
+});
+ // Add back listener for login button to potentially clear register mode if user clicks login again
+loginBtn?.addEventListener('click', () => {
+    if (loginForm.classList.contains('register-mode')) {
+         // If user clicks Login while in register mode, switch back
+         loginForm.classList.remove('register-mode');
+         registerBtn.textContent = 'Registrovat se';
+         if(loginBtn) loginBtn.style.display = 'block';
+         loginMessage.textContent = ''; // Clear messages
+    } else {
+         // Perform login
+         loginUserHandler(auth);
+    }
+});
+profileLink?.addEventListener('click', (e) => {
+    e.preventDefault();
+    showProfileSection();
+});
+nicknameChangeForm?.addEventListener('submit', handleNicknameChange);
+changePasswordBtn?.addEventListener('click', handleChangePassword);
+deleteAccountBtn?.addEventListener('click', handleDeleteAccount); // Add delete listener
+function showProfileSection() {
+    if(loginSection) loginSection.style.display = 'none';
+    if(dashboardSection) dashboardSection.style.display = 'none';
+    if(testSection) testSection.style.display = 'none';
+    if(progressSection) progressSection.style.display = 'none';
+    if(profileSection) profileSection.style.display = 'block';
+
+    // Load profile data when shown
+    if (currentUser) {
+        loadProfileData();
+    } else {
+        // Clear fields if somehow accessed while logged out
+        if(profileEmail) profileEmail.textContent = 'N/A';
+        if(profileNickname) profileNickname.textContent = 'N/A';
+        if(profileJoined) profileJoined.textContent = 'N/A';
+    }
+}
+async function loadProfileData() {
+    if (!currentUser || !auth.currentUser || !profileEmail || !profileNickname || !profileJoined) return;
+
+    profileEmail.textContent = auth.currentUser.email || 'N/A';
+
+    try {
+        const userData = await getUserData(currentUser, db);
+        if (userData) {
+            profileNickname.textContent = userData.nickname || 'Nenastaveno';
+
+            if (userData.createdAt && userData.createdAt.toDate) {
+                // Format the timestamp
+                const joinDate = userData.createdAt.toDate();
+                profileJoined.textContent = joinDate.toLocaleDateString('cs-CZ', {
+                    day: 'numeric', month: 'long', year: 'numeric'
+                });
+            } else {
+                profileJoined.textContent = 'Neznámé';
+            }
+            // Pre-fill nickname change input? Optional.
+            // if(newNicknameInput) newNicknameInput.value = userData.nickname || '';
+        } else {
+             profileNickname.textContent = 'Chyba';
+             profileJoined.textContent = 'Chyba';
+        }
+    } catch (error) {
+        console.error("Error loading profile data:", error);
+        profileNickname.textContent = 'Chyba načítání';
+        profileJoined.textContent = 'Chyba načítání';
+    }
+}
+async function handleNicknameChange(event) {
+    event.preventDefault(); // Prevent form submission
+    if (!currentUser || !newNicknameInput || !nicknameChangeMessage || !changeNicknameBtn) return;
+
+    const newNickname = newNicknameInput.value.trim();
+    nicknameChangeMessage.textContent = ''; // Clear previous message
+    nicknameChangeMessage.className = ''; // Clear success/error class
+
+    // Validation
+    const nicknamePattern = /^[a-zA-Z0-9_]{3,15}$/;
+    if (!nicknamePattern.test(newNickname)) {
+        nicknameChangeMessage.textContent = "Nová přezdívka má neplatný formát.";
+        nicknameChangeMessage.classList.add('error');
+        return;
+    }
+
+    changeNicknameBtn.disabled = true;
+    nicknameChangeMessage.textContent = 'Ověřuji a ukládám...';
+
+    try {
+        const userData = await getUserData(currentUser, db);
+        const oldNickname = userData?.nickname;
+         const oldNicknameLower = oldNickname?.toLowerCase();
+         const newNicknameLower = newNickname.toLowerCase();
+
+
+        if (oldNicknameLower === newNicknameLower) {
+            nicknameChangeMessage.textContent = "Nová přezdívka je stejná jako stará.";
+            changeNicknameBtn.disabled = false;
+            return;
+        }
+
+        // Check uniqueness ONLY if it's different
+        const isUnique = await checkNicknameUniqueness(newNickname);
+        if (!isUnique) {
+            nicknameChangeMessage.textContent = "Tato přezdívka je již obsazena.";
+            nicknameChangeMessage.classList.add('error');
+            changeNicknameBtn.disabled = false;
+            return;
+        }
+
+        // Transaction to update user doc and nickname collection
+        const userDocRef = db.collection("users").doc(currentUser);
+        const newNicknameDocRef = db.collection("nicknames").doc(newNicknameLower);
+         const oldNicknameDocRef = oldNickname ? db.collection("nicknames").doc(oldNicknameLower) : null;
+
+
+        await db.runTransaction(async (transaction) => {
+            // 1. Delete old nickname reservation (if exists)
+            if (oldNicknameDocRef) {
+                transaction.delete(oldNicknameDocRef);
+            }
+            // 2. Create new nickname reservation
+            transaction.set(newNicknameDocRef, { userId: currentUser });
+            // 3. Update nickname in user document
+            transaction.update(userDocRef, { nickname: newNickname });
+        });
+
+        nicknameChangeMessage.textContent = "Přezdívka úspěšně změněna!";
+        nicknameChangeMessage.classList.add('success');
+         if(profileNickname) profileNickname.textContent = newNickname; // Update UI immediately
+        newNicknameInput.value = ''; // Clear input
+
+
+    } catch (error) {
+        console.error("Error changing nickname:", error);
+        nicknameChangeMessage.textContent = "Chyba při změně přezdívky.";
+        nicknameChangeMessage.classList.add('error');
+    } finally {
+        changeNicknameBtn.disabled = false;
+    }
+}
+async function handleChangePassword() {
+    if (!auth || !auth.currentUser || !passwordChangeMessage || !changePasswordBtn) return;
+
+    const email = auth.currentUser.email;
+    passwordChangeMessage.textContent = '';
+    passwordChangeMessage.className = '';
+    changePasswordBtn.disabled = true;
+
+    try {
+        await auth.sendPasswordResetEmail(email);
+        passwordChangeMessage.textContent = `Odkaz pro reset hesla byl zaslán na ${email}. Zkontrolujte si poštu (i spam).`;
+        passwordChangeMessage.classList.add('success');
+    } catch (error) {
+        console.error("Error sending password reset email:", error);
+        passwordChangeMessage.textContent = "Chyba při zasílání emailu: " + mapAuthError(error);
+         passwordChangeMessage.classList.add('error');
+         changePasswordBtn.disabled = false; // Re-enable only on error
+    }
+    // Keep button disabled on success to prevent spamming
+}
+async function handleDeleteAccount() {
+    if (!auth || !auth.currentUser || !db || !deleteAccountBtn || !deleteAccountMessage) return;
+    
+    const user = auth.currentUser;
+    const uid = user.uid;
+    const userEmail = user.email; // For confirmation message
+    
+    // --- Confirmation ---
+    const confirmation = prompt(`Opravdu chcete trvale smazat svůj účet (${userEmail})? Tato akce je nevratná! Napište "SMAZAT" pro potvrzení:`);
+    if (confirmation !== "SMAZAT") {
+    deleteAccountMessage.textContent = "Smazání účtu zrušeno.";
+    return;
+    }
+    deleteAccountBtn.disabled = true;
+deleteAccountMessage.textContent = "Mažu účet a data...";
+deleteAccountMessage.className = '';
+try {
+    // 1. Get user data to find nickname
+  const userData = await getUserData(uid, db);
+  const nickname = userData?.nickname;
+  const nicknameLower = nickname?.toLowerCase();
+
+  // 2. Delete Firestore Data (User Doc and Nickname Reservation) in Transaction
+  const userDocRef = db.collection("users").doc(uid);
+   const nicknameDocRef = nicknameLower ? db.collection("nicknames").doc(nicknameLower) : null;
+
+
+  await db.runTransaction(async (transaction) => {
+      if (nicknameDocRef) {
+           // Check if nickname doc still exists before deleting
+           const nickDoc = await transaction.get(nicknameDocRef);
+           if (nickDoc.exists) {
+               transaction.delete(nicknameDocRef);
+           }
+      }
+      // Check if user doc exists before deleting
+       const userDoc = await transaction.get(userDocRef);
+       if (userDoc.exists) {
+           transaction.delete(userDocRef);
+       }
+  });
+  console.log("Firestore data deleted for user:", uid);
+
+  // 3. Delete Firebase Auth User
+  await user.delete();
+
+  // Auth state listener will handle UI changes (logout, show login)
+  console.log("Firebase Auth user deleted successfully.");
+  alert("Váš účet byl úspěšně smazán.");
+} catch (error) {
+    console.error("Error deleting account:", error);
+    deleteAccountMessage.textContent = "Chyba při mazání účtu: " + mapAuthError(error);
+    deleteAccountMessage.classList.add('error');
+    if (error.code === 'auth/requires-recent-login') {
+    deleteAccountMessage.textContent += " Prosím, odhlaste se a znovu přihlaste, poté zkuste smazání znovu.";
+    }
+    deleteAccountBtn.disabled = false; // Re-enable on error
+    }
+    }
 
     // Test Generation Controls
-   subjectSelect?.addEventListener('change', async function () { // Make async
-    const selectedSubject = this.value;
-    let currentUserData = null;
-    if (currentUser) {
-        // Fetch fresh data when subject changes to ensure favorites are up-to-date
-        currentUserData = await getUserData(currentUser, db);
-    }
-    populateTopics(selectedSubject, currentUserData); // Pass user data
-});
+    subjectSelect?.addEventListener('change', async function () { // Make async
+        const selectedSubject = this.value;
+        let currentUserData = null;
+        if (currentUser) {
+            // Fetch fresh data when subject changes to ensure favorites are up-to-date
+            currentUserData = await getUserData(currentUser, db);
+        }
+        populateTopics(selectedSubject, currentUserData); // Pass user data
+    });
     topicSelect?.addEventListener('change', function () {
-    const isTopicSelected = !!this.value; // Check if a non-empty topic is selected
-    const isCestina = subjectSelect.value === "Čeština";
+        const isTopicSelected = !!this.value; // Check if a non-empty topic is selected
+        const isCestina = subjectSelect.value === "Čeština";
 
-    generateTestBtn.disabled = !isTopicSelected;
-    if (toggleFavoriteBtn) {
-        toggleFavoriteBtn.disabled = !(isTopicSelected && isCestina); // Enable only for selected Čeština topic
-    }
-});
+        generateTestBtn.disabled = !isTopicSelected;
+        if (toggleFavoriteBtn) {
+            toggleFavoriteBtn.disabled = !(isTopicSelected && isCestina); // Enable only for selected Čeština topic
+        }
+    });
     generateTestBtn?.addEventListener('click', generateTest);
 
     // Modal Controls
     closeModalBtn?.addEventListener('click', () => {
-        if(modal) modal.classList.remove('show');
+        if (modal) modal.classList.remove('show');
     });
     backToTestsModalBtn?.addEventListener('click', () => { // Use correct button ID
-         handleBackToTestSelection();
+        handleBackToTestSelection();
     });
     toggleFavoriteBtn?.addEventListener('click', handleToggleFavorite);
     window.addEventListener('click', (event) => { // Close modal on outside click
         if (event.target === modal) {
-            if(modal) modal.classList.remove('show');
+            if (modal) modal.classList.remove('show');
         }
     });
 
@@ -2062,4 +2442,68 @@ function setupEventListeners() {
         generateCalendar(currentYear, currentMonth, db); // Regenerate with db
     });
 }
-    
+/**
+ * Fetches top N users based on total XP from Firestore.
+ * @param {number} limit - Number of users to fetch.
+ * @returns {Promise<Array<{nickname: string, xp: number}>>}
+ */
+async function fetchLeaderboardData(limit = 10) {
+    if (!db) return [];
+    try {
+        const querySnapshot = await db.collection("users")
+            .orderBy("totalXP", "desc")
+            .limit(limit)
+            .get();
+
+        const topUsers = [];
+        querySnapshot.forEach(doc => {
+            const data = doc.data();
+            // Ensure user has a nickname and XP before adding
+            if (data.nickname && typeof data.totalXP === 'number') {
+                topUsers.push({
+                    nickname: data.nickname,
+                    xp: data.totalXP
+                });
+            }
+        });
+        return topUsers;
+    } catch (error) {
+        console.error("Error fetching leaderboard data:", error);
+        return []; // Return empty array on error
+    }
+}
+
+/**
+ * Updates the leaderboard UI in the progress section.
+ * @param {Array<{nickname: string, xp: number}>} leaderboardData
+ */
+function updateLeaderboardUI(leaderboardData) {
+    if (!leaderboardList) return;
+
+    leaderboardList.innerHTML = ''; // Clear previous entries
+
+    if (!leaderboardData || leaderboardData.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = 'Žebříček je zatím prázdný.';
+        li.style.textAlign = 'center';
+        li.style.color = '#718096';
+         li.style.listStyle = 'none';
+        leaderboardList.appendChild(li);
+        return;
+    }
+
+    leaderboardData.forEach((user, index) => {
+        const li = document.createElement('li');
+        // Create spans for better styling control
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = `${index + 1}. ${user.nickname}`;
+
+        const xpSpan = document.createElement('strong'); // Use strong for XP
+        xpSpan.textContent = `${user.xp} XP`;
+
+        li.appendChild(nameSpan);
+        li.appendChild(xpSpan);
+        leaderboardList.appendChild(li);
+    });
+}
+
