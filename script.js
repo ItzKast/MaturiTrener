@@ -571,7 +571,6 @@ async function loadUserDataFromFirestore(uid, db) {
             // Update all relevant UI sections with the fetched (and potentially reset) data           
             updateStatisticsSection(userData); // Updates top dashboard cards and progress section summaries
             updateDashboard(userData);         // Updates subject progress cards
-            updateProgressSection(userData);   // Updates the detailed progress table
             updateAchievementsUI(userData);
             await generateCalendar(currentYear, currentMonth, db);
 
@@ -903,10 +902,14 @@ function mapAuthError(error) {
 // --- UI Update & Navigation Functions ---
 
 function showLogin() {
+    if (leaderboardListenerUnsubscribe) { // Detach when leaving Profile/Stats
+        console.log("Detaching leaderboard listener when showing Login.");
+        leaderboardListenerUnsubscribe();
+        leaderboardListenerUnsubscribe = null;
+    }
     if(loginSection) loginSection.style.display = 'flex';
     if(dashboardSection) dashboardSection.style.display = 'none';
     if(testSection) testSection.style.display = 'none';
-    if(progressSection) progressSection.style.display = 'none';
     if(profileSection) profileSection.style.display = 'none';
     if(loginMessage) loginMessage.textContent = '';
     if(loginForm) {
@@ -918,53 +921,25 @@ function showLogin() {
 }
 
 function showDashboard() {
+    if (leaderboardListenerUnsubscribe) { // Detach when leaving Profile/Stats
+        console.log("Detaching leaderboard listener when showing Dashboard.");
+        leaderboardListenerUnsubscribe();
+        leaderboardListenerUnsubscribe = null;
+    }
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'block';
     if (testSection) testSection.style.display = 'none';
-    if (progressSection) progressSection.style.display = 'none';
 }
 
 function showTestSection() {
+    if (leaderboardListenerUnsubscribe) { // Detach when leaving Profile/Stats
+        console.log("Detaching leaderboard listener when showing Test Section.");
+        leaderboardListenerUnsubscribe();
+        leaderboardListenerUnsubscribe = null;
+    }
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'none';
     if (testSection) testSection.style.display = 'block';
-    if (progressSection) progressSection.style.display = 'none';
-}
-
-async function showProgressSection() { // Make async
-    if(loginSection) loginSection.style.display = 'none';
-    if(dashboardSection) dashboardSection.style.display = 'none';
-    if(testSection) testSection.style.display = 'none';
-    if(profileSection) profileSection.style.display = 'none'; // Hide profile
-    if(progressSection) progressSection.style.display = 'block';
-
-    if (currentUser) {
-       try {
-            // Fetch user data for stats AND leaderboard data concurrently
-            const [userData, leaderboardData] = await Promise.all([
-                getUserData(currentUser, db),
-                fetchLeaderboardData(10) // Fetch top 10
-            ]);
-
-            // Update user stats sections
-            updateProgressSection(userData); // Update table/summary stats
-            updateAchievementsUI(userData); // Update achievements (already called here?)
-
-            // Update the leaderboard UI
-            updateLeaderboardUI(leaderboardData);
-
-       } catch (error) {
-            console.error("Error loading progress section data:", error);
-            // Handle errors, maybe show error messages in UI parts
-             if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba načítání žebříčku.</li>';
-       }
-
-    } else {
-        // Clear progress table and achievements if user logs out
-        updateProgressSection(null); // Clear table
-        updateAchievementsUI(null);  // Clear achievements
-        updateLeaderboardUI([]); // Clear leaderboard
-    }
 }
 
 /**
@@ -2144,7 +2119,7 @@ function setupEventListeners() {
     });
     document.getElementById('progress-link')?.addEventListener('click', (e) => {
         e.preventDefault();
-        showProgressSection();
+        showProfileSection();
         // Data should be up-to-date from previous actions or load
         if (currentUser) {
             getUserData(currentUser, db).then(userData => updateProgressSection(userData));
@@ -2196,21 +2171,78 @@ profileLink?.addEventListener('click', (e) => {
 nicknameChangeForm?.addEventListener('submit', handleNicknameChange);
 changePasswordBtn?.addEventListener('click', handleChangePassword);
 deleteAccountBtn?.addEventListener('click', handleDeleteAccount); // Add delete listener
-function showProfileSection() {
+async function showProfileSection() {
+    // 1. Hide other sections
     if(loginSection) loginSection.style.display = 'none';
     if(dashboardSection) dashboardSection.style.display = 'none';
     if(testSection) testSection.style.display = 'none';
-    if(progressSection) progressSection.style.display = 'none';
-    if(profileSection) profileSection.style.display = 'block';
+    if(profileSection) profileSection.style.display = 'block'; // Show this section
 
-    // Load profile data when shown
+    // 2. Detach previous listener if navigating away from another section
+    // (This check might already be in other show... functions)
+    if (leaderboardListenerUnsubscribe) {
+        console.log("Detaching leaderboard listener when showing Profile Section (safety check).");
+        leaderboardListenerUnsubscribe();
+        leaderboardListenerUnsubscribe = null;
+    }
+
+    // 3. Load Data if User is Logged In
     if (currentUser) {
-        loadProfileData();
+        console.log("Loading data for Profile/Stats section...");
+        try {
+            // Fetch user data for profile info, stats table, achievements
+            const userData = await getUserData(currentUser, db);
+
+            // Populate Profile Info parts
+            loadProfileData(); // Existing function to populate email/nickname/joined
+
+            // Populate Stats/Achievements parts (previously done by showProgressSection)
+            updateProgressSection(userData); // Update table/summary stats (Streak/XP)
+            updateAchievementsUI(userData); // Update achievements list
+
+            // Attach Real-time Leaderboard Listener (logic moved from showProgressSection)
+            if (leaderboardListenerUnsubscribe) { // Double check just in case
+                 leaderboardListenerUnsubscribe();
+                 leaderboardListenerUnsubscribe = null;
+            }
+            console.log("Attaching real-time leaderboard listener for Profile/Stats section...");
+            const query = db.collection("users")
+                            .orderBy("weeklyXP", "desc")
+                            .limit(10);
+
+            leaderboardListenerUnsubscribe = query.onSnapshot(querySnapshot => {
+                console.log("Leaderboard snapshot received (Profile/Stats).");
+                const topUsers = [];
+                querySnapshot.forEach(doc => { /* ... extract user data ... */ });
+                updateLeaderboardUI(topUsers);
+            }, error => {
+                console.error("Error fetching leaderboard snapshot (Profile/Stats):", error);
+                if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba live žebříčku.</li>';
+            });
+
+        } catch (error) {
+            console.error("Error loading profile/stats section data:", error);
+            // Clear relevant UI parts on error
+            if(profileEmail) profileEmail.textContent = 'Chyba';
+            if(profileNickname) profileNickname.textContent = 'Chyba';
+            if(profileJoined) profileJoined.textContent = 'Chyba';
+            updateProgressSection(null);
+            updateAchievementsUI(null);
+            updateLeaderboardUI([]); // Clear leaderboard
+        }
     } else {
-        // Clear fields if somehow accessed while logged out
-        if(profileEmail) profileEmail.textContent = 'N/A';
-        if(profileNickname) profileNickname.textContent = 'N/A';
-        if(profileJoined) profileJoined.textContent = 'N/A';
+        // Clear UI elements if user somehow gets here while logged out
+         if(profileEmail) profileEmail.textContent = 'N/A';
+         if(profileNickname) profileNickname.textContent = 'N/A';
+         if(profileJoined) profileJoined.textContent = 'N/A';
+        updateProgressSection(null);
+        updateAchievementsUI(null);
+        updateLeaderboardUI([]);
+        // Ensure listener is detached if somehow active
+         if (leaderboardListenerUnsubscribe) {
+             leaderboardListenerUnsubscribe();
+             leaderboardListenerUnsubscribe = null;
+         }
     }
 }
 async function loadProfileData() {

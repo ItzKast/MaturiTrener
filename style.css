@@ -1,16 +1,19 @@
-:root {
+/* =================================
+   Root Variables & Global Styles
+   ================================= */
+   :root {
     --primary: #4D57F0;
     --secondary: #FF6B6B;
     --success: #51D88A;
     --warning: #FFD166;
     --dark: #2D3748;
     --light: #F7FAFC;
-    --gray: #cbd5e0; /* Defined gray */
-    --activity-none: #ffffff; /* White or transparent for no activity */
-    --activity-low: #e2e8f0;  /* Light gray */
-    --activity-medium: #90caf9;/* Light blue */
-    --activity-high: #4fc3f7; /* Blue */
-    --activity-very-high: #29b6f6; /* Darker blue */
+    --gray: #cbd5e0;
+    --activity-none: #ffffff;
+    --activity-low: #e2e8f0;
+    --activity-medium: #90caf9;
+    --activity-high: #4fc3f7;
+    --activity-very-high: #29b6f6;
 }
 
 * {
@@ -23,22 +26,36 @@
 body {
     background-color: var(--light);
     min-height: 100vh;
-    display: flex; /* Use flexbox for layout */
-    flex-direction: column; /* Stack header, main, footer vertically */
-}
-
-header {
-    background-color: var(--primary);
-    color: white;
-    padding: 1rem 0; /* Adjust padding */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem; /* Horizontal padding only */
+    padding: 0 1rem;
     width: 100%;
+}
+
+main {
+    flex-grow: 1;
+    padding: 2rem 0;
+}
+
+hr { /* Basic separator style */
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid var(--gray);
+}
+
+/* =================================
+   Header & Navigation
+   ================================= */
+header {
+    background-color: var(--primary);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar {
@@ -55,7 +72,7 @@ header {
 .nav-links {
     display: flex;
     gap: 1.5rem;
-    list-style: none; /* Remove list bullets if using ul */
+    list-style: none;
 }
 
 .nav-link {
@@ -69,19 +86,24 @@ header {
     opacity: 0.8;
 }
 
-main {
-    flex-grow: 1; /* Allow main content to fill available space */
-    padding: 2rem 0;
+#theme-toggle-btn {
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    padding: 0.4rem 0.8rem; /* btn-sm */
+    font-size: 0.8rem;     /* btn-sm */
+    line-height: 1.2;      /* btn-sm */
+}
+#theme-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Dashboard & Cards */
-.dashboard {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust min size */
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
+/* =================================
+   Generic Components (Cards, Buttons)
+   ================================= */
 .card {
     background-color: white;
     border-radius: 0.5rem;
@@ -90,8 +112,11 @@ main {
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    margin-bottom: 1.5rem; /* Default spacing below cards */
 }
-
+.card:last-child {
+    margin-bottom: 0; /* No margin for last card in a container */
+}
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
@@ -100,13 +125,13 @@ main {
 .card-title {
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 1rem; /* Increased margin */
+    margin-bottom: 1rem;
     color: var(--dark);
 }
 
 .card p {
     margin-bottom: 0.5rem;
-    color: #4a5568; /* Slightly darker text */
+    color: #4a5568;
 }
 
 .card strong {
@@ -114,79 +139,37 @@ main {
     color: var(--dark);
 }
 
-/* Subject Cards */
-.subjects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+/* Compact Card Modifier */
+.card-compact {
+    padding: 1rem 1.25rem;
+}
+.card-compact .card-title {
+    font-size: 1.0rem;
+    margin-bottom: 0.75rem;
+}
+.card-compact p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+.card-compact form button,
+.card-compact > button { /* Direct button children like change pass/delete */
+   padding: 0.6rem 1.2rem;
+   font-size: 0.85rem;
+   margin-top: 0.75rem;
+}
+.card-compact form input { /* Ensure input padding is reasonable */
+    padding: 0.6rem;
+}
+.card-compact small {
+     font-size: 0.75em;
 }
 
-.subject-card {
-    background-color: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added ease */
-}
-
-.subject-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-}
-
-.subject-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem; /* Increased margin */
-    color: var(--dark);
-}
-
-.subject-progress {
-    margin-top: auto; /* Pushes progress bar to bottom */
-}
-#progress-section {
-    display: grid; /* Use grid for the main section layout */
-    grid-template-columns: 1fr; /* Default: single column for mobile */
-    gap: 1.5rem; /* Consistent gap */
-}
-#progress-section > .dashboard {
-    display: grid; /* Make this a grid too */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns for Streak/XP */
-    gap: 1.5rem;
-     /* No grid-column needed in default single-column layout */
-}
-.progress-bar {
-    height: 0.5rem;
-    background-color: #e2e8f0;
-    border-radius: 0.25rem;
-    overflow: hidden;
-    margin-bottom: 0.5rem; /* Add space below bar */
-}
-
-.progress-value {
-    height: 100%;
-    background-color: var(--primary);
-    border-radius: 0.25rem;
-    transition: width 0.5s ease-in-out; /* Animate progress change */
-}
-
-.progress-text {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: #718096;
-    margin-top: 0.25rem;
-}
 
 /* Buttons */
 .btn {
     padding: 0.75rem 1.5rem;
-    border: 1px solid transparent; /* Base border */
-    border-radius: 0.375rem; /* Slightly more rounded */
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
@@ -194,268 +177,60 @@ main {
     text-decoration: none;
     display: inline-block;
     font-size: 0.9rem;
-    line-height: 1.5; /* Ensure consistent height */
+    line-height: 1.5;
 }
-
 .btn-primary {
     background-color: var(--primary);
     border-color: var(--primary);
     color: white;
 }
-
 .btn-primary:hover {
-    background-color: #3c45c0; /* Darker primary */
+    background-color: #3c45c0;
     border-color: #3c45c0;
 }
-
-/* Style for non-primary buttons (like Register) */
 .btn:not(.btn-primary) {
   background-color: var(--light);
   border-color: var(--gray);
   color: var(--dark);
 }
 .btn:not(.btn-primary):hover {
-  background-color: #e2e8f0; /* Slightly darker light gray */
-  border-color: #a0aec0; /* Darker gray border */
+  background-color: #e2e8f0;
+  border-color: #a0aec0;
 }
-
-
-/* Test Section */
-.test-header {
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    gap: 1rem; /* Add gap between items */
-}
-
-.test-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--dark);
-    margin-right: auto; /* Push selects/button to the right */
-}
-
-.test-header > div:last-child { /* Target the div containing selects/button */
-    display: flex;
-    align-items: center;
-    gap: 0.5rem; /* Space between selects/button */
-    flex-wrap: wrap; /* Allow wrapping */
-}
-
-
-.test-container {
-    background-color: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    padding: 2rem;
-    margin-top: 2rem;
-}
-
-.question {
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem; /* Add space below */
-    border-bottom: 1px solid #e2e8f0; /* Separator line */
-}
-.question:last-child {
-    border-bottom: none; /* No border for the last question */
-    margin-bottom: 0; /* No margin for the last question before submit button */
-}
-
-.question-text {
-    font-size: 1.1rem; /* Slightly smaller */
-    margin-bottom: 1rem;
-    color: var(--dark);
-    font-weight: 500; /* Make it slightly bolder */
-    line-height: 1.5;
-}
-
-.question-options {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem; /* Increased gap */
-}
-
-.option {
-    padding: 0.9rem 1.2rem; /* Adjust padding */
-    border: 1px solid var(--gray);
-    border-radius: 0.375rem;
-    cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s;
-    line-height: 1.5;
-    background-color: white; /* Default background */
-}
-
-.option:hover {
-    background-color: #f7fafc; /* Very light gray on hover */
-    border-color: #a0aec0;
-}
-
-.option.selected {
-    background-color: #dbeafe; /* Light blue for selected */
-    color: var(--primary);
-    border-color: var(--primary);
-    font-weight: 500;
-}
-
-/* Styles after evaluation */
-.option.correct {
-    background-color: #d1fae5; /* Light green */
-    color: #065f46; /* Dark green text */
-    border-color: var(--success);
-    font-weight: 500;
-}
-
-.option.incorrect {
-    background-color: #fee2e2; /* Light red */
-    color: #991b1b; /* Dark red text */
+.btn-danger {
+    background-color: var(--secondary);
     border-color: var(--secondary);
-    font-weight: 500;
+    color: white;
 }
-
-.option.correct.selected { /* Ensure selected correct stays green */
-     background-color: #d1fae5;
-     color: #065f46;
-     border-color: var(--success);
+.btn-danger:hover {
+    background-color: #d43f3f;
+    border-color: #d43f3f;
 }
-
-
-/* Modal */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0; /* Start invisible for animation */
-    transition: opacity 0.3s ease;
-}
-.modal.show { /* Add this class via JS to show modal */
-    display: flex;
-    opacity: 1;
-}
-
-
-.modal-content {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    max-width: 450px; /* Slightly smaller */
-    width: 90%; /* Use percentage for responsiveness */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    text-align: center; /* Center content */
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Align title and close button */
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid #e2e8f0; /* Separator */
-    padding-bottom: 1rem;
-}
-
-.modal-title {
-    font-size: 1.4rem; /* Larger title */
-    font-weight: 600;
-    color: var(--dark);
-}
-
-.close {
-    font-size: 1.8rem; /* Larger close button */
-    color: #718096;
-    cursor: pointer;
-    line-height: 1;
-    background: none;
-    border: none;
-    padding: 0;
-}
-.close:hover {
-    color: var(--dark);
-}
-
-#test-result p {
+.btn-favorite { /* Star button */
+    padding: 0.375rem 0.6rem;
     font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: #4a5568;
-}
-#test-result strong {
-    font-weight: 600;
-    color: var(--dark);
+    line-height: 1.5;
+    margin-left: 5px;
+    vertical-align: middle;
 }
 
-
-/* Login Section */
-#login-section {
-    display: none; /* Initially hidden, shown by JS */
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 150px); /* Adjust based on header/footer height */
-    padding: 2rem 0;
-}
-
-#login-form {
-    background-color: white;
-    padding: 2.5rem; /* More padding */
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    width: 100%;
-    max-width: 350px; /* Limit width */
-}
-
-#login-form h1 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: var(--dark);
-    font-size: 1.5rem;
-}
-
-
-#login-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: #4a5568;
-    font-size: 0.9rem;
-}
-
-#login-form input {
-    width: 100%;
-    padding: 0.75rem;
+/* =================================
+   Dashboard Section (#dashboard-section)
+   ================================= */
+#dashboard-section h1, #dashboard-section p:first-of-type {
     margin-bottom: 1rem;
-    border: 1px solid var(--gray);
-    border-radius: 0.375rem;
-    font-size: 1rem;
 }
-#login-form input:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(77, 87, 240, 0.2);
+#dashboard-section h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
-
-#login-form button {
-    width: 100%;
-    margin-top: 0.5rem; /* Space between buttons */
-}
-#login-form button#login-btn {
-     margin-top: 1rem; /* More space above first button */
-}
-
-
-#login-message {
-    color: var(--secondary);
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    text-align: center;
-    min-height: 1.2em; /* Reserve space for message */
+#dashboard-section .dashboard {
+    display: grid;
+    /* Default 2 columns for medium+ */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 /* Calendar */
@@ -464,30 +239,25 @@ main {
     border-radius: 0.5rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     padding: 1.5rem;
-    /* margin-top: 2rem; Removed, using grid gap */
-    /* width: 100%; No need, grid handles it */
-    /* max-width: 600px; Removed, let grid handle it */
+    /* Removed margin-top as grid gap handles it */
 }
-
 .calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
 }
-
 .calendar-header h2 {
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--dark);
-    text-transform: capitalize; /* Capitalize month name */
+    text-transform: capitalize;
 }
-
 .calendar-header button {
-    background-color: transparent; /* Cleaner look */
+    background-color: transparent;
     border: none;
-    border-radius: 50%; /* Circular buttons */
-    width: 32px; /* Fixed size */
+    border-radius: 50%;
+    width: 32px;
     height: 32px;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -497,807 +267,332 @@ main {
     align-items: center;
     justify-content: center;
 }
-
 .calendar-header button:hover {
-    background-color: #eef2ff; /* Very light primary */
+    background-color: #eef2ff;
 }
-
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 0.35rem; /* Slightly larger gap */
+    gap: 0.35rem;
 }
-
 .calendar-grid .day {
     text-align: center;
-    aspect-ratio: 1 / 1; /* Make days square */
+    aspect-ratio: 1 / 1;
     border-radius: 0.25rem;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.1s;
     font-size: 0.8rem;
     color: var(--dark);
-    display: flex; /* Center number vertically */
+    display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid transparent; /* Base border */
-    background-color: var(--activity-none); /* Default background */
+    border: 1px solid transparent;
+    background-color: var(--activity-none);
 }
-
 .calendar-grid .day:hover {
-    background-color: #f8fafc; /* Lighter hover */
+    background-color: #f8fafc;
     transform: scale(1.05);
 }
-
-.calendar-grid .day.active { /* Today's date */
+.calendar-grid .day.active { /* Today */
     border: 1px solid var(--primary);
     color: var(--primary);
     font-weight: 600;
-    background-color: #eef2ff; /* Light primary highlight */
+    background-color: #eef2ff;
 }
-
 .calendar-grid .day.inactive {
     color: var(--gray);
-    background-color: transparent; /* No background for inactive days */
+    background-color: transparent;
     cursor: default;
-    pointer-events: none; /* Not clickable */
+    pointer-events: none;
 }
-
-/* Activity colors */
-.calendar-grid .day.activity-low { background-color: var(--activity-low); }
-.calendar-grid .day.activity-medium { background-color: var(--activity-medium); }
-.calendar-grid .day.activity-high { background-color: var(--activity-high); }
-.calendar-grid .day.activity-very-high { background-color: var(--activity-very-high); }
-
-/* Ensure text is readable on colored backgrounds */
-.calendar-grid .day.activity-medium,
-.calendar-grid .day.activity-high,
-.calendar-grid .day.activity-very-high {
-   color: #fff; /* White text for darker backgrounds */
-}
-.calendar-grid .day.activity-low {
-   color: #555; /* Darker text for light gray */
-}
-
+.calendar-grid .day.activity-low { background-color: var(--activity-low); color: #555;}
+.calendar-grid .day.activity-medium { background-color: var(--activity-medium); color: #fff;}
+.calendar-grid .day.activity-high { background-color: var(--activity-high); color: #fff;}
+.calendar-grid .day.activity-very-high { background-color: var(--activity-very-high); color: #fff;}
 
 /* Calendar Legend */
-.calendar-legend {
-    margin-top: 1rem;
-    font-size: 0.8rem; /* Smaller legend text */
-    color: #4a5568;
-}
-
-.calendar-legend p {
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.calendar-legend ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem; /* Vertical and horizontal gap */
-}
-
-.calendar-legend li {
-    display: flex;
-    align-items: center;
-}
-
-.legend-color {
-    display: inline-block;
-    width: 0.9rem;
-    height: 0.9rem;
-    margin-right: 0.4rem;
-    border-radius: 0.2rem;
-    border: 1px solid rgba(0,0,0,0.1); /* Subtle border */
-}
-
-/* Apply legend colors */
+.calendar-legend { margin-top: 1rem; font-size: 0.8rem; color: #4a5568; }
+.calendar-legend p { margin-bottom: 0.5rem; font-weight: 600; }
+.calendar-legend ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; }
+.calendar-legend li { display: flex; align-items: center; }
+.legend-color { display: inline-block; width: 0.9rem; height: 0.9rem; margin-right: 0.4rem; border-radius: 0.2rem; border: 1px solid rgba(0,0,0,0.1); }
 .legend-color.activity-none { background-color: var(--activity-none); border-color: var(--gray); }
 .legend-color.activity-low { background-color: var(--activity-low); }
 .legend-color.activity-medium { background-color: var(--activity-medium); }
 .legend-color.activity-high { background-color: var(--activity-high); }
 .legend-color.activity-very-high { background-color: var(--activity-very-high); }
 
-/* --- Achievement Card Styles --- */
-.achievement-container {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* Leaderboard */
+#leaderboard-container { /* Style for the card holding the list */
+    margin-top: 0; /* Ensure no extra margin if inside dashboard grid */
+}
+#leaderboard-list { padding-left: 1.5rem; margin: 0; }
+#leaderboard-list li { padding: 0.6rem 0.5rem; border-bottom: 1px solid var(--gray); display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; }
+#leaderboard-list li:last-child { border-bottom: none; }
+#leaderboard-list li span:first-child { font-weight: 500; margin-right: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#leaderboard-list li strong { font-weight: 600; color: var(--primary); white-space: nowrap; }
+.no-leaderboard { list-style: none; text-align: center; padding: 1rem; color: #718096; }
+
+/* Subject Cards */
+.subjects {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust min width if needed */
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    /* margin-top: 2rem; Removed, rely on h2 margin */
 }
-
-.achievement-container li {
-    background-color: #f8fafc;
-    border-radius: 0.375rem;
-    padding: 1rem;
-    border: 1px solid #e2e8f0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+.subject-card { /* Inherits .card styles */
+    cursor: pointer;
 }
-
-.achievement-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem; /* Space between icon and name */
-    margin-bottom: 0.5rem;
-}
-
-
-.achievement-icon {
-    font-size: 1.5rem; /* Icon size */
-}
-
-.achievement-name {
+.subject-title {
+    font-size: 1.1rem;
     font-weight: 600;
-    color: var(--dark);
-    font-size: 1rem;
-}
-
-.achievement-details {
-    font-size: 0.85rem;
-    color: #4a5568;
-}
-
-.achievement-level {
-    font-weight: 500;
-    margin-bottom: 0.25rem;
-}
-
-.achievement-progress {
-    margin-top: 0.5rem; /* Space above progress bar */
-}
-
-.achievement-value {
-    font-size: 0.8rem;
-    color: #718096;
-    margin-top: 0.25rem; /* Space below progress bar */
-    text-align: right; /* Align value to the right */
-}
-.achievement-value .current {
-    font-weight: 500;
+    margin-bottom: 0.75rem;
     color: var(--dark);
 }
-.achievement-value .next {
-    color: #a0aec0;
+.subject-progress {
+    margin-top: auto; /* Pushes progress bar to bottom */
 }
-.achievement-value .max {
-    font-weight: bold;
-    color: var(--success);
+.progress-bar { height: 0.5rem; background-color: #e2e8f0; border-radius: 0.25rem; overflow: hidden; margin-bottom: 0.5rem; }
+.progress-value { height: 100%; background-color: var(--primary); border-radius: 0.25rem; transition: width 0.5s ease-in-out; }
+.progress-text { display: flex; justify-content: space-between; font-size: 0.8rem; color: #718096; margin-top: 0.25rem; }
+
+/* =================================
+   Test Section (#test-section)
+   ================================= */
+.test-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; }
+.test-title { font-size: 1.5rem; font-weight: 600; color: var(--dark); margin-right: auto; }
+.test-header > div:last-child { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.test-container { background-color: white; border-radius: 0.5rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); padding: 2rem; margin-top: 2rem; }
+.question { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; }
+.question:last-child { border-bottom: none; margin-bottom: 0; }
+.question-text { font-size: 1.1rem; margin-bottom: 1rem; color: var(--dark); font-weight: 500; line-height: 1.5; }
+.question-options { display: flex; flex-direction: column; gap: 0.75rem; }
+
+/* Test Option/Input Styles */
+.option { padding: 0.9rem 1.2rem; border: 1px solid var(--gray); border-radius: 0.375rem; cursor: pointer; transition: background-color 0.2s, border-color 0.2s; line-height: 1.5; background-color: white; }
+.option:hover { background-color: #f7fafc; border-color: #a0aec0; }
+.option.selected { background-color: #dbeafe; color: var(--primary); border-color: var(--primary); font-weight: 500; }
+.option.correct { background-color: #d1fae5; color: #065f46; border-color: var(--success); font-weight: 500; }
+.option.incorrect { background-color: #fee2e2; color: #991b1b; border-color: var(--secondary); font-weight: 500; }
+.option.correct.selected { background-color: #d1fae5; color: #065f46; border-color: var(--success); } /* Override selection style */
+
+.option-label { display: block; margin-bottom: 0.5rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; transition: background-color 0.2s, border-color 0.2s; }
+.option-label:hover { background-color: #f0f0f0; }
+.option-label input[type="radio"], .option-label input[type="checkbox"] { margin-right: 0.5em; vertical-align: middle; }
+.option-label.correct { background-color: #d4edda; border-color: #c3e6cb; color: #155724; }
+.option-label.incorrect { background-color: #f8d7da; border-color: #f5c6cb; color: #721c24; }
+/* .option-label.missed { outline: 2px dashed #c3e6cb; } */
+
+.free-text-input { width: 90%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; }
+.free-text-input.correct { background-color: #d4edda; border-color: #c3e6cb; color: #155724; }
+.free-text-input.incorrect { background-color: #f8d7da; border-color: #f5c6cb; color: #721c24; }
+
+.correct-answer-display { color: #155724; font-style: italic; font-size: 0.9em; margin-left: 0.5rem; }
+input[disabled] { cursor: not-allowed; background-color: #e9ecef; opacity: 0.7; }
+.option-label input[disabled] + span { opacity: 0.7; }
+
+
+/* =================================
+   Profile Section (#profile-section) - Contains Stats now
+   ================================= */
+#profile-section h1 { margin-bottom: 1rem; }
+#profile-section h2 { margin-top: 1rem; margin-bottom: 1rem; } /* Heading for Stats part */
+
+/* Styles for Profile Action forms/messages */
+#profile-section p strong { margin-right: 0.5em; } /* Info card */
+#nickname-change-form input,
+#nickname-change-form button { display: block; width: 100%; margin-bottom: 0.75rem; }
+#nickname-change-form small { margin-top: -0.5rem; display: block; margin-bottom: 1rem; }
+#nickname-change-message, #password-change-message, #delete-account-message { font-size: 0.9em; min-height: 1.1em; margin-top: 0.5rem;}
+#nickname-change-message.success, #password-change-message.success { color: var(--success); }
+#nickname-change-message.error, #password-change-message.error, #delete-account-message.error { color: var(--secondary); }
+
+/* Layout for moved stats within Profile Section */
+#profile-stats-dashboard { /* The div holding Streak/XP */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem; /* Space above this stats block */
+    margin-bottom: 1.5rem; /* Space below */
+}
+/* Ensure Achievement/Table cards have consistent margin */
+#profile-section > .card:has(#achievement-list),
+#profile-section > .card:has(table) {
+     margin-top: 1.5rem;
 }
 
-.no-achievements { /* Style for the placeholder message */
-    grid-column: 1 / -1; /* Make it span all columns if grid is used */
+/* Achievement Styles */
+.achievement-container { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.achievement-container li { background-color: #f8fafc; border-radius: 0.375rem; padding: 1rem; border: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0;} /* Reset card margin */
+.achievement-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+.achievement-icon { font-size: 1.5rem; }
+.achievement-name { font-weight: 600; color: var(--dark); font-size: 1rem; }
+.achievement-details { font-size: 0.85rem; color: #4a5568; }
+.achievement-level { font-weight: 500; margin-bottom: 0.25rem; }
+.achievement-progress { margin-top: 0.5rem; }
+.achievement-value { font-size: 0.8rem; color: #718096; margin-top: 0.25rem; text-align: right; }
+.achievement-value .current { font-weight: 500; color: var(--dark); }
+.achievement-value .next { color: #a0aec0; }
+.achievement-value .max { font-weight: bold; color: var(--success); }
+.no-achievements { grid-column: 1 / -1; text-align: center; padding: 2rem; color: #718096; background: none; border: none; }
+
+
+/* Table Styles */
+#profile-section table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+#profile-section th, #profile-section td { padding: 0.75rem; border-bottom: 1px solid var(--gray); text-align: left;}
+#profile-section th { font-weight: 600; color: var(--dark); }
+#profile-section td:nth-child(n+2), /* Center numeric columns */
+#profile-section th:nth-child(n+2) {
     text-align: center;
-    padding: 2rem;
-    color: #718096;
 }
-/* --- Dark Mode Styles --- */
 
-/* Define dark mode variables when body has .dark-mode class */
+
+/* =================================
+   Login Section (#login-section)
+   ================================= */
+#login-section { display: none; flex-direction: column; align-items: center; justify-content: center; min-height: calc(100vh - 150px); padding: 2rem 0; }
+#login-form { background-color: white; padding: 2.5rem; border-radius: 0.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); width: 100%; max-width: 350px; }
+#login-form h1 { text-align: center; margin-bottom: 1.5rem; color: var(--dark); font-size: 1.5rem; }
+#login-form label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #4a5568; font-size: 0.9rem; }
+#login-form input { width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid var(--gray); border-radius: 0.375rem; font-size: 1rem; }
+#login-form input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(77, 87, 240, 0.2); }
+#login-form button { width: 100%; margin-top: 0.5rem; }
+#login-form button#login-btn { margin-top: 1rem; }
+#login-message { color: var(--secondary); margin-top: 1rem; font-size: 0.9rem; text-align: center; min-height: 1.2em; }
+/* Nickname toggle for registration */
+#login-form label[for="nickname"], #login-form input#nickname, #login-form label[for="nickname"] + small { display: none; }
+#login-form.register-mode label[for="nickname"], #login-form.register-mode input#nickname, #login-form.register-mode label[for="nickname"] + small { display: block; }
+#login-form label[for="nickname"] + small { font-size: 0.8em; color: #718096; margin-top: -0.75rem; margin-bottom: 1rem;} /* Style hint */
+
+/* =================================
+   Modal Styles
+   ================================= */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: opacity 0.3s ease; }
+.modal.show { display: flex; opacity: 1; }
+.modal-content { background-color: white; padding: 2rem; border-radius: 0.5rem; max-width: 450px; width: 90%; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); text-align: center; margin-bottom: 0;} /* Reset card margin */
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; }
+.modal-title { font-size: 1.4rem; font-weight: 600; color: var(--dark); }
+.close { font-size: 1.8rem; color: #718096; cursor: pointer; line-height: 1; background: none; border: none; padding: 0; }
+.close:hover { color: var(--dark); }
+#test-result p { font-size: 1.1rem; margin-bottom: 0.5rem; color: #4a5568; }
+#test-result strong { font-weight: 600; color: var(--dark); }
+#test-completion-modal button { margin-top: 1.5rem; }
+
+/* =================================
+   Dark Mode Styles
+   ================================= */
 body.dark-mode {
-    /* Swap light and dark, define darker gray */
-    --dark: #e2e8f0;     /* Light text color in dark mode */
-    --light: #1a202c;    /* Dark background color */
-    --gray: #4a5568;     /* Mid-dark gray for borders/less important text */
-
-    /* Activity colors for dark mode calendar */
-    --activity-none: #2d3748;    
-    --activity-low: #3f6253;     
-    --activity-medium: #38a169;  
-    --activity-high: #ecc94b;   
+    --dark: #e2e8f0;
+    --light: #1a202c;
+    --gray: #4a5568;
+    --activity-none: #2d3748;
+    --activity-low: #3f6253;
+    --activity-medium: #38a169;
+    --activity-high: #ecc94b;
     --activity-very-high: #f59e0b;
-
-    /* General text color for dark mode */
-    color: var(--dark);
-    .calendar-grid .day.activity-none { background-color: var(--activity-none); } /* Explicitly set none */
-    .calendar-grid .day.activity-low { background-color: var(--activity-low); }
-    .calendar-grid .day.activity-medium { background-color: var(--activity-medium); }
-    .calendar-grid .day.activity-high { background-color: var(--activity-high); }
-    .calendar-grid .day.activity-very-high { background-color: var(--activity-very-high); }
-
-    .calendar-grid .day.active {
-        border: 2px solid var(--primary); /* Make border thicker */
-        color: var(--primary);            /* Keep text primary color */
-        /* REMOVE ANY background-color property here */
-        padding: calc(0.5em - 1px); /* Adjust padding slightly because of thicker border */
-                                    /* Use em for relative sizing, adjust value as needed */
-        box-sizing: border-box;     /* Ensure padding/border included in size */
-    }
-    .calendar-grid .day.inactive {
-        background-color: transparent !important; /* Needs !important */
-        border-color: transparent !important;     /* Needs !important */
-        color: #4a5568;
-        pointer-events: none;
-    }
-
-    .calendar-grid .day.activity-low,
-    .calendar-grid .day.activity-medium {
-        color: #e2e8f0; /* Light text */
-    }
-    .calendar-grid .day.activity-high,
-    .calendar-grid .day.activity-very-high {
-        color: #1a202c; /* Dark text */
-    }
-    .calendar-grid .day {
-        color: var(--dark);
-        /* background-color: var(--activity-none); -> Handled by specific rule */
-        border: 1px solid transparent; /* Reset border for non-active days */
-        padding: 0.5em; /* Reset padding for non-active days */
-   }
-
-
+    color: var(--dark); /* Default text color */
 }
 
-/* Specific overrides for elements in dark mode */
-body.dark-mode header {
-    background-color: #2d3748; /* Darker header background */
-    border-bottom: 1px solid var(--gray);
+/* General Dark Overrides */
+body.dark-mode header { background-color: #2d3748; border-bottom: 1px solid var(--gray); }
+body.dark-mode .logo, body.dark-mode .nav-link { color: #f0f0f0; }
+body.dark-mode hr { border-top-color: var(--gray); }
+body.dark-mode .card, body.dark-mode .subject-card, body.dark-mode .test-container,
+body.dark-mode .modal-content, body.dark-mode #login-form, body.dark-mode .calendar,
+body.dark-mode .achievement-container li {
+    background-color: #2d3748; border: 1px solid var(--gray); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
-
-body.dark-mode .logo,
-body.dark-mode .nav-link {
-    color: #f0f0f0; /* Brighter text for header */
+body.dark-mode .card-title, body.dark-mode .subject-title, body.dark-mode .test-title,
+body.dark-mode .modal-title, body.dark-mode #login-form h1, body.dark-mode .calendar-header h2,
+body.dark-mode th, body.dark-mode strong, body.dark-mode .card strong,
+body.dark-mode .achievement-name, body.dark-mode .achievement-value .current {
+    color: #ffffff;
 }
-body.dark-mode .nav-link:hover {
-    opacity: 0.8;
-}
-
-
-body.dark-mode .card,
-body.dark-mode .subject-card,
-body.dark-mode .test-container,
-body.dark-mode .modal-content,
-body.dark-mode #login-form,
-body.dark-mode .calendar {
-    background-color: #2d3748; /* Card background */
-    border: 1px solid var(--gray);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Adjust shadow */
-}
-
-body.dark-mode .card-title,
-body.dark-mode .subject-title,
-body.dark-mode .test-title,
-body.dark-mode .modal-title,
-body.dark-mode #login-form h1,
-body.dark-mode .calendar-header h2,
-body.dark-mode th, /* Table headers */
-body.dark-mode strong, /* Make strong text brighter */
-body.dark-mode .card strong,
-body.dark-mode .achievement-name {
-    color: #ffffff; /* White or very light gray for titles/strong */
-}
-
-body.dark-mode p,
-body.dark-mode label,
-body.dark-mode .progress-text span,
-body.dark-mode .calendar-legend,
-body.dark-mode .achievement-details,
-body.dark-mode td, /* Table data */
-body.dark-mode .option, /* Default option text */
-body.dark-mode #test-result p {
-    color: var(--dark); /* General light text */
-}
-
-body.dark-mode #login-form label {
-     color: #cbd5e0; /* Slightly dimmer labels */
-}
-
-/* Buttons in dark mode */
-body.dark-mode .btn:not(.btn-primary) {
-  background-color: #4a5568; /* Darker gray button */
-  border-color: #718096;
-  color: var(--dark);
-}
-body.dark-mode .btn:not(.btn-primary):hover {
-  background-color: #718096; /* Lighter gray on hover */
-  border-color: #a0aec0;
-}
-
-/* Inputs in dark mode */
-body.dark-mode #login-form input,
-body.dark-mode select.btn { /* Style selects like other buttons */
-    background-color: #4a5568;
-    border-color: #718096;
+body.dark-mode p, body.dark-mode label, body.dark-mode .progress-text span,
+body.dark-mode .calendar-legend, body.dark-mode .achievement-details,
+body.dark-mode td, body.dark-mode .option, body.dark-mode #test-result p {
     color: var(--dark);
 }
-body.dark-mode #login-form input:focus,
-body.dark-mode select.btn:focus {
-   border-color: var(--primary);
-   box-shadow: 0 0 0 2px rgba(77, 87, 240, 0.3); /* Primary focus ring */
-}
+body.dark-mode #login-form label { color: #cbd5e0; }
+body.dark-mode .achievement-value .next { color: #718096; }
+body.dark-mode .no-achievements { color: #718096; }
+body.dark-mode .no-leaderboard { color: #a0aec0; }
 
-/* Test Options in dark mode */
-body.dark-mode .option {
-    background-color: #2d3748;
-    border-color: var(--gray);
-}
-body.dark-mode .option:hover {
-    background-color: #4a5568;
-    border-color: #a0aec0;
-}
-body.dark-mode .option.selected {
-    background-color: rgba(77, 87, 240, 0.2); /* Primary transparent */
-    color: var(--primary);
-    border-color: var(--primary);
-}
-body.dark-mode .option.correct {
-    background-color: rgba(81, 216, 138, 0.15); /* Success transparent */
-    color: var(--success);
-    border-color: var(--success);
-}
-body.dark-mode .option.incorrect {
-    background-color: rgba(255, 107, 107, 0.15); /* Secondary transparent */
-    color: var(--secondary);
-    border-color: var(--secondary);
-}
-body.dark-mode .option.correct.selected { /* Ensure selected correct stays green */
-     background-color: rgba(81, 216, 138, 0.15);
-     color: var(--success);
-     border-color: var(--success);
-}
+/* Dark Buttons */
+body.dark-mode #theme-toggle-btn { border-color: var(--gray); color: var(--dark); }
+body.dark-mode #theme-toggle-btn:hover { background-color: rgba(255, 255, 255, 0.05); border-color: #a0aec0; }
+body.dark-mode .btn:not(.btn-primary) { background-color: #4a5568; border-color: #718096; color: var(--dark); }
+body.dark-mode .btn:not(.btn-primary):hover { background-color: #718096; border-color: #a0aec0; }
+body.dark-mode .btn-danger { background-color: #b91c1c; border-color: #b91c1c; }
+body.dark-mode .btn-danger:hover { background-color: #991b1b; border-color: #991b1b; }
 
+/* Dark Inputs/Selects */
+body.dark-mode #login-form input, body.dark-mode select.btn, body.dark-mode .free-text-input {
+    background-color: #4a5568; border-color: #718096; color: var(--dark);
+}
+body.dark-mode #login-form input:focus, body.dark-mode select.btn:focus {
+   border-color: var(--primary); box-shadow: 0 0 0 2px rgba(77, 87, 240, 0.3);
+}
+body.dark-mode ::placeholder { color: #a0aec0; opacity: 0.8;}
+body.dark-mode input[disabled] { background-color: #374151; opacity: 0.6; }
 
-/* Calendar days in dark mode */
-body.dark-mode .calendar-grid .day {
-    color: var(--dark); /* Default day text */
-    background-color: var(--activity-none);
-}
-body.dark-mode .calendar-grid .day.inactive {
-    color: #4a5568; /* Dimmer for inactive */
-    background-color: transparent;
-}
-body.dark-mode .calendar-grid .day.active { /* Today's date */
-    border-color: var(--primary);
-    color: var(--primary);
-    background-color: rgba(77, 87, 240, 0.1); /* Slightly transparent primary */
-}
-/* Ensure text is readable on colored backgrounds */
-body.dark-mode .calendar-grid .day.activity-low,
-body.dark-mode .calendar-grid .day.activity-medium {
-    color: #e2e8f0; /* Light text for darker green backgrounds */
-}
-body.dark-mode .calendar-grid .day.activity-high,
-body.dark-mode .calendar-grid .day.activity-very-high {
-    color: #1a202c; /* Dark text for brighter yellow/orange backgrounds */
-}
+/* Dark Test Options */
+body.dark-mode .option { background-color: #2d3748; border-color: var(--gray); }
+body.dark-mode .option:hover { background-color: #4a5568; border-color: #a0aec0; }
+body.dark-mode .option.selected { background-color: rgba(77, 87, 240, 0.2); color: var(--primary); border-color: var(--primary); }
+body.dark-mode .option.correct { background-color: rgba(81, 216, 138, 0.15); color: var(--success); border-color: var(--success); }
+body.dark-mode .option.incorrect { background-color: rgba(255, 107, 107, 0.15); color: var(--secondary); border-color: var(--secondary); }
+body.dark-mode .option.correct.selected { background-color: rgba(81, 216, 138, 0.15); color: var(--success); border-color: var(--success); }
+body.dark-mode .option-label { border-color: var(--gray); }
+body.dark-mode .option-label:hover { background-color: #4a5568; }
+body.dark-mode .option-label.correct { background-color: rgba(81, 216, 138, 0.15); color: var(--success); border-color: var(--success); }
+body.dark-mode .option-label.incorrect { background-color: rgba(255, 107, 107, 0.15); color: var(--secondary); border-color: var(--secondary); }
+body.dark-mode .correct-answer-display { color: var(--success); }
 
-/* Calendar legend colors in dark mode */
+/* Dark Calendar */
+body.dark-mode .calendar-grid .day { color: var(--dark); background-color: var(--activity-none); border: 1px solid transparent; padding: 0.5em; }
+body.dark-mode .calendar-grid .day.inactive { background-color: transparent !important; border-color: transparent !important; color: #4a5568; pointer-events: none; }
+body.dark-mode .calendar-grid .day.active { border: 2px solid var(--primary); color: var(--primary); padding: calc(0.5em - 1px); background-color: transparent;} /* Removed specific bg */
+body.dark-mode .calendar-grid .day.activity-low { background-color: var(--activity-low); color: #e2e8f0; }
+body.dark-mode .calendar-grid .day.activity-medium { background-color: var(--activity-medium); color: #e2e8f0;}
+body.dark-mode .calendar-grid .day.activity-high { background-color: var(--activity-high); color: #1a202c; }
+body.dark-mode .calendar-grid .day.activity-very-high { background-color: var(--activity-very-high); color: #1a202c; }
 body.dark-mode .legend-color.activity-none { background-color: var(--activity-none); border-color: var(--gray); }
 body.dark-mode .legend-color.activity-low { background-color: var(--activity-low); }
 body.dark-mode .legend-color.activity-medium { background-color: var(--activity-medium); }
 body.dark-mode .legend-color.activity-high { background-color: var(--activity-high); }
 body.dark-mode .legend-color.activity-very-high { background-color: var(--activity-very-high); }
+body.dark-mode .calendar-header button:hover { background-color: #2d3748; }
 
+/* Dark Table */
+body.dark-mode table { border-color: var(--gray); }
+body.dark-mode th, body.dark-mode td { border-bottom: 1px solid var(--gray); }
+body.dark-mode tr:nth-child(even) { background-color: #374151; }
+body.dark-mode #leaderboard-list li { border-bottom-color: var(--gray); }
 
-/* Achievement list */
-body.dark-mode .achievement-container li {
-    background-color: #2d3748;
-    border-color: var(--gray);
-}
-body.dark-mode .achievement-value .current {
-    color: #fff;
-}
-body.dark-mode .achievement-value .next {
-    color: #718096;
-}
-body.dark-mode .no-achievements {
-    color: #718096;
-}
-
-/* Table styling */
-body.dark-mode table {
-    border-color: var(--gray);
-}
-body.dark-mode th,
-body.dark-mode td {
-    border-bottom: 1px solid var(--gray); /* Add bottom border for rows */
-}
-body.dark-mode tr:nth-child(even) {
-     background-color: #374151; /* Slightly different dark for even rows */
-}
-
-/* Make toggle button smaller */
-.btn-sm {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-    line-height: 1.2;
-}
-.calendar-grid .day.activity-low { background-color: var(--activity-low); }
-.calendar-grid .day.activity-medium { background-color: var(--activity-medium); }
-.calendar-grid .day.activity-high { background-color: var(--activity-high); }
-.calendar-grid .day.activity-very-high { background-color: var(--activity-very-high); }
-/* Global text color for activity days in light mode */
-.calendar-grid .day.activity-medium,
-.calendar-grid .day.activity-high,
-.calendar-grid .day.activity-very-high {
-   color: #fff; /* Default light mode: White text for darker backgrounds */
-}
-.calendar-grid .day.activity-low {
-   color: #555; /* Default light mode: Darker text for light gray */
-}
-
-/* Style the theme toggle button */
-#theme-toggle-btn {
-    background-color: transparent;
-    border: 1px solid white; /* Or var(--gray) in dark mode */
-    color: white; /* Or var(--dark) in dark mode */
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-}
-
-#theme-toggle-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode #theme-toggle-btn {
-    border-color: var(--gray);
-    color: var(--dark);
-}
-
-body.dark-mode #theme-toggle-btn:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-color: #a0aec0;
-}
-/* Style radio/checkbox labels */
-.option-label {
-    display: block; /* Ensure labels are block-level for spacing */
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s;
-}
-
-.option-label:hover {
-    background-color: #f0f0f0;
-}
-
-/* Style free text input */
-.free-text-input {
-    width: 90%; /* Adjust as needed */
-    padding: 0.6rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-/* Feedback styles */
-.option-label.correct,
-.free-text-input.correct,
-.option.correct { /* Add .option for standard MC */
-    background-color: #d4edda; /* Light green */
-    border-color: #c3e6cb;
-    color: #155724; /* Dark green text */
-}
-
-.option-label.incorrect,
-.free-text-input.incorrect,
-.option.incorrect { /* Add .option for standard MC */
-    background-color: #f8d7da; /* Light red */
-    border-color: #f5c6cb;
-    color: #721c24; /* Dark red text */
-}
-
-/* Optional: Style for missed correct answers in multi-select */
-.option-label.missed {
-    /* Maybe a subtle border or background? */
-    outline: 2px dashed #c3e6cb; /* Dashed green outline */
-}
-
-/* Display correct answer for free text */
-.correct-answer-display {
-    color: #155724; /* Dark green */
-    font-style: italic;
-    font-size: 0.9em;
-    margin-left: 0.5rem;
-}
-
-/* Ensure disabled inputs look disabled */
-input[disabled] {
-  cursor: not-allowed;
-  background-color: #e9ecef; /* Lighter grey */
-  opacity: 0.7;
-}
-.option-label input[disabled] + span { /* Target text next to disabled input */
-     opacity: 0.7;
-}
-
-/* Ensure proper spacing for radio/checkbox */
-.option-label input[type="radio"],
-.option-label input[type="checkbox"] {
-    margin-right: 0.5em;
-    vertical-align: middle; /* Align with text */
-}
-.btn-favorite {
-    padding: 0.375rem 0.6rem; /* Adjust padding */
-    font-size: 1.1rem;      /* Adjust star size */
-    line-height: 1.5;
-    margin-left: 5px;      /* Space from dropdown */
-    vertical-align: middle; /* Align with dropdown */
-    /* Add hover/active styles if desired */
-}
-/* Responsive Adjustments */
+/* =================================
+   Responsive Adjustments
+   ================================= */
 @media (max-width: 767px) {
-    .container {
-        padding: 0 0.75rem; /* Slightly more padding */
-    }
-
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
-        width: 100%; /* Make links take full width */
-    }
-    .nav-link {
-        padding: 0.75rem 0.5rem; /* More vertical padding */
-        text-align: center;
-        background-color: rgba(255,255,255, 0.1); /* Slight background */
-        border-radius: 0.25rem;
-    }
-
-    .logo {
-        font-size: 1.5rem;
-    }
-
-    .dashboard, .subjects {
-        grid-template-columns: 1fr; /* Single column */
-    }
-
-    .calendar {
-        max-width: 100%;
-        padding: 1rem;
-    }
-
-    .calendar-legend ul {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-    .test-header {
-        flex-direction: column;
-        align-items: stretch; /* Stretch items */
-    }
-    .test-title {
-        margin-bottom: 1rem;
-        text-align: center;
-    }
-     .test-header > div:last-child {
-        flex-direction: column;
-        align-items: stretch;
-     }
-
-    .test-header select,
-    .test-header button {
-        width: 100%; /* Full width selects/button */
-        margin-top: 0.5rem;
-    }
-    .test-header select:first-child {
-        margin-top: 0; /* No top margin for first select */
-    }
-
-    .modal-content {
-        width: 95%;
-    }
-
-    #login-form {
-        max-width: 90%;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-    .dashboard, .subjects {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    #activity-calendar {
-        grid-column: 1 / -1; /* Calendar spans both columns */
-    }
-}
-@media (min-width: 768px) {
-    #progress-section {
-         /* Maybe 2 columns, with achievements/table spanning */
-         grid-template-columns: 1fr 1fr;
-    }
-     #progress-section > .dashboard {
-         grid-column: 1 / -1; /* Span full width */
-     }
-     #progress-section > .card:has(#achievement-list) {
-         grid-column: 1 / -1; /* Span full width */
-     }
-     #progress-section > .card:has(table) {
-         grid-column: 1 / -1; /* Span full width */
-     }
-}
-/* --- NEW LAYOUT FOR LARGE SCREENS (992px+) --- */
-@media (min-width: 992px) {
-    #progress-section {
-        display: grid; /* Ensure grid */
-        grid-template-columns: 1fr 1fr; /* Two equal columns */
-        align-items: start; /* Align items to the top of their grid area */
-        gap: 1.5rem; /* Consistent gap */
-    }
-
-    /* Container for Streak & XP */
-    #progress-section > .dashboard {
-        grid-column: 1 / -1; /* Span BOTH columns */
-        display: grid;       /* Make it a grid itself */
-        grid-template-columns: 1fr 1fr; /* Arrange Streak/XP side-by-side */
-        gap: 1.5rem;         /* Gap between Streak and XP cards */
-        margin-bottom: 0;    /* Rely on main grid gap for space below */
-    }
-
-     /* Leaderboard */
-    #leaderboard-container {
-        grid-column: 1 / 2; /* Place in the FIRST column (below Streak/XP) */
-        margin-top: 0;      /* Reset margin, rely on gap */
-        /* grid-row is determined automatically */
-    }
-
-    /* Achievements */
-    #progress-section > .card:has(#achievement-list) {
-        grid-column: 2 / 3; /* Place in the SECOND column (below Streak/XP) */
-        margin-top: 0;      /* Reset margin, rely on gap */
-         /* grid-row is determined automatically, aligning with Leaderboard */
-    }
-
-    /* Detailed Stats Table */
-    #progress-section > .card:has(table) {
-        grid-column: 1 / -1; /* Span BOTH columns (below Leaderboard/Achievements) */
-        margin-top: 0;       /* Reset margin, rely on gap */
-    }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-    #progress-section {
-        grid-template-columns: 1fr 1fr; /* Two columns */
-    }
-    #progress-section > .dashboard {
-        grid-column: 1 / -1; /* Span full width */
-        grid-template-columns: 1fr 1fr; /* Side-by-side */
-    }
-    #leaderboard-container {
-        grid-column: 1 / 2; /* First column below dashboard */
-        margin-top: 1.5rem;
-    }
-     #progress-section > .card:has(#achievement-list) {
-        grid-column: 2 / 3; /* Second column below dashboard */
-        margin-top: 1.5rem;
-    }
-    #progress-section > .card:has(table) {
-         grid-column: 1 / -1; /* Span full width below */
+    .container { padding: 0 0.75rem; }
+    .navbar { flex-direction: column; align-items: flex-start; }
+    .nav-links { flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; width: 100%; }
+    .nav-link { padding: 0.75rem 0.5rem; text-align: center; background-color: rgba(255,255,255, 0.1); border-radius: 0.25rem; }
+    .logo { font-size: 1.5rem; }
+    .dashboard, .subjects, #dashboard-section .dashboard, #profile-stats-dashboard { grid-template-columns: 1fr; } /* Stack grids */
+    #dashboard-section #leaderboard-container { margin-top: 1.5rem; } /* Space when stacked */
+    .calendar { max-width: 100%; padding: 1rem; }
+    .calendar-legend ul { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .test-header { flex-direction: column; align-items: stretch; }
+    .test-title { margin-bottom: 1rem; text-align: center; }
+    .test-header > div:last-child { flex-direction: column; align-items: stretch; }
+    .test-header select, .test-header button { width: 100%; margin-top: 0.5rem; }
+    .test-header select:first-child { margin-top: 0; }
+    .modal-content { width: 95%; }
+    #login-form { max-width: 90%; }
+    /* Ensure stats elements stack vertically in profile on small screens */
+     #profile-section > .card:has(#achievement-list),
+     #profile-section > .card:has(table) {
          margin-top: 1.5rem;
-    }
-}
-@media (max-width: 767px) {
-   /* All sections stack vertically - existing rules likely suffice */
-   #leaderboard-container,
-   #progress-section > .card:has(#achievement-list),
-   #progress-section > .card:has(table) {
-        margin-top: 1.5rem; /* Add vertical space when stacked */
-    }
-    #progress-section > .dashboard {
-        grid-template-columns: 1fr; /* Ensure Streak/XP stack vertically */
-    }
-}
-#leaderboard-list {
-    padding-left: 1.5rem; /* Indent numbers */
-    margin: 0;
-}
-
-#leaderboard-list li {
-    padding: 0.6rem 0.5rem;
-    border-bottom: 1px solid var(--gray);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.9rem;
-}
-
-#leaderboard-list li:last-child {
-    border-bottom: none;
-}
-
-#leaderboard-list li span:first-child { /* Nickname */
-    font-weight: 500;
-    margin-right: 1rem; /* Space between name and XP */
-    overflow: hidden;    /* Prevent long names breaking layout */
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
- #leaderboard-list li strong { /* XP */
-    font-weight: 600;
-    color: var(--primary); /* Highlight XP */
-    white-space: nowrap; /* Prevent XP wrapping */
-}
-
-.no-leaderboard {
-    list-style: none;
-    text-align: center;
-    padding: 1rem;
-    color: #718096;
-}
-/* Dark Mode adjustments for leaderboard */
-body.dark-mode #leaderboard-list li {
-    border-bottom-color: var(--gray);
-}
- body.dark-mode .no-leaderboard {
-    color: #a0aec0;
-}
-body.dark-mode #leaderboard-list li strong {
-   color: var(--primary); /* Keep primary color for XP highlight */
-}
-#profile-section .card {
-    margin-bottom: 1.5rem; /* Add space between profile cards */
-}
-
-#profile-section p strong {
-    margin-right: 0.5em;
-}
-
-#nickname-change-form input,
-#nickname-change-form button {
-    display: block; /* Make input/button block */
-    width: 100%;
-    margin-bottom: 0.75rem;
-}
-
-#nickname-change-form small {
-    margin-top: -0.5rem; /* Adjust spacing */
-}
-
-#nickname-change-message,
-#password-change-message,
-#delete-account-message {
-    font-size: 0.9em;
-    min-height: 1.1em; /* Reserve space */
-}
-#nickname-change-message.success,
-#password-change-message.success {
-    color: var(--success);
-}
- #nickname-change-message.error,
- #password-change-message.error,
- #delete-account-message.error {
-    color: var(--secondary);
-}
- .btn-danger { /* Specific style for delete button */
-    background-color: var(--secondary);
-    border-color: var(--secondary);
-    color: white;
-}
-.btn-danger:hover {
-    background-color: #d43f3f; /* Darker red */
-    border-color: #d43f3f;
-}
-body.dark-mode .btn-danger {
-     background-color: #b91c1c; /* Darker red in dark mode */
-     border-color: #b91c1c;
-}
- body.dark-mode .btn-danger:hover {
-     background-color: #991b1b;
-     border-color: #991b1b;
-}
-#login-form label[for="nickname"],
-#login-form input#nickname,
-#login-form label[for="nickname"] + small {
-    display: none; /* Hide nickname by default (login view) */
-}
-
-#login-form.register-mode label[for="nickname"],
-#login-form.register-mode input#nickname,
- #login-form.register-mode label[for="nickname"] + small {
-    display: block; /* Show nickname in registration view */
+     }
 }
