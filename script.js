@@ -1021,26 +1021,18 @@ function showLogin() {
 }
 
 function showDashboard() {
-<<<<<<< HEAD
-    if (leaderboardListenerUnsubscribe) { // Detach when leaving Profile/Stats
-        console.log("Detaching leaderboard listener when showing Dashboard.");
-        leaderboardListenerUnsubscribe();
-        leaderboardListenerUnsubscribe = null;
-    }
-=======
+
     if (leaderboardListenerUnsubscribe) { // Detach when leaving Statistiky
          console.log("Detaching leaderboard listener when showing Dashboard.");
          leaderboardListenerUnsubscribe();
          leaderboardListenerUnsubscribe = null;
      }
->>>>>>> b969928472af2d6b962e7c9e0b8c9aba8618b6dc
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'block';
     if (testSection) testSection.style.display = 'none';
 }
 
 function showTestSection() {
-<<<<<<< HEAD
     if (leaderboardListenerUnsubscribe) { // Detach when leaving Profile/Stats
         console.log("Detaching leaderboard listener when showing Test Section.");
         leaderboardListenerUnsubscribe();
@@ -1049,16 +1041,6 @@ function showTestSection() {
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'none';
     if (testSection) testSection.style.display = 'block';
-=======
-    if (leaderboardListenerUnsubscribe) { // Detach when leaving Statistiky
-         console.log("Detaching leaderboard listener when showing Test Section.");
-         leaderboardListenerUnsubscribe();
-         leaderboardListenerUnsubscribe = null;
-     }
-    if (loginSection) loginSection.style.display = 'none';
-    if (dashboardSection) dashboardSection.style.display = 'none';
-    if (testSection) testSection.style.display = 'block';
-    if (progressSection) progressSection.style.display = 'none';
 }
 
 async function showProgressSection() { // Make async
@@ -1120,7 +1102,6 @@ async function showProgressSection() { // Make async
         updateAchievementsUI(null);
         updateLeaderboardUI([]); // Clear leaderboard UI
     }
->>>>>>> b969928472af2d6b962e7c9e0b8c9aba8618b6dc
 }
 
 /**
@@ -2359,49 +2340,43 @@ profileLink?.addEventListener('click', (e) => {
 nicknameChangeForm?.addEventListener('submit', handleNicknameChange);
 changePasswordBtn?.addEventListener('click', handleChangePassword);
 deleteAccountBtn?.addEventListener('click', handleDeleteAccount); // Add delete listener
-<<<<<<< HEAD
 async function showProfileSection() {
-    // 1. Hide other sections
-=======
-function showProfileSection() {
-    if (leaderboardListenerUnsubscribe) { // Detach when leaving Statistiky
-         console.log("Detaching leaderboard listener when showing Profile Section.");
-         leaderboardListenerUnsubscribe();
-         leaderboardListenerUnsubscribe = null;
-     }
->>>>>>> b969928472af2d6b962e7c9e0b8c9aba8618b6dc
+    if (leaderboardListenerUnsubscribe) {
+        console.log("Detaching previous leaderboard listener before showing Profile/Stats.");
+        leaderboardListenerUnsubscribe();
+        leaderboardListenerUnsubscribe = null; // Reset the variable
+    }
+
+    // 2. Show/Hide Sections
     if(loginSection) loginSection.style.display = 'none';
     if(dashboardSection) dashboardSection.style.display = 'none';
     if(testSection) testSection.style.display = 'none';
+    // progressSection is removed
     if(profileSection) profileSection.style.display = 'block'; // Show this section
 
-    // 2. Detach previous listener if navigating away from another section
-    // (This check might already be in other show... functions)
-    if (leaderboardListenerUnsubscribe) {
-        console.log("Detaching leaderboard listener when showing Profile Section (safety check).");
-        leaderboardListenerUnsubscribe();
-        leaderboardListenerUnsubscribe = null;
-    }
-
-    // 3. Load Data if User is Logged In
     if (currentUser) {
         console.log("Loading data for Profile/Stats section...");
         try {
-            // Fetch user data for profile info, stats table, achievements
+            // Fetch core user data once
             const userData = await getUserData(currentUser, db);
 
-            // Populate Profile Info parts
-            loadProfileData(); // Existing function to populate email/nickname/joined
-
-            // Populate Stats/Achievements parts (previously done by showProgressSection)
-            updateProgressSection(userData); // Update table/summary stats (Streak/XP)
-            updateAchievementsUI(userData); // Update achievements list
-
-            // Attach Real-time Leaderboard Listener (logic moved from showProgressSection)
-            if (leaderboardListenerUnsubscribe) { // Double check just in case
-                 leaderboardListenerUnsubscribe();
-                 leaderboardListenerUnsubscribe = null;
+            if (!userData) {
+                // Handle case where user data couldn't be fetched even though logged in
+                console.error("Could not fetch user data for logged-in user:", currentUser);
+                throw new Error("Nepodařilo se načíst data uživatele."); // Throw to trigger catch block
             }
+
+            // Populate standard Profile Info
+            loadProfileData(); // Populates email/nickname/joined from auth/userData
+
+            // Populate moved Stats elements (Streak/XP cards, Table)
+            // Make sure updateProgressSection handles these elements correctly now
+            updateProgressSection(userData);
+
+            // Populate Achievements
+            updateAchievementsUI(userData);
+
+            // Attach Real-time Leaderboard Listener
             console.log("Attaching real-time leaderboard listener for Profile/Stats section...");
             const query = db.collection("users")
                             .orderBy("weeklyXP", "desc")
@@ -2410,33 +2385,58 @@ function showProfileSection() {
             leaderboardListenerUnsubscribe = query.onSnapshot(querySnapshot => {
                 console.log("Leaderboard snapshot received (Profile/Stats).");
                 const topUsers = [];
-                querySnapshot.forEach(doc => { /* ... extract user data ... */ });
-                updateLeaderboardUI(topUsers);
+                querySnapshot.forEach(doc => {
+                    const data = doc.data();
+                    // Extract data needed for the leaderboard UI
+                     if (data.nickname && typeof data.weeklyXP === 'number') {
+                         topUsers.push({
+                             nickname: data.nickname,
+                             xp: data.weeklyXP // Pass weeklyXP as 'xp' to the UI function
+                         });
+                     }
+                });
+                updateLeaderboardUI(topUsers); // Update the UI with processed data
             }, error => {
+                // Handle listener errors
                 console.error("Error fetching leaderboard snapshot (Profile/Stats):", error);
                 if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba live žebříčku.</li>';
+                // Detach listener on error? Maybe not, it might recover.
+                // if (leaderboardListenerUnsubscribe) {
+                //     leaderboardListenerUnsubscribe();
+                //     leaderboardListenerUnsubscribe = null;
+                // }
             });
 
         } catch (error) {
+            // Handle errors during initial data fetch
             console.error("Error loading profile/stats section data:", error);
-            // Clear relevant UI parts on error
+            // Clear relevant UI parts to show error state
             if(profileEmail) profileEmail.textContent = 'Chyba';
             if(profileNickname) profileNickname.textContent = 'Chyba';
             if(profileJoined) profileJoined.textContent = 'Chyba';
-            updateProgressSection(null);
-            updateAchievementsUI(null);
-            updateLeaderboardUI([]); // Clear leaderboard
+            updateProgressSection(null); // Clear stats table/cards
+            updateAchievementsUI(null); // Clear achievements
+            updateLeaderboardUI([]);    // Clear leaderboard
         }
     } else {
-        // Clear UI elements if user somehow gets here while logged out
+        // --- USER IS LOGGED OUT ---
+        // Clear all profile/stats UI elements
          if(profileEmail) profileEmail.textContent = 'N/A';
          if(profileNickname) profileNickname.textContent = 'N/A';
          if(profileJoined) profileJoined.textContent = 'N/A';
+         // Also clear form messages/inputs if desired
+         if(nicknameChangeForm) nicknameChangeForm.reset();
+         if(nicknameChangeMessage) nicknameChangeMessage.textContent = '';
+         if(passwordChangeMessage) passwordChangeMessage.textContent = '';
+         if(deleteAccountMessage) deleteAccountMessage.textContent = '';
+
         updateProgressSection(null);
         updateAchievementsUI(null);
         updateLeaderboardUI([]);
-        // Ensure listener is detached if somehow active
+        // Listener should have already been detached by showLogin or clearUserDataUI,
+        // but double-check just in case.
          if (leaderboardListenerUnsubscribe) {
+             console.warn("Detaching leaderboard listener in showProfileSection (User logged out - safety check).");
              leaderboardListenerUnsubscribe();
              leaderboardListenerUnsubscribe = null;
          }
