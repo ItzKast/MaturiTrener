@@ -759,37 +759,42 @@ async function registerUserHandler(authInstance) {
         await db.runTransaction(async (transaction) => {
              // Set default user data including nickname and timestamp
              const userDataPayload = {
-                 // Include fields from defaultUserData in getUserData
-                 nickname: nickname,
-                 email: email,
-                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                 weeklyXP: 0,
-                 testsToday: 0,
-                 correctAnswersToday: 0, // Add this if missing
-                 progress: {},
-                 totalTestsCompleted: 0,
-                 averageSuccessRate: 0,
-                 dayStreak: 0,
-                 totalXP: 0,
-                 lastCompletedTestDate: null,
-                 flawlessTestCount: 0,
-                 winningStreakCount: 0,
-                 favoriteBooks: [],
-                 completedTopics: [],
-                 achievements: {
-                     xpCollector: 0, unstoppable: 0, flawless: 0, winningStreak: 0,
-                     topicMaster: 0, earlyBird: 0, nightOwl: 0, marathoner: 0,
-                     earlyBirdCount: 0, nightOwlCount: 0
-                 },
-                 activity: {},
-                 lastActivityDate: null // Add this if missing
-             });
-             console.log("DEBUG: Payload being set for userDocRef:", JSON.stringify(userDataPayload));
-            console.log("DEBUG: Value of 'nickname' variable just before set:", nickname);
-             // Reserve the nickname
-             transaction.set(userDocRef, userDataPayload);
-             transaction.set(nicknameDocRef, { userId: uid });
-        });
+                    nickname: nickname, // The variable from input
+                    email: email,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    // ... include ALL OTHER necessary default fields ...
+                    weeklyXP: 0,
+                    testsToday: 0,
+                    correctAnswersToday: 0,
+                    progress: {},
+                    totalTestsCompleted: 0,
+                    averageSuccessRate: 0,
+                    dayStreak: 0,
+                    totalXP: 0,
+                    lastCompletedTestDate: null,
+                    flawlessTestCount: 0,
+                    winningStreakCount: 0,
+                    favoriteBooks: [],
+                    completedTopics: [],
+                    achievements: {
+                        xpCollector: 0, unstoppable: 0, flawless: 0, winningStreak: 0,
+                        topicMaster: 0, earlyBird: 0, nightOwl: 0, marathoner: 0,
+                        earlyBirdCount: 0, nightOwlCount: 0
+                     },
+                    activity: {},
+                    lastActivityDate: null
+                };
+
+                // --- NOW Log the payload ---
+                console.log("DEBUG: Payload being set for userDocRef:", JSON.stringify(userDataPayload));
+                console.log("DEBUG: Value of 'nickname' variable just before set:", nickname); // Log the variable directly too
+
+                // --- Set the user document using the defined payload ---
+                transaction.set(userDocRef, userDataPayload);
+
+                // --- Set the nickname document ---
+                transaction.set(nicknameDocRef, { userId: uid });
+            });
 
 
         console.log("User registered and initial data saved successfully.");
