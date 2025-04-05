@@ -359,38 +359,57 @@ document.addEventListener('DOMContentLoaded', async () => {
         setupEventListeners();
 
         // --- Firebase Auth Listener ---
-        auth.onAuthStateChanged(async (user) => { // Make listener async
-        if (user) {
-        currentUser = user.uid;
+        // --- Firebase Auth Listener ---
+auth.onAuthStateChanged(async (user) => {
+    if (user) {
+        // --- USER IS LOGGED IN ---
+        const uid = user.uid;
+        currentUser = uid; // Set global currentUser immediately
         console.log('Auth State Changed: Logged in as', user.email);
-        authLink.textContent = "Odhlásit se";
+        authLink.textContent = "Odhlásit se"; // Update logout button text
 
-        const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime) : null;
-        const lastSignInTime = user.metadata.lastSignInTime ? new Date(user.metadata.lastSignInTime) : null;
-        // Check if creation and last sign-in are very close (e.g., within 5 seconds) - indicates registration
-        const isNewUser = creationTime && lastSignInTime && (lastSignInTime.getTime() - creationTime.getTime() < 5000);
+        // Determine if this is potentially a brand new registration
+        const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime).getTime() : 0;
+        const lastSignInTime = user.metadata.lastSignInTime ? new Date(user.metadata.lastSignInTime).getTime() : 0;
+        // Check if creation and last sign-in are very close (e.g., within 5 seconds)
+        // Use a slightly larger window just in case of clock skew or minor delays
+        const isPotentiallyNewUser = creationTime && lastSignInTime && (Math.abs(lastSignInTime - creationTime) < 5000);
 
-        console.log(`DEBUG: Is this a new user registration? ${isNewUser}`);
+        console.log(`DEBUG: Auth state change for UID: ${uid}. Potentially New User: ${isPotentiallyNewUser}`);
 
-        if (isNewUser) {
-     console.log("DEBUG: New user detected, calling loadUserDataFromFirestore with isNewlyRegistered=true.");
-     showDashboard(); // Show UI first
-     // Call load function, passing the flag to prevent overwriting transaction
-     await loadUserDataFromFirestore(currentUser, db, true);
+        // Regardless of new or existing, show the main application view immediately
+        showDashboard(); // Or whichever view is appropriate after login
+
+        if (isPotentiallyNewUser) {
+            // --- NEW USER REGISTRATION SCENARIO ---
+            console.log("DEBUG: Handling as potential new user registration. Delaying full data load.");
+            const registrationDataLoadDelay = 2000; // 2 seconds
+            setTimeout(async () => {
+                console.log(`DEBUG: Delayed data load starting for new user ${uid}.`);
+                // Load data normally now, assuming transaction has likely committed.
+                // Pass 'false' for isNewlyRegistered as we expect data to exist now.
+                await loadUserDataFromFirestore(uid, db, false);
+            }, registrationDataLoadDelay);
+
         } else {
-     console.log("DEBUG: Existing user detected, calling loadUserDataFromFirestore with isNewlyRegistered=false.");
-     showDashboard();
-     await loadUserDataFromFirestore(currentUser, db, false); // Pass false for existing users
+            // --- EXISTING USER LOGIN SCENARIO ---
+            console.log("DEBUG: Handling as existing user login. Loading data immediately.");
+            // Load data immediately and normally for existing users.
+            // Pass 'false' for isNewlyRegistered.
+            await loadUserDataFromFirestore(uid, db, false);
         }
-            } else {
-                currentUser = null;
-                console.log('Auth State Changed: Logged out');
-                authLink.textContent = "Přihlásit se";
-                clearUserDataUI(); // Clear displayed stats
-                showLogin(); // Show login screen
-                generateCalendar(currentYear, currentMonth, db); // Generate empty calendar
-            }
-        });
+
+    } else {
+        // --- USER IS LOGGED OUT ---
+        currentUser = null;
+        console.log('Auth State Changed: Logged out');
+        authLink.textContent = "Přihlásit se";
+        clearUserDataUI(); // Clear displayed stats and potentially profile/leaderboard
+        showLogin();      // Show the login screen
+        // Regenerate calendar with empty data (assuming generateCalendar handles null currentUser)
+        generateCalendar(currentYear, currentMonth, db);
+    }
+});
 
     } catch (error) {
         console.error("Error initializing Firebase or setting up:", error);
