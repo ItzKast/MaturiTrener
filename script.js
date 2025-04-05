@@ -761,6 +761,7 @@ async function registerUserHandler(authInstance) {
              transaction.set(userDocRef, {
                  // Include fields from defaultUserData in getUserData
                  nickname: nickname,
+                 email: email,
                  createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                  weeklyXP: 0,
                  testsToday: 0,
@@ -783,7 +784,10 @@ async function registerUserHandler(authInstance) {
                  activity: {},
                  lastActivityDate: null // Add this if missing
              });
+             console.log("DEBUG: Payload being set for userDocRef:", JSON.stringify(userDataPayload));
+            console.log("DEBUG: Value of 'nickname' variable just before set:", nickname);
              // Reserve the nickname
+             transaction.set(userDocRef, userDataPayload);
              transaction.set(nicknameDocRef, { userId: uid });
         });
 
@@ -2249,6 +2253,7 @@ async function handleNicknameChange(event) {
     if (!currentUser || !newNicknameInput || !nicknameChangeMessage || !changeNicknameBtn) return;
 
     const newNickname = newNicknameInput.value.trim();
+    console.log("DEBUG: Nickname read from input:", nickname);
     nicknameChangeMessage.textContent = ''; // Clear previous message
     nicknameChangeMessage.className = ''; // Clear success/error class
 
