@@ -662,6 +662,25 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) { /
         clearUserDataUI();
     }
 }
+/**
+ * Fetches the latest leaderboard data and updates the UI.
+ */
+async function refreshLeaderboard() {
+    if (!currentUser || !leaderboardList) {
+        console.log("Cannot refresh leaderboard: No user or list element.");
+        return; // Exit if not logged in or element missing
+    }
+    console.log("Refreshing leaderboard data...");
+    try {
+        const leaderboardData = await fetchLeaderboardData(10); // Fetch top 10
+        updateLeaderboardUI(leaderboardData); // Update the list
+        console.log("Leaderboard UI updated.");
+    } catch (error) {
+        console.error("Error refreshing leaderboard:", error);
+        // Optionally display an error in the leaderboard list
+        if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba načítání žebříčku.</li>';
+    }
+}
 function updateAchievementsUI(userData) {
     if (!achievementListEl) return; // Check if element exists
 
@@ -998,6 +1017,11 @@ function showLogin() {
 }
 
 function showDashboard() {
+    if (leaderboardListenerUnsubscribe) { // Detach when leaving Statistiky
+         console.log("Detaching leaderboard listener when showing Dashboard.");
+         leaderboardListenerUnsubscribe();
+         leaderboardListenerUnsubscribe = null;
+     }
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'block';
     if (testSection) testSection.style.display = 'none';
@@ -1005,6 +1029,11 @@ function showDashboard() {
 }
 
 function showTestSection() {
+    if (leaderboardListenerUnsubscribe) { // Detach when leaving Statistiky
+         console.log("Detaching leaderboard listener when showing Test Section.");
+         leaderboardListenerUnsubscribe();
+         leaderboardListenerUnsubscribe = null;
+     }
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'none';
     if (testSection) testSection.style.display = 'block';
@@ -1019,31 +1048,56 @@ async function showProgressSection() { // Make async
     if(progressSection) progressSection.style.display = 'block';
 
     if (currentUser) {
-       try {
-            // Fetch user data for stats AND leaderboard data concurrently
-            const [userData, leaderboardData] = await Promise.all([
-                getUserData(currentUser, db),
-                fetchLeaderboardData(10) // Fetch top 10
-            ]);
+        try {
+            // Fetch user-specific stats (like achievements, table data)
+            const userData = await getUserData(currentUser, db);
+            updateProgressSection(userData);
+            updateAchievementsUI(userData);
 
-            // Update user stats sections
-            updateProgressSection(userData); // Update table/summary stats
-            updateAchievementsUI(userData); // Update achievements (already called here?)
+            // --- Setup Real-time Leaderboard Listener ---
+            if (leaderboardListenerUnsubscribe) {
+                 console.log("Detaching previous leaderboard listener.");
+                 leaderboardListenerUnsubscribe(); // Unsubscribe from previous listener if exists
+                 leaderboardListenerUnsubscribe = null;
+            }
 
-            // Update the leaderboard UI
-            updateLeaderboardUI(leaderboardData);
+            console.log("Attaching real-time leaderboard listener...");
+            const query = db.collection("users")
+                            .orderBy("totalXP", "desc")
+                            .limit(10);
 
-       } catch (error) {
-            console.error("Error loading progress section data:", error);
-            // Handle errors, maybe show error messages in UI parts
+            leaderboardListenerUnsubscribe = query.onSnapshot(querySnapshot => {
+                console.log("Leaderboard snapshot received.");
+                const topUsers = [];
+                querySnapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (data.nickname && typeof data.totalXP === 'number') {
+                        topUsers.push({
+                            nickname: data.nickname,
+                            xp: data.totalXP
+                        });
+                    }
+                });
+                updateLeaderboardUI(topUsers); // Update UI whenever data changes
+            }, error => {
+                console.error("Error fetching leaderboard snapshot:", error);
+                if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba načítání žebříčku v reálném čase.</li>';
+            });
+
+        } catch (error) {
+             console.error("Error loading progress section data:", error);
              if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba načítání žebříčku.</li>';
-       }
-
+        }
     } else {
-        // Clear progress table and achievements if user logs out
-        updateProgressSection(null); // Clear table
-        updateAchievementsUI(null);  // Clear achievements
-        updateLeaderboardUI([]); // Clear leaderboard
+        // Clear UI if not logged in
+         if (leaderboardListenerUnsubscribe) { // <<< Detach listener on logout too
+             console.log("Detaching leaderboard listener on logout.");
+             leaderboardListenerUnsubscribe();
+             leaderboardListenerUnsubscribe = null;
+         }
+        updateProgressSection(null);
+        updateAchievementsUI(null);
+        updateLeaderboardUI([]); // Clear leaderboard UI
     }
 }
 
@@ -1210,6 +1264,11 @@ function updateProgressSection(userData) {
  * Clears user-specific data from the UI, typically called on logout.
  */
 function clearUserDataUI() {
+    if (leaderboardListenerUnsubscribe) {
+         console.log("Detaching leaderboard listener during UI clear.");
+         leaderboardListenerUnsubscribe();
+         leaderboardListenerUnsubscribe = null;
+      }
     // Reset dashboard stats
     updateStatisticsSection(null); // Pass null for default/zero state
 
@@ -1812,6 +1871,11 @@ async function evaluateTest(db) {
     updateAchievementsUI(userData);
     await generateCalendar(currentYear, currentMonth, db); // Await calendar generation
 
+    if (progressSection && progressSection.style.display === 'block') {
+        console.log("Statistiky section is visible, refreshing leaderboard...");
+        await refreshLeaderboard(); // Call the new refresh function
+    }
+
     // --- Add Back Button ---
     addBackButtonToTestContainer(); // Reuse existing function
 
@@ -2277,6 +2341,11 @@ nicknameChangeForm?.addEventListener('submit', handleNicknameChange);
 changePasswordBtn?.addEventListener('click', handleChangePassword);
 deleteAccountBtn?.addEventListener('click', handleDeleteAccount); // Add delete listener
 function showProfileSection() {
+    if (leaderboardListenerUnsubscribe) { // Detach when leaving Statistiky
+         console.log("Detaching leaderboard listener when showing Profile Section.");
+         leaderboardListenerUnsubscribe();
+         leaderboardListenerUnsubscribe = null;
+     }
     if(loginSection) loginSection.style.display = 'none';
     if(dashboardSection) dashboardSection.style.display = 'none';
     if(testSection) testSection.style.display = 'none';
