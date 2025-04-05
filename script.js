@@ -1780,7 +1780,8 @@ async function evaluateTest(db) {
     userData.testsToday = (userData.testsToday || 0) + 1;
     userData.correctAnswersToday = (userData.correctAnswersToday || 0) + correct;
     userData.totalTestsCompleted = (userData.totalTestsCompleted || 0) + 1;
-    userData.totalXP = (userData.totalXP || 0) + correct; // XP based on correct answers
+    userData.totalXP = (userData.totalXP || 0) + correct;
+    userData.weeklyXP = (userData.weeklyXP || 0) + correct;// XP based on correct answers
 
     // --- Update Subject Progress ---
     const subject = subjectSelect.value;
@@ -2605,7 +2606,7 @@ async function fetchLeaderboardData(limit = 10) {
     if (!db) return [];
     try {
         const querySnapshot = await db.collection("users")
-            .orderBy("totalXP", "desc")
+            .orderBy("weeklyXP", "desc")
             .limit(limit)
             .get();
 
@@ -2613,10 +2614,10 @@ async function fetchLeaderboardData(limit = 10) {
         querySnapshot.forEach(doc => {
             const data = doc.data();
             // Ensure user has a nickname and XP before adding
-            if (data.nickname && typeof data.totalXP === 'number') {
+            if (data.nickname && typeof data.weeklyXP === 'number') {
                 topUsers.push({
                     nickname: data.nickname,
-                    xp: data.totalXP
+                    xp: data.weeklyXP // Return weeklyXP
                 });
             }
         });
