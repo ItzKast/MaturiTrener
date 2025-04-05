@@ -1030,6 +1030,7 @@ function showDashboard() {
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'block';
     if (testSection) testSection.style.display = 'none';
+    if(profileSection) profileSection.style.display = 'none';
 }
 
 function showTestSection() {
@@ -1040,68 +1041,8 @@ function showTestSection() {
     }
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'none';
+    if(profileSection) profileSection.style.display = 'none';
     if (testSection) testSection.style.display = 'block';
-}
-
-async function showProgressSection() { // Make async
-    if(loginSection) loginSection.style.display = 'none';
-    if(dashboardSection) dashboardSection.style.display = 'none';
-    if(testSection) testSection.style.display = 'none';
-    if(profileSection) profileSection.style.display = 'none'; // Hide profile
-    if(progressSection) progressSection.style.display = 'block';
-
-    if (currentUser) {
-        try {
-            // Fetch user-specific stats (like achievements, table data)
-            const userData = await getUserData(currentUser, db);
-            updateProgressSection(userData);
-            updateAchievementsUI(userData);
-
-            // --- Setup Real-time Leaderboard Listener ---
-            if (leaderboardListenerUnsubscribe) {
-                 console.log("Detaching previous leaderboard listener.");
-                 leaderboardListenerUnsubscribe(); // Unsubscribe from previous listener if exists
-                 leaderboardListenerUnsubscribe = null;
-            }
-
-            console.log("Attaching real-time leaderboard listener...");
-            const query = db.collection("users")
-                            .orderBy("totalXP", "desc")
-                            .limit(10);
-
-            leaderboardListenerUnsubscribe = query.onSnapshot(querySnapshot => {
-                console.log("Leaderboard snapshot received.");
-                const topUsers = [];
-                querySnapshot.forEach(doc => {
-                    const data = doc.data();
-                    if (data.nickname && typeof data.totalXP === 'number') {
-                        topUsers.push({
-                            nickname: data.nickname,
-                            xp: data.totalXP
-                        });
-                    }
-                });
-                updateLeaderboardUI(topUsers); // Update UI whenever data changes
-            }, error => {
-                console.error("Error fetching leaderboard snapshot:", error);
-                if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba načítání žebříčku v reálném čase.</li>';
-            });
-
-        } catch (error) {
-             console.error("Error loading progress section data:", error);
-             if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba načítání žebříčku.</li>';
-        }
-    } else {
-        // Clear UI if not logged in
-         if (leaderboardListenerUnsubscribe) { // <<< Detach listener on logout too
-             console.log("Detaching leaderboard listener on logout.");
-             leaderboardListenerUnsubscribe();
-             leaderboardListenerUnsubscribe = null;
-         }
-        updateProgressSection(null);
-        updateAchievementsUI(null);
-        updateLeaderboardUI([]); // Clear leaderboard UI
-    }
 }
 
 /**
