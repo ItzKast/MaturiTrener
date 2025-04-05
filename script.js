@@ -2606,6 +2606,7 @@ async function fetchLeaderboardData(limit = 10) {
     if (!db) return [];
     try {
         const querySnapshot = await db.collection("users")
+            // This line was changed from "totalXP" to "weeklyXP"
             .orderBy("weeklyXP", "desc")
             .limit(limit)
             .get();
@@ -2613,18 +2614,18 @@ async function fetchLeaderboardData(limit = 10) {
         const topUsers = [];
         querySnapshot.forEach(doc => {
             const data = doc.data();
-            // Ensure user has a nickname and XP before adding
             if (data.nickname && typeof data.weeklyXP === 'number') {
                 topUsers.push({
                     nickname: data.nickname,
-                    xp: data.weeklyXP // Return weeklyXP
+                    // This now represents the weekly XP value
+                    xp: data.weeklyXP
                 });
             }
         });
         return topUsers;
     } catch (error) {
-        console.error("Error fetching leaderboard data:", error);
-        return []; // Return empty array on error
+        console.error("Error fetching weekly leaderboard data:", error);
+        return [];
     }
 }
 
