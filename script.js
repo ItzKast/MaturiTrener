@@ -256,6 +256,7 @@ let db;
 let auth;
 let currentUser = null; // Holds the UID of the logged-in user
 let submitBtn = null; // Reference to the submit button during a test
+let leaderboardListenerUnsubscribe = null;
 
 
 // Calendar state variables
@@ -2155,17 +2156,13 @@ function populateTopics(subject, userData) { // Pass userData
         if (subject === "Čeština") {
             const favoriteBooks = userData?.favoriteBooks || [];
             console.log("User favorite books:", favoriteBooks);
-
-            // Sort topics: favorites first, then alphabetically
             topics.sort((a, b) => {
                 const aIsFav = favoriteBooks.includes(a);
                 const bIsFav = favoriteBooks.includes(b);
-                if (aIsFav && !bIsFav) return -1; // a comes first
-                if (!aIsFav && bIsFav) return 1;  // b comes first
-                return a.localeCompare(b, 'cs'); // Alphabetical for same fav status
+                if (aIsFav && !bIsFav) return -1;
+                if (!aIsFav && bIsFav) return 1;
+                return a.localeCompare(b, 'cs');
             });
-
-            // Show favorite button only for Čeština
             toggleFavoriteBtn.style.display = 'inline-block';
             // Enable button only if a valid topic is later selected
         } else {
@@ -2176,9 +2173,9 @@ function populateTopics(subject, userData) { // Pass userData
 
         // --- Populate Options ---
         topics.forEach(topic => {
-            // Skip summary topic if it exists in config but shouldn't be selectable here
-            if (topic === "Souhrnné opakování" && dataFileConfig[subject]?.[topic] === null) {
-                return;
+           if (!data[subject]?.[topic] && !dataFileConfig[subject]?.[topic]) {
+                 console.warn(`Skipping topic "${topic}" for subject "${subject}" as no data/file found.`);
+                 return; // Skip if no data/file associated
             }
 
             const option = document.createElement('option');
@@ -2202,7 +2199,7 @@ function populateTopics(subject, userData) { // Pass userData
             // Enable buttons if a valid topic is selected
             generateTestBtn.disabled = false;
             if (subject === "Čeština") {
-                toggleFavoriteBtn.disabled = false;
+                toggleFavoriteBtn.disabled = !(!currentTopicValue);
             }
         } else {
             // If previous selection is gone, ensure buttons are disabled
