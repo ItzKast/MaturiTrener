@@ -360,12 +360,28 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // --- Firebase Auth Listener ---
         auth.onAuthStateChanged(async (user) => { // Make listener async
-            if (user) {
-                currentUser = user.uid;
-                console.log('Auth State Changed: Logged in as', user.email);
-                authLink.textContent = "Odhlásit se";
-                showDashboard(); // Show dashboard first
-                await loadUserDataFromFirestore(currentUser, db); // Load data and THEN update calendar
+        if (user) {
+        currentUser = user.uid;
+        console.log('Auth State Changed: Logged in as', user.email);
+        authLink.textContent = "Odhlásit se";
+
+        const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime) : null;
+        const lastSignInTime = user.metadata.lastSignInTime ? new Date(user.metadata.lastSignInTime) : null;
+        // Check if creation and last sign-in are very close (e.g., within 5 seconds) - indicates registration
+        const isNewUser = creationTime && lastSignInTime && (lastSignInTime.getTime() - creationTime.getTime() < 5000);
+
+        console.log(`DEBUG: Is this a new user registration? ${isNewUser}`);
+
+        if (isNewUser) {
+     console.log("DEBUG: New user detected, calling loadUserDataFromFirestore with isNewlyRegistered=true.");
+     showDashboard(); // Show UI first
+     // Call load function, passing the flag to prevent overwriting transaction
+     await loadUserDataFromFirestore(currentUser, db, true);
+        } else {
+     console.log("DEBUG: Existing user detected, calling loadUserDataFromFirestore with isNewlyRegistered=false.");
+     showDashboard();
+     await loadUserDataFromFirestore(currentUser, db, false); // Pass false for existing users
+        }
             } else {
                 currentUser = null;
                 console.log('Auth State Changed: Logged out');
@@ -395,7 +411,7 @@ document.addEventListener('DOMContentLoaded', async () => {
  * @param {firebase.firestore.Firestore} db - The Firestore instance.
  * @returns {Promise<object|null>} A promise resolving to the user data object or null on error.
  */
-async function getUserData(uid, db) {
+async function getUserData(uid, db, isNewlyRegistered = false) { // Added isNewlyRegistered parameter
     if (!uid || !db) {
         console.warn("getUserData called without uid or db instance.");
         return null;
@@ -405,47 +421,83 @@ async function getUserData(uid, db) {
         const doc = await docRef.get();
 
         if (doc.exists) {
+            // --- Document Exists: Return Existing Data ---
             const data = doc.data();
-            // Ensure essential structures exist after retrieval
+            // Ensure essential structures exist after retrieval (Good practice)
             data.progress = data.progress || {};
-            data.achievements = data.achievements || {};
+            data.achievements = data.achievements || { /* default achievement levels */ };
             data.activity = data.activity || {};
-            data.completedTopics = data.completedTopics || []; // Should be stored as array
+            data.completedTopics = Array.isArray(data.completedTopics) ? data.completedTopics : []; // Ensure array
+            data.favoriteBooks = Array.isArray(data.favoriteBooks) ? data.favoriteBooks : []; // Ensure array
+            data.nickname = data.nickname || null; // Default to null if missing
+            data.weeklyXP = typeof data.weeklyXP === 'number' ? data.weeklyXP : 0;
+            // Add defaults for any other fields potentially missing from older docs
+            data.testsToday = data.testsToday || 0;
+            data.correctAnswersToday = data.correctAnswersToday || 0;
+            data.totalTestsCompleted = data.totalTestsCompleted || 0;
+            data.averageSuccessRate = data.averageSuccessRate || 0;
+            data.dayStreak = data.dayStreak || 0;
+            data.totalXP = data.totalXP || 0;
+            data.flawlessTestCount = data.flawlessTestCount || 0;
+            data.winningStreakCount = data.winningStreakCount || 0;
+            data.lastActivityDate = data.lastActivityDate || null;
+            data.lastCompletedTestDate = data.lastCompletedTestDate || null;
+
+
             console.log("Fetched user data:", data);
             return data;
         } else {
-            console.log("No user document found for uid:", uid, ". Creating default.");
-            // Create and return a default user data structure
+            // --- Document Does NOT Exist: Create Default Data ---
+            console.log("No user document found for uid:", uid, ". Returning default structure.");
+
+            // Create the default user data structure IN MEMORY
+            // NOTE: The actual nickname/email should come from the registration transaction payload.
+            // This default structure is mainly for initializing the app state if needed,
+            // or if getUserData is somehow called before the transaction commits.
             const defaultUserData = {
+                // Include ALL fields expected in a user document, matching the registration payload
+                nickname: null, // Default nickname is null, registration transaction sets the real one
+                email: null, // Default email is null, registration transaction sets the real one
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(), // Important for the rule later
+                weeklyXP: 0,
                 testsToday: 0,
-                correctAnswers: 0, // Consider if this should be total correct ever or today's
+                correctAnswersToday: 0,
                 progress: {},
                 totalTestsCompleted: 0,
                 averageSuccessRate: 0,
                 dayStreak: 0,
                 totalXP: 0,
-                lastCompletedTestDate: null, // Stores date string of last >80% test
+                lastCompletedTestDate: null,
                 flawlessTestCount: 0,
                 winningStreakCount: 0,
                 favoriteBooks: [],
-                completedTopics: [], // Store as array in Firestore
-                achievements: { // Initialize all achievements to level 0
+                completedTopics: [],
+                achievements: {
                     xpCollector: 0, unstoppable: 0, flawless: 0, winningStreak: 0,
                     topicMaster: 0, earlyBird: 0, nightOwl: 0, marathoner: 0,
-                    earlyBirdCount: 0, // Specific counts if needed
-                    nightOwlCount: 0
+                    earlyBirdCount: 0, nightOwlCount: 0
                 },
-                nickname: null, // Initialize nickname as null
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(), // Set on creation
-                weeklyXP: 0,
-                activity: {} // Activity log for calendar { year: { month: { day: count } } }
+                activity: {},
+                lastActivityDate: null
             };
-            // Save the default data for the new user
-            await saveUserData(uid, defaultUserData, db); // Use saveUserData to ensure correct format
+
+            // --- Conditional Save ---
+            if (!isNewlyRegistered) {
+                // Save the default data ONLY if this isn't the immediate post-registration call
+                console.log(`Saving default data for user ${uid} because isNewlyRegistered is false.`);
+                // Use saveUserData to ensure correct format and merge behavior if needed elsewhere
+                await saveUserData(uid, defaultUserData, db);
+            } else {
+                // If it IS the post-registration call, DON'T save.
+                // The registration transaction is responsible for the initial write.
+                console.log(`DEBUG: Skipping saveUserData for newly registered user ${uid} within getUserData.`);
+            }
+
+            // Always return the default structure so the calling function has something to work with
             return defaultUserData;
         }
     } catch (error) {
-        console.error("Error getting user document:", error);
+        console.error(`Error getting user document for ${uid}:`, error);
         return null; // Return null on error
     }
 }
@@ -524,15 +576,15 @@ async function saveUserData(uid, data, db) {
         alert("Chyba při ukládání dat. Zkuste to prosím znovu.");
     }
 }
-async function loadUserDataFromFirestore(uid, db) {
-    console.log("Attempting to load data for user:", uid);
-    if (!uid || !db) {
-        console.error("loadUserDataFromFirestore: Missing UID or DB instance.");
-        return; // Exit if essential parameters are missing
-    }
+async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) { // Add parameter here
+     console.log("Attempting to load data for user:", uid, `Is New: ${isNewlyRegistered}`);
+     if (!uid || !db) {
+         console.error("loadUserDataFromFirestore: Missing UID or DB instance.");
+         return;
+     }
 
     try {
-        let userData = await getUserData(uid, db); // Fetch data (this function now handles defaults if doc doesn't exist)
+        let userData = await getUserData(uid, db, isNewlyRegistered); // Fetch data (this function now handles defaults if doc doesn't exist)
 
         if (userData) {
             console.log("User data loaded:", userData);
