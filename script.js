@@ -1105,49 +1105,34 @@ async function showProgressSection() { // Make async
 }
 
 /**
- * Updates ALL statistics displays (Dashboard cards, Progress section summary).
+ * Updates statistics displays (NOW ONLY Streak/XP in the Profile section).
  * @param {object | null} userData - The user data object or null for default state.
  */
 function updateStatisticsSection(userData) {
-    // Default values if userData is null or missing properties
     const testsToday = userData?.testsToday || 0;
-    const correctToday = userData?.correctAnswersToday || 0; // Using the daily count
+    const correctToday = userData?.correctAnswersToday || 0;
     const rate = userData?.averageSuccessRate || 0;
+    // --- These are the values actually used now ---
     const streak = userData?.dayStreak || 0;
     const xp = userData?.totalXP || 0;
+    const progressDayStreakEl = document.getElementById('day-streak'); // Keep this ID check
+    const progressTotalXpEl = document.getElementById('total-xp');     // Keep this ID check
 
-    // --- Dashboard Card Elements ---
-    // MAKE SURE THESE IDs MATCH YOUR HTML EXACTLY
-    const dashTestsTodayEl = document.getElementById('tests-today');
-    const dashCorrectAnswersEl = document.getElementById('correct-answers');
-    const dashSuccessRateEl = document.getElementById('success-rate');
-
-    // --- Log the values being used for the dashboard card ---
-    console.log(`Updating Dashboard Stats - testsToday: ${testsToday}, correctToday: ${correctToday}, rate: ${rate}%`);
-
-    if (dashTestsTodayEl) {
-        dashTestsTodayEl.textContent = testsToday;
+    if (progressDayStreakEl) {
+        progressDayStreakEl.textContent = streak;
     } else {
-        console.warn("Element with ID 'tests-today' not found for dashboard.");
+        // Add warning if these specific elements are missing
+        console.warn("Element with ID 'day-streak' not found.");
     }
-    if (dashCorrectAnswersEl) {
-        dashCorrectAnswersEl.textContent = correctToday; // Display today's correct answers
+    if (progressTotalXpEl) {
+        progressTotalXpEl.textContent = xp;
     } else {
-        console.warn("Element with ID 'correct-answers' not found for dashboard.");
-    }
-    if (dashSuccessRateEl) {
-        dashSuccessRateEl.textContent = `${rate}%`;
-    } else {
-        console.warn("Element with ID 'success-rate' not found for dashboard.");
+         // Add warning if these specific elements are missing
+         console.warn("Element with ID 'total-xp' not found.");
     }
 
-    const progressDayStreakEl = document.getElementById('day-streak');
-    const progressTotalXpEl = document.getElementById('total-xp');
-
-    if (progressDayStreakEl) progressDayStreakEl.textContent = streak;
-    if (progressTotalXpEl) progressTotalXpEl.textContent = xp;
-
-    console.log("UI Statistics Updated:", { testsToday, correctToday, rate, streak, xp });
+    // Updated log to reflect only what's being set
+    console.log("UI Statistics Updated (Profile Section):", { streak, xp });
 }
 
 
