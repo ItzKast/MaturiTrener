@@ -256,6 +256,7 @@ let db;
 let auth;
 let currentUser = null; // Holds the UID of the logged-in user
 let submitBtn = null; // Reference to the submit button during a test
+let leaderboardListenerUnsubscribe = null;
 
 
 // Calendar state variables
@@ -359,22 +360,57 @@ document.addEventListener('DOMContentLoaded', async () => {
         setupEventListeners();
 
         // --- Firebase Auth Listener ---
-        auth.onAuthStateChanged(async (user) => { // Make listener async
-            if (user) {
-                currentUser = user.uid;
-                console.log('Auth State Changed: Logged in as', user.email);
-                authLink.textContent = "Odhlásit se";
-                showDashboard(); // Show dashboard first
-                await loadUserDataFromFirestore(currentUser, db); // Load data and THEN update calendar
-            } else {
-                currentUser = null;
-                console.log('Auth State Changed: Logged out');
-                authLink.textContent = "Přihlásit se";
-                clearUserDataUI(); // Clear displayed stats
-                showLogin(); // Show login screen
-                generateCalendar(currentYear, currentMonth, db); // Generate empty calendar
-            }
-        });
+        // --- Firebase Auth Listener ---
+auth.onAuthStateChanged(async (user) => {
+    if (user) {
+        // --- USER IS LOGGED IN ---
+        const uid = user.uid;
+        currentUser = uid; // Set global currentUser immediately
+        console.log('Auth State Changed: Logged in as', user.email);
+        authLink.textContent = "Odhlásit se"; // Update logout button text
+
+        // Determine if this is potentially a brand new registration
+        const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime).getTime() : 0;
+        const lastSignInTime = user.metadata.lastSignInTime ? new Date(user.metadata.lastSignInTime).getTime() : 0;
+        // Check if creation and last sign-in are very close (e.g., within 5 seconds)
+        // Use a slightly larger window just in case of clock skew or minor delays
+        const isPotentiallyNewUser = creationTime && lastSignInTime && (Math.abs(lastSignInTime - creationTime) < 5000);
+
+        console.log(`DEBUG: Auth state change for UID: ${uid}. Potentially New User: ${isPotentiallyNewUser}`);
+
+        // Regardless of new or existing, show the main application view immediately
+        showDashboard(); // Or whichever view is appropriate after login
+
+        if (isPotentiallyNewUser) {
+            // --- NEW USER REGISTRATION SCENARIO ---
+            console.log("DEBUG: Handling as potential new user registration. Delaying full data load.");
+            const registrationDataLoadDelay = 2000; // 2 seconds
+            setTimeout(async () => {
+                console.log(`DEBUG: Delayed data load starting for new user ${uid}.`);
+                // Load data normally now, assuming transaction has likely committed.
+                // Pass 'false' for isNewlyRegistered as we expect data to exist now.
+                await loadUserDataFromFirestore(uid, db, false);
+            }, registrationDataLoadDelay);
+
+        } else {
+            // --- EXISTING USER LOGIN SCENARIO ---
+            console.log("DEBUG: Handling as existing user login. Loading data immediately.");
+            // Load data immediately and normally for existing users.
+            // Pass 'false' for isNewlyRegistered.
+            await loadUserDataFromFirestore(uid, db, false);
+        }
+
+    } else {
+        // --- USER IS LOGGED OUT ---
+        currentUser = null;
+        console.log('Auth State Changed: Logged out');
+        authLink.textContent = "Přihlásit se";
+        clearUserDataUI(); // Clear displayed stats and potentially profile/leaderboard
+        showLogin();      // Show the login screen
+        // Regenerate calendar with empty data (assuming generateCalendar handles null currentUser)
+        generateCalendar(currentYear, currentMonth, db);
+    }
+});
 
     } catch (error) {
         console.error("Error initializing Firebase or setting up:", error);
@@ -395,7 +431,7 @@ document.addEventListener('DOMContentLoaded', async () => {
  * @param {firebase.firestore.Firestore} db - The Firestore instance.
  * @returns {Promise<object|null>} A promise resolving to the user data object or null on error.
  */
-async function getUserData(uid, db) {
+async function getUserData(uid, db, isNewlyRegistered = false) { // Added isNewlyRegistered parameter
     if (!uid || !db) {
         console.warn("getUserData called without uid or db instance.");
         return null;
@@ -405,47 +441,83 @@ async function getUserData(uid, db) {
         const doc = await docRef.get();
 
         if (doc.exists) {
+            // --- Document Exists: Return Existing Data ---
             const data = doc.data();
-            // Ensure essential structures exist after retrieval
+            // Ensure essential structures exist after retrieval (Good practice)
             data.progress = data.progress || {};
-            data.achievements = data.achievements || {};
+            data.achievements = data.achievements || { /* default achievement levels */ };
             data.activity = data.activity || {};
-            data.completedTopics = data.completedTopics || []; // Should be stored as array
+            data.completedTopics = Array.isArray(data.completedTopics) ? data.completedTopics : []; // Ensure array
+            data.favoriteBooks = Array.isArray(data.favoriteBooks) ? data.favoriteBooks : []; // Ensure array
+            data.nickname = data.nickname || null; // Default to null if missing
+            data.weeklyXP = typeof data.weeklyXP === 'number' ? data.weeklyXP : 0;
+            // Add defaults for any other fields potentially missing from older docs
+            data.testsToday = data.testsToday || 0;
+            data.correctAnswersToday = data.correctAnswersToday || 0;
+            data.totalTestsCompleted = data.totalTestsCompleted || 0;
+            data.averageSuccessRate = data.averageSuccessRate || 0;
+            data.dayStreak = data.dayStreak || 0;
+            data.totalXP = data.totalXP || 0;
+            data.flawlessTestCount = data.flawlessTestCount || 0;
+            data.winningStreakCount = data.winningStreakCount || 0;
+            data.lastActivityDate = data.lastActivityDate || null;
+            data.lastCompletedTestDate = data.lastCompletedTestDate || null;
+
+
             console.log("Fetched user data:", data);
             return data;
         } else {
-            console.log("No user document found for uid:", uid, ". Creating default.");
-            // Create and return a default user data structure
+            // --- Document Does NOT Exist: Create Default Data ---
+            console.log("No user document found for uid:", uid, ". Returning default structure.");
+
+            // Create the default user data structure IN MEMORY
+            // NOTE: The actual nickname/email should come from the registration transaction payload.
+            // This default structure is mainly for initializing the app state if needed,
+            // or if getUserData is somehow called before the transaction commits.
             const defaultUserData = {
+                // Include ALL fields expected in a user document, matching the registration payload
+                nickname: null, // Default nickname is null, registration transaction sets the real one
+                email: null, // Default email is null, registration transaction sets the real one
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(), // Important for the rule later
+                weeklyXP: 0,
                 testsToday: 0,
-                correctAnswers: 0, // Consider if this should be total correct ever or today's
+                correctAnswersToday: 0,
                 progress: {},
                 totalTestsCompleted: 0,
                 averageSuccessRate: 0,
                 dayStreak: 0,
                 totalXP: 0,
-                lastCompletedTestDate: null, // Stores date string of last >80% test
+                lastCompletedTestDate: null,
                 flawlessTestCount: 0,
                 winningStreakCount: 0,
                 favoriteBooks: [],
-                completedTopics: [], // Store as array in Firestore
-                achievements: { // Initialize all achievements to level 0
+                completedTopics: [],
+                achievements: {
                     xpCollector: 0, unstoppable: 0, flawless: 0, winningStreak: 0,
                     topicMaster: 0, earlyBird: 0, nightOwl: 0, marathoner: 0,
-                    earlyBirdCount: 0, // Specific counts if needed
-                    nightOwlCount: 0
+                    earlyBirdCount: 0, nightOwlCount: 0
                 },
-                nickname: null, // Initialize nickname as null
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(), // Set on creation
-                weeklyXP: 0,
-                activity: {} // Activity log for calendar { year: { month: { day: count } } }
+                activity: {},
+                lastActivityDate: null
             };
-            // Save the default data for the new user
-            await saveUserData(uid, defaultUserData, db); // Use saveUserData to ensure correct format
+
+            // --- Conditional Save ---
+            if (!isNewlyRegistered) {
+                // Save the default data ONLY if this isn't the immediate post-registration call
+                console.log(`Saving default data for user ${uid} because isNewlyRegistered is false.`);
+                // Use saveUserData to ensure correct format and merge behavior if needed elsewhere
+                await saveUserData(uid, defaultUserData, db);
+            } else {
+                // If it IS the post-registration call, DON'T save.
+                // The registration transaction is responsible for the initial write.
+                console.log(`DEBUG: Skipping saveUserData for newly registered user ${uid} within getUserData.`);
+            }
+
+            // Always return the default structure so the calling function has something to work with
             return defaultUserData;
         }
     } catch (error) {
-        console.error("Error getting user document:", error);
+        console.error(`Error getting user document for ${uid}:`, error);
         return null; // Return null on error
     }
 }
@@ -524,15 +596,15 @@ async function saveUserData(uid, data, db) {
         alert("Chyba při ukládání dat. Zkuste to prosím znovu.");
     }
 }
-async function loadUserDataFromFirestore(uid, db) {
-    console.log("Attempting to load data for user:", uid);
-    if (!uid || !db) {
-        console.error("loadUserDataFromFirestore: Missing UID or DB instance.");
-        return; // Exit if essential parameters are missing
-    }
+async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) { // Add parameter here
+     console.log("Attempting to load data for user:", uid, `Is New: ${isNewlyRegistered}`);
+     if (!uid || !db) {
+         console.error("loadUserDataFromFirestore: Missing UID or DB instance.");
+         return;
+     }
 
     try {
-        let userData = await getUserData(uid, db); // Fetch data (this function now handles defaults if doc doesn't exist)
+        let userData = await getUserData(uid, db, isNewlyRegistered); // Fetch data (this function now handles defaults if doc doesn't exist)
 
         if (userData) {
             console.log("User data loaded:", userData);
@@ -588,6 +660,25 @@ async function loadUserDataFromFirestore(uid, db) {
         alert("Nastala chyba při načítání uživatelských dat.");
         // Optionally clear UI or show specific error message
         clearUserDataUI();
+    }
+}
+/**
+ * Fetches the latest leaderboard data and updates the UI.
+ */
+async function refreshLeaderboard() {
+    if (!currentUser || !leaderboardList) {
+        console.log("Cannot refresh leaderboard: No user or list element.");
+        return; // Exit if not logged in or element missing
+    }
+    console.log("Refreshing leaderboard data...");
+    try {
+        const leaderboardData = await fetchLeaderboardData(10); // Fetch top 10
+        updateLeaderboardUI(leaderboardData); // Update the list
+        console.log("Leaderboard UI updated.");
+    } catch (error) {
+        console.error("Error refreshing leaderboard:", error);
+        // Optionally display an error in the leaderboard list
+        if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba načítání žebříčku.</li>';
     }
 }
 function updateAchievementsUI(userData) {
@@ -757,34 +848,43 @@ async function registerUserHandler(authInstance) {
 
         await db.runTransaction(async (transaction) => {
              // Set default user data including nickname and timestamp
-             transaction.set(userDocRef, {
-                 // Include fields from defaultUserData in getUserData
-                 nickname: nickname,
-                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                 weeklyXP: 0,
-                 testsToday: 0,
-                 correctAnswersToday: 0, // Add this if missing
-                 progress: {},
-                 totalTestsCompleted: 0,
-                 averageSuccessRate: 0,
-                 dayStreak: 0,
-                 totalXP: 0,
-                 lastCompletedTestDate: null,
-                 flawlessTestCount: 0,
-                 winningStreakCount: 0,
-                 favoriteBooks: [],
-                 completedTopics: [],
-                 achievements: {
-                     xpCollector: 0, unstoppable: 0, flawless: 0, winningStreak: 0,
-                     topicMaster: 0, earlyBird: 0, nightOwl: 0, marathoner: 0,
-                     earlyBirdCount: 0, nightOwlCount: 0
-                 },
-                 activity: {},
-                 lastActivityDate: null // Add this if missing
-             });
-             // Reserve the nickname
-             transaction.set(nicknameDocRef, { userId: uid });
-        });
+             const userDataPayload = {
+                    nickname: nickname, // The variable from input
+                    email: email,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    // ... include ALL OTHER necessary default fields ...
+                    weeklyXP: 0,
+                    testsToday: 0,
+                    correctAnswersToday: 0,
+                    progress: {},
+                    totalTestsCompleted: 0,
+                    averageSuccessRate: 0,
+                    dayStreak: 0,
+                    totalXP: 0,
+                    lastCompletedTestDate: null,
+                    flawlessTestCount: 0,
+                    winningStreakCount: 0,
+                    favoriteBooks: [],
+                    completedTopics: [],
+                    achievements: {
+                        xpCollector: 0, unstoppable: 0, flawless: 0, winningStreak: 0,
+                        topicMaster: 0, earlyBird: 0, nightOwl: 0, marathoner: 0,
+                        earlyBirdCount: 0, nightOwlCount: 0
+                     },
+                    activity: {},
+                    lastActivityDate: null
+                };
+
+                // --- NOW Log the payload ---
+                console.log("DEBUG: Payload being set for userDocRef:", JSON.stringify(userDataPayload));
+                console.log("DEBUG: Value of 'nickname' variable just before set:", nickname); // Log the variable directly too
+
+                // --- Set the user document using the defined payload ---
+                transaction.set(userDocRef, userDataPayload);
+
+                // --- Set the nickname document ---
+                transaction.set(nicknameDocRef, { userId: uid });
+            });
 
 
         console.log("User registered and initial data saved successfully.");
@@ -921,17 +1021,26 @@ function showLogin() {
 }
 
 function showDashboard() {
+<<<<<<< HEAD
     if (leaderboardListenerUnsubscribe) { // Detach when leaving Profile/Stats
         console.log("Detaching leaderboard listener when showing Dashboard.");
         leaderboardListenerUnsubscribe();
         leaderboardListenerUnsubscribe = null;
     }
+=======
+    if (leaderboardListenerUnsubscribe) { // Detach when leaving Statistiky
+         console.log("Detaching leaderboard listener when showing Dashboard.");
+         leaderboardListenerUnsubscribe();
+         leaderboardListenerUnsubscribe = null;
+     }
+>>>>>>> b969928472af2d6b962e7c9e0b8c9aba8618b6dc
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'block';
     if (testSection) testSection.style.display = 'none';
 }
 
 function showTestSection() {
+<<<<<<< HEAD
     if (leaderboardListenerUnsubscribe) { // Detach when leaving Profile/Stats
         console.log("Detaching leaderboard listener when showing Test Section.");
         leaderboardListenerUnsubscribe();
@@ -940,6 +1049,78 @@ function showTestSection() {
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'none';
     if (testSection) testSection.style.display = 'block';
+=======
+    if (leaderboardListenerUnsubscribe) { // Detach when leaving Statistiky
+         console.log("Detaching leaderboard listener when showing Test Section.");
+         leaderboardListenerUnsubscribe();
+         leaderboardListenerUnsubscribe = null;
+     }
+    if (loginSection) loginSection.style.display = 'none';
+    if (dashboardSection) dashboardSection.style.display = 'none';
+    if (testSection) testSection.style.display = 'block';
+    if (progressSection) progressSection.style.display = 'none';
+}
+
+async function showProgressSection() { // Make async
+    if(loginSection) loginSection.style.display = 'none';
+    if(dashboardSection) dashboardSection.style.display = 'none';
+    if(testSection) testSection.style.display = 'none';
+    if(profileSection) profileSection.style.display = 'none'; // Hide profile
+    if(progressSection) progressSection.style.display = 'block';
+
+    if (currentUser) {
+        try {
+            // Fetch user-specific stats (like achievements, table data)
+            const userData = await getUserData(currentUser, db);
+            updateProgressSection(userData);
+            updateAchievementsUI(userData);
+
+            // --- Setup Real-time Leaderboard Listener ---
+            if (leaderboardListenerUnsubscribe) {
+                 console.log("Detaching previous leaderboard listener.");
+                 leaderboardListenerUnsubscribe(); // Unsubscribe from previous listener if exists
+                 leaderboardListenerUnsubscribe = null;
+            }
+
+            console.log("Attaching real-time leaderboard listener...");
+            const query = db.collection("users")
+                            .orderBy("totalXP", "desc")
+                            .limit(10);
+
+            leaderboardListenerUnsubscribe = query.onSnapshot(querySnapshot => {
+                console.log("Leaderboard snapshot received.");
+                const topUsers = [];
+                querySnapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (data.nickname && typeof data.totalXP === 'number') {
+                        topUsers.push({
+                            nickname: data.nickname,
+                            xp: data.totalXP
+                        });
+                    }
+                });
+                updateLeaderboardUI(topUsers); // Update UI whenever data changes
+            }, error => {
+                console.error("Error fetching leaderboard snapshot:", error);
+                if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba načítání žebříčku v reálném čase.</li>';
+            });
+
+        } catch (error) {
+             console.error("Error loading progress section data:", error);
+             if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba načítání žebříčku.</li>';
+        }
+    } else {
+        // Clear UI if not logged in
+         if (leaderboardListenerUnsubscribe) { // <<< Detach listener on logout too
+             console.log("Detaching leaderboard listener on logout.");
+             leaderboardListenerUnsubscribe();
+             leaderboardListenerUnsubscribe = null;
+         }
+        updateProgressSection(null);
+        updateAchievementsUI(null);
+        updateLeaderboardUI([]); // Clear leaderboard UI
+    }
+>>>>>>> b969928472af2d6b962e7c9e0b8c9aba8618b6dc
 }
 
 /**
@@ -1105,6 +1286,11 @@ function updateProgressSection(userData) {
  * Clears user-specific data from the UI, typically called on logout.
  */
 function clearUserDataUI() {
+    if (leaderboardListenerUnsubscribe) {
+         console.log("Detaching leaderboard listener during UI clear.");
+         leaderboardListenerUnsubscribe();
+         leaderboardListenerUnsubscribe = null;
+      }
     // Reset dashboard stats
     updateStatisticsSection(null); // Pass null for default/zero state
 
@@ -1615,7 +1801,8 @@ async function evaluateTest(db) {
     userData.testsToday = (userData.testsToday || 0) + 1;
     userData.correctAnswersToday = (userData.correctAnswersToday || 0) + correct;
     userData.totalTestsCompleted = (userData.totalTestsCompleted || 0) + 1;
-    userData.totalXP = (userData.totalXP || 0) + correct; // XP based on correct answers
+    userData.totalXP = (userData.totalXP || 0) + correct;
+    userData.weeklyXP = (userData.weeklyXP || 0) + correct;// XP based on correct answers
 
     // --- Update Subject Progress ---
     const subject = subjectSelect.value;
@@ -1706,6 +1893,11 @@ async function evaluateTest(db) {
     updateProgressSection(userData);
     updateAchievementsUI(userData);
     await generateCalendar(currentYear, currentMonth, db); // Await calendar generation
+
+    if (progressSection && progressSection.style.display === 'block') {
+        console.log("Statistiky section is visible, refreshing leaderboard...");
+        await refreshLeaderboard(); // Call the new refresh function
+    }
 
     // --- Add Back Button ---
     addBackButtonToTestContainer(); // Reuse existing function
@@ -1986,17 +2178,13 @@ function populateTopics(subject, userData) { // Pass userData
         if (subject === "Čeština") {
             const favoriteBooks = userData?.favoriteBooks || [];
             console.log("User favorite books:", favoriteBooks);
-
-            // Sort topics: favorites first, then alphabetically
             topics.sort((a, b) => {
                 const aIsFav = favoriteBooks.includes(a);
                 const bIsFav = favoriteBooks.includes(b);
-                if (aIsFav && !bIsFav) return -1; // a comes first
-                if (!aIsFav && bIsFav) return 1;  // b comes first
-                return a.localeCompare(b, 'cs'); // Alphabetical for same fav status
+                if (aIsFav && !bIsFav) return -1;
+                if (!aIsFav && bIsFav) return 1;
+                return a.localeCompare(b, 'cs');
             });
-
-            // Show favorite button only for Čeština
             toggleFavoriteBtn.style.display = 'inline-block';
             // Enable button only if a valid topic is later selected
         } else {
@@ -2007,9 +2195,9 @@ function populateTopics(subject, userData) { // Pass userData
 
         // --- Populate Options ---
         topics.forEach(topic => {
-            // Skip summary topic if it exists in config but shouldn't be selectable here
-            if (topic === "Souhrnné opakování" && dataFileConfig[subject]?.[topic] === null) {
-                return;
+           if (!data[subject]?.[topic] && !dataFileConfig[subject]?.[topic]) {
+                 console.warn(`Skipping topic "${topic}" for subject "${subject}" as no data/file found.`);
+                 return; // Skip if no data/file associated
             }
 
             const option = document.createElement('option');
@@ -2033,7 +2221,7 @@ function populateTopics(subject, userData) { // Pass userData
             // Enable buttons if a valid topic is selected
             generateTestBtn.disabled = false;
             if (subject === "Čeština") {
-                toggleFavoriteBtn.disabled = false;
+                toggleFavoriteBtn.disabled = !(!currentTopicValue);
             }
         } else {
             // If previous selection is gone, ensure buttons are disabled
@@ -2171,8 +2359,17 @@ profileLink?.addEventListener('click', (e) => {
 nicknameChangeForm?.addEventListener('submit', handleNicknameChange);
 changePasswordBtn?.addEventListener('click', handleChangePassword);
 deleteAccountBtn?.addEventListener('click', handleDeleteAccount); // Add delete listener
+<<<<<<< HEAD
 async function showProfileSection() {
     // 1. Hide other sections
+=======
+function showProfileSection() {
+    if (leaderboardListenerUnsubscribe) { // Detach when leaving Statistiky
+         console.log("Detaching leaderboard listener when showing Profile Section.");
+         leaderboardListenerUnsubscribe();
+         leaderboardListenerUnsubscribe = null;
+     }
+>>>>>>> b969928472af2d6b962e7c9e0b8c9aba8618b6dc
     if(loginSection) loginSection.style.display = 'none';
     if(dashboardSection) dashboardSection.style.display = 'none';
     if(testSection) testSection.style.display = 'none';
@@ -2281,6 +2478,7 @@ async function handleNicknameChange(event) {
     if (!currentUser || !newNicknameInput || !nicknameChangeMessage || !changeNicknameBtn) return;
 
     const newNickname = newNicknameInput.value.trim();
+    console.log("DEBUG: Nickname read from input:", nickname);
     nicknameChangeMessage.textContent = ''; // Clear previous message
     nicknameChangeMessage.className = ''; // Clear success/error class
 
@@ -2490,25 +2688,26 @@ async function fetchLeaderboardData(limit = 10) {
     if (!db) return [];
     try {
         const querySnapshot = await db.collection("users")
-            .orderBy("totalXP", "desc")
+            // This line was changed from "totalXP" to "weeklyXP"
+            .orderBy("weeklyXP", "desc")
             .limit(limit)
             .get();
 
         const topUsers = [];
         querySnapshot.forEach(doc => {
             const data = doc.data();
-            // Ensure user has a nickname and XP before adding
-            if (data.nickname && typeof data.totalXP === 'number') {
+            if (data.nickname && typeof data.weeklyXP === 'number') {
                 topUsers.push({
                     nickname: data.nickname,
-                    xp: data.totalXP
+                    // This now represents the weekly XP value
+                    xp: data.weeklyXP
                 });
             }
         });
         return topUsers;
     } catch (error) {
-        console.error("Error fetching leaderboard data:", error);
-        return []; // Return empty array on error
+        console.error("Error fetching weekly leaderboard data:", error);
+        return [];
     }
 }
 
