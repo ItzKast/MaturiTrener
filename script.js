@@ -758,7 +758,7 @@ async function registerUserHandler(authInstance) {
 
         await db.runTransaction(async (transaction) => {
              // Set default user data including nickname and timestamp
-             transaction.set(userDocRef, {
+             const userDataPayload = {
                  // Include fields from defaultUserData in getUserData
                  nickname: nickname,
                  email: email,
