@@ -2313,77 +2313,101 @@ function populateSubjects(selectedSchoolType) {
 }
 
 function populateTopics(subject, userData) {
-    if (!topicSelect || !generateTestBtn || !toggleFavoriteBtn) return;
+    // Check 1: Log input and ensure elements exist
+    console.log(`DEBUG: populateTopics started with subject: "${subject}"`);
+    if (!topicSelect || !generateTestBtn || !toggleFavoriteBtn) {
+        console.error("DEBUG: populateTopics exiting - dropdown elements missing!");
+        return;
+    }
 
-    const currentTopicValue = topicSelect.value;
+    // Reset Topic Select & Buttons
+    const currentTopicValue = topicSelect.value; // Store previous value
+    topicSelect.innerHTML = '<option value="">Vyberte okruh</option>'; // Reset with placeholder
+    topicSelect.disabled = true; // Disable initially
+    generateTestBtn.disabled = true; // Disable initially
+    toggleFavoriteBtn.style.display = 'none'; // Hide favorite button initially
+    toggleFavoriteBtn.disabled = true; // Disable favorite button initially
 
-    topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
-    topicSelect.disabled = true;
-    generateTestBtn.disabled = true;
-    toggleFavoriteBtn.style.display = 'none';
-    toggleFavoriteBtn.disabled = true;
+    // Check 2: Ensure a valid subject was passed AND data exists for it in the FLAT 'data' object
+    if (!subject || !data[subject]) {
+        console.warn(`DEBUG: populateTopics - Invalid subject "${subject}" or no data found in the flat 'data' object.`);
+        // Update placeholder text to be more informative if needed
+        topicSelect.innerHTML = '<option value="">Neplatný předmět nebo chybí data</option>';
+        // Keep disabled
+        return; // Exit the function
+    }
 
-    if (subject && schoolSubjectConfig[subject]) { // Check config first for keys/order
-        // Get keys directly from the config object to preserve definition order
-        let topics = Object.keys(schoolSubjectConfig[subject]);
+    // Check 3: Get topics for the selected subject from the FLAT 'data' object
+    let topics = Object.keys(data[subject]);
+    console.log(`DEBUG: Topics found for "${subject}" in flat data:`, topics);
 
-        // --- SORTING LOGIC ---
-        if (subject === "Čeština") {
-            const favoriteBooks = userData?.favoriteBooks || [];
-            console.log("User favorite books:", favoriteBooks);
-            topics.sort((a, b) => {
-                const aIsFav = favoriteBooks.includes(a);
-                const bIsFav = favoriteBooks.includes(b);
-                if (aIsFav && !bIsFav) return -1;
-                if (!aIsFav && bIsFav) return 1;
-                return a.localeCompare(b, 'cs');
-            });
-            toggleFavoriteBtn.style.display = 'inline-block';
-        } else {
-            toggleFavoriteBtn.style.display = 'none';
-        }
-        topics.forEach(topic => {
-            // Check if data was actually loaded or file exists (prevents adding options for failed loads)
-            if (!data[subject]?.[topic] && !schoolSubjectConfig[subject]?.[topic]) {
-                console.warn(`Skipping topic "${topic}" for subject "${subject}" as no data/file found.`);
-                return;
-            }
+    // Check 4: Handle case where subject exists but has no topics loaded/defined
+    if (topics.length === 0 || (topics.length === 1 && topics[0] === "Zatím žádná témata")) {
+        console.warn(`DEBUG: No actual topics found for subject "${subject}".`);
+        topicSelect.innerHTML = '<option value="">Žádné okruhy nenalezeny</option>';
+        // Keep disabled
+        return; // Exit
+    }
 
-            const option = document.createElement('option');
-            option.value = topic;
-
-            let displayText = topic;
-            if (subject === "Čeština" && userData?.favoriteBooks?.includes(topic)) {
-                displayText = "★ " + topic;
-            }
-            option.textContent = displayText;
-
-            topicSelect.appendChild(option);
+    // --- SORTING (Apply ONLY for Čeština) ---
+    if (subject === "Čeština") {
+        // Sort Čeština topics (favorites first, then alphabetically)
+        const favoriteBooks = userData?.favoriteBooks || [];
+        console.log("User favorite books for sorting:", favoriteBooks);
+        topics.sort((a, b) => {
+            const aIsFav = favoriteBooks.includes(a);
+            const bIsFav = favoriteBooks.includes(b);
+            if (aIsFav && !bIsFav) return -1;
+            if (!aIsFav && bIsFav) return 1;
+            return a.localeCompare(b, 'cs'); // Alpha for non-fav/same fav status
         });
+        toggleFavoriteBtn.style.display = 'inline-block'; // Show favorite button ONLY for Cestina
+    } else {
+         toggleFavoriteBtn.style.display = 'none'; // Hide favorite button for other subjects
+    }
+    // --- END SORTING ---
 
-        topicSelect.disabled = false;
 
-        // Restore previous selection if it still exists
-        if (topics.includes(currentTopicValue)) {
-            topicSelect.value = currentTopicValue;
-            generateTestBtn.disabled = false;
-            if (subject === "Čeština") {
-                // Enable favorite button only if a Čeština topic is actually selected
-                toggleFavoriteBtn.disabled = !currentTopicValue;
-            }
-        } else {
-            generateTestBtn.disabled = true;
-            if (subject === "Čeština") {
-                toggleFavoriteBtn.disabled = true; // Disable if no topic selected
-            }
+    // --- Populate Options ---
+    topics.forEach(topic => {
+        // You might have placeholder topics like "Zatím žádná témata", skip them
+        if (topic === "Zatím žádná témata" && data[subject][topic] === null) {
+             console.log(`Skipping placeholder topic: ${topic}`);
+             return; // Don't add placeholder as a selectable option
         }
 
+        const option = document.createElement('option');
+        option.value = topic;
+
+        let displayText = topic;
+        // Add star prefix if it's Čeština and a favorite (check userData again)
+        if (subject === "Čeština" && userData?.favoriteBooks?.includes(topic)) {
+            displayText = "★ " + topic;
+        }
+        option.textContent = displayText;
+
+        topicSelect.appendChild(option);
+    });
+    // --- End Populate Options ---
+
+    // Enable the topic dropdown now that options are added
+    topicSelect.disabled = false;
+
+    // Restore previous selection if it's still a valid topic in the list
+    if (topics.includes(currentTopicValue)) {
+        topicSelect.value = currentTopicValue;
+        // Enable Generate button if a topic is selected
+        generateTestBtn.disabled = false;
+        // Enable Favorite button ONLY if Cestina is selected AND a topic is selected
+        if (subject === "Čeština") {
+            toggleFavoriteBtn.disabled = false;
+        }
     } else {
-        topicSelect.innerHTML = '<option value="">Nejprve vyberte předmět</option>';
-        topicSelect.disabled = true;
+        // No valid previous selection, keep buttons disabled
         generateTestBtn.disabled = true;
-        toggleFavoriteBtn.style.display = 'none';
-        toggleFavoriteBtn.disabled = true;
+        if (subject === "Čeština") {
+            toggleFavoriteBtn.disabled = true;
+        }
     }
 }
 async function handleToggleFavorite() {
@@ -2734,16 +2758,20 @@ function setupEventListeners() {
         populateSubjects(selectedSchool);
     });
     // Test Generation Controls
-    subjectSelect?.addEventListener('change', async function () {
-        const selectedSubject = this.value;
-        const selectedSchool = schoolTypeSelect.value; // Keep track of school context if needed
+    subjectSelect?.addEventListener('change', async function () { // Make async
+        const selectedSubject = this.value; // Get the selected subject name
+        console.log(`DEBUG: Subject changed to: "${selectedSubject}"`); // Add log
+    
+        // --- Ensure this part runs ---
+        const selectedSchool = schoolTypeSelect.value;
         let currentUserData = null;
         if (currentUser) {
             currentUserData = await getUserData(currentUser, db);
         }
-        // Pass subject and user data to populate topics
-        // populateTopics should ideally get the topic list from the flat 'data' object
+        // --- Ensure populateTopics is called with the correct subject ---
+        console.log("DEBUG: Calling populateTopics for subject:", selectedSubject);
         populateTopics(selectedSubject, currentUserData);
+    
     });
     topicSelect?.addEventListener('change', function () {
         const isTopicSelected = !!this.value;
