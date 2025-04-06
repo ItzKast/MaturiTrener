@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je dráha v kinematice?;Vzdálenost, kterou hmotný bod urazí;Směr pohybu tělesa;Rychlost změny polohy;Zrychlení během pohybu
+Co je rychlost?;Změna polohy za jednotku času;Změna dráhy za jednotku hmotnosti;Změna teploty;Změna směru
+Co vyjadřuje zrychlení?;Změnu rychlosti v čase;Změnu dráhy;Změnu polohy;Změnu objemu
+Jaký je vztah pro rovnoměrný pohyb?;s = v · t;v = s · t;a = v / t;s = 1/2 · a · t²
+Jaký je vztah pro rovnoměrně zrychlený pohyb?;s = 1/2 · a · t²;s = v · t;v = s / t;s = a / t
+Co je okamžitá rychlost?;Rychlost v daném okamžiku;Průměrná rychlost za celý pohyb;Rychlost za jeden metr;Celková uražená dráha
+Jak se značí zrychlení?;a;v;s;t
+Jednotka zrychlení je?;m/s²;m/s;m;s
+Jednotka rychlosti je?;m/s;m/s²;kg;s
+Jednotka dráhy je?;metr;sekunda;m/s;kg
+Co je rovnoměrně zpomalený pohyb?;Pohyb se záporným zrychlením;Pohyb bez změny rychlosti;Pohyb se zvyšující se rychlostí;Pohyb po kružnici
+Kdy je pohyb přímočarý?;Když těleso mění polohu po přímce;Když se otáčí;Když mění směr;Když se pohybuje v kruhu
+Jaký pohyb má stálou rychlost?;Rovnoměrný pohyb;Zrychlený pohyb;Zpomalený pohyb;Kruhový pohyb
+Jaký pohyb má stálé zrychlení?;Rovnoměrně zrychlený pohyb;Rovnoměrný pohyb;Přerušovaný pohyb;Kmitavý pohyb
+Jaké veličiny popisují kinematiku?;Dráha, čas, rychlost, zrychlení;Síla, tlak, teplota;Výkon, energie, hmotnost;Napětí, proud, odpor
+Co znamená skládání pohybů?;Součet více pohybů do jednoho;Rozdělení pohybu na části;Zpomalení pohybu;Zastavení tělesa
+Kdy má těleso nulovou rychlost?;Když je v klidu;Když zrychluje;Když mění směr;Když padá
+Jaký tvar má graf dráhy v čase pro rovnoměrný pohyb?;Přímka;Parabola;Kružnice;Vlnovka
+Jaký tvar má graf dráhy v čase pro rovnoměrně zrychlený pohyb?;Parabola;Přímka;Sínusoida;Hyperbola
+Kdy má těleso záporné zrychlení?;Při zpomalování;Při rovnoměrném pohybu;Při pohybu po kružnici;Při klidu

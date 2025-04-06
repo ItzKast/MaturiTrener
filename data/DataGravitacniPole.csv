@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Kdo formuloval gravitační zákon?;Isaac Newton;Albert Einstein;Galileo Galilei;Nikola Tesla
+Jak zní Newtonův gravitační zákon?;Každá dvě tělesa se přitahují silou úměrnou součinu jejich hmotností a nepřímo úměrnou druhé mocnině jejich vzdálenosti;Tělesa se pohybují po elipsách;Těleso padá s konstantním zrychlením;Síla je rovna změně hybnosti
+Jak se značí gravitační konstanta?;G;g;F;M
+Jednotka gravitační konstanty je?;N·m²/kg²;m/s²;kg/m³;N/kg
+Co je intenzita gravitačního pole?;Síla působící na jednotkovou hmotnost;Rychlost tělesa;Hmotnost Země;Síla působící na elektrony
+Vzorec pro intenzitu gravitačního pole je?;E = F / m;E = m · g;E = m / F;E = g · r
+Co je gravitační potenciál?;Práce nutná k přemístění jednotkové hmotnosti z daného bodu;Přitažlivost planety;Hmotnost Země;Výška tělesa
+Co je tíhová síla?;Síla, kterou Země působí na těleso;Síla odporu vzduchu;Tření;Síla napětí
+Jednotka tíhového zrychlení je?;m/s²;N;J;W
+Hodnota tíhového zrychlení na Zemi je přibližně?;9,81 m/s²;6,67 m/s²;3,14 m/s²;12,5 m/s²
+Co je pohyb v homogenním tíhovém poli?;Pohyb tělesa pod konstantním zrychlením g;Pohyb bez zrychlení;Pohyb po elipse;Pohyb v plynech
+Jaký tvar má trajektorie tělesa v homogenním poli?;Parabola;Přímka;Kružnice;Hyperbola
+Co je centrální gravitační pole?;Pole, jehož síla směřuje do jednoho bodu (např. ke středu planety);Pole s konstantní intenzitou;Magnetické pole;Elektrické pole
+Jaká síla působí v centrálním gravitačním poli?;Síla klesající se čtvercem vzdálenosti;Konstantní síla;Tíhová síla;Odstředivá síla
+Jak se značí první kosmická rychlost?;v1;c;u;vG
+Co je první kosmická rychlost?;Minimální rychlost pro oběh kolem Země po kružnici;Rychlost potřebná k úniku ze Země;Rychlost dopadu meteoru;Rychlost světla
+Hodnota první kosmické rychlosti u Země je přibližně?;7,9 km/s;11,2 km/s;3,6 km/s;9,81 km/s
+Co je druhá kosmická rychlost?;Rychlost nutná k opuštění gravitačního pole Země;Rychlost pádu z výšky;Průměrná orbitální rychlost;Rychlost zvuku
+Jaký tvar má trajektorie tělesa při dosažení druhé kosmické rychlosti?;Parabola;Kružnice;Elipsa;Rovná čára
+Kolik zákonů formuloval Kepler?;Tři;Jeden;Dva;Čtyři

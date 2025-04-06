@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Jaký je základní rozdíl mezi kapalinami a plyny?;Plyny jsou stlačitelné, kapaliny prakticky ne;Kapaliny nemají objem;Plyny mají pevný tvar;Kapaliny mají proměnlivou teplotu
+Jaký je vztah pro tlak?;p = F / S;p = m / V;p = v · t;p = W / t
+Jednotka tlaku je?;Pascal (Pa);Newton (N);Joule (J);Watt (W)
+Jaký je hydrostatický tlak?;Tlak způsobený hmotností kapaliny nad daným bodem;Tlak plynu v uzavřené nádobě;Atmosférický tlak;Tlak vzniklý třením
+Vzorec pro hydrostatický tlak je?;p = h · ρ · g;p = m · g;p = v / t;p = F / h
+Co je vztlaková síla?;Síla působící na těleso v kapalině směrem vzhůru;Síla, kterou Země přitahuje tělesa;Síla tření;Tlaková síla plynu
+Na čem závisí vztlaková síla?;Na objemu ponořené části tělesa a hustotě kapaliny;Na povrchu tělesa;Na barvě tělesa;Na rychlosti tělesa
+Jak zní Archimédův zákon?;Na těleso ponořené do kapaliny působí vztlaková síla rovná tíze kapaliny tělesem vytlačené;Kapalina se vypařuje;Tlak roste s hloubkou;Těleso padá ke dnu
+Co je atmosférický tlak?;Tlak způsobený hmotností vzduchu;Tlak uvnitř nádoby;Tlak vody;Tlak elektromagnetického pole
+Jaký přístroj měří tlak?;Manometr nebo barometr;Voltmetr;Ampermetr;Tachometr
+Jaký vztah popisuje proudění ideální kapaliny?;Bernoulliho rovnice;Ohmův zákon;Newtonův zákon;Keplerův zákon
+Jaký je vztah pro spojitou rovnici proudění?;S1 · v1 = S2 · v2;p = h · ρ · g;v = s / t;E = m · c²
+Co je viskozita?;Vnitřní tření v kapalině nebo plynu;Množství energie;Tloušťka nádoby;Hustota kapaliny
+Jak se chová ideální kapalina?;Je nestlačitelná a bez vnitřního tření;Má vysokou viskozitu;Je těžší než plyn;Má malý objem
+Jak se nazývá tlak v plynech?;Tlak plynu nebo atmosférický tlak;Tlak vztlaku;Hydrostatický tlak;Teplotní tlak
+Co platí pro proudění reálné kapaliny?;Dochází ke ztrátám energie vlivem viskozity;Je bezztrátové;Roste teplota;Proudění je rovnoměrné
+Jaká je jednotka hustoty?;kg/m³;kg;m²;Pa
+Jak se mění tlak s hloubkou v kapalině?;Roste lineárně;Klesá exponenciálně;Zůstává konstantní;Nezávisí na hloubce
+Co je turbulentní proudění?;Chaotické proudění s víry;Pomalé proudění;Beztlakové proudění;Proudění při nízké teplotě
+K čemu se využívá vztlaková síla v praxi?;Ponor lodí, vzducholoď, plavání;Letadla na solární pohon;Přeprava elektřiny;Změna barvy vody

@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je mechanický kmitavý pohyb?;Periodický pohyb tělesa kolem rovnovážné polohy;Pohyb po kružnici;Přímý pád tělesa;Pohyb s konstantní rychlostí
+Jak se značí perioda kmitání?;T;f;v;A
+Jednotka periody je?;Sekunda (s);Hertz (Hz);Newton (N);Joule (J)
+Co je frekvence?;Počet kmitů za jednotku času;Rychlost kmitání;Délka kmitu;Síla vlny
+Jednotka frekvence je?;Hertz (Hz);Sekunda;Pascal;Watt
+Jaký vztah platí mezi frekvencí a periodou?;f = 1 / T;f = T · A;f = T + A;f = T²
+Co je amplituda?;Maximální výchylka z rovnovážné polohy;Rychlost kmitu;Čas jednoho kmitu;Směr vlny
+Co je rezonance?;Zesílení kmitů při shodě frekvencí;Zpomalení pohybu;Útlum vlny;Rozpad oscilátoru
+Jaký je příklad mechanického oscilátoru?;Pružina, kyvadlo;Kolo, motor;Lampa, baterie;Termostat
+Jaké veličiny popisují kmitavý pohyb?;Perioda, frekvence, amplituda;Objem, tlak, hustota;Síla, výkon, práce;Hmotnost, délka, teplota
+Co je mechanické vlnění?;Šíření kmitavého pohybu prostředím;Pohyb světla;Elektrický proud;Šíření zvuku ve vakuu
+Jaký je vztah pro rychlost vlnění?;v = λ · f;v = s / t;v = F / m;v = Q / T
+Co je vlnová délka?;Vzdálenost mezi dvěma nejbližšími body ve stejné fázi vlnění;Délka vlny v čase;Frekvence vlny;Rychlost šíření vlny
+Co je příčné vlnění?;Výchylky kolmé na směr šíření;Výchylky rovnoběžné se směrem šíření;Vlnění v kapalinách;Vlnění v plynech
+Co je podélné vlnění?;Výchylky rovnoběžné se směrem šíření;Kolmé výchylky;Vlnění ve vakuu;Otočné vlnění
+Co je interference?;Skládání vlnění;Odraz vlny;Zánik kmitů;Rezonance ve vakuu
+Co je stojaté vlnění?;Výsledné vlnění vzniklé superpozicí dvou stejně silných vln opačného směru;Vlnění s konstantní amplitudou;Vlnění bez pohybu;Nestabilní vlnění
+Jaký je důsledek Dopplerova jevu?;Změna frekvence vlnění při pohybu zdroje nebo pozorovatele;Odraz světla;Změna skupenství;Změna hustoty
+Co je Huygensův princip?;Každý bod vlnoplochy je zdrojem elementárních vln;Světlo se šíří po přímce;Vlny se neohýbají;Vlny mají nulovou rychlost
+Jaký je příklad zvukového vlnění?;Šíření kmitů vzduchem;Světlo ve skle;Teplo v kovech;Proudění vody
