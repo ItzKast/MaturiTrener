@@ -1,117 +1,252 @@
 const GITHUB_RAW_BASE_URL = 'https://raw.githubusercontent.com/ItzKast/MaturiTrener/main/data/';
 
-const dataFileConfig = {
-    "Programování": {
-        "Základní pojmy z algoritmizace a programování": "DataProgramovani.csv",
-        "Vývoj a druhy programovacích jazyků, vývojové prostředí Visual Studio": "DataVyvojJazyku.csv",
-        "C# strukturované příkazy větvení, složený příkaz": "DataCSharpVetveni.csv",
-        "C# strukturované příkazy cyklů": "DataCyklu.csv",
-        "C# jednoduché datové typy, řetězec; operace": "JednoducheDatove.csv",
-        "C# strukturované datové typy (kolekce)": "StrukturovaneDatove.csv",
-        "C# práce se soubory a dialogovými okny": "DataDialog.csv",
-        "C# Windows Forms Application, grafické ovládací prvky, události": "DataPrvky.csv",
-        "C# ladění programu, druhy chyb, ošetřování výjimek": "DataChyby.csv",
-        "C# namespace Drawing – nástroje pro programování grafiky": "DataDrawing.csv",
-        "C# metody, jmenné prostory": "DataMetody.csv",
-        "C# základy OOP": "DataOOP.csv",
-        "Souhrnné opakování": null
+const schoolSubjectConfig = {
+    "Průmyslová škola": {
+        "Programování": {
+            "Základní pojmy z algoritmizace a programování": "DataProgramovani.csv",
+            "Vývoj a druhy programovacích jazyků, vývojové prostředí Visual Studio": "DataVyvojJazyku.csv",
+            "C# strukturované příkazy větvení, složený příkaz": "DataCSharpVetveni.csv",
+            "C# strukturované příkazy cyklů": "DataCyklu.csv",
+            "C# jednoduché datové typy, řetězec; operace": "JednoducheDatove.csv",
+            "C# strukturované datové typy (kolekce)": "StrukturovaneDatove.csv",
+            "C# práce se soubory a dialogovými okny": "DataDialog.csv",
+            "C# Windows Forms Application, grafické ovládací prvky, události": "DataPrvky.csv",
+            "C# ladění programu, druhy chyb, ošetřování výjimek": "DataChyby.csv",
+            "C# namespace Drawing – nástroje pro programování grafiky": "DataDrawing.csv",
+            "C# metody, jmenné prostory": "DataMetody.csv",
+            "C# základy OOP": "DataOOP.csv",
+            "Souhrnné opakování": null
+        },
+        "Počítačové sítě": {
+            "Topologie sítí": "DataTopologie.csv",
+            "Komunikace v síti": "DataKomunikace.csv",
+            "Pasivní prvky": "DataPasivni.csv",
+            "Aktivní prvky": "DataAktivni.csv",
+            "Návrh a realizace sítě": "DataNavrh.csv",
+            "Bezdrátové technologie": "DataBezdratove.csv",
+            "Připojení počítače k lokální síti": "DataLokalni.csv",
+            "Připojení k internetu": "DataInternet.csv",
+            "Souhrnné opakování": null
+        },
+        "Elektronika": {
+            "Základy digitální techniky": "DataZaklady.csv",
+            "Integrované polovodičové prvky": "DataPolovodice.csv",
+            "Řídící jednotka CM-530": "DataCM530.csv",
+            "Mikroprocesor Arduino": "DataArduino.csv",
+            "Programování mikroprocesoru Arduino": "DataArduinoProgramovani.csv",
+            "Počítač": "DataPocitac.csv",
+            "Procesor": "DataProcesor.csv",
+            "Základní deska": "DataZakladniDeska.csv",
+            "Polovodičové paměti": "DataPameti.csv",
+            "Zařízení pro uložení dat": "DataDisky.csv",
+            "Grafický a zobrazovací systém": "DataGrafika.csv",
+            "Digitalizace obrazu a tisk": "DataTisk.csv",
+            "Napájecí zdroje": "DataZdroje.csv",
+            "Diferenciální parametry tranzistoru": "DataTranzistor.csv",
+            "Operační zesilovače": "DataOperacni.csv",
+            "Přenos informací": "DataInformace.csv",
+            "Zesilovače": "DataZesilovace.csv",
+            "Frekvenční filtr typu dolní propust": "DataFFDolni.csv",
+            "Frekvenční filtr typu horní propust": "DataFFHorni.csv",
+            "Sériový a paralelní obvod RL, RC": "DataRLC.csv",
+            "Souhrnné opakování": null
+        },
+        "Automatizace": {
+            "Regulační obvody": "otazky_tema_1.csv",
+            "Technické prostředky": "otazky_tema_2.csv",
+            "Logická zařízení": "otazky_tema_3.csv",
+            "Druhy výkresů v AT": "otazky_tema_4.csv",
+            "Elektrické rozvody v průmyslu": "otazky_tema_5.csv",
+            "Regulační pohony a orgány": "otazky_tema_6.csv",
+            "Programovatelný automat": "otazky_tema_7.csv",
+            "Relé impulzní": "otazky_tema_8.csv",
+            "Převodníky a přizpůsobovací členy": "otazky_tema_9.csv",
+            "Výstavba regulačního obvodu": "otazky_tema_10.csv",
+            "Malé řídící systémy": "otazky_tema_11.csv",
+            "Prvky používané v obvodech AT": "otazky_tema_12.csv",
+            "Senzory - rozdělení": "otazky_tema_13.csv",
+            "Analogové a binární senzory": "otazky_tema_14.csv",
+            "PLC": "otazky_tema_15.csv",
+            "Sekvenční logické obvody": "otazky_tema_16.csv",
+            "Měření neelektrických veličin": "otazky_tema_17.csv",
+            "Typy regulačních obvodů": "otazky_tema_18.csv",
+            "Roboty a jejich aplikace": "otazky_tema_19.csv",
+            "Grafické znázornění stavů": "otazky_tema_20.csv",
+            "Souhrnné opakování": null
+        },
+        "Čeština": {
+            "William Shakespeare - Romeo a Julie": "cestina_william_shakespeare_romeo_a_julie.json",
+            "William Shakespeare - Hamlet": "cestina_william_shakespeare_hamlet.json",
+            "Molière - Lakomec": "cestina_moliere_lakomec.json",
+            "Alexandr Sergejevič Puškin - Evžen Oněgin": "cestina_Puskin_Evžen_Oněgin.json",
+            "Honoré de Balzac - Otec Goriot": "cestina_balzak_otec_goriot.json",
+            "Nikolaj Vasiljevič Gogol - Revizor": "cestina_Gogol_Revizor.json",
+            "Edgar Allan Poe - Jáma a kyvadlo": "cestina_Poe_Jáma_a_kyvadlo.json",
+            "Oscar Wilde - Obraz Doriana Graye": "cestina_Wilde_Obraz_Doriana_Graye.json",
+            "Gustave Flaubert - Paní Bovaryová": "cestina_Flaubert_Paní_Bovaryová.json",
+            "Guy de Maupassant - Kulička": "cestina_Maupassant_Kulička.json",
+            "Émile Zola - Zabiják": "cestina_Zola_Zabiják.json",
+            "Karel Hynek Mácha - Máj": "cestina_Mácha_Máj.json",
+            "Karel Jaromír Erben - Kytice": "cestina_Erben_Kytice.json",
+            "Alois a Vilém Mrštíkové - Maryša": "cestina_Mrštíkové_Maryša.json",
+            "Romain Rolland - Petr a Lucie": "cestina_Rolland_Petr_a_Lucie.json",
+            "Erich Maria Remarque - Na západní frontě klid": "cestina_Remarque_Na_západní_frontě_klid.json",
+            "Erich Maria Remarque - Tři kamarádi": "cestina_Remarque_Tři_kamarádi.json",
+            "Antoine de Saint-Exupéry - Malý princ": "cestina_Saint-Exupéry_Malý_princ.json",
+            "Ernest Hemingway - Stařec a moře": "cestina_Hemingway_Stařec_a_moře.json",
+            "Jack Kerouac - Na cestě": "cestina_Kerouac_Na_cestě.json",
+            "John Steinbeck - O myších a lidech": "cestina_Steinbeck_O_myších_a_lidech.json",
+            "George Orwell - Farma zvířat": "cestina_Orwell_Farma_zvířat.json",
+            "Ken Kesey - Vyhoďme ho z kola ven": "cestina_Kesey_Vyhoďme_ho_z_kola_ven.json",
+            "J.R.R. Tolkien - Hobit": "cestina_Tolkien_Hobit.json",
+            "Francis Scott Fitzgerald - Velký Gatsby": "cestina_Fitzgerald_Velký_Gatsby.json",
+            "Franz Kafka - Proměna": "cestina_Kafka_Proměna.json",
+            "Jiří Wolker - Těžká hodina": "cestina_Wolker_Těžká_hodina.json",
+            "Viktor Dyk - Krysař": "cestina_Dyk_Krysař.json",
+            "Ota Pavel - Plná bedna šampaňského": "cestina_Pavel_Plná_bedna_šampaňského.json",
+            "Jan Otčenášek - Romeo, Julie a tma": "cestina_Otčenášek_Romeo_Julie_a_tma.json",
+            "Arnošt Lustig - Modlitba pro Kateřinu Horovitzovou": "cestina_Lustig_Modlitba_pro_Kateřinu_Horovitzovou.json",
+            "Karel Čapek - Bílá nemoc": "cestina_Čapek_Bílá_nemoc.json",
+            "Karel Čapek - R.U.R.": "cestina_karel_capek_rur.json",
+            "Karel Čapek - Válka s mloky": "cestina_Čapek_Válka_s_mloky.json",
+            "Karel Kryl - Kníška": "cestina_Kryl_Kníška.json",
+            "Josef Škvorecký - Zbabělci": "cestina_Škvorecký_Zbabělci.json",
+            "Ladislav Fuks - Spalovač mrtvol": "cestina_Fuks_Spalovač_mrtvol.json",
+            "Bohumil Hrabal - Ostře sledované vlaky": "cestina_Hrabal_Ostře_sledované_vlaky.json"
+        },
+        "Angličtina": {
+            "Zatím žádná témata": null
+        }
     },
-    "Počítačové sítě": {
-        "Topologie sítí": "DataTopologie.csv",
-        "Komunikace v síti": "DataKomunikace.csv",
-        "Pasivní prvky": "DataPasivni.csv",
-        "Aktivní prvky": "DataAktivni.csv",
-        "Návrh a realizace sítě": "DataNavrh.csv",
-        "Bezdrátové technologie": "DataBezdratove.csv",
-        "Připojení počítače k lokální síti": "DataLokalni.csv",
-        "Připojení k internetu": "DataInternet.csv",
-        "Souhrnné opakování": null
-    },
-    "Elektronika": {
-        "Základy digitální techniky": "DataZaklady.csv",
-        "Integrované polovodičové prvky": "DataPolovodice.csv",
-        "Řídící jednotka CM-530": "DataCM530.csv",
-        "Mikroprocesor Arduino": "DataArduino.csv",
-        "Programování mikroprocesoru Arduino": "DataArduinoProgramovani.csv",
-        "Počítač": "DataPocitac.csv",
-        "Procesor": "DataProcesor.csv",
-        "Základní deska": "DataZakladniDeska.csv",
-        "Polovodičové paměti": "DataPameti.csv",
-        "Zařízení pro uložení dat": "DataDisky.csv",
-        "Grafický a zobrazovací systém": "DataGrafika.csv",
-        "Digitalizace obrazu a tisk": "DataTisk.csv",
-        "Napájecí zdroje": "DataZdroje.csv",
-        "Diferenciální parametry tranzistoru": "DataTranzistor.csv",
-        "Operační zesilovače": "DataOperacni.csv",
-        "Přenos informací": "DataInformace.csv",
-        "Zesilovače": "DataZesilovace.csv",
-        "Frekvenční filtr typu dolní propust": "DataFFDolni.csv",
-        "Frekvenční filtr typu horní propust": "DataFFHorni.csv",
-        "Sériový a paralelní obvod RL, RC": "DataRLC.csv",
-        "Souhrnné opakování": null
-    },
-    "Automatizace": {
-        "Regulační obvody": "otazky_tema_1.csv",
-        "Technické prostředky": "otazky_tema_2.csv",
-        "Logická zařízení": "otazky_tema_3.csv",
-        "Druhy výkresů v AT": "otazky_tema_4.csv",
-        "Elektrické rozvody v průmyslu": "otazky_tema_5.csv",
-        "Regulační pohony a orgány": "otazky_tema_6.csv",
-        "Programovatelný automat": "otazky_tema_7.csv",
-        "Relé impulzní": "otazky_tema_8.csv",
-        "Převodníky a přizpůsobovací členy": "otazky_tema_9.csv",
-        "Výstavba regulačního obvodu": "otazky_tema_10.csv",
-        "Malé řídící systémy": "otazky_tema_11.csv",
-        "Prvky používané v obvodech AT": "otazky_tema_12.csv",
-        "Senzory - rozdělení": "otazky_tema_13.csv",
-        "Analogové a binární senzory": "otazky_tema_14.csv",
-        "PLC": "otazky_tema_15.csv",
-        "Sekvenční logické obvody": "otazky_tema_16.csv",
-        "Měření neelektrických veličin": "otazky_tema_17.csv",
-        "Typy regulačních obvodů": "otazky_tema_18.csv",
-        "Roboty a jejich aplikace": "otazky_tema_19.csv",
-        "Grafické znázornění stavů": "otazky_tema_20.csv",
-        "Souhrnné opakování": null
-    },
-    "Čeština": {
-        "William Shakespeare - Romeo a Julie": "cestina_william_shakespeare_romeo_a_julie.json",
-        "William Shakespeare - Hamlet": "cestina_william_shakespeare_hamlet.json",
-        "Molière - Lakomec": "cestina_moliere_lakomec.json",
-        "Alexandr Sergejevič Puškin - Evžen Oněgin": "cestina_Puskin_Evžen_Oněgin.json",
-        "Honoré de Balzac - Otec Goriot": "cestina_balzak_otec_goriot.json",
-        "Nikolaj Vasiljevič Gogol - Revizor": "cestina_Gogol_Revizor.json",
-        "Edgar Allan Poe - Jáma a kyvadlo": "cestina_Poe_Jáma_a_kyvadlo.json",
-        "Oscar Wilde - Obraz Doriana Graye": "cestina_Wilde_Obraz_Doriana_Graye.json",
-        "Gustave Flaubert - Paní Bovaryová": "cestina_Flaubert_Paní_Bovaryová.json",
-        "Guy de Maupassant - Kulička": "cestina_Maupassant_Kulička.json",
-        "Émile Zola - Zabiják": "cestina_Zola_Zabiják.json",
-        "Karel Hynek Mácha - Máj": "cestina_Mácha_Máj.json",
-        "Karel Jaromír Erben - Kytice": "cestina_Erben_Kytice.json",
-        "Alois a Vilém Mrštíkové - Maryša": "cestina_Mrštíkové_Maryša.json",
-        "Romain Rolland - Petr a Lucie": "cestina_Rolland_Petr_a_Lucie.json",
-        "Erich Maria Remarque - Na západní frontě klid": "cestina_Remarque_Na_západní_frontě_klid.json",
-        "Erich Maria Remarque - Tři kamarádi": "cestina_Remarque_Tři_kamarádi.json",
-        "Antoine de Saint-Exupéry - Malý princ": "cestina_Saint-Exupéry_Malý_princ.json",
-        "Ernest Hemingway - Stařec a moře": "cestina_Hemingway_Stařec_a_moře.json",
-        "Jack Kerouac - Na cestě": "cestina_Kerouac_Na_cestě.json",
-        "John Steinbeck - O myších a lidech": "cestina_Steinbeck_O_myších_a_lidech.json",
-        "George Orwell - Farma zvířat": "cestina_Orwell_Farma_zvířat.json",
-        "Ken Kesey - Vyhoďme ho z kola ven": "cestina_Kesey_Vyhoďme_ho_z_kola_ven.json",
-        "J.R.R. Tolkien - Hobit": "cestina_Tolkien_Hobit.json",
-        "Francis Scott Fitzgerald - Velký Gatsby": "cestina_Fitzgerald_Velký_Gatsby.json",
-        "Franz Kafka - Proměna": "cestina_Kafka_Proměna.json",
-        "Jiří Wolker - Těžká hodina": "cestina_Wolker_Těžká_hodina.json",
-        "Viktor Dyk - Krysař": "cestina_Dyk_Krysař.json",
-        "Ota Pavel - Plná bedna šampaňského": "cestina_Pavel_Plná_bedna_šampaňského.json",
-        "Jan Otčenášek - Romeo, Julie a tma": "cestina_Otčenášek_Romeo_Julie_a_tma.json",
-        "Arnošt Lustig - Modlitba pro Kateřinu Horovitzovou": "cestina_Lustig_Modlitba_pro_Kateřinu_Horovitzovou.json",
-        "Karel Čapek - Bílá nemoc": "cestina_Čapek_Bílá_nemoc.json",
-        "Karel Čapek - R.U.R.": "cestina_karel_capek_rur.json",
-        "Karel Čapek - Válka s mloky": "cestina_Čapek_Válka_s_mloky.json",
-        "Karel Kryl - Kníška": "cestina_Kryl_Kníška.json",
-        "Josef Škvorecký - Zbabělci": "cestina_Škvorecký_Zbabělci.json",
-        "Ladislav Fuks - Spalovač mrtvol": "cestina_Fuks_Spalovač_mrtvol.json",
-        "Bohumil Hrabal - Ostře sledované vlaky": "cestina_Hrabal_Ostře_sledované_vlaky.json"
+    "Gymnázium": {
+        "Biologie": {
+            "Prokaryotní organismy a viry": "DataProkaryotniOrganismyAViry.csv",
+            "Tělesné tekutiny a cévní soustava člověka": "DataTekutinyACevniSoustava.csv",
+            "Buněčné dýchání a fotosyntéza": "DataBunecneDychaniAFotosynteza.csv",
+            "Nervová soustava člověka a nervové řízení organismů": "DataNervovaSoustava.csv",
+            "Hormonální regulace člověka a organismů": "DataHormonalniRegulace.csv",
+            "Semenné rostliny": "DataSemenneRostliny.csv",
+            "Ploštěnci, hlísti, měkkýši": "DataPlostenciHlistiMekkysi.csv",
+            "Ekologie a ochrana přírody": "DataEkologieAOchranaPrirody.csv",
+            "Strunatci a ektotermní obratlovci": "DataStrunatciAEktotermniObratlovci.csv",
+            "Opěrná soustava člověka": "DataOpernaSoustava.csv",
+            "Pohybová soustava člověka": "DataPohybovaSoustava.csv",
+            "Smyslová soustava člověka": "DataSmyslovaSoustava.csv",
+            "Rostlinná pletiva a rostlinné orgány": "DataRostlinnaPletivaARostlinneOrgany.csv",
+            "Růst a rozmnožování rostlin": "DataRustARozmnozovaniRostlin.csv",
+            "Prvoci a diblastica": "DataPrvociADiblastica.csv",
+            "Kroužkovci a členovci": "DataKrouzkovciAClenovci.csv",
+            "Trávicí soustava člověka a metabolismus": "DataTraviciSoustavaAMetabolismus.csv",
+            "Dědičnost a genetická proměnlivost": "DataDedicnostAGenetickaPromenlivost.csv",
+            "Stélkaté rostliny a Kapraďorosty": "DataStelkateRostlinyAKapradorosty.csv",
+            "Původ a vývoj člověka": "DataPuvodAVyvojCloveka.csv",
+            "Eukaryotní buňka rostlin a živočichů": "DataEukaryotniBunka.csv",
+            "Ptáci a savci": "DataPtaciASavci.csv",
+            "Vzdušnicovci a ostnokožci": "DataVzdusnicovciAOstnokozci.csv",
+            "Molekulární základy dědičnosti": "DataMolekularniZakladyDedicnosti.csv",
+            "Systém a evoluce hub (Fungi)": "DataSystemAEvoluceHub.csv",
+            "Stavba a činnost rozmnožovací soustavy člověka": "DataRozmnozovaciSoustava.csv",
+            "Vylučovací soustava člověka a kůže": "DataVylucovaciSoustavaAKuze.csv",
+            "Dědičnost mnohobuněčného organismu": "DataDedicnostMnohobunecnehoOrganismu.csv",
+            "Stavba a funkce dýchací soustavy člověka a živočichů": "DataDychaciSoustava.csv",
+            "Ekosystém a potravní strategie": "DataEkosystemAPotravniStrategie.csv",
+            "Souhrnné opakování": null
+        },
+        "Fyzika": {
+            "Kinematika hmotného bodu. Základní charakteristika pohybů. Aplikace": "DataKinematika.csv",
+            "Dynamika hmotného bodu a soustavy bodů": "DataDynamika.csv",
+            "Mechanická práce a energie. Mechanika tuhého tělesa": "DataPraceAEnergie.csv",
+            "Gravitační pole – charakteristika, zákony, veličiny. Pohyby v gravitačním poli": "DataGravitacniPole.csv",
+            "Mechanika kapalin a plynů – základní zákonitosti a praktické využití": "DataMechanikaKapalinAPlynu.csv",
+            "Základní poznatky molekulové fyziky a termodynamiky": "DataMolekulovaFyzika.csv",
+            "Práce plynu, kruhový děj, druhý termodynamický zákon, tepelné motory": "DataTepelneMotory.csv",
+            "Struktura a vlastnosti pevných látek, deformace a teplotní roztažnost": "DataPevneLatkyARoztaznost.csv",
+            "Struktura a vlastnosti kapalin": "DataKapaliny.csv",
+            "Mechanické kmity, mechanické vlnění, základní charakteristika": "DataKmitaniAVlneni.csv",
+            "Elektrický náboj a elektrické pole, veličiny, zákonitosti, kapacita": "DataElektrickyNabojAEPole.csv",
+            "Elektrický proud v kovech, základní zákony a jejich aplikace": "DataElektrickyProudVKovech.csv",
+            "Elektrický proud v polovodičích. Základy elektroniky": "DataPolovodiceAElektronika.csv",
+            "Elektrický proud v elektrolytech a v plynech, podstata, zákony a praktické využití": "DataElektrolytyAPlyny.csv",
+            "Stacionární magnetické pole, střídavý proud": "DataMagnetickePoleAStridavyProud.csv",
+            "Elektromagnetické kmity a vlnění, oscilační obvod, sdělovací technika": "DataElektromagnetickeKmityAVlneni.csv",
+            "Vlnová povaha světla, šíření, odraz, lom, disperze, interference, ohyb, polarizace": "DataVlnovaPovahaSvetla.csv",
+            "Zobrazování optickými soustavami, paprsková optika, optické přístroje": "DataOptickeSoustavy.csv",
+            "Speciální teorie relativity": "DataRelativita.csv",
+            "Kvantová fyzika, fyzika atomového obalu a jaderná fyzika": "DataKvantovaFyzika.csv",
+            "Souhrnné opakování": null
+        },
+        "Chemie": {
+            "Klasifikace látek, soustavy látek; reakční mechanismy organických reakcí": "DataKlasifikaceLatekASoustavy.csv",
+            "Názvosloví anorganických sloučenin, základní charakteristiky prvků a sloučenin": "DataNazvosloviAnorganickychSloucenin.csv",
+            "Stavba atomu; radioaktivita": "DataStavbaAtomuRadioaktivita.csv",
+            "Orbitaly; periodická soustava prvků": "DataOrbitalyPeriodickaSoustava.csv",
+            "Chemická vazba, slabší vazebné interakce; chemické reakce a rovnice": "DataChemickaVazbaAReakce.csv",
+            "Chemické výpočty; vlastnosti atomu uhlíku, izomerie": "DataChemickeVypoctyUhlikIzomerie.csv",
+            "Základy termochemie, chemické kinetiky a rovnováhy; enzymy": "DataTermochemieKinetikaRovnovaha.csv",
+            "Vodík, kyslík a jejich sloučeniny; alkoholy a fenoly": "DataVodikKyslikAlkoholyFenoly.csv",
+            "Voda, vzduch; lipidy, detergenty a izoprenoidy": "DataVodaVzduchLipidy.csv",
+            "Roztoky, pH; karboxylové kyseliny": "DataRoztokyPHKarboxyloveKyseliny.csv",
+            "Halogeny; halogenderiváty uhlovodíků": "DataHalogenyHalogenderivaty.csv",
+            "Chalkogeny; bílkoviny": "DataChalkogenyABilkoviny.csv",
+            "Skupina dusíku; dusíkaté deriváty uhlovodíků": "DataSkupinaDusikuADusikateDerivaty.csv",
+            "Prvky III. A skupiny; léčiva, barviva, pesticidy": "DataIIIASkupinaLecivaBarvivaPesticidy.csv",
+            "Prvky IV. A skupiny; heterocykly": "DataIVASkupinaAHeterocykly.csv",
+            "Prvky I. A skupiny – alkalické kovy; fotosyntéza": "DataAlkalickeKovyAFotosynteza.csv",
+            "Nukleové kyseliny; proteosyntéza, aminokyseliny": "DataNukleoveKyselinyProteosyntezaAminokyseliny.csv",
+            "Prvky II. A skupiny; alkaloidy": "DataIIASkupinaAAlkaloidy.csv",
+            "Koordinační sloučeniny; vitamíny": "DataKoordinacniSlouceninyAVitaminy.csv",
+            "Syntetické makromolekulární látky; zdroje uhlovodíků": "DataMakromolekulyAZdrojeUhlovodiku.csv",
+            "Monosacharidy; triáda železa": "DataMonosacharidyATriadaZeleza.csv",
+            "Oligosacharidy a polysacharidy; chrom, mangan": "DataOligosacharidyPolysacharidyChromMangan.csv",
+            "Klasifikace organických sloučenin a názvosloví; aldehydy a ketony": "DataOrganickeSlouceninyAldehydyKetony.csv",
+            "Nearomatické uhlovodíky; měď a zinek": "DataNearomatickeUhlovodikyMecZinek.csv",
+            "Deriváty karboxylových kyselin; areny": "DataDerivatyKarboxylovychKyselinAreny.csv",
+            "Souhrnné opakování": null
+          },
+        "Dějepis": { "Zatím žádná témata": null },
+        "Informační a výpočetní technika": { "Zatím žádná témata": null },
+        "Základy společenských věd": { "Zatím žádná témata": null },
+        "Čeština": {
+            "William Shakespeare - Romeo a Julie": "cestina_william_shakespeare_romeo_a_julie.json",
+            "Molière - Lakomec": "cestina_moliere_lakomec.json",
+            "Alexandr Sergejevič Puškin - Evžen Oněgin": "cestina_Puskin_Evžen_Oněgin.json",
+            "Honoré de Balzac - Otec Goriot": "cestina_balzak_otec_goriot.json",
+            "Nikolaj Vasiljevič Gogol - Revizor": "cestina_Gogol_Revizor.json",
+            "Edgar Allan Poe - Jáma a kyvadlo": "cestina_Poe_Jáma_a_kyvadlo.json",
+            "Oscar Wilde - Obraz Doriana Graye": "cestina_Wilde_Obraz_Doriana_Graye.json",
+            "Guy de Maupassant - Kulička": "cestina_Maupassant_Kulička.json",
+            "Émile Zola - Zabiják": "cestina_Zola_Zabiják.json",
+            "Karel Hynek Mácha - Máj": "cestina_Mácha_Máj.json",
+            "Karel Jaromír Erben - Kytice": "cestina_Erben_Kytice.json",
+            "Alois a Vilém Mrštíkové - Maryša": "cestina_Mrštíkové_Maryša.json",
+            "Romain Rolland - Petr a Lucie": "cestina_Rolland_Petr_a_Lucie.json",
+            "Erich Maria Remarque - Na západní frontě klid": "cestina_Remarque_Na_západní_frontě_klid.json",
+            "Erich Maria Remarque - Tři kamarádi": "cestina_Remarque_Tři_kamarádi.json",
+            "Antoine de Saint-Exupéry - Malý princ": "cestina_Saint-Exupéry_Malý_princ.json",
+            "Ernest Hemingway - Stařec a moře": "cestina_Hemingway_Stařec_a_moře.json",
+            "Jack Kerouac - Na cestě": "cestina_Kerouac_Na_cestě.json",
+            "John Steinbeck - O myších a lidech": "cestina_Steinbeck_O_myších_a_lidech.json",
+            "George Orwell - Farma zvířat": "cestina_Orwell_Farma_zvířat.json",
+            "Ken Kesey - Vyhoďme ho z kola ven": "cestina_Kesey_Vyhoďme_ho_z_kola_ven.json",
+            "J.R.R. Tolkien - Hobit": "cestina_Tolkien_Hobit.json",
+            "Francis Scott Fitzgerald - Velký Gatsby": "cestina_Fitzgerald_Velký_Gatsby.json",
+            "Franz Kafka - Proměna": "cestina_Kafka_Proměna.json",
+            "Jiří Wolker - Těžká hodina": "cestina_Wolker_Těžká_hodina.json",
+            "Viktor Dyk - Krysař": "cestina_Dyk_Krysař.json",
+            "Ota Pavel - Plná bedna šampaňského": "cestina_Pavel_Plná_bedna_šampaňského.json",
+            "Jan Otčenášek - Romeo, Julie a tma": "cestina_Otčenášek_Romeo_Julie_a_tma.json",
+            "Arnošt Lustig - Modlitba pro Kateřinu Horovitzovou": "cestina_Lustig_Modlitba_pro_Kateřinu_Horovitzovou.json",
+            "Karel Čapek - Bílá nemoc": "cestina_Čapek_Bílá_nemoc.json",
+            "Karel Čapek - R.U.R.": "cestina_karel_capek_rur.json",
+            "Karel Čapek - Válka s mloky": "cestina_Čapek_Válka_s_mloky.json",
+            "Karel Kryl - Kníška": "cestina_Kryl_Kníška.json",
+            "Josef Škvorecký - Zbabělci": "cestina_Škvorecký_Zbabělci.json",
+            "Ladislav Fuks - Spalovač mrtvol": "cestina_Fuks_Spalovač_mrtvol.json",
+            "Bohumil Hrabal - Ostře sledované vlaky": "cestina_Hrabal_Ostře_sledované_vlaky.json"
+        },
+        "Angličtina": {
+            "Zatím žádná témata": null
+        }
     }
 };
 // --- Data Structure for Questions ---
@@ -202,54 +337,73 @@ const firebaseConfig = {
  * @returns {Promise<void>} A promise that resolves when all data is loaded and parsed.
  */
 async function loadAllDataFromURLs() {
-    console.log("Starting to load data from URLs...");
+    console.log("Starting to load data from URLs based on schoolSubjectConfig...");
     const fetchPromises = [];
+    const loadedFiles = new Set(); // Keep track of files to load only once
 
-    for (const subject in dataFileConfig) {
-        for (const topic in dataFileConfig[subject]) {
-            const filename = dataFileConfig[subject][topic];
+    // Clear and initialize the global flat 'data' object
+    data = {};
 
-            if (filename) {
-                const url = GITHUB_RAW_BASE_URL + filename;
-                const isJson = filename.toLowerCase().endsWith('.json');
+    for (const schoolType in schoolSubjectConfig) {
+        for (const subject in schoolSubjectConfig[schoolType]) {
+            // Initialize subject in the flat 'data' object if not already present
+            if (!data[subject]) {
+                data[subject] = {};
+            }
 
-                const promise = fetch(url)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status} for ${url}`);
-                        }
-                        // Parse based on file type
-                        return isJson ? response.json() : response.text();
-                    })
-                    .then(content => {
-                        if (isJson) {
-                            // Store the parsed JSON object directly
-                            if (data[subject]) { // Ensure subject exists
+            for (const topic in schoolSubjectConfig[schoolType][subject]) {
+                const filename = schoolSubjectConfig[schoolType][subject][topic];
+
+                // Initialize topic in the flat 'data' object if not already present
+                if (!data[subject][topic]) {
+                    // Initialize based on expected file type or default to array
+                    if (filename && filename.toLowerCase().endsWith('.json')) {
+                        data[subject][topic] = null; // Placeholder for JSON
+                    } else {
+                        data[subject][topic] = []; // Array for CSV or null topic
+                    }
+                }
+
+                if (filename && !loadedFiles.has(filename)) { // Check if already loading/loaded
+                    loadedFiles.add(filename); // Mark as loading
+                    const url = GITHUB_RAW_BASE_URL + filename;
+                    const isJson = filename.toLowerCase().endsWith('.json');
+
+                    console.log(`Scheduling load for: ${filename} (Subject: ${subject}, Topic: ${topic})`);
+
+                    const promise = fetch(url)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status} for ${url}`);
+                            }
+                            return isJson ? response.json() : response.text();
+                        })
+                        .then(content => {
+                            // Store loaded data in the FLAT 'data' object
+                            if (isJson) {
                                 data[subject][topic] = content;
                                 console.log(`Parsed JSON for ${subject} - ${topic}`);
                             } else {
-                                console.warn(`Subject ${subject} not pre-initialized in data structure.`);
+                                parseCSV(content, subject, topic); // parseCSV puts data into data[subject][topic]
                             }
-                        } else {
-                            // Parse CSV text using existing function
-                            parseCSV(content, subject, topic);
-                        }
-                    })
-                    .catch(error => {
-                        console.error(`Failed to load or parse ${url}:`, error);
-                        if (data[subject] && data[subject].hasOwnProperty(topic)) {
-                            // Set to null or empty array on error to indicate failure
-                            data[subject][topic] = isJson ? null : [];
-                        }
-                    });
-                fetchPromises.push(promise);
+                        })
+                        .catch(error => {
+                            console.error(`Failed to load or parse ${filename} (Subject: ${subject}, Topic: ${topic}):`, error);
+                            // Keep the placeholder (null or []) in data[subject][topic] on error
+                        });
+                    fetchPromises.push(promise);
+                } else if (!filename) {
+                    console.log(`Skipping topic "${topic}" for subject "${subject}" as filename is null.`);
+                } else {
+                    console.log(`File ${filename} already scheduled for loading.`);
+                }
             }
         }
     }
 
     await Promise.all(fetchPromises);
-    console.log("Finished loading and parsing all data.");
-    // console.log("Final data structure:", data); // Optional check
+    console.log("Finished loading and parsing all data based on schoolSubjectConfig.");
+    // console.log("Final flat data structure:", data); // Optional check
 }
 
 let db;
@@ -274,7 +428,7 @@ let header, main, dashboardSection, testSection, progressSection, testContainer,
     testsTodayEl, correctAnswersEl, successRateEl, dayStreakEl, totalXpEl, achievementListEl, themeToggleButton, toggleFavoriteBtn; // Added elements for stats
 let profileSection, profileEmail, profileNickname, profileJoined,
     nicknameChangeForm, newNicknameInput, changeNicknameBtn, nicknameChangeMessage,
-    changePasswordBtn, passwordChangeMessage, deleteAccountBtn, deleteAccountMessage, profileLinkleaderboardList, noLeaderboardLi, nicknameInput;
+    changePasswordBtn, passwordChangeMessage, deleteAccountBtn, deleteAccountMessage, profileLinkleaderboardList, noLeaderboardLi, nicknameInput, schoolTypeSelect;
 
 
 // --- Wait for DOM to Load ---
@@ -314,6 +468,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     achievementListEl = document.getElementById('achievement-list');
     themeToggleButton = document.getElementById('theme-toggle-btn');
     toggleFavoriteBtn = document.getElementById('toggle-favorite-btn');
+    schoolTypeSelect = document.getElementById('school-type-select');
     // Stat elements
     testsTodayEl = document.getElementById('tests-today');
     correctAnswersEl = document.getElementById('correct-answers');
@@ -354,63 +509,63 @@ document.addEventListener('DOMContentLoaded', async () => {
         auth = firebase.auth();
         console.log("Firebase Initialized");
 
-        initializeSubjects(); // Populate subject dropdown
+        initializeSchoolTypes(); // Populate subject dropdown
 
         // --- Attach Event Listeners ---
         setupEventListeners();
 
         // --- Firebase Auth Listener ---
         // --- Firebase Auth Listener ---
-auth.onAuthStateChanged(async (user) => {
-    if (user) {
-        // --- USER IS LOGGED IN ---
-        const uid = user.uid;
-        currentUser = uid; // Set global currentUser immediately
-        console.log('Auth State Changed: Logged in as', user.email);
-        authLink.textContent = "Odhlásit se"; // Update logout button text
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                // --- USER IS LOGGED IN ---
+                const uid = user.uid;
+                currentUser = uid; // Set global currentUser immediately
+                console.log('Auth State Changed: Logged in as', user.email);
+                authLink.textContent = "Odhlásit se"; // Update logout button text
 
-        // Determine if this is potentially a brand new registration
-        const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime).getTime() : 0;
-        const lastSignInTime = user.metadata.lastSignInTime ? new Date(user.metadata.lastSignInTime).getTime() : 0;
-        // Check if creation and last sign-in are very close (e.g., within 5 seconds)
-        // Use a slightly larger window just in case of clock skew or minor delays
-        const isPotentiallyNewUser = creationTime && lastSignInTime && (Math.abs(lastSignInTime - creationTime) < 5000);
+                // Determine if this is potentially a brand new registration
+                const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime).getTime() : 0;
+                const lastSignInTime = user.metadata.lastSignInTime ? new Date(user.metadata.lastSignInTime).getTime() : 0;
+                // Check if creation and last sign-in are very close (e.g., within 5 seconds)
+                // Use a slightly larger window just in case of clock skew or minor delays
+                const isPotentiallyNewUser = creationTime && lastSignInTime && (Math.abs(lastSignInTime - creationTime) < 5000);
 
-        console.log(`DEBUG: Auth state change for UID: ${uid}. Potentially New User: ${isPotentiallyNewUser}`);
+                console.log(`DEBUG: Auth state change for UID: ${uid}. Potentially New User: ${isPotentiallyNewUser}`);
 
-        // Regardless of new or existing, show the main application view immediately
-        showDashboard(); // Or whichever view is appropriate after login
+                // Regardless of new or existing, show the main application view immediately
+                showDashboard(); // Or whichever view is appropriate after login
 
-        if (isPotentiallyNewUser) {
-            // --- NEW USER REGISTRATION SCENARIO ---
-            console.log("DEBUG: Handling as potential new user registration. Delaying full data load.");
-            const registrationDataLoadDelay = 2000; // 2 seconds
-            setTimeout(async () => {
-                console.log(`DEBUG: Delayed data load starting for new user ${uid}.`);
-                // Load data normally now, assuming transaction has likely committed.
-                // Pass 'false' for isNewlyRegistered as we expect data to exist now.
-                await loadUserDataFromFirestore(uid, db, false);
-            }, registrationDataLoadDelay);
+                if (isPotentiallyNewUser) {
+                    // --- NEW USER REGISTRATION SCENARIO ---
+                    console.log("DEBUG: Handling as potential new user registration. Delaying full data load.");
+                    const registrationDataLoadDelay = 2000; // 2 seconds
+                    setTimeout(async () => {
+                        console.log(`DEBUG: Delayed data load starting for new user ${uid}.`);
+                        // Load data normally now, assuming transaction has likely committed.
+                        // Pass 'false' for isNewlyRegistered as we expect data to exist now.
+                        await loadUserDataFromFirestore(uid, db, false);
+                    }, registrationDataLoadDelay);
 
-        } else {
-            // --- EXISTING USER LOGIN SCENARIO ---
-            console.log("DEBUG: Handling as existing user login. Loading data immediately.");
-            // Load data immediately and normally for existing users.
-            // Pass 'false' for isNewlyRegistered.
-            await loadUserDataFromFirestore(uid, db, false);
-        }
+                } else {
+                    // --- EXISTING USER LOGIN SCENARIO ---
+                    console.log("DEBUG: Handling as existing user login. Loading data immediately.");
+                    // Load data immediately and normally for existing users.
+                    // Pass 'false' for isNewlyRegistered.
+                    await loadUserDataFromFirestore(uid, db, false);
+                }
 
-    } else {
-        // --- USER IS LOGGED OUT ---
-        currentUser = null;
-        console.log('Auth State Changed: Logged out');
-        authLink.textContent = "Přihlásit se";
-        clearUserDataUI(); // Clear displayed stats and potentially profile/leaderboard
-        showLogin();      // Show the login screen
-        // Regenerate calendar with empty data (assuming generateCalendar handles null currentUser)
-        generateCalendar(currentYear, currentMonth, db);
-    }
-});
+            } else {
+                // --- USER IS LOGGED OUT ---
+                currentUser = null;
+                console.log('Auth State Changed: Logged out');
+                authLink.textContent = "Přihlásit se";
+                clearUserDataUI(); // Clear displayed stats and potentially profile/leaderboard
+                showLogin();      // Show the login screen
+                // Regenerate calendar with empty data (assuming generateCalendar handles null currentUser)
+                generateCalendar(currentYear, currentMonth, db);
+            }
+        });
 
     } catch (error) {
         console.error("Error initializing Firebase or setting up:", error);
@@ -597,11 +752,11 @@ async function saveUserData(uid, data, db) {
     }
 }
 async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) { // Add parameter here
-     console.log("Attempting to load data for user:", uid, `Is New: ${isNewlyRegistered}`);
-     if (!uid || !db) {
-         console.error("loadUserDataFromFirestore: Missing UID or DB instance.");
-         return;
-     }
+    console.log("Attempting to load data for user:", uid, `Is New: ${isNewlyRegistered}`);
+    if (!uid || !db) {
+        console.error("loadUserDataFromFirestore: Missing UID or DB instance.");
+        return;
+    }
 
     try {
         let userData = await getUserData(uid, db, isNewlyRegistered); // Fetch data (this function now handles defaults if doc doesn't exist)
@@ -678,7 +833,7 @@ async function refreshLeaderboard() {
     } catch (error) {
         console.error("Error refreshing leaderboard:", error);
         // Optionally display an error in the leaderboard list
-        if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba načítání žebříčku.</li>';
+        if (leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba načítání žebříčku.</li>';
     }
 }
 function updateAchievementsUI(userData) {
@@ -818,8 +973,8 @@ async function registerUserHandler(authInstance) {
     // Nickname validation (adjust pattern/message as needed)
     const nicknamePattern = /^[a-zA-Z0-9_]{3,15}$/;
     if (!nicknamePattern.test(nickname)) {
-         loginMessage.textContent = "Přezdívka může obsahovat 3-15 písmen, čísel a podtržítek.";
-         return;
+        loginMessage.textContent = "Přezdívka může obsahovat 3-15 písmen, čísel a podtržítek.";
+        return;
     }
 
     loginMessage.textContent = "Registruji a ověřuji přezdívku..."; // Feedback
@@ -832,8 +987,8 @@ async function registerUserHandler(authInstance) {
         const isUnique = await checkNicknameUniqueness(nickname);
         if (!isUnique) {
             loginMessage.textContent = "Tato přezdívka je již obsazena.";
-             changeNicknameBtn.disabled = false;
-             registerBtn.disabled = false;
+            changeNicknameBtn.disabled = false;
+            registerBtn.disabled = false;
             return;
         }
 
@@ -847,50 +1002,50 @@ async function registerUserHandler(authInstance) {
         const nicknameDocRef = db.collection("nicknames").doc(nickname.toLowerCase());
 
         await db.runTransaction(async (transaction) => {
-             // Set default user data including nickname and timestamp
-             const userDataPayload = {
-                    nickname: nickname, // The variable from input
-                    email: email,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                    // ... include ALL OTHER necessary default fields ...
-                    weeklyXP: 0,
-                    testsToday: 0,
-                    correctAnswersToday: 0,
-                    progress: {},
-                    totalTestsCompleted: 0,
-                    averageSuccessRate: 0,
-                    dayStreak: 0,
-                    totalXP: 0,
-                    lastCompletedTestDate: null,
-                    flawlessTestCount: 0,
-                    winningStreakCount: 0,
-                    favoriteBooks: [],
-                    completedTopics: [],
-                    achievements: {
-                        xpCollector: 0, unstoppable: 0, flawless: 0, winningStreak: 0,
-                        topicMaster: 0, earlyBird: 0, nightOwl: 0, marathoner: 0,
-                        earlyBirdCount: 0, nightOwlCount: 0
-                     },
-                    activity: {},
-                    lastActivityDate: null
-                };
+            // Set default user data including nickname and timestamp
+            const userDataPayload = {
+                nickname: nickname, // The variable from input
+                email: email,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                // ... include ALL OTHER necessary default fields ...
+                weeklyXP: 0,
+                testsToday: 0,
+                correctAnswersToday: 0,
+                progress: {},
+                totalTestsCompleted: 0,
+                averageSuccessRate: 0,
+                dayStreak: 0,
+                totalXP: 0,
+                lastCompletedTestDate: null,
+                flawlessTestCount: 0,
+                winningStreakCount: 0,
+                favoriteBooks: [],
+                completedTopics: [],
+                achievements: {
+                    xpCollector: 0, unstoppable: 0, flawless: 0, winningStreak: 0,
+                    topicMaster: 0, earlyBird: 0, nightOwl: 0, marathoner: 0,
+                    earlyBirdCount: 0, nightOwlCount: 0
+                },
+                activity: {},
+                lastActivityDate: null
+            };
 
-                // --- NOW Log the payload ---
-                console.log("DEBUG: Payload being set for userDocRef:", JSON.stringify(userDataPayload));
-                console.log("DEBUG: Value of 'nickname' variable just before set:", nickname); // Log the variable directly too
+            // --- NOW Log the payload ---
+            console.log("DEBUG: Payload being set for userDocRef:", JSON.stringify(userDataPayload));
+            console.log("DEBUG: Value of 'nickname' variable just before set:", nickname); // Log the variable directly too
 
-                // --- Set the user document using the defined payload ---
-                transaction.set(userDocRef, userDataPayload);
+            // --- Set the user document using the defined payload ---
+            transaction.set(userDocRef, userDataPayload);
 
-                // --- Set the nickname document ---
-                transaction.set(nicknameDocRef, { userId: uid });
-            });
+            // --- Set the nickname document ---
+            transaction.set(nicknameDocRef, { userId: uid });
+        });
 
 
         console.log("User registered and initial data saved successfully.");
         // onAuthStateChanged will handle the rest of the login flow
         loginMessage.textContent = "Registrace proběhla úspěšně. Přihlašuji...";
-         // loginForm.reset(); // Optional: Clear form
+        // loginForm.reset(); // Optional: Clear form
 
     } catch (error) {
         console.error("Registration error:", error);
@@ -902,11 +1057,11 @@ async function registerUserHandler(authInstance) {
             loginMessage.textContent += " Zkuste to prosím znovu.";
         }
     } finally {
-         // Re-enable buttons unless successful
-         if (loginMessage.textContent !== "Registrace proběhla úspěšně. Přihlašuji...") {
-             changeNicknameBtn.disabled = false;
-             registerBtn.disabled = false;
-         }
+        // Re-enable buttons unless successful
+        if (loginMessage.textContent !== "Registrace proběhla úspěšně. Přihlašuji...") {
+            changeNicknameBtn.disabled = false;
+            registerBtn.disabled = false;
+        }
     }
 }
 /**
@@ -1007,17 +1162,17 @@ function showLogin() {
         leaderboardListenerUnsubscribe();
         leaderboardListenerUnsubscribe = null;
     }
-    if(loginSection) loginSection.style.display = 'flex';
-    if(dashboardSection) dashboardSection.style.display = 'none';
-    if(testSection) testSection.style.display = 'none';
-    if(profileSection) profileSection.style.display = 'none';
-    if(loginMessage) loginMessage.textContent = '';
-    if(loginForm) {
+    if (loginSection) loginSection.style.display = 'flex';
+    if (dashboardSection) dashboardSection.style.display = 'none';
+    if (testSection) testSection.style.display = 'none';
+    if (profileSection) profileSection.style.display = 'none';
+    if (loginMessage) loginMessage.textContent = '';
+    if (loginForm) {
         loginForm.reset();
         loginForm.classList.remove('register-mode');
     }
-    if(loginBtn) loginBtn.style.display = 'block';
-    if(registerBtn) registerBtn.textContent = 'Registrovat se';
+    if (loginBtn) loginBtn.style.display = 'block';
+    if (registerBtn) registerBtn.textContent = 'Registrovat se';
 }
 
 // Ensure leaderboardListenerUnsubscribe is declared globally
@@ -1029,34 +1184,34 @@ function showDashboard() {
         leaderboardListenerUnsubscribe();
         leaderboardListenerUnsubscribe = null;
     }
-    if(profileSection) profileSection.style.display = 'none';
+    if (profileSection) profileSection.style.display = 'none';
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'block'; // Show Dashboard
     if (testSection) testSection.style.display = 'none';
     if (currentUser) {
-         console.log("Attaching real-time leaderboard listener for Dashboard section...");
+        console.log("Attaching real-time leaderboard listener for Dashboard section...");
 
-         const query = db.collection("users")
-                         .orderBy("weeklyXP", "desc")
-                         .limit(10);
+        const query = db.collection("users")
+            .orderBy("weeklyXP", "desc")
+            .limit(10);
 
-         leaderboardListenerUnsubscribe = query.onSnapshot(querySnapshot => {
-             console.log("Leaderboard snapshot received (Dashboard).");
-             const topUsers = [];
-             querySnapshot.forEach(doc => {
-                 const data = doc.data();
-                  if (data.nickname && typeof data.weeklyXP === 'number') {
-                      topUsers.push({
-                          nickname: data.nickname,
-                          xp: data.weeklyXP
-                      });
-                  }
-             });
-             updateLeaderboardUI(topUsers); // Update the UI
-         }, error => {
-             console.error("Error fetching leaderboard snapshot (Dashboard):", error);
-             if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba live žebříčku.</li>';
-         });
+        leaderboardListenerUnsubscribe = query.onSnapshot(querySnapshot => {
+            console.log("Leaderboard snapshot received (Dashboard).");
+            const topUsers = [];
+            querySnapshot.forEach(doc => {
+                const data = doc.data();
+                if (data.nickname && typeof data.weeklyXP === 'number') {
+                    topUsers.push({
+                        nickname: data.nickname,
+                        xp: data.weeklyXP
+                    });
+                }
+            });
+            updateLeaderboardUI(topUsers); // Update the UI
+        }, error => {
+            console.error("Error fetching leaderboard snapshot (Dashboard):", error);
+            if (leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba live žebříčku.</li>';
+        });
     } else {
         updateLeaderboardUI([]);
     }
@@ -1070,7 +1225,7 @@ function showTestSection() {
     }
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'none';
-    if(profileSection) profileSection.style.display = 'none';
+    if (profileSection) profileSection.style.display = 'none';
     if (testSection) testSection.style.display = 'block';
 }
 
@@ -1097,8 +1252,8 @@ function updateStatisticsSection(userData) {
     if (progressTotalXpEl) {
         progressTotalXpEl.textContent = xp;
     } else {
-         // Add warning if these specific elements are missing
-         console.warn("Element with ID 'total-xp' not found.");
+        // Add warning if these specific elements are missing
+        console.warn("Element with ID 'total-xp' not found.");
     }
 
     // Updated log to reflect only what's being set
@@ -1223,10 +1378,10 @@ function updateProgressSection(userData) {
  */
 function clearUserDataUI() {
     if (leaderboardListenerUnsubscribe) {
-         console.log("Detaching leaderboard listener during UI clear.");
-         leaderboardListenerUnsubscribe();
-         leaderboardListenerUnsubscribe = null;
-      }
+        console.log("Detaching leaderboard listener during UI clear.");
+        leaderboardListenerUnsubscribe();
+        leaderboardListenerUnsubscribe = null;
+    }
     // Reset dashboard stats
     updateStatisticsSection(null); // Pass null for default/zero state
 
@@ -1257,7 +1412,7 @@ function clearUserDataUI() {
     if (topicSelect) topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
     if (topicSelect) topicSelect.disabled = true;
     if (generateTestBtn) generateTestBtn.disabled = true;
-    if(profileSection) profileSection.style.display = 'none';
+    if (profileSection) profileSection.style.display = 'none';
 
     // Calendar will be regenerated by auth listener with empty data
 }
@@ -2085,15 +2240,62 @@ function getRandomQuestions(arr, n) {
 }
 
 /** Initializes the subject dropdown menu. */
-function initializeSubjects() {
-    if (!subjectSelect) return;
-    subjectSelect.innerHTML = '<option value="">Vyberte předmět</option>'; // Placeholder
-    for (const subject in data) {
+function initializeSchoolTypes() {
+    if (!schoolTypeSelect) return;
+    schoolTypeSelect.innerHTML = '<option value="">Vyberte typ školy</option>'; // Reset
+    for (const schoolType in schoolSubjectConfig) {
+        const option = document.createElement('option');
+        option.value = schoolType;
+        option.textContent = schoolType;
+        schoolTypeSelect.appendChild(option);
+    }
+    // Ensure subject/topic are disabled initially
+    if (subjectSelect) subjectSelect.disabled = true;
+    if (topicSelect) topicSelect.disabled = true;
+    if (generateTestBtn) generateTestBtn.disabled = true;
+}
+/**
+ * Populates the Subject dropdown based on the selected school type.
+ */
+function populateSubjects(selectedSchoolType) {
+    if (!subjectSelect || !topicSelect || !generateTestBtn) return;
+
+    // Reset subject and topic dropdowns
+    subjectSelect.innerHTML = '<option value="">Vyberte předmět</option>';
+    topicSelect.innerHTML = '<option value="">Nejprve předmět</option>';
+    subjectSelect.disabled = true;
+    topicSelect.disabled = true;
+    generateTestBtn.disabled = true;
+    if (toggleFavoriteBtn) { // Hide/disable favorite button too
+        toggleFavoriteBtn.style.display = 'none';
+        toggleFavoriteBtn.disabled = true;
+    }
+
+
+    if (!selectedSchoolType || !schoolSubjectConfig[selectedSchoolType]) {
+        subjectSelect.innerHTML = '<option value="">Nejprve typ školy</option>';
+        return; // Exit if no valid school type selected
+    }
+
+    const subjectsForSchool = Object.keys(schoolSubjectConfig[selectedSchoolType]);
+
+    // Optional: Sort subjects alphabetically if desired for this dropdown
+    // subjectsForSchool.sort((a, b) => a.localeCompare(b, 'cs'));
+
+    subjectsForSchool.forEach(subject => {
+        // Optional: Check if any data actually exists for this subject before adding
+        if (!data[subject] || Object.keys(data[subject]).length === 0) {
+            console.warn(`No data found for subject "${subject}", not adding to dropdown.`);
+            // return; // Uncomment to hide subjects with no loaded topics
+        }
+
         const option = document.createElement('option');
         option.value = subject;
         option.textContent = subject;
         subjectSelect.appendChild(option);
-    }
+    });
+
+    subjectSelect.disabled = false; // Enable subject selection
 }
 
 function populateTopics(subject, userData) {
@@ -2124,13 +2326,13 @@ function populateTopics(subject, userData) {
             });
             toggleFavoriteBtn.style.display = 'inline-block';
         } else {
-            toggleFavoriteBtn.style.display = 'none'; 
+            toggleFavoriteBtn.style.display = 'none';
         }
         topics.forEach(topic => {
             // Check if data was actually loaded or file exists (prevents adding options for failed loads)
             if (!data[subject]?.[topic] && !dataFileConfig[subject]?.[topic]) {
-                 console.warn(`Skipping topic "${topic}" for subject "${subject}" as no data/file found.`);
-                 return;
+                console.warn(`Skipping topic "${topic}" for subject "${subject}" as no data/file found.`);
+                return;
             }
 
             const option = document.createElement('option');
@@ -2158,7 +2360,7 @@ function populateTopics(subject, userData) {
         } else {
             generateTestBtn.disabled = true;
             if (subject === "Čeština") {
-                 toggleFavoriteBtn.disabled = true; // Disable if no topic selected
+                toggleFavoriteBtn.disabled = true; // Disable if no topic selected
             }
         }
 
@@ -2259,278 +2461,285 @@ function setupEventListeners() {
 
     // Login/Register Buttons
     // Modify the event listener setup for registerBtn
-registerBtn?.addEventListener('click', () => {
-    if (loginForm.classList.contains('register-mode')) {
-        // Already in register mode, perform registration
-        registerUserHandler(auth);
-    } else {
-        // Switch to register mode
-        loginForm.classList.add('register-mode');
-        loginMessage.textContent = ''; // Clear login messages
-        registerBtn.textContent = 'Dokončit registraci'; // Change button text
-        if(loginBtn) loginBtn.style.display = 'none'; // Hide login button
-    }
-});
- // Add back listener for login button to potentially clear register mode if user clicks login again
-loginBtn?.addEventListener('click', () => {
-    if (loginForm.classList.contains('register-mode')) {
-         // If user clicks Login while in register mode, switch back
-         loginForm.classList.remove('register-mode');
-         registerBtn.textContent = 'Registrovat se';
-         if(loginBtn) loginBtn.style.display = 'block';
-         loginMessage.textContent = ''; // Clear messages
-    } else {
-         // Perform login
-         loginUserHandler(auth);
-    }
-});
-profileLink?.addEventListener('click', (e) => {
-    e.preventDefault();
-    showProfileSection();
-});
-nicknameChangeForm?.addEventListener('submit', handleNicknameChange);
-changePasswordBtn?.addEventListener('click', handleChangePassword);
-deleteAccountBtn?.addEventListener('click', handleDeleteAccount); // Add delete listener
-async function showProfileSection() {
-    // 1. Detach any existing listener (Safety check, other show functions should handle it)
-    if (leaderboardListenerUnsubscribe) {
-        console.log("Detaching previous leaderboard listener before showing Profile/Stats.");
-        leaderboardListenerUnsubscribe();
-        leaderboardListenerUnsubscribe = null;
-    }
-
-    // 2. Show/Hide Sections
-    if(loginSection) loginSection.style.display = 'none';
-    if(dashboardSection) dashboardSection.style.display = 'none';
-    if(testSection) testSection.style.display = 'none';
-    if(profileSection) profileSection.style.display = 'block';
-
-    // 3. Load Data if User is Logged In
-    if (currentUser) {
-        console.log("Loading data for Profile/Stats section...");
-        try {
-            const userData = await getUserData(currentUser, db);
-            if (!userData) { throw new Error("Nepodařilo se načíst data uživatele."); }
-
-            loadProfileData(); 
-            updateProgressSection(userData); 
-            updateAchievementsUI(userData); 
-        } catch (error) {
-            // Handle errors during initial data fetch
-            console.error("Error loading profile/stats section data:", error);
-            // Clear UI...
-            if(profileEmail) profileEmail.textContent = 'Chyba';
-            // ... etc ...
-            updateProgressSection(null);
-            updateAchievementsUI(null); 
+    registerBtn?.addEventListener('click', () => {
+        if (loginForm.classList.contains('register-mode')) {
+            // Already in register mode, perform registration
+            registerUserHandler(auth);
+        } else {
+            // Switch to register mode
+            loginForm.classList.add('register-mode');
+            loginMessage.textContent = ''; // Clear login messages
+            registerBtn.textContent = 'Dokončit registraci'; // Change button text
+            if (loginBtn) loginBtn.style.display = 'none'; // Hide login button
         }
-    } else {
-         if(profileEmail) profileEmail.textContent = 'N/A';
-         // ... etc ...
-        updateProgressSection(null);
-        updateAchievementsUI(null);
-        // No need to update leaderboard UI here, showLogin/clearUserDataUI handles it
-    }
-}
-async function loadProfileData() {
-    if (!currentUser || !auth.currentUser || !profileEmail || !profileNickname || !profileJoined) return;
+    });
+    // Add back listener for login button to potentially clear register mode if user clicks login again
+    loginBtn?.addEventListener('click', () => {
+        if (loginForm.classList.contains('register-mode')) {
+            // If user clicks Login while in register mode, switch back
+            loginForm.classList.remove('register-mode');
+            registerBtn.textContent = 'Registrovat se';
+            if (loginBtn) loginBtn.style.display = 'block';
+            loginMessage.textContent = ''; // Clear messages
+        } else {
+            // Perform login
+            loginUserHandler(auth);
+        }
+    });
+    profileLink?.addEventListener('click', (e) => {
+        e.preventDefault();
+        showProfileSection();
+    });
+    nicknameChangeForm?.addEventListener('submit', handleNicknameChange);
+    changePasswordBtn?.addEventListener('click', handleChangePassword);
+    deleteAccountBtn?.addEventListener('click', handleDeleteAccount); // Add delete listener
+    async function showProfileSection() {
+        // 1. Detach any existing listener (Safety check, other show functions should handle it)
+        if (leaderboardListenerUnsubscribe) {
+            console.log("Detaching previous leaderboard listener before showing Profile/Stats.");
+            leaderboardListenerUnsubscribe();
+            leaderboardListenerUnsubscribe = null;
+        }
 
-    profileEmail.textContent = auth.currentUser.email || 'N/A';
+        // 2. Show/Hide Sections
+        if (loginSection) loginSection.style.display = 'none';
+        if (dashboardSection) dashboardSection.style.display = 'none';
+        if (testSection) testSection.style.display = 'none';
+        if (profileSection) profileSection.style.display = 'block';
 
-    try {
-        const userData = await getUserData(currentUser, db);
-        if (userData) {
-            profileNickname.textContent = userData.nickname || 'Nenastaveno';
+        // 3. Load Data if User is Logged In
+        if (currentUser) {
+            console.log("Loading data for Profile/Stats section...");
+            try {
+                const userData = await getUserData(currentUser, db);
+                if (!userData) { throw new Error("Nepodařilo se načíst data uživatele."); }
 
-            if (userData.createdAt && userData.createdAt.toDate) {
-                // Format the timestamp
-                const joinDate = userData.createdAt.toDate();
-                profileJoined.textContent = joinDate.toLocaleDateString('cs-CZ', {
-                    day: 'numeric', month: 'long', year: 'numeric'
-                });
-            } else {
-                profileJoined.textContent = 'Neznámé';
+                loadProfileData();
+                updateProgressSection(userData);
+                updateAchievementsUI(userData);
+            } catch (error) {
+                // Handle errors during initial data fetch
+                console.error("Error loading profile/stats section data:", error);
+                // Clear UI...
+                if (profileEmail) profileEmail.textContent = 'Chyba';
+                // ... etc ...
+                updateProgressSection(null);
+                updateAchievementsUI(null);
             }
         } else {
-             profileNickname.textContent = 'Chyba';
-             profileJoined.textContent = 'Chyba';
+            if (profileEmail) profileEmail.textContent = 'N/A';
+            // ... etc ...
+            updateProgressSection(null);
+            updateAchievementsUI(null);
+            // No need to update leaderboard UI here, showLogin/clearUserDataUI handles it
         }
-    } catch (error) {
-        console.error("Error loading profile data:", error);
-        profileNickname.textContent = 'Chyba načítání';
-        profileJoined.textContent = 'Chyba načítání';
     }
-}
-async function handleNicknameChange(event) {
-    event.preventDefault(); // Prevent form submission
-    if (!currentUser || !newNicknameInput || !nicknameChangeMessage || !changeNicknameBtn) return;
+    async function loadProfileData() {
+        if (!currentUser || !auth.currentUser || !profileEmail || !profileNickname || !profileJoined) return;
 
-    const newNickname = newNicknameInput.value.trim();
-    console.log("DEBUG: Nickname read from input:", nickname);
-    nicknameChangeMessage.textContent = ''; // Clear previous message
-    nicknameChangeMessage.className = ''; // Clear success/error class
+        profileEmail.textContent = auth.currentUser.email || 'N/A';
 
-    // Validation
-    const nicknamePattern = /^[a-zA-Z0-9_]{3,15}$/;
-    if (!nicknamePattern.test(newNickname)) {
-        nicknameChangeMessage.textContent = "Nová přezdívka má neplatný formát.";
-        nicknameChangeMessage.classList.add('error');
-        return;
-    }
+        try {
+            const userData = await getUserData(currentUser, db);
+            if (userData) {
+                profileNickname.textContent = userData.nickname || 'Nenastaveno';
 
-    changeNicknameBtn.disabled = true;
-    nicknameChangeMessage.textContent = 'Ověřuji a ukládám...';
-
-    try {
-        const userData = await getUserData(currentUser, db);
-        const oldNickname = userData?.nickname;
-         const oldNicknameLower = oldNickname?.toLowerCase();
-         const newNicknameLower = newNickname.toLowerCase();
-
-
-        if (oldNicknameLower === newNicknameLower) {
-            nicknameChangeMessage.textContent = "Nová přezdívka je stejná jako stará.";
-            changeNicknameBtn.disabled = false;
-            return;
-        }
-
-        // Check uniqueness ONLY if it's different
-        const isUnique = await checkNicknameUniqueness(newNickname);
-        if (!isUnique) {
-            nicknameChangeMessage.textContent = "Tato přezdívka je již obsazena.";
-            nicknameChangeMessage.classList.add('error');
-            changeNicknameBtn.disabled = false;
-            return;
-        }
-
-        // Transaction to update user doc and nickname collection
-        const userDocRef = db.collection("users").doc(currentUser);
-        const newNicknameDocRef = db.collection("nicknames").doc(newNicknameLower);
-         const oldNicknameDocRef = oldNickname ? db.collection("nicknames").doc(oldNicknameLower) : null;
-
-
-        await db.runTransaction(async (transaction) => {
-            // 1. Delete old nickname reservation (if exists)
-            if (oldNicknameDocRef) {
-                transaction.delete(oldNicknameDocRef);
+                if (userData.createdAt && userData.createdAt.toDate) {
+                    // Format the timestamp
+                    const joinDate = userData.createdAt.toDate();
+                    profileJoined.textContent = joinDate.toLocaleDateString('cs-CZ', {
+                        day: 'numeric', month: 'long', year: 'numeric'
+                    });
+                } else {
+                    profileJoined.textContent = 'Neznámé';
+                }
+            } else {
+                profileNickname.textContent = 'Chyba';
+                profileJoined.textContent = 'Chyba';
             }
-            // 2. Create new nickname reservation
-            transaction.set(newNicknameDocRef, { userId: currentUser });
-            // 3. Update nickname in user document
-            transaction.update(userDocRef, { nickname: newNickname });
-        });
-
-        nicknameChangeMessage.textContent = "Přezdívka úspěšně změněna!";
-        nicknameChangeMessage.classList.add('success');
-         if(profileNickname) profileNickname.textContent = newNickname; // Update UI immediately
-        newNicknameInput.value = ''; // Clear input
-
-
-    } catch (error) {
-        console.error("Error changing nickname:", error);
-        nicknameChangeMessage.textContent = "Chyba při změně přezdívky.";
-        nicknameChangeMessage.classList.add('error');
-    } finally {
-        changeNicknameBtn.disabled = false;
+        } catch (error) {
+            console.error("Error loading profile data:", error);
+            profileNickname.textContent = 'Chyba načítání';
+            profileJoined.textContent = 'Chyba načítání';
+        }
     }
-}
-async function handleChangePassword() {
-    if (!auth || !auth.currentUser || !passwordChangeMessage || !changePasswordBtn) return;
+    async function handleNicknameChange(event) {
+        event.preventDefault(); // Prevent form submission
+        if (!currentUser || !newNicknameInput || !nicknameChangeMessage || !changeNicknameBtn) return;
 
-    const email = auth.currentUser.email;
-    passwordChangeMessage.textContent = '';
-    passwordChangeMessage.className = '';
-    changePasswordBtn.disabled = true;
+        const newNickname = newNicknameInput.value.trim();
+        console.log("DEBUG: Nickname read from input:", nickname);
+        nicknameChangeMessage.textContent = ''; // Clear previous message
+        nicknameChangeMessage.className = ''; // Clear success/error class
 
-    try {
-        await auth.sendPasswordResetEmail(email);
-        passwordChangeMessage.textContent = `Odkaz pro reset hesla byl zaslán na ${email}. Zkontrolujte si poštu (i spam).`;
-        passwordChangeMessage.classList.add('success');
-    } catch (error) {
-        console.error("Error sending password reset email:", error);
-        passwordChangeMessage.textContent = "Chyba při zasílání emailu: " + mapAuthError(error);
-         passwordChangeMessage.classList.add('error');
-         changePasswordBtn.disabled = false; // Re-enable only on error
+        // Validation
+        const nicknamePattern = /^[a-zA-Z0-9_]{3,15}$/;
+        if (!nicknamePattern.test(newNickname)) {
+            nicknameChangeMessage.textContent = "Nová přezdívka má neplatný formát.";
+            nicknameChangeMessage.classList.add('error');
+            return;
+        }
+
+        changeNicknameBtn.disabled = true;
+        nicknameChangeMessage.textContent = 'Ověřuji a ukládám...';
+
+        try {
+            const userData = await getUserData(currentUser, db);
+            const oldNickname = userData?.nickname;
+            const oldNicknameLower = oldNickname?.toLowerCase();
+            const newNicknameLower = newNickname.toLowerCase();
+
+
+            if (oldNicknameLower === newNicknameLower) {
+                nicknameChangeMessage.textContent = "Nová přezdívka je stejná jako stará.";
+                changeNicknameBtn.disabled = false;
+                return;
+            }
+
+            // Check uniqueness ONLY if it's different
+            const isUnique = await checkNicknameUniqueness(newNickname);
+            if (!isUnique) {
+                nicknameChangeMessage.textContent = "Tato přezdívka je již obsazena.";
+                nicknameChangeMessage.classList.add('error');
+                changeNicknameBtn.disabled = false;
+                return;
+            }
+
+            // Transaction to update user doc and nickname collection
+            const userDocRef = db.collection("users").doc(currentUser);
+            const newNicknameDocRef = db.collection("nicknames").doc(newNicknameLower);
+            const oldNicknameDocRef = oldNickname ? db.collection("nicknames").doc(oldNicknameLower) : null;
+
+
+            await db.runTransaction(async (transaction) => {
+                // 1. Delete old nickname reservation (if exists)
+                if (oldNicknameDocRef) {
+                    transaction.delete(oldNicknameDocRef);
+                }
+                // 2. Create new nickname reservation
+                transaction.set(newNicknameDocRef, { userId: currentUser });
+                // 3. Update nickname in user document
+                transaction.update(userDocRef, { nickname: newNickname });
+            });
+
+            nicknameChangeMessage.textContent = "Přezdívka úspěšně změněna!";
+            nicknameChangeMessage.classList.add('success');
+            if (profileNickname) profileNickname.textContent = newNickname; // Update UI immediately
+            newNicknameInput.value = ''; // Clear input
+
+
+        } catch (error) {
+            console.error("Error changing nickname:", error);
+            nicknameChangeMessage.textContent = "Chyba při změně přezdívky.";
+            nicknameChangeMessage.classList.add('error');
+        } finally {
+            changeNicknameBtn.disabled = false;
+        }
     }
-    // Keep button disabled on success to prevent spamming
-}
-async function handleDeleteAccount() {
-    if (!auth || !auth.currentUser || !db || !deleteAccountBtn || !deleteAccountMessage) return;
-    
-    const user = auth.currentUser;
-    const uid = user.uid;
-    const userEmail = user.email; // For confirmation message
-    
-    // --- Confirmation ---
-    const confirmation = prompt(`Opravdu chcete trvale smazat svůj účet (${userEmail})? Tato akce je nevratná! Napište "SMAZAT" pro potvrzení:`);
-    if (confirmation !== "SMAZAT") {
-    deleteAccountMessage.textContent = "Smazání účtu zrušeno.";
-    return;
+    async function handleChangePassword() {
+        if (!auth || !auth.currentUser || !passwordChangeMessage || !changePasswordBtn) return;
+
+        const email = auth.currentUser.email;
+        passwordChangeMessage.textContent = '';
+        passwordChangeMessage.className = '';
+        changePasswordBtn.disabled = true;
+
+        try {
+            await auth.sendPasswordResetEmail(email);
+            passwordChangeMessage.textContent = `Odkaz pro reset hesla byl zaslán na ${email}. Zkontrolujte si poštu (i spam).`;
+            passwordChangeMessage.classList.add('success');
+        } catch (error) {
+            console.error("Error sending password reset email:", error);
+            passwordChangeMessage.textContent = "Chyba při zasílání emailu: " + mapAuthError(error);
+            passwordChangeMessage.classList.add('error');
+            changePasswordBtn.disabled = false; // Re-enable only on error
+        }
+        // Keep button disabled on success to prevent spamming
     }
-    deleteAccountBtn.disabled = true;
-deleteAccountMessage.textContent = "Mažu účet a data...";
-deleteAccountMessage.className = '';
-try {
-    // 1. Get user data to find nickname
-  const userData = await getUserData(uid, db);
-  const nickname = userData?.nickname;
-  const nicknameLower = nickname?.toLowerCase();
+    async function handleDeleteAccount() {
+        if (!auth || !auth.currentUser || !db || !deleteAccountBtn || !deleteAccountMessage) return;
 
-  // 2. Delete Firestore Data (User Doc and Nickname Reservation) in Transaction
-  const userDocRef = db.collection("users").doc(uid);
-   const nicknameDocRef = nicknameLower ? db.collection("nicknames").doc(nicknameLower) : null;
+        const user = auth.currentUser;
+        const uid = user.uid;
+        const userEmail = user.email; // For confirmation message
+
+        // --- Confirmation ---
+        const confirmation = prompt(`Opravdu chcete trvale smazat svůj účet (${userEmail})? Tato akce je nevratná! Napište "SMAZAT" pro potvrzení:`);
+        if (confirmation !== "SMAZAT") {
+            deleteAccountMessage.textContent = "Smazání účtu zrušeno.";
+            return;
+        }
+        deleteAccountBtn.disabled = true;
+        deleteAccountMessage.textContent = "Mažu účet a data...";
+        deleteAccountMessage.className = '';
+        try {
+            // 1. Get user data to find nickname
+            const userData = await getUserData(uid, db);
+            const nickname = userData?.nickname;
+            const nicknameLower = nickname?.toLowerCase();
+
+            // 2. Delete Firestore Data (User Doc and Nickname Reservation) in Transaction
+            const userDocRef = db.collection("users").doc(uid);
+            const nicknameDocRef = nicknameLower ? db.collection("nicknames").doc(nicknameLower) : null;
 
 
-  await db.runTransaction(async (transaction) => {
-      if (nicknameDocRef) {
-           // Check if nickname doc still exists before deleting
-           const nickDoc = await transaction.get(nicknameDocRef);
-           if (nickDoc.exists) {
-               transaction.delete(nicknameDocRef);
-           }
-      }
-      // Check if user doc exists before deleting
-       const userDoc = await transaction.get(userDocRef);
-       if (userDoc.exists) {
-           transaction.delete(userDocRef);
-       }
-  });
-  console.log("Firestore data deleted for user:", uid);
+            await db.runTransaction(async (transaction) => {
+                if (nicknameDocRef) {
+                    // Check if nickname doc still exists before deleting
+                    const nickDoc = await transaction.get(nicknameDocRef);
+                    if (nickDoc.exists) {
+                        transaction.delete(nicknameDocRef);
+                    }
+                }
+                // Check if user doc exists before deleting
+                const userDoc = await transaction.get(userDocRef);
+                if (userDoc.exists) {
+                    transaction.delete(userDocRef);
+                }
+            });
+            console.log("Firestore data deleted for user:", uid);
 
-  // 3. Delete Firebase Auth User
-  await user.delete();
+            // 3. Delete Firebase Auth User
+            await user.delete();
 
-  // Auth state listener will handle UI changes (logout, show login)
-  console.log("Firebase Auth user deleted successfully.");
-  alert("Váš účet byl úspěšně smazán.");
-} catch (error) {
-    console.error("Error deleting account:", error);
-    deleteAccountMessage.textContent = "Chyba při mazání účtu: " + mapAuthError(error);
-    deleteAccountMessage.classList.add('error');
-    if (error.code === 'auth/requires-recent-login') {
-    deleteAccountMessage.textContent += " Prosím, odhlaste se a znovu přihlaste, poté zkuste smazání znovu.";
+            // Auth state listener will handle UI changes (logout, show login)
+            console.log("Firebase Auth user deleted successfully.");
+            alert("Váš účet byl úspěšně smazán.");
+        } catch (error) {
+            console.error("Error deleting account:", error);
+            deleteAccountMessage.textContent = "Chyba při mazání účtu: " + mapAuthError(error);
+            deleteAccountMessage.classList.add('error');
+            if (error.code === 'auth/requires-recent-login') {
+                deleteAccountMessage.textContent += " Prosím, odhlaste se a znovu přihlaste, poté zkuste smazání znovu.";
+            }
+            deleteAccountBtn.disabled = false; // Re-enable on error
+        }
     }
-    deleteAccountBtn.disabled = false; // Re-enable on error
-    }
-    }
-
+    schoolTypeSelect?.addEventListener('change', function () {
+        const selectedSchool = this.value;
+        populateSubjects(selectedSchool);
+    });
     // Test Generation Controls
-    subjectSelect?.addEventListener('change', async function () { // Make async
+    subjectSelect?.addEventListener('change', async function () {
         const selectedSubject = this.value;
+        const selectedSchool = schoolTypeSelect.value; // Keep track of school context if needed
         let currentUserData = null;
         if (currentUser) {
-            // Fetch fresh data when subject changes to ensure favorites are up-to-date
             currentUserData = await getUserData(currentUser, db);
         }
-        populateTopics(selectedSubject, currentUserData); // Pass user data
+        // Pass subject and user data to populate topics
+        // populateTopics should ideally get the topic list from the flat 'data' object
+        populateTopics(selectedSubject, currentUserData);
     });
     topicSelect?.addEventListener('change', function () {
-        const isTopicSelected = !!this.value; // Check if a non-empty topic is selected
+        const isTopicSelected = !!this.value;
         const isCestina = subjectSelect.value === "Čeština";
-
-        generateTestBtn.disabled = !isTopicSelected;
+        if (generateTestBtn) generateTestBtn.disabled = !isTopicSelected;
         if (toggleFavoriteBtn) {
-            toggleFavoriteBtn.disabled = !(isTopicSelected && isCestina); // Enable only for selected Čeština topic
+            // Favorite button logic now depends only on Čeština subject being selected,
+            // and a topic being chosen. The school type doesn't directly affect it here.
+            toggleFavoriteBtn.style.display = isCestina ? 'inline-block' : 'none';
+            toggleFavoriteBtn.disabled = !(isTopicSelected && isCestina);
         }
     });
     generateTestBtn?.addEventListener('click', generateTest);
@@ -2613,7 +2822,7 @@ function updateLeaderboardUI(leaderboardData) {
         li.textContent = 'Žebříček je zatím prázdný.';
         li.style.textAlign = 'center';
         li.style.color = '#718096';
-         li.style.listStyle = 'none';
+        li.style.listStyle = 'none';
         leaderboardList.appendChild(li);
         return;
     }
