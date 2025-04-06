@@ -91,19 +91,18 @@
             <div class="test-header">
                 <div class="test-title">Test</div>
                 <div>
+                    <select id="school-type-select" class="btn">
+                        <option value="">Vyberte typ školy</option>
+                    </select>
                     <select id="subject-select" class="btn">
                         <option value="">Vyberte předmět</option>
-                        <!-- Options populated by JS -->
                     </select>
                     <select id="topic-select" class="btn" disabled>
                         <option value="">Vyberte okruh</option>
-                        <!-- Options populated by JS -->
                     </select>
                     <button id="toggle-favorite-btn" class="btn btn-secondary btn-favorite" style="display: none;"
                         title="Označit/Odznačit jako oblíbené">★</button>
                     <button type="button" id="generate-test" class="btn btn-primary" disabled>Generovat test</button>
-                    <!-- Added type -->
-                    <!-- <div id="button-container"></div>  Removed this, buttons added directly -->
                 </div>
             </div>
             <div id="test-container" class="test-container" style="display: none;">

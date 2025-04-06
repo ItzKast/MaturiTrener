@@ -251,13 +251,13 @@ const schoolSubjectConfig = {
 };
 // --- Data Structure for Questions ---
 let data = {};
-for (const subject in dataFileConfig) {
-    if (dataFileConfig.hasOwnProperty(subject)) {
+for (const subject in schoolSubjectConfig) {
+    if (schoolSubjectConfig.hasOwnProperty(subject)) {
         data[subject] = {};
-        for (const topic in dataFileConfig[subject]) {
-            if (dataFileConfig[subject].hasOwnProperty(topic)) {
+        for (const topic in schoolSubjectConfig[subject]) {
+            if (schoolSubjectConfig[subject].hasOwnProperty(topic)) {
                 // Initialize appropriately: Array for CSV, maybe null/object for JSON initially?
-                const filename = dataFileConfig[subject][topic];
+                const filename = schoolSubjectConfig[subject][topic];
                 if (filename && filename.endsWith('.json')) {
                     data[subject][topic] = null; // Placeholder for the loaded JSON object
                 } else if (filename && filename.endsWith('.csv')) {
@@ -1897,7 +1897,7 @@ async function evaluateTest(db) {
 
     // --- Update Subject Progress ---
     const subject = subjectSelect.value;
-    if (subject && (data[subject] || dataFileConfig[subject])) { // Check config too
+    if (subject && (data[subject] || schoolSubjectConfig[subject])) { // Check config too
         userData.progress[subject] = userData.progress[subject] || {
             testsCompleted: 0, correctAnswers: 0, totalQuestionsAnswered: 0, successRate: 0
         };
@@ -1967,7 +1967,7 @@ async function evaluateTest(db) {
 
     const topic = topicSelect.value;
     // Add topic if it's not summary and exists in config
-    if (topic && subject && dataFileConfig[subject]?.[topic]) {
+    if (topic && subject && schoolSubjectConfig[subject]?.[topic]) {
         userData.completedTopics.add(topic);
     }
 
@@ -2309,9 +2309,9 @@ function populateTopics(subject, userData) {
     toggleFavoriteBtn.style.display = 'none';
     toggleFavoriteBtn.disabled = true;
 
-    if (subject && dataFileConfig[subject]) { // Check config first for keys/order
+    if (subject && schoolSubjectConfig[subject]) { // Check config first for keys/order
         // Get keys directly from the config object to preserve definition order
-        let topics = Object.keys(dataFileConfig[subject]);
+        let topics = Object.keys(schoolSubjectConfig[subject]);
 
         // --- SORTING LOGIC ---
         if (subject === "Čeština") {
@@ -2330,7 +2330,7 @@ function populateTopics(subject, userData) {
         }
         topics.forEach(topic => {
             // Check if data was actually loaded or file exists (prevents adding options for failed loads)
-            if (!data[subject]?.[topic] && !dataFileConfig[subject]?.[topic]) {
+            if (!data[subject]?.[topic] && !schoolSubjectConfig[subject]?.[topic]) {
                 console.warn(`Skipping topic "${topic}" for subject "${subject}" as no data/file found.`);
                 return;
             }
