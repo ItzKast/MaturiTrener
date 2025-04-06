@@ -232,6 +232,24 @@ header {
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
+#dashboard-section .dashboard > .card {
+    display: flex; /* Make the card a flex container */
+    flex-direction: column; /* Stack title above content */
+}
+#dashboard-section .dashboard > .card > #calendar-grid,
+#dashboard-section .dashboard > .card > #leaderboard-list {
+    flex-grow: 1; 
+}
+#leaderboard-list li {
+    /* Keep existing styles */
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid var(--gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+#leaderboard-list li:last-child { border-bottom: none; }
 
 /* Calendar */
 .calendar {
@@ -274,6 +292,7 @@ header {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0.35rem;
+    margin-top: 0;
 }
 .calendar-grid .day {
     text-align: center;
