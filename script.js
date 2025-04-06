@@ -2096,21 +2096,22 @@ function initializeSubjects() {
     }
 }
 
-function populateTopics(subject, userData) { // Pass userData
+function populateTopics(subject, userData) {
     if (!topicSelect || !generateTestBtn || !toggleFavoriteBtn) return;
 
-    const currentTopicValue = topicSelect.value; // Store current selection
+    const currentTopicValue = topicSelect.value;
 
-    topicSelect.innerHTML = '<option value="">Vyberte okruh</option>'; // Reset
+    topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
     topicSelect.disabled = true;
     generateTestBtn.disabled = true;
-    toggleFavoriteBtn.style.display = 'none'; // Hide favorite button by default
-    toggleFavoriteBtn.disabled = true; // Disable by default
+    toggleFavoriteBtn.style.display = 'none';
+    toggleFavoriteBtn.disabled = true;
 
-    if (subject && (data[subject] || dataFileConfig[subject])) { // Check config too
-        let topics = Object.keys(dataFileConfig[subject] || {}); // Get topics from config
+    if (subject && dataFileConfig[subject]) { // Check config first for keys/order
+        // Get keys directly from the config object to preserve definition order
+        let topics = Object.keys(dataFileConfig[subject]);
 
-        // --- Handle Čeština Favorites ---
+        // --- SORTING LOGIC ---
         if (subject === "Čeština") {
             const favoriteBooks = userData?.favoriteBooks || [];
             console.log("User favorite books:", favoriteBooks);
@@ -2122,27 +2123,22 @@ function populateTopics(subject, userData) { // Pass userData
                 return a.localeCompare(b, 'cs');
             });
             toggleFavoriteBtn.style.display = 'inline-block';
-            // Enable button only if a valid topic is later selected
         } else {
-            // Standard alphabetical sort for other subjects
-            topics.sort((a, b) => a.localeCompare(b, 'cs'));
+            toggleFavoriteBtn.style.display = 'none'; 
         }
-
-
-        // --- Populate Options ---
         topics.forEach(topic => {
-           if (!data[subject]?.[topic] && !dataFileConfig[subject]?.[topic]) {
+            // Check if data was actually loaded or file exists (prevents adding options for failed loads)
+            if (!data[subject]?.[topic] && !dataFileConfig[subject]?.[topic]) {
                  console.warn(`Skipping topic "${topic}" for subject "${subject}" as no data/file found.`);
-                 return; // Skip if no data/file associated
+                 return;
             }
 
             const option = document.createElement('option');
             option.value = topic;
 
-            // Add star for favorite books
             let displayText = topic;
             if (subject === "Čeština" && userData?.favoriteBooks?.includes(topic)) {
-                displayText = "★ " + topic; // Prepend star
+                displayText = "★ " + topic;
             }
             option.textContent = displayText;
 
@@ -2154,19 +2150,19 @@ function populateTopics(subject, userData) { // Pass userData
         // Restore previous selection if it still exists
         if (topics.includes(currentTopicValue)) {
             topicSelect.value = currentTopicValue;
-            // Enable buttons if a valid topic is selected
             generateTestBtn.disabled = false;
             if (subject === "Čeština") {
-                toggleFavoriteBtn.disabled = !(!currentTopicValue);
+                // Enable favorite button only if a Čeština topic is actually selected
+                toggleFavoriteBtn.disabled = !currentTopicValue;
             }
         } else {
-            // If previous selection is gone, ensure buttons are disabled
             generateTestBtn.disabled = true;
-            toggleFavoriteBtn.disabled = true;
+            if (subject === "Čeština") {
+                 toggleFavoriteBtn.disabled = true; // Disable if no topic selected
+            }
         }
 
     } else {
-        // No subject selected or no topics found
         topicSelect.innerHTML = '<option value="">Nejprve vyberte předmět</option>';
         topicSelect.disabled = true;
         generateTestBtn.disabled = true;
