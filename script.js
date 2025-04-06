@@ -180,7 +180,7 @@ const schoolSubjectConfig = {
                 "Názvosloví anorganika a živé soustavy": "DataNazvosloviAnorganikaAZiveSoustavy.csv",
                 "Stavba atomu a radioaktivita": "DataStavbaAtomuARadioaktivita.csv",
                 "Orbitaly a PSP": "DataOrbitalyAPSP.csv",
-                "Chemická vazba a rovnice": "DataChemickaVazbaARovnice.csv",
+                "Chemická vazba a rovnice": "DataChemickeVazbyARovnice.csv",
                 "Chemické výpočty; atom uhlík": "DataChemickeVypoctyAUhlik.csv",
                 "Termochemie, kinetika, rovnováha, enzymy": "DataTermochemieKinetikaRovnovahaEnzymy.csv",
                 "Vodík, kyslík; alkoholy, fenoly": "DataVodikKyslikAlkoholyFenoly.csv",
