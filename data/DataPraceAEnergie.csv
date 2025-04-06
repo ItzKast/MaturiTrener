@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je mechanická práce?;Fyzikální veličina definovaná jako síla působící po dráze;Změna teploty tělesa;Přenos elektrického proudu;Vytváření světla
+Jak se vypočítá práce?;W = F · s · cos(α);W = m · g · h;W = F / s;W = s / t
+Jaká je jednotka práce?;Joule (J);Newton (N);Watt (W);Pascal (Pa)
+Co je výkon?;Práce vykonaná za jednotku času;Počet sil na těleso;Rychlost změny teploty;Tlak na plochu
+Jaká je jednotka výkonu?;Watt (W);Joule (J);Newton (N);Volt (V)
+Jaký je vzorec pro výkon?;P = W / t;P = F / s;P = s / t;P = m · g
+Co je příkon?;Celkové množství energie dodané systému;Pouze vykonaná práce;Spotřeba vody;Plocha tělesa
+Co je účinnost?;Poměr vykonané práce k přijaté energii;Rychlost tělesa;Ztráta tepla;Poměr síly k hmotnosti
+Jaký je vzorec pro účinnost?;η = W / W0;η = m / v;η = t / s;η = F / a
+Co je kinetická energie?;Energie pohybujícího se tělesa;Energie deformace;Energie v klidu;Energie záření
+Vzorec pro kinetickou energii je?;Ek = 1/2 · m · v²;Ek = m · g · h;Ek = F · s;Ek = m · a
+Co je potenciální energie?;Energie polohy v gravitačním poli;Energie pohybu;Energie světla;Tepelná energie
+Vzorec pro potenciální energii je?;Ep = m · g · h;Ep = 1/2 · m · v²;Ep = F · s;Ep = m / v
+Co je moment síly?;M = F · r – závisí na síle a rameni;Poměr síly a času;Rychlost tělesa;Síla působící v klidu
+Co je jednotka momentu síly?;Newtonmetr (N·m);Joule (J);Pascal (Pa);Watt (W)
+Co je těžiště?;Bod, kde působí výsledná tíhová síla;Nejtěžší část tělesa;Střed plochy;Místo s největším tlakem
+Jaký je stav rovnováhy?;Když se síly navzájem vyruší a těleso je v klidu;Když těleso padá;Když se těleso otáčí;Když těleso zrychluje
+Co je moment setrvačnosti?;Schopnost tělesa setrvat v rotačním pohybu;Rychlost tělesa;Množství tepla;Odpor v kapalině
+Co platí pro jednoduché stroje?;Umožňují vykonat stejnou práci s menší silou;Zvyšují hmotnost těles;Snižují objem;Zvyšují teplotu
+Příklad jednoduchého stroje je?;Klika, kladka, páka;Motor;Tepelný výměník;Elektromagnet

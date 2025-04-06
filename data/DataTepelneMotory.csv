@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je práce plynu při izobarickém ději?;W = p · ΔV;W = m · g · h;W = F · s;W = Q · t
+Kdy je práce plynu kladná?;Při rozpínání plynu;Při stlačení plynu;Při konstantním objemu;Při ochlazení
+Co je kruhový děj?;Děj, při kterém se stavová veličina po cyklu vrací do výchozího stavu;Rovnoměrný pohyb po kružnici;Změna skupenství;Fázový posun
+Při jakém ději je práce plynu nulová?;Izochorický děj;Izobarický děj;Izotermický děj;Adiabatický děj
+Co říká druhý zákon termodynamiky?;Tepelná energie samovolně přechází z tělesa teplejšího na chladnější;Teplo se mění plně na práci;Teplota závisí na hmotnosti;Všechny procesy jsou vratné
+Jaký je rozdíl mezi teplem a prací?;Tepelná výměna je neusměrněná, práce je usměrněná;Teplo má jednotku Newton;Práce se nemůže konat v plynu;Teplo je stavová veličina
+Jaká je účinnost tepelného motoru?;η = W / Q;η = m / V;η = Q / t;η = F / s
+Co je ideální tepelný stroj?;Stroj s maximální účinností danou Carnotovým cyklem;Stroj s nulovým třením;Stroj na elektrický pohon;Motor bez výměníku
+Jaká je základní podmínka práce plynu?;Změna objemu;Změna teploty;Změna hustoty;Přítomnost vody
+Jaký je rozdíl mezi zážehovým a vznětovým motorem?;Zážehový používá zapalovací svíčku, vznětový samovznícení;Zážehový používá diesel;Vznětový má vyšší teplotu;Zážehový nemá píst
+Co je parní stroj?;Stroj využívající roztažnost páry k vykonání práce;Stroj na plyn;Elektrický stroj;Generátor
+Kde se uplatňuje Carnotův cyklus?;V teoretické konstrukci ideálního tepelného stroje;V chladničkách;V motorových pilách;V atomovém jádře
+Jaká veličina určuje množství přeneseného tepla?;Q;W;U;T
+Co je adiabatický děj?;Děj bez výměny tepla s okolím;Děj při stálém objemu;Děj s konstantním tlakem;Děj s konstantní teplotou
+Jaká je jednotka práce v plynu?;Joule (J);Pascal (Pa);Watt (W);Kelvin (K)
+Co se stane při izotermickém ději s vnitřní energií plynu?;Nemění se;Zvětšuje se;Klesá;Závisí na objemu
+Jak se značí teplotní účinnost?;η;Q;T;U
+Při jakém ději se vnitřní energie nemění?;Izotermický děj;Izochorický děj;Izobarický děj;Adiabatický děj
+Který motor využívá adiabatický i izotermický děj?;Stirlingův motor;Parní stroj;Dieselový motor;Turbína
+Co je spalovací motor?;Motor, kde dochází ke spalování paliva přímo ve válci;Motor na páru;Magnetický motor;Elektrický generátor

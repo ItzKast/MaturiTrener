@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je elektrický náboj?;Fyzikální veličina určující schopnost tělesa působit elektrickými silami;Hmotnost tělesa;Napětí mezi vodiči;Proud v obvodu
+Jednotka elektrického náboje je?;Coulomb (C);Ampér (A);Volt (V);Ohm (Ω)
+Kladné a záporné náboje se?;Přitahují;Odpuzují;Neutralizují;Rozpadají
+Stejné náboje se?;Odpuzují;Přitahují;Nemění;Spojují
+Zákon zachování náboje říká?;Součet všech nábojů v izolované soustavě je konstantní;Náboj se ztrácí;Náboj se mění s napětím;Náboj závisí na proudu
+Jak se přenáší elektrický náboj?;Pomocí elektronů;Pomocí neutronů;Pomocí fotonů;Pomocí protonů
+Co je intenzita elektrického pole?;Síla působící na jednotkový náboj;Rychlost elektronu;Tlak v obvodu;Změna proudu
+Jednotka intenzity elektrického pole je?;N/C;V;A;Ω
+Co je elektrický potenciál?;Práce potřebná k přenesení jednotkového náboje do daného bodu;Napětí v obvodu;Rychlost náboje;Odpor vodiče
+Jednotka elektrického potenciálu je?;Volt (V);Coulomb;Ampér;Joule
+Co je elektrické napětí?;Rozdíl potenciálů mezi dvěma body;Rychlost proudu;Síla mezi náboji;Teplota vodiče
+Jednotka elektrického napětí je?;Volt (V);Coulomb;Ohm;Joule
+Jak se značí kapacita?;C;Q;V;R
+Jednotka kapacity je?;Farad (F);Coulomb;Volt;Ampér
+Co je kondenzátor?;Zařízení schopné uchovávat elektrický náboj;Zdroj napětí;Odpor;Zkrat
+Jaký je vztah mezi nábojem, napětím a kapacitou?;Q = C · U;Q = U / C;Q = R · I;Q = C / U
+Které materiály se používají jako dielektrika?;Plasty, sklo, keramika;Měď, hliník;Železo, ocel;Olověné slitiny
+Jak se chová vodič v elektrickém poli?;Náboj se rozloží po povrchu;Náboj se koncentruje uprostřed;Přitahuje magnet;Nemění se
+Jak se značí elektrický náboj?;Q;U;C;I
+Co určuje velikost síly mezi dvěma náboji?;Coulombův zákon;Ohmův zákon;Kirchhoffův zákon;Ampérův zákon

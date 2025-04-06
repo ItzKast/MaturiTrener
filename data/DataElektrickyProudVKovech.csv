@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je elektrický proud?;Usměrněný pohyb volných elektronů;Pohyb neutronů;Magnetické pole;Změna teploty vodiče
+Jednotka elektrického proudu je?;Ampér (A);Volt (V);Coulomb (C);Ohm (Ω)
+Jak se značí elektrický proud?;I;U;R;Q
+V jakém směru se pohybují elektrony v kovu?;Od záporného pólu ke kladnému;Od kladného pólu ke zápornému;Oběma směry současně;Kolem jádra
+Co je elektrický odpor?;Schopnost vodiče klást odpor elektrickému proudu;Síla magnetického pole;Napětí mezi vodiči;Proud mezi atomy
+Jednotka elektrického odporu je?;Ohm (Ω);Volt;Ampér;Farad
+Jaký je vztah Ohmova zákona?;U = R · I;R = U / I;I = U / R;Všechny uvedené
+Jaký kov má nejmenší odpor?;Stříbro;Železo;Měď;Hliník
+Co je vodič?;Látka, která dobře vede elektrický proud;Izolant;Magnetický materiál;Zkapalněný plyn
+Co je izolant?;Látka, která špatně vede elektrický proud;Vodič;Pásmo vedení;Zesilovač
+Jak závisí odpor na délce vodiče?;Roste s délkou;Klesá s délkou;Nemění se;Závisí jen na teplotě
+Jaký je vztah pro odpor vodiče?;R = ρ · l / S;R = S / l;R = Q / t;R = m · g
+Co je elektrické napětí?;Rozdíl potenciálů mezi dvěma body;Síla mezi magnety;Rychlost částic;Vlnová délka
+K čemu slouží voltmetr?;Měří elektrické napětí;Měří proud;Měří odpor;Měří teplotu
+K čemu slouží ampérmetr?;Měří elektrický proud;Měří napětí;Měří výkon;Měří odpor
+Jaký je vztah mezi prací a el. energií?;W = U · I · t;W = m · g · h;W = F / s;W = Q / t
+Co je elektrická energie?;Energie přenášená elektrickým proudem;Tlak v uzavřené nádobě;Magnetické pole;Síla na těleso
+Co říká 1. Kirchhoffův zákon?;Součet proudů do uzlu se rovná součtu proudů z uzlu;Proud roste s teplotou;Proud je konstantní;Napětí se násobí
+Co říká 2. Kirchhoffův zákon?;Součet napětí v uzavřeném obvodu je roven nule;Součet proudů v uzlu je nula;Součet odporů je záporný;Napětí je vždy kladné
+Co se stane při přetížení vodiče?;Zvýší se odpor, vodič se zahřívá a může dojít k poruše;Zmenší se odpor;Proud se zastaví;Vodič se ochladí

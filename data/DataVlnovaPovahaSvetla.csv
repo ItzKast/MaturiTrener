@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Jakou povahu má světlo?;Má vlnovou i částicovou povahu;Pouze vlnovou;Pouze částicovou;Je proudem tekutiny
+Co je odraz světla?;Změna směru světelného paprsku na rozhraní dvou prostředí;Pohlcení světla;Rozklad světla;Ohnutí světla
+Jaký je zákon odrazu?;Úhel dopadu se rovná úhlu odrazu;Úhel odrazu je vždy 90°;Úhel dopadu je menší než odrazu;Závisí na barvě světla
+Co je lom světla?;Změna směru šíření světla při průchodu rozhraním dvou prostředí;Odraz světla;Absorpce světla;Rozklad světla
+Co je index lomu?;Poměr rychlosti světla ve vakuu k rychlosti v daném prostředí;Rychlost světla;Úhel dopadu;Síla vlnění
+Co je disperze světla?;Rozklad bílého světla na jednotlivé barvy;Odraz světla;Změna směru;Polarizace světla
+Jaké zařízení využívá disperzi světla?;Optický hranol;Zrcadlo;Čočka;Anténa
+Co je interference světla?;Skládání dvou nebo více vlnění;Odraz světla;Změna rychlosti;Zeslabení světla
+Kdy vzniká interferenční obrazec?;Při překrytí dvou koherentních vlnění;Při pohlcení světla;Při odrazu;Při zániku světla
+Co je ohyb světla?;Ohnutí světla za překážku;Změna barvy světla;Zeslabení světla;Změna skupenství
+Co je koherence?;Schopnost vlnění udržet fázový rozdíl;Rychlost světla;Intenzita světla;Barva světla
+Co je polarizace světla?;Změna směru kmitání světelných vln;Rozklad světla;Zesílení světla;Odraz světla
+K čemu slouží polarizační filtr?;Propouští jen určitou rovinu kmitání světla;Zesiluje světlo;Odstraňuje barvy;Změkčuje obraz
+Jak se šíří světlo ve vakuu?;Přímočaře;Cyklicky;Zpětně;Náhodně
+Jaká je rychlost světla ve vakuu?;Přibližně 3·10^8 m/s;1·10^6 m/s;300 m/s;1·10^3 m/s
+Jak se značí vlnová délka?;λ;f;v;T
+Jednotka vlnové délky je?;metr (m);sekunda (s);Hz;Coulomb
+Jaký vztah platí pro světlo?;c = λ · f;c = m · g;c = Q / t;c = R · I
+Jaké barvy tvoří viditelné světlo?;Červená, oranžová, žlutá, zelená, modrá, indigo, fialová;Černá a bílá;Modrá a žlutá;Zelená a hnědá
+Co je difrakce?;Ohyb světla při průchodu úzkou štěrbinou;Rozklad světla;Polarizace;Změna frekvence

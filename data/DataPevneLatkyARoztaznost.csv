@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je krystalická látka?;Látka s pravidelným uspořádáním částic;Látka bez struktury;Plynné skupenství;Látka s nepravidelnou teplotou
+Jaké síly drží částice v krystalu pohromadě?;Mezimolekulární a iontové síly;Magnetické síly;Gravitační síly;Elektrické proudy
+Co je amorfní látka?;Látka bez pravidelné struktury;Látka s vysokou viskozitou;Kapalina;Kovová slitina
+Jaká je typická vlastnost krystalických látek?;Anizotropie – vlastnosti závisí na směru;Izotropie – stejné ve všech směrech;Vysoká viskozita;Nízká hustota
+Co je deformace?;Změna tvaru nebo objemu tělesa působením síly;Změna barvy;Změna skupenství;Změna elektrického náboje
+Co je pružná deformace?;Dočasná deformace – těleso se vrátí do původního tvaru;Nezvratná změna tvaru;Změna skupenství;Rozpad látky
+Co je plastická deformace?;Trvalá deformace – těleso nezíská původní tvar;Dočasná deformace;Změna hmotnosti;Teplotní roztažnost
+Jaký je vztah pro normálové napětí?;σ = F / S;σ = m / V;σ = v · t;σ = P · A
+Jednotka napětí je?;Pascal (Pa);Newton (N);Watt (W);Joule (J)
+Co je Hookův zákon?;Deformace je přímo úměrná působící síle do určité meze;Síla působí stále stejně;Napětí nezávisí na ploše;Těleso se vždy zlomí
+Co je relativní prodloužení?;Poměr změny délky k původní délce;Poměr objemu k hmotnosti;Plošná deformace;Změna teploty v čase
+Jednotka relativního prodloužení je?;Bezrozměrná;Joule;Pascal;Kelvin
+Co je mez pružnosti?;Maximální napětí, při kterém je deformace vratná;Minimální síla pro deformaci;Teplota tání;Bod zlomu
+Co je teplotní roztažnost?;Změna délky, objemu nebo plochy tělesa při změně teploty;Změna barvy;Změna elektrického proudu;Změna skupenství
+Co je lineární roztažnost?;Změna délky s teplotou;Změna objemu s tlakem;Změna výšky s hustotou;Změna tvaru s časem
+Jaký je vztah pro délkovou roztažnost?;Δl = l0 · α · Δt;Δl = m · g;Δl = Q / t;Δl = F / A
+Jak se značí součinitel délkové roztažnosti?;α;λ;ρ;σ
+Jednotka součinitele délkové roztažnosti je?;1/°C;K;N/m;J/kg
+Které látky mají největší délkovou roztažnost?;Kovy;Sklo;Plasty;Dřevo
+Jaký je praktický důsledek teplotní roztažnosti?;Dilatace mostů, roztažnost kolejnic;Změna barvy;Změna náboje;Zvýšení viskozity

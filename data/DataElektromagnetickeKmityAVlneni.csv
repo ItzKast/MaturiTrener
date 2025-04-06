@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je elektromagnetické kmitání?;Periodická změna proudu a napětí v oscilačním obvodu;Stálý elektrický proud;Pohyb magnetů;Změna odporu
+Z čeho se skládá oscilační obvod?;Z kondenzátoru a cívky;Z rezistoru a diody;Z magnetu a vodiče;Z tranzistoru a diody
+Co se děje v ideálním oscilačním obvodu?;Dochází ke kmitání mezi kondenzátorem a cívkou bez ztrát;Proud je konstantní;Kondenzátor se vybíjí;Cívka nevede proud
+Co je vlastní frekvence oscilačního obvodu?;Frekvence, při které obvod kmitá bez vnějšího vlivu;Maximální frekvence signálu;Minimální frekvence proudu;Frekvence stálého proudu
+Co je elektromagnetické vlnění?;Přenos energie kmitáním elektrického a magnetického pole;Šíření částic;Pohyb zvuku;Proudění kapaliny
+Jak se šíří elektromagnetické vlnění?;Kolmo na elektrické a magnetické složky;Rovnoběžně s magnetickým polem;V kruzích;V linii elektrického proudu
+Jaká je rychlost elektromagnetického vlnění ve vakuu?;Přibližně 3·10^8 m/s;1·10^6 m/s;3·10^6 m/s;9·10^8 m/s
+Jak se značí rychlost světla?;c;v;f;λ
+Co je anténa?;Zařízení pro vysílání a příjem elektromagnetických vln;Generátor proudu;Transformátor;Zesilovač signálu
+Co je modulace?;Úprava signálu pro přenos;Zeslabení signálu;Odfiltrování signálu;Otočení signálu
+K čemu slouží nosná vlna?;Nese informaci v modulaci;Měří napětí;Zesiluje frekvenci;Rozděluje proud
+Jaké typy modulace známe?;AM, FM;PM, EM;SM, OM;IM, XM
+Co je demodulace?;Získání informace z modulovaného signálu;Odfiltrování šumu;Přepnutí kanálu;Zesílení amplitudy
+Jaké zařízení umožňuje přenos elektromagnetických vln?;Vysílač;Tranzistor;Baterie;Elektromotor
+Co je rádiová vlna?;Elektromagnetické vlnění s nízkou frekvencí;Zvukové vlnění;Vlnění ve vodě;Proudová vlna
+K čemu slouží oscilátor?;Generuje střídavý signál určité frekvence;Zesiluje napětí;Převádí světlo;Změří odpor
+Co je frekvenční spektrum?;Rozsah frekvencí, které signál obsahuje;Rozsah hlasitosti;Teplotní rozsah;Plocha pod napětím
+Jaké pásmo používá Wi-Fi?;2,4 GHz a 5 GHz;100 MHz;10 kHz;1 GHz
+Jaký je praktický význam elektromagnetického vlnění?;Bezdrátová komunikace, rádio, televize;Záznam zvuku;Přenos tepla;Vedení vody
+Jak se značí frekvence?;f;T;v;λ

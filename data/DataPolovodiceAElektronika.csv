@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je polovodič?;Látka s vodivostí mezi vodičem a izolantem;Perfektní vodič;Izolant;Kovová slitina
+Jaký je příklad polovodiče?;Křemík (Si);Měď;Sklo;Hliník
+Jaký typ vodiče je polovodič při nízké teplotě?;Izolant;Vodič;Supravodič;Dielektrikum
+Co je vlastní polovodič?;Čistý polovodič bez příměsí;Směs kovu a skla;Slitina s vysokou vodivostí;Magnetický materiál
+Co je příměsový polovodič?;Polovodič s příměsí jiného prvku;Kovový vodič;Izolant s otvory;Směs látek
+Jaké typy příměsových polovodičů známe?;Typ N a typ P;Typ K a typ L;Typ V a typ S;Typ Z a typ W
+Co je polovodič typu N?;Má přebytek volných elektronů;Má přebytek děr;Je neutrální;Je izolační
+Co je polovodič typu P?;Má přebytek děr;Má přebytek elektronů;Nemá žádné nosiče náboje;Je kovový
+Co je PN přechod?;Spojení polovodiče typu P a N;Spojení dvou vodičů;Přechod mezi kovem a izolantem;Dotyk dvou vodičů
+Co je dioda?;Součástka propouštějící proud jen jedním směrem;Zdroj napětí;Zesilovač;Rezistor
+Jak se chová dioda při závěrném směru?;Nepropouští proud;Zvyšuje proud;Snižuje napětí;Generuje světlo
+Co je LED dioda?;Svítící dioda;Zesilovač;Baterie;Odpor
+Co je tranzistor?;Polovodičová součástka pro zesilování nebo spínání signálů;Odpor;Svorka;Zdroj napětí
+Jaké typy tranzistorů známe?;Bipolární a unipolární;Termální a optické;Izolované a vodivé;Jednopólové a dvoupólové
+K čemu slouží tranzistor?;Zesiluje proud nebo funguje jako spínač;Odvádí teplo;Zvyšuje hmotnost;Izoluje vodič
+Co je základní vlastností polovodiče?;Vodivost závislá na teplotě a příměsích;Stálý odpor;Záporný náboj;Tvar molekul
+Co se stane se zvýšením teploty u polovodiče?;Zvyšuje se vodivost;Snižuje se vodivost;Zůstává stejná;Změní skupenství
+Co je integrovaný obvod?;Soustava elektronických prvků na jednom čipu;Transformátor;Dioda;Kondenzátor
+Co je základní funkcí elektroniky?;Zpracování, řízení a přenos elektrických signálů;Přenos tepla;Mechanické pohyby;Rozvod vody
+Co jsou polovodičové součástky?;Dioda, tranzistor, tyristor;Rezistor, vinutí, motor;Žárovka, baterie;Transformátor, kondenzátor
