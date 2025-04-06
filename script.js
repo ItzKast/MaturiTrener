@@ -250,20 +250,34 @@ const schoolSubjectConfig = {
     }
 };
 // --- Data Structure for Questions ---
-let data = {};
-for (const subject in schoolSubjectConfig) {
-    if (schoolSubjectConfig.hasOwnProperty(subject)) {
-        data[subject] = {};
-        for (const topic in schoolSubjectConfig[subject]) {
-            if (schoolSubjectConfig[subject].hasOwnProperty(topic)) {
-                // Initialize appropriately: Array for CSV, maybe null/object for JSON initially?
-                const filename = schoolSubjectConfig[subject][topic];
-                if (filename && filename.endsWith('.json')) {
-                    data[subject][topic] = null; // Placeholder for the loaded JSON object
-                } else if (filename && filename.endsWith('.csv')) {
-                    data[subject][topic] = [];   // Array for CSV questions
-                } else {
-                    data[subject][topic] = []; // Default or for summary
+let data = {}; // Start with an empty object
+
+for (const schoolType in schoolSubjectConfig) {
+    if (schoolSubjectConfig.hasOwnProperty(schoolType)) {
+        const subjectsInSchool = schoolSubjectConfig[schoolType];
+        for (const subjectName in subjectsInSchool) {
+            if (subjectsInSchool.hasOwnProperty(subjectName)) {
+                if (!data.hasOwnProperty(subjectName)) {
+                    data[subjectName] = {}; // Create the subject entry if it's the first time we see it
+                    console.log(`Initializing subject in flat data: ${subjectName}`);
+                }
+                const topicsInSubject = subjectsInSchool[subjectName];
+
+                // Loop through TOPICS within the subject
+                for (const topicName in topicsInSubject) {
+                    if (topicsInSubject.hasOwnProperty(topicName)) {
+                        if (!data[subjectName].hasOwnProperty(topicName)) {
+                             const filename = topicsInSubject[topicName]; // Get filename from config
+                             // Initialize based on filename or default
+                             if (filename && filename.toLowerCase().endsWith('.json')) {
+                                 data[subjectName][topicName] = null; // Placeholder for JSON
+                             } else {
+                                 // Default to array for CSV, null filename (summary), or missing file
+                                 data[subjectName][topicName] = [];
+                             }
+                             console.log(`Initializing topic in flat data: ${subjectName} - ${topicName}`);
+                        }
+                    }
                 }
             }
         }
