@@ -176,117 +176,118 @@ const schoolSubjectConfig = {
             "Souhrnné opakování": null
         },
         "Chemie": {
-                "Klasifikace látek": "DataKlasifikaceLatek.csv",
-                "Názvosloví anorganika a živé soustavy": "DataNazvosloviAnorganikaAZiveSoustavy.csv",
-                "Stavba atomu a radioaktivita": "DataStavbaAtomuARadioaktivita.csv",
-                "Orbitaly a PSP": "DataOrbitalyAPSP.csv",
-                "Chemická vazba a rovnice": "DataChemickeVazbyARovnice.csv",
-                "Chemické výpočty; atom uhlík": "DataChemickeVypoctyAUhlik.csv",
-                "Termochemie, kinetika, rovnováha, enzymy": "DataTermochemieKinetikaRovnovahaEnzymy.csv",
-                "Vodík, kyslík; alkoholy, fenoly": "DataVodikKyslikAlkoholyFenoly.csv",
-                "Voda, vzduch; lipidy, detergenty, izoprenoidy": "DataVodaVzduchLipidyDetergentyIzoprenoidy.csv",
-                "Roztoky; kyseliny, zásady, karboxyly": "DataRoztokyKyselinyZasadyKarboxyly.csv",
-                "Halogeny; halogenderiváty uhlovodíků": "DataHalogenyAHalogenderivaty.csv",
-                "Chalkogeny; bílkoviny": "DataChalkogenyABilkoviny.csv",
-                "Skupina dusíku; dusíkaté deriváty uhlovodíků": "DataSkupinaDusikuADusikateDerivaty.csv",
-                "Prvky III. A skupiny; léčiva, barviva, pesticidy": "DataIIIASkupinaLecivaBarvivaPesticidy.csv",
-                "Prvky IV. A skupiny; heterocykly": "DataIVASkupinaAHeterocykly.csv",
-                "Prvky I. A skupiny – alkalické kovy; fotosyntéza": "DataAlkalickeKovyAFotosynteza.csv",
-                "Nukleové kyseliny; proteosyntéza, aminokyseliny": "DataNukleoveKyselinyProteosyntezaAminokyseliny.csv",
-                "Prvky II. A skupiny; alkaloidy": "DataIIASkupinaAAlkaloidy.csv",
-                "Koordinační sloučeniny; vitamíny": "DataKoordinacniSlouceninyAVitaminy.csv",
-                "Syntetické makromolekulární látky; zdroje uhlovodíků": "DataMakromolekulyAZdrojeUhlovodiku.csv",
-                "Monosacharidy; triáda železa": "DataMonosacharidyATriadaZeleza.csv",
-                "Oligosacharidy a polysacharidy; chrom, mangan": "DataOligosacharidyPolysacharidyChromMangan.csv",
-                "Klasifikace organických sloučenin a názvosloví; aldehydy a ketony": "DataOrganickeSlouceninyAldehydyKetony.csv",
-                "Nearomatické uhlovodíky; měď a zinek": "DataNearomatickeUhlovodikyMecZinek.csv",
-                "Deriváty karboxylových kyselin; areny": "DataDerivatyKarboxylovychKyselinAreny.csv",               
-                "Souhrnné opakování": null
+            "Klasifikace látek": "DataKlasifikaceLatek.csv",
+            "Názvosloví anorganika a živé soustavy": "DataNazvosloviAnorganikaAZiveSoustavy.csv",
+            "Stavba atomu a radioaktivita": "DataStavbaAtomuARadioaktivita.csv",
+            "Orbitaly a PSP": "DataOrbitalyAPSP.csv",
+            "Chemická vazba a rovnice": "DataChemickeVazbyARovnice.csv",
+            "Chemické výpočty; atom uhlík": "DataChemickeVypoctyAUhlik.csv",
+            "Termochemie, kinetika, rovnováha, enzymy": "DataTermochemieKinetikaRovnovahaEnzymy.csv",
+            "Vodík, kyslík; alkoholy, fenoly": "DataVodikKyslikAlkoholyFenoly.csv",
+            "Voda, vzduch; lipidy, detergenty, izoprenoidy": "DataVodaVzduchLipidyDetergentyIzoprenoidy.csv",
+            "Roztoky; kyseliny, zásady, karboxyly": "DataRoztokyKyselinyZasadyKarboxyly.csv",
+            "Halogeny; halogenderiváty uhlovodíků": "DataHalogenyAHalogenderivaty.csv",
+            "Chalkogeny; bílkoviny": "DataChalkogenyABilkoviny.csv",
+            "Skupina dusíku; dusíkaté deriváty uhlovodíků": "DataSkupinaDusikuADusikateDerivaty.csv",
+            "Prvky III. A skupiny; léčiva, barviva, pesticidy": "DataIIIASkupinaLecivaBarvivaPesticidy.csv",
+            "Prvky IV. A skupiny; heterocykly": "DataIVASkupinaAHeterocykly.csv",
+            "Prvky I. A skupiny – alkalické kovy; fotosyntéza": "DataAlkalickeKovyAFotosynteza.csv",
+            "Nukleové kyseliny; proteosyntéza, aminokyseliny": "DataNukleoveKyselinyProteosyntezaAminokyseliny.csv",
+            "Prvky II. A skupiny; alkaloidy": "DataIIASkupinaAAlkaloidy.csv",
+            "Koordinační sloučeniny; vitamíny": "DataKoordinacniSlouceninyAVitaminy.csv",
+            "Syntetické makromolekulární látky; zdroje uhlovodíků": "DataMakromolekulyAZdrojeUhlovodiku.csv",
+            "Monosacharidy; triáda železa": "DataMonosacharidyATriadaZeleza.csv",
+            "Oligosacharidy a polysacharidy; chrom, mangan": "DataOligosacharidyPolysacharidyChromMangan.csv",
+            "Klasifikace organických sloučenin a názvosloví; aldehydy a ketony": "DataOrganickeSlouceninyAldehydyKetony.csv",
+            "Nearomatické uhlovodíky; měď a zinek": "DataNearomatickeUhlovodikyMecZinek.csv",
+            "Deriváty karboxylových kyselin; areny": "DataDerivatyKarboxylovychKyselinAreny.csv",
+            "Souhrnné opakování": null
         },
         "Dějepis": {
-                "Pravěká společnost": "DataPravekaSpolecnost.csv",
-                "Starověk – východní despocie": "DataVychodniDespocie.csv",
-                "Starověk – dějiny Řecka": "DataRecko.csv",
-                "Starověk – dějiny Říma": "DataRim.csv",
-                "Vznik raně středověkých říší": "DataRaneStredovekeRise.csv",
-                "První slovanské celky a státní útvary na našem území": "DataSlovaneACeskeUzemi.csv",
-                "Rozvinutý feudalismus – vznik západoevropských monarchií": "DataFeudalismusAZapadniMonarchie.csv",
-                "Český stát za Přemyslovců": "DataPremyslovci.csv",
-                "Český stát za Lucemburků": "DataLucemburkove.csv",
-                "Husitské hnutí – předpoklady, příčiny, průběh, důsledky": "DataHusitskeHnuti.csv",
-                "Velké zeměpisné objevy v 15. a 16. století, mimoevropské civilizace": "DataZemepisneObjevy.csv",
-                "Humanismus, renesance a protestantismus, náboženské války": "DataRenesanceAReformace.csv",
-                "České země za vlády Jiřího z Poděbrad a Jagellonců": "DataPoděbradJagellonci.csv",
-                "Český stát za prvních Habsburků, stavovské povstání a jeho důsledky": "DataStavovskePovstani.csv",
-                "Třicetiletá válka a mezinárodní vztahy v Evropě do roku 1715": "DataTricetiletaValka.csv",
-                "První buržoazní revoluce – Nizozemí, Anglie, USA": "DataBurzoazniRevoluce.csv",
-                "Velká francouzská revoluce a napoleonské války, Vídeňský kongres": "DataFrancouzskaRevoluce.csv",
-                "Osvícenství a osvícenský absolutismus, národní obrození": "DataOsviceniANarodniObrozeni.csv",
-                "Evropa po Vídeňském kongresu, průmyslová revoluce, revoluce roku 1848": "DataPrumyslovaRevoluce1848.csv",
-                "Habsburská monarchie v letech 1849–1900, východní otázka": "DataHabsburskaMonarchie.csv",
-                "Svět ve druhé polovině 19. stol., sjednocení Itálie a Německa, občanská válka v USA, počátek 20. stol.": "DataSvet19stoleti.csv",
-                "První světová válka": "DataPrvniSvetovaValka.csv",
-                "Svět mezi světovými válkami – velmoci a mezinárodní vztahy": "DataMezivalecneObdobi.csv",
-                "Vznik první Československé republiky – charakteristika, rozbití, okupace, odboj": "DataPrvniRepublika.csv",
-                "Druhá světová válka": "DataDruhaSvetovaValka.csv",
-                "Československo po druhé světové válce do roku 1989": "DataCeskoslovenskoPo1945.csv",
-                "Studená válka – svět po druhé světové válce do roku 1989": "DataStudenaValka.csv",
-                "Současný svět – rozpad Československa, mezinárodní vztahy, dekolonizace": "DataSoucasnySvet.csv",
-                "Souhrnné opakování": null
+            "Pravěká společnost": "DataPravekaSpolecnost.csv",
+            "Starověk – východní despocie": "DataVychodniDespocie.csv",
+            "Starověk – dějiny Řecka": "DataRecko.csv",
+            "Starověk – dějiny Říma": "DataRim.csv",
+            "Vznik raně středověkých říší": "DataRaneStredovekeRise.csv",
+            "První slovanské celky a státní útvary na našem území": "DataSlovaneACeskeUzemi.csv",
+            "Rozvinutý feudalismus – vznik západoevropských monarchií": "DataFeudalismusAZapadniMonarchie.csv",
+            "Český stát za Přemyslovců": "DataPremyslovci.csv",
+            "Český stát za Lucemburků": "DataLucemburkove.csv",
+            "Husitské hnutí – předpoklady, příčiny, průběh, důsledky": "DataHusitskeHnuti.csv",
+            "Velké zeměpisné objevy v 15. a 16. století, mimoevropské civilizace": "DataZemepisneObjevy.csv",
+            "Humanismus, renesance a protestantismus, náboženské války": "DataRenesanceAReformace.csv",
+            "České země za vlády Jiřího z Poděbrad a Jagellonců": "DataPoděbradJagellonci.csv",
+            "Český stát za prvních Habsburků, stavovské povstání a jeho důsledky": "DataStavovskePovstani.csv",
+            "Třicetiletá válka a mezinárodní vztahy v Evropě do roku 1715": "DataTricetiletaValka.csv",
+            "První buržoazní revoluce – Nizozemí, Anglie, USA": "DataBurzoazniRevoluce.csv",
+            "Velká francouzská revoluce a napoleonské války, Vídeňský kongres": "DataFrancouzskaRevoluce.csv",
+            "Osvícenství a osvícenský absolutismus, národní obrození": "DataOsviceniANarodniObrozeni.csv",
+            "Evropa po Vídeňském kongresu, průmyslová revoluce, revoluce roku 1848": "DataPrumyslovaRevoluce1848.csv",
+            "Habsburská monarchie v letech 1849–1900, východní otázka": "DataHabsburskaMonarchie.csv",
+            "Svět ve druhé polovině 19. stol., sjednocení Itálie a Německa, občanská válka v USA, počátek 20. stol.": "DataSvet19stoleti.csv",
+            "První světová válka": "DataPrvniSvetovaValka.csv",
+            "Svět mezi světovými válkami – velmoci a mezinárodní vztahy": "DataMezivalecneObdobi.csv",
+            "Vznik první Československé republiky – charakteristika, rozbití, okupace, odboj": "DataPrvniRepublika.csv",
+            "Druhá světová válka": "DataDruhaSvetovaValka.csv",
+            "Československo po druhé světové válce do roku 1989": "DataCeskoslovenskoPo1945.csv",
+            "Studená válka – svět po druhé světové válce do roku 1989": "DataStudenaValka.csv",
+            "Současný svět – rozpad Československa, mezinárodní vztahy, dekolonizace": "DataSoucasnySvet.csv",
+            "Souhrnné opakování": null
         },
         "Informační a výpočetní technika": {
-                "Informace, informatika, základní pojmy": "DataInformaceInformatika.csv",
-                "Úprava dokumentů (typografie, citace, normy)": "DataUpravaDokumentu.csv",
-                "Informační etika a autorská práva": "DataEtikaAutorskaPrava.csv",
-                "Bezpečný internet a hygiena práce": "DataBezpecnyInternet.csv",
-                "Počítačové sítě LAN": "DataSiteLAN.csv",
-                "Počítačové sítě WAN, Internet": "DataSiteWANInternet.csv",
-                "Webové prezentace, HTML": "DataWebovePrezentace.csv",
-                "Hardware – základní struktura": "DataHardwareZaklad.csv",
-                "Hardware – periferní zařízení": "DataHardwarePeriferie.csv",
-                "Software, operační systémy, licence": "DataSoftwareOS.csv",
-                "Textové editory, MS Word": "DataTextoveEditory.csv",
-                "Tabulkové editory, MS Excel": "DataTabulkoveEditory.csv",
-                "Prezentace informací, MS PowerPoint": "DataPrezentacePowerPoint.csv",
-                "Počítačová grafika": "DataPocitacovaGrafika.csv",
-                "Multimédia – zvuk a video": "DataMultimediaZvukVideo.csv",
-                "Zabezpečení dat, kryptologie": "DataZabezpeceniKryptologie.csv",
-                "Historie výpočetní techniky": "DataHistoriePocitacu.csv",
-                "Moderní technologie, komunikace": "DataModerniTechnologie.csv",
-                "Uchování informací – paměťová média": "DataUchovaniInformaci.csv",
-                "Algoritmizace – základní pojmy": "DataAlgoritmizaceZaklady.csv",
-                "Algoritmizace – zápis kódu": "DataAlgoritmizaceKod.csv",
-                "Souhrnné opakování": null
+            "Informace, informatika, základní pojmy": "DataInformaceInformatika.csv",
+            "Úprava dokumentů (typografie, citace, normy)": "DataUpravaDokumentu.csv",
+            "Informační etika a autorská práva": "DataEtikaAutorskaPrava.csv",
+            "Bezpečný internet a hygiena práce": "DataBezpecnyInternet.csv",
+            "Počítačové sítě LAN": "DataSiteLAN.csv",
+            "Počítačové sítě WAN, Internet": "DataSiteWANInternet.csv",
+            "Webové prezentace, HTML": "DataWebovePrezentace.csv",
+            "Hardware – základní struktura": "DataHardwareZaklad.csv",
+            "Hardware – periferní zařízení": "DataHardwarePeriferie.csv",
+            "Software, operační systémy, licence": "DataSoftwareOS.csv",
+            "Textové editory, MS Word": "DataTextoveEditory.csv",
+            "Tabulkové editory, MS Excel": "DataTabulkoveEditory.csv",
+            "Prezentace informací, MS PowerPoint": "DataPrezentacePowerPoint.csv",
+            "Počítačová grafika": "DataPocitacovaGrafika.csv",
+            "Multimédia – zvuk a video": "DataMultimediaZvukVideo.csv",
+            "Zabezpečení dat, kryptologie": "DataZabezpeceniKryptologie.csv",
+            "Historie výpočetní techniky": "DataHistoriePocitacu.csv",
+            "Moderní technologie, komunikace": "DataModerniTechnologie.csv",
+            "Uchování informací – paměťová média": "DataUchovaniInformaci.csv",
+            "Algoritmizace – základní pojmy": "DataAlgoritmizaceZaklady.csv",
+            "Algoritmizace – zápis kódu": "DataAlgoritmizaceKod.csv",
+            "Souhrnné opakování": null
         },
-                "Základy společenských věd": { "Vznik a význam psychologie": "DataPsychologieVznikAVyznam.csv",
-                "Psychické jevy a psychologie činnosti": "DataPsychickeJevyAPsychologieCinnosti.csv",
-                "Psychologie osobnosti": "DataPsychologieOsobnosti.csv",
-                "Duševní zdraví": "DataDusevniZdravi.csv",
-                "Sociologie": "DataSociologie.csv",
-                "Sociální interakce, komunikace, sociální útvary": "DataSocialniInterakceAUtvary.csv",
-                "Kultura a média": "DataKulturaAMedia.csv",
-                "Politologie a stát": "DataPolitologieAStat.csv",
-                "Demokracie a nedemokratické režimy": "DataDemokracieANedemokratickeRezimy.csv",
-                "Politický systém v ČR": "DataPolitickySystemVCR.csv",
-                "Politické ideologie a lidská práva": "DataPolitickeIdeologieALidskaPrava.csv",
-                "Mezinárodní vztahy a globalizace": "DataMezinarodniVztahyAGlobalizace.csv",
-                "Mezinárodní organizace": "DataMezinarodniOrganizace.csv",
-                "Právní systém a základní pojmy práva": "DataPravoASystem.csv",
-                "Soukromé právo": "DataSoukromePravo.csv",
-                "Veřejné právo – trestní": "DataVerejnePravoTrestni.csv",
-                "Pracovní právo": "DataPracovniPravo.csv",
-                "Ekonomie a tržní ekonomika": "DataEkonomieATrzniEkonomika.csv",
-                "Národní hospodářství": "DataNarodniHospodarstvi.csv",
-                "Osobní finance": "DataOsobniFinance.csv",
-                "Víra a náboženství, východní filosofie": "DataViraANabozenstvi.csv",
-                "Filosofie a etika": "DataFilosofieAEtika.csv",
-                "Antická filosofie": "DataAntickaFilosofie.csv",
-                "Monoteistická náboženství": "DataMonoteistickaNabozenstvi.csv",
-                "Renesanční filosofie, reformace, novověká filosofie, osvícenství": "DataRenesanceOsviceni.csv",
-                "Německé osvícenství a filosofové 19. století": "DataNemeckeOsviceniAFilosofove19stoleti.csv",
-                "Filosofie 20. a 21. století, postmodernismus": "DataFilosofie20a21stoleti.csv",
-                "Česká filosofie": "DataCeskaFilosofie.csv",
-                "Souhrnné opakování": null
+        "Základy společenských věd": {
+            "Vznik a význam psychologie": "DataPsychologieVznikAVyznam.csv",
+            "Psychické jevy a psychologie činnosti": "DataPsychickeJevyAPsychologieCinnosti.csv",
+            "Psychologie osobnosti": "DataPsychologieOsobnosti.csv",
+            "Duševní zdraví": "DataDusevniZdravi.csv",
+            "Sociologie": "DataSociologie.csv",
+            "Sociální interakce, komunikace, sociální útvary": "DataSocialniInterakceAUtvary.csv",
+            "Kultura a média": "DataKulturaAMedia.csv",
+            "Politologie a stát": "DataPolitologieAStat.csv",
+            "Demokracie a nedemokratické režimy": "DataDemokracieANedemokratickeRezimy.csv",
+            "Politický systém v ČR": "DataPolitickySystemVCR.csv",
+            "Politické ideologie a lidská práva": "DataPolitickeIdeologieALidskaPrava.csv",
+            "Mezinárodní vztahy a globalizace": "DataMezinarodniVztahyAGlobalizace.csv",
+            "Mezinárodní organizace": "DataMezinarodniOrganizace.csv",
+            "Právní systém a základní pojmy práva": "DataPravoASystem.csv",
+            "Soukromé právo": "DataSoukromePravo.csv",
+            "Veřejné právo – trestní": "DataVerejnePravoTrestni.csv",
+            "Pracovní právo": "DataPracovniPravo.csv",
+            "Ekonomie a tržní ekonomika": "DataEkonomieATrzniEkonomika.csv",
+            "Národní hospodářství": "DataNarodniHospodarstvi.csv",
+            "Osobní finance": "DataOsobniFinance.csv",
+            "Víra a náboženství, východní filosofie": "DataViraANabozenstvi.csv",
+            "Filosofie a etika": "DataFilosofieAEtika.csv",
+            "Antická filosofie": "DataAntickaFilosofie.csv",
+            "Monoteistická náboženství": "DataMonoteistickaNabozenstvi.csv",
+            "Renesanční filosofie, reformace, novověká filosofie, osvícenství": "DataRenesanceOsviceni.csv",
+            "Německé osvícenství a filosofové 19. století": "DataNemeckeOsviceniAFilosofove19stoleti.csv",
+            "Filosofie 20. a 21. století, postmodernismus": "DataFilosofie20a21stoleti.csv",
+            "Česká filosofie": "DataCeskaFilosofie.csv",
+            "Souhrnné opakování": null
         },
         "Čeština": {
             "William Shakespeare - Romeo a Julie": "cestina_william_shakespeare_romeo_a_julie.json",
@@ -349,15 +350,15 @@ for (const schoolType in schoolSubjectConfig) {
                 for (const topicName in topicsInSubject) {
                     if (topicsInSubject.hasOwnProperty(topicName)) {
                         if (!data[subjectName].hasOwnProperty(topicName)) {
-                             const filename = topicsInSubject[topicName]; // Get filename from config
-                             // Initialize based on filename or default
-                             if (filename && filename.toLowerCase().endsWith('.json')) {
-                                 data[subjectName][topicName] = null; // Placeholder for JSON
-                             } else {
-                                 // Default to array for CSV, null filename (summary), or missing file
-                                 data[subjectName][topicName] = [];
-                             }
-                             console.log(`Initializing topic in flat data: ${subjectName} - ${topicName}`);
+                            const filename = topicsInSubject[topicName]; // Get filename from config
+                            // Initialize based on filename or default
+                            if (filename && filename.toLowerCase().endsWith('.json')) {
+                                data[subjectName][topicName] = null; // Placeholder for JSON
+                            } else {
+                                // Default to array for CSV, null filename (summary), or missing file
+                                data[subjectName][topicName] = [];
+                            }
+                            console.log(`Initializing topic in flat data: ${subjectName} - ${topicName}`);
                         }
                     }
                 }
@@ -417,6 +418,22 @@ const achievementLevels = {
         unit: "testů"
     }
 };
+const dailyQuestTemplates = [
+    { type: "complete_tests", target: 1, description: "Dokonči 1 test" },
+    { type: "complete_tests", target: 2, description: "Dokonči 2 testy" },
+    { type: "complete_tests", target: 3, description: "Dokonči 3 testy" },
+    { type: "flawless_tests", target: 1, description: "Dokonči 1 test bez chyby" },
+    { type: "flawless_tests", target: 2, description: "Dokonči 2 testy bez chyby" },
+    { type: "earn_xp", target: 10, description: "Získej 10 XP" },
+    { type: "earn_xp", target: 20, description: "Získej 20 XP" },
+    { type: "earn_xp", target: 30, description: "Získej 30 XP" },
+    { type: "unique_subjects", target: 2, description: "Dokonči testy ze 2 různých předmětů" },
+    { type: "unique_subjects", target: 3, description: "Dokonči testy ze 3 různých předmětů" },
+    { type: "unique_tests", target: 2, description: "Dokonči 2 různé testy (předmět/okruh)" },
+    { type: "unique_tests", target: 3, description: "Dokonči 3 různé testy (předmět/okruh)" },
+    { type: "new_tests", target: 1, description: "Vyzkoušej 1 nový test (okruh)" },
+    { type: "new_tests", target: 2, description: "Vyzkoušej 2 nové testy (okruhy)" },
+];
 
 // --- Firebase Configuration & Initialization ---
 const firebaseConfig = {
@@ -524,7 +541,7 @@ let header, main, dashboardSection, testSection, progressSection, testContainer,
     testsTodayEl, correctAnswersEl, successRateEl, dayStreakEl, totalXpEl, achievementListEl, themeToggleButton, toggleFavoriteBtn; // Added elements for stats
 let profileSection, profileEmail, profileNickname, profileJoined,
     nicknameChangeForm, newNicknameInput, changeNicknameBtn, nicknameChangeMessage,
-    changePasswordBtn, passwordChangeMessage, deleteAccountBtn, deleteAccountMessage, profileLinkleaderboardList, noLeaderboardLi, nicknameInput, schoolTypeSelect;
+    changePasswordBtn, passwordChangeMessage, deleteAccountBtn, deleteAccountMessage, profileLinkleaderboardList, noLeaderboardLi, nicknameInput, schoolTypeSelect, dailyQuestsListEl;
 
 
 // --- Wait for DOM to Load ---
@@ -565,6 +582,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     themeToggleButton = document.getElementById('theme-toggle-btn');
     toggleFavoriteBtn = document.getElementById('toggle-favorite-btn');
     schoolTypeSelect = document.getElementById('school-type-select');
+    dailyQuestsListEl = document.getElementById('daily-quests-list');
     // Stat elements
     testsTodayEl = document.getElementById('tests-today');
     correctAnswersEl = document.getElementById('correct-answers');
@@ -858,10 +876,34 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) { /
         let userData = await getUserData(uid, db, isNewlyRegistered); // Fetch data (this function now handles defaults if doc doesn't exist)
 
         if (userData) {
-            console.log("User data loaded:", userData);
             const today = new Date();
-            const todayDateString = today.toDateString();
-            let needsSave = false; // Flag to check if we need to save updated daily stats
+            const todayStr = today.toISOString().split('T')[0];
+            let needsSave = false; // Moved definition higher
+
+            // --- Check and Generate Daily Quests ---
+            const lastGeneratedDate = userData.dailyQuests?.generatedDate;
+            if (!lastGeneratedDate || lastGeneratedDate !== todayStr) {
+                console.log(`Generating new daily quests for ${todayStr}. Last generated: ${lastGeneratedDate}`);
+                const newQuests = generateNewDailyQuests(userData);
+                userData.dailyQuests = {
+                    generatedDate: todayStr,
+                    quests: newQuests,
+                    subjectsToday: [],
+                    testsTodayIds: [],
+                    bonusXPAwarded: false // Reset bonus flag
+                };
+                needsSave = true;
+                console.log("New daily quests prepared for saving:", userData.dailyQuests);
+            } else {
+                // Ensure structure exists even if quests are already generated
+                userData.dailyQuests = userData.dailyQuests || {}; // Ensure base object
+                userData.dailyQuests.quests = userData.dailyQuests.quests || [];
+                userData.dailyQuests.subjectsToday = userData.dailyQuests.subjectsToday || [];
+                userData.dailyQuests.testsTodayIds = userData.dailyQuests.testsTodayIds || [];
+                // Don't reset bonusXPAwarded here if quests already exist for today
+                userData.dailyQuests.bonusXPAwarded = userData.dailyQuests.bonusXPAwarded || false;
+                console.log("Daily quests already generated for today.");
+            }
 
             console.log("Before Daily Reset Check:", {
                 lastActivity: userData.lastActivityDate,
@@ -877,6 +919,10 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) { /
                 userData.testsToday = 0;
                 userData.correctAnswersToday = 0; // Reset today's correct answers counter
                 userData.lastActivityDate = todayDateString;
+                if (userData.dailyQuests) {
+                    userData.dailyQuests.subjectsToday = [];
+                    userData.dailyQuests.testsTodayIds = [];
+                }
                 needsSave = true;
             }
             userData.completedTopics = new Set(userData.completedTopics || []);
@@ -891,12 +937,11 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) { /
             }
 
             // --- Update UI Elements ---
-            // Update all relevant UI sections with the fetched (and potentially reset) data           
-            updateStatisticsSection(userData); // Updates top dashboard cards and progress section summaries
-            updateDashboard(userData);         // Updates subject progress cards
+            updateDailyQuestsUI(userData.dailyQuests?.quests || [], userData.dailyQuests?.bonusXPAwarded || false); // <<< ADD THIS CALL
+            updateStatisticsSection(userData);
+            updateDashboard(userData);
             updateAchievementsUI(userData);
             await generateCalendar(currentYear, currentMonth, db);
-
             console.log("UI updated after loading user data.");
 
         } else {
@@ -906,12 +951,170 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) { /
             clearUserDataUI(); // Clear UI elements to show logged-out state
             await generateCalendar(currentYear, currentMonth, db); // Generate empty calendar
         }
-    } catch (error) {
+    }
+    catch (error) {
         console.error("Error in loadUserDataFromFirestore:", error);
         alert("Nastala chyba při načítání uživatelských dat.");
         // Optionally clear UI or show specific error message
         clearUserDataUI();
     }
+}
+function generateNewDailyQuests(userData) {
+    const availableTemplates = [...dailyQuestTemplates];
+    const selectedQuests = [];
+    const todayStr = new Date().toISOString().split('T')[0];
+    let totalAvailableTopics = 0;
+    if (typeof data !== 'undefined') { // Check if global 'data' is loaded
+        for (const subject in data) {
+            totalAvailableTopics += Object.keys(data[subject] || {}).filter(topic => topic !== "Zatím žádná témata").length;
+        }
+    } else {
+        console.warn("Global 'data' object not available for 'new_tests' check during quest generation.");
+    }
+    const completedTopicsCount = userData?.completedTopics?.size || userData?.completedTopics?.length || 0; // Handle Set or Array
+    const canDoNewTests = totalAvailableTopics > completedTopicsCount;
+    let attempts = 0;
+
+    while (selectedQuests.length < 3 && attempts < 20 && availableTemplates.length > 0) {
+        attempts++;
+        const randomIndex = Math.floor(Math.random() * availableTemplates.length);
+        const template = availableTemplates[randomIndex];
+        let possible = true;
+
+        if (template.type === "new_tests" && !canDoNewTests) {
+            possible = false;
+            console.log("Skipping 'new_tests' quest as not possible.");
+        }
+
+        if (possible) {
+            const newQuest = {
+                ...template,
+                id: `${template.type}_${template.target}_${todayStr}`,
+                currentProgress: 0,
+                isCompleted: false,
+            };
+            selectedQuests.push(newQuest);
+            availableTemplates.splice(randomIndex, 1);
+            // Optional: Remove all of the same type to prevent "Complete 1" and "Complete 2"
+            // availableTemplates = availableTemplates.filter(t => t.type !== template.type);
+        } else {
+            availableTemplates.splice(randomIndex, 1);
+        }
+    }
+    console.log("Generated daily quests:", selectedQuests);
+    return selectedQuests;
+}
+/**
+ * Updates the Daily Quests list in the UI.
+ * @param {Array<object>} [quests=[]] - The array of quest objects for the day.
+ * @param {boolean} [bonusAwarded=false] - Whether the overall daily bonus has been awarded.
+ */
+function updateDailyQuestsUI(quests = [], bonusAwarded = false) {
+    // Ensure the list element exists
+    if (!dailyQuestsListEl) {
+        console.warn("Daily quests list element not found (dailyQuestsListEl). Cannot update UI.");
+        return;
+    }
+
+    // Clear previous quest items
+    dailyQuestsListEl.innerHTML = '';
+
+    // Handle case where there are no quests (e.g., loading, error, or empty array)
+    if (!quests || quests.length === 0) {
+        dailyQuestsListEl.innerHTML = '<li class="no-quests">Žádné denní úkoly nejsou k dispozici.</li>';
+        return;
+    }
+
+    // --- Loop through and display each quest ---
+    quests.forEach(quest => {
+        const li = document.createElement('li');
+        // Add 'quest-completed' class dynamically based on quest status
+        if (quest.isCompleted) {
+            li.classList.add('quest-completed');
+        }
+
+        // Create span for quest description
+        const descriptionSpan = document.createElement('span');
+        descriptionSpan.classList.add('quest-description');
+        descriptionSpan.textContent = quest.description || "Chybějící popis úkolu"; // Fallback text
+
+        // Create span for quest progress display
+        const progressSpan = document.createElement('span');
+        progressSpan.classList.add('quest-progress');
+
+        // Determine the text for the progress span
+        let progressText;
+        if (quest.isCompleted) {
+            progressText = '✅'; // Show checkmark if completed
+        } else {
+            // Format progress based on quest type (optional: add units)
+            progressText = `${quest.currentProgress || 0} / ${quest.target || '?'}`;
+             if (quest.type === 'earn_xp') {
+                 progressText += ' XP';
+             }
+            // Add more specific units like ' testů', ' okruhů' if desired
+            // else if (quest.type.includes('_tests') || quest.type.includes('_subjects')) {
+            //     progressText += quest.target > 1 ? ' testů/předmětů' : ' test/předmět';
+            // }
+        }
+        progressSpan.textContent = progressText;
+
+        // Append description and progress to the list item
+        li.appendChild(descriptionSpan);
+        li.appendChild(progressSpan);
+
+        // Append the list item to the main list
+        dailyQuestsListEl.appendChild(li);
+    });
+    // --- End loop ---
+
+
+    // --- Add the Bonus Summary Line ---
+    // Check if there were actually quests to potentially get a bonus for
+    if (quests.length > 0) {
+        const bonusLi = document.createElement('li');
+        bonusLi.classList.add('quest-bonus-summary'); // Add a class for specific styling if needed
+        bonusLi.style.marginTop = '10px';
+        // Use CSS variable for border color based on bonus status
+        bonusLi.style.borderTop = `2px solid ${bonusAwarded ? 'var(--success)' : 'var(--gray)'}`;
+        bonusLi.style.paddingTop = '10px';
+
+        const bonusDesc = document.createElement('span');
+        bonusDesc.textContent = "Bonus za všechny úkoly:";
+        bonusDesc.style.fontWeight = 'bold';
+
+        const bonusStatus = document.createElement('span');
+        bonusStatus.style.fontWeight = 'bold';
+
+        if (bonusAwarded) {
+            // Bonus has been awarded
+            bonusStatus.textContent = "Získáno (+25 XP)";
+            bonusStatus.style.color = 'var(--success)';
+        } else {
+            // Bonus not awarded yet - check if requirements met (all quests completed)
+            const allComplete = quests.every(q => q.isCompleted); // Re-check based on current quest data
+            if (allComplete) {
+                // Should technically have been awarded if all are complete, but handle this display case
+                bonusStatus.textContent = "Splněno! (+25 XP)"; // Indicate bonus earned
+                bonusStatus.style.color = 'var(--success)';
+                // You might want to slightly dim it if bonusAwarded is false but all are complete,
+                // indicating the award *should* have happened or is pending save.
+                // bonusStatus.style.opacity = '0.8';
+            } else {
+                // Not all quests are complete yet
+                bonusStatus.textContent = "Nesplněno (Odměna: 25 XP)";
+                bonusStatus.style.color = 'var(--warning)'; // Use warning color for pending reward
+            }
+        }
+
+        // Append bonus description and status to the summary list item
+        bonusLi.appendChild(bonusDesc);
+        bonusLi.appendChild(bonusStatus);
+
+        // Append the summary list item to the main list
+        dailyQuestsListEl.appendChild(bonusLi);
+    }
+    // --- End Bonus Summary Line ---
 }
 /**
  * Fetches the latest leaderboard data and updates the UI.
@@ -1480,6 +1683,7 @@ function clearUserDataUI() {
     }
     // Reset dashboard stats
     updateStatisticsSection(null); // Pass null for default/zero state
+    updateDailyQuestsUI([], false);
 
     // Clear subject cards
     if (subjectStatsContainer) subjectStatsContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">Pro zobrazení pokroku se přihlaste.</p>';
@@ -1807,162 +2011,126 @@ function generateTest() {
 }
 
 /**
- * es the completed test, updates user stats/achievements, saves data, shows results.
+ * Evaluates the completed test, updates user stats/achievements/quests, saves data, shows results.
  * @param {firebase.firestore.Firestore} db - The Firestore instance.
  */
 async function evaluateTest(db) {
+    // --- 1. Evaluate Answers ---
     let correct = 0;
-    const questionElements = document.querySelectorAll('#test-container .question'); // Target questions inside container
+    const questionElements = document.querySelectorAll('#test-container .question');
     const total = questionElements.length;
-    let allCorrect = total > 0;
+    let allCorrect = total > 0; // Assume flawless unless proven otherwise
 
     console.log(`Evaluating test with ${total} questions.`);
-
     if (total === 0) {
         console.warn("evaluateTest called with no questions rendered.");
         return;
     }
+
+    // Disable UI elements during evaluation
     const submitButton = document.querySelector('.submit-test-btn');
     if (submitButton) submitButton.disabled = true;
-
-
-    // --- Evaluate Answers and Update Option Styles ---
-    questionElements.forEach((questionElement, qIndex) => {
-        const questionType = questionElement.dataset.questionType;
-        const correctAnswer = questionElement.dataset.correct; // String or stringified array
-        let isQuestionCorrect = false;
-
-        // Disable inputs/options
+    questionElements.forEach(questionElement => {
         questionElement.querySelectorAll('input, .option').forEach(el => {
             if (el.tagName === 'INPUT') el.disabled = true;
-            else el.style.pointerEvents = 'none'; // For clickable divs
+            else el.style.pointerEvents = 'none';
         });
+
+        // --- Answer Evaluation Logic ---
+        const questionType = questionElement.dataset.questionType;
+        const correctAnswer = questionElement.dataset.correct;
+        let isQuestionCorrect = false;
 
         switch (questionType) {
             case 'mc_single':
-            case 'conditional_mc_single': // Evaluate like single MC
+            case 'conditional_mc_single':
                 const selectedRadio = questionElement.querySelector('input[type="radio"]:checked');
-                const labels = questionElement.querySelectorAll('.option-label');
-                labels.forEach(label => {
+                questionElement.querySelectorAll('.option-label').forEach(label => {
                     const radio = label.querySelector('input');
-                    // Highlight correct answer label
-                    if (radio.value === correctAnswer) {
-                        label.classList.add('correct');
-                    }
-                    // If this was the selected one, check correctness
+                    if (radio.value === correctAnswer) label.classList.add('correct');
                     if (radio.checked) {
-                        if (radio.value === correctAnswer) {
-                            isQuestionCorrect = true;
-                            // Correct class already added
-                        } else {
-                            label.classList.add('incorrect'); // Mark selected incorrect label
-                        }
+                        if (radio.value === correctAnswer) isQuestionCorrect = true;
+                        else label.classList.add('incorrect');
                     }
                 });
-                if (!selectedRadio) allCorrect = false; // Nothing selected
-                else if (!isQuestionCorrect) allCorrect = false; // Incorrect selected
+                if (!selectedRadio) allCorrect = false;
+                else if (!isQuestionCorrect) allCorrect = false;
                 break;
-
-            case 'free_text':
+            // Add cases for 'free_text', 'mc_multiple', 'standard-mc' as you had them...
+             case 'free_text':
                 const input = questionElement.querySelector('.free-text-input');
                 const userAnswer = input.value.trim().toLowerCase();
-                const correctAnswerLower = correctAnswer.toLowerCase(); // Already lowercased in dataset? double check.
-
-                if (userAnswer === correctAnswerLower) {
+                const correctAnswerLower = correctAnswer?.toLowerCase() ?? ''; // Handle potential null/undefined correct answer
+                if (userAnswer === correctAnswerLower && userAnswer !== '') { // Ensure non-empty correct answer
                     isQuestionCorrect = true;
                     input.classList.add('correct');
                 } else {
                     input.classList.add('incorrect');
                     allCorrect = false;
-                    // Optionally show the correct answer
-                    const correctAnswerDisplay = document.createElement('span');
-                    correctAnswerDisplay.classList.add('correct-answer-display');
-                    // Get original case from data if needed, or just use the lowercased one
-                    correctAnswerDisplay.textContent = ` (Správně: ${correctAnswer})`;
-                    input.parentNode.appendChild(correctAnswerDisplay);
+                    if (userAnswer !== '') { // Only show correction if user answered something
+                         const correctAnswerDisplay = document.createElement('span');
+                         correctAnswerDisplay.classList.add('correct-answer-display');
+                         correctAnswerDisplay.textContent = ` (Správně: ${correctAnswer})`; // Show original case
+                         input.parentNode.appendChild(correctAnswerDisplay);
+                    }
                 }
-                if (!input.value.trim()) allCorrect = false; // Blank answer
+                if (!input.value.trim()) allCorrect = false;
                 break;
+             case 'mc_multiple':
+                // Ensure correctAnswer is valid JSON before parsing
+                 let correctAnswersArray = [];
+                 try {
+                    if (correctAnswer) correctAnswersArray = JSON.parse(correctAnswer).sort();
+                 } catch(e) { console.error("Invalid JSON for mc_multiple correct answers:", correctAnswer, e); }
 
-            case 'mc_multiple':
-                const selectedCheckboxes = questionElement.querySelectorAll('input[type="checkbox"]:checked');
-                const correctAnswersArray = JSON.parse(correctAnswer).sort(); // Parse and sort
-                const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value).sort(); // Get values and sort
+                 const selectedCheckboxes = questionElement.querySelectorAll('input[type="checkbox"]:checked');
+                 const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value).sort();
 
-                // Exact match required (same items, same count)
-                isQuestionCorrect = selectedValues.length === correctAnswersArray.length &&
+                 isQuestionCorrect = selectedValues.length === correctAnswersArray.length &&
                     selectedValues.every((value, index) => value === correctAnswersArray[index]);
 
-                // Highlight labels
-                questionElement.querySelectorAll('.option-label').forEach(label => {
-                    const checkbox = label.querySelector('input');
-                    const isActuallyCorrect = correctAnswersArray.includes(checkbox.value);
-
-                    if (isActuallyCorrect) {
-                        label.classList.add('correct'); // Highlight all correct options
-                    }
-
-                    if (checkbox.checked) {
-                        if (!isActuallyCorrect) {
-                            label.classList.add('incorrect'); // Selected but shouldn't have been
-                        }
-                    } else {
-                        if (isActuallyCorrect) {
-                            // label.classList.add('missed'); // Optional: Style for missed correct answers
-                        }
-                    }
-                });
-
-                if (!isQuestionCorrect) {
-                    allCorrect = false;
-                }
-                break;
-
-            case 'standard-mc': // Handle the original CSV multiple choice
+                 questionElement.querySelectorAll('.option-label').forEach(label => {
+                     const checkbox = label.querySelector('input');
+                     const isActuallyCorrect = correctAnswersArray.includes(checkbox.value);
+                     if (isActuallyCorrect) label.classList.add('correct');
+                     if (checkbox.checked && !isActuallyCorrect) label.classList.add('incorrect');
+                 });
+                 if (!isQuestionCorrect) allCorrect = false;
+                 break;
+            case 'standard-mc':
                 const selectedOptionDiv = questionElement.querySelector('.option.selected');
                 questionElement.querySelectorAll('.option').forEach(option => {
-                    option.style.pointerEvents = 'none';
                     const isCorrect = option.dataset.correct === 'true';
-                    if (isCorrect) {
-                        option.classList.add('correct');
-                    }
+                    if (isCorrect) option.classList.add('correct');
                     if (option.classList.contains('selected')) {
-                        if (isCorrect) {
-                            isQuestionCorrect = true;
-                        } else {
-                            option.classList.add('incorrect');
-                        }
+                        if (isCorrect) isQuestionCorrect = true;
+                        else option.classList.add('incorrect');
                     }
                 });
-                if (!selectedOptionDiv) allCorrect = false; // Nothing selected
-                else if (!isQuestionCorrect) allCorrect = false; // Incorrect selected
-                break;
-
-
+                 if (!selectedOptionDiv) allCorrect = false;
+                 else if (!isQuestionCorrect) allCorrect = false;
+                 break;
             default:
                 console.warn(`Unknown question type for evaluation: ${questionType}`);
-                allCorrect = false; // Mark as incorrect if type is unknown
+                allCorrect = false;
         }
+        // --- End Answer Evaluation ---
 
         if (isQuestionCorrect) {
             correct++;
         }
         console.log(`Question ${qIndex + 1} (${questionType}): ${isQuestionCorrect ? 'Correct' : 'Incorrect'}`);
+    });
+    console.log(`Test Result: ${correct}/${total}, Flawless: ${allCorrect}`);
 
-    }); // End forEach questionElement
-
-    // --- Show Results Modal & Update User Data ---
-    // This part remains largely the same, it uses the final 'correct' and 'total' counts.
-    console.log(`Test Result: ${correct}/${total}`);
-
-    // Show Results Modal
+    // --- 2. Show Results Modal ---
     if (resultCorrect) resultCorrect.textContent = correct;
     if (resultTotal) resultTotal.textContent = total;
     const finalSuccessRate = total > 0 ? Math.round((correct / total) * 100) : 0;
     if (resultPercentage) resultPercentage.textContent = `${finalSuccessRate}%`;
     if (modal) modal.classList.add('show');
 
-    // Update User Data (only if logged in)
+    // --- 3. Update User Data (If Logged In) ---
     if (!currentUser) {
         console.warn("User not logged in. Test results not saved.");
         addBackButtonToTestContainer();
@@ -1970,7 +2138,7 @@ async function evaluateTest(db) {
     }
 
     console.log("Updating user data in Firestore...");
-    const userData = await getUserData(currentUser, db);
+    const userData = await getUserData(currentUser, db); // Get FRESH data
     if (!userData) {
         console.error("Could not retrieve user data to save results.");
         alert("Chyba: Nepodařilo se načíst uživatelská data pro uložení výsledků.");
@@ -1978,117 +2146,179 @@ async function evaluateTest(db) {
         return;
     }
 
-    // Ensure structures exist
+    // Ensure necessary structures exist and convert topics to Set for processing
     userData.progress = userData.progress || {};
-    userData.achievements = userData.achievements || { /* Initialize */ };
+    userData.achievements = userData.achievements || {};
     userData.activity = userData.activity || {};
+    userData.dailyQuests = userData.dailyQuests || { quests: [], subjectsToday: [], testsTodayIds: [], bonusXPAwarded: false }; // Initialize quest structure
+    userData.dailyQuests.quests = userData.dailyQuests.quests || [];
+    userData.dailyQuests.subjectsToday = userData.dailyQuests.subjectsToday || [];
+    userData.dailyQuests.testsTodayIds = userData.dailyQuests.testsTodayIds || [];
+    userData.dailyQuests.bonusXPAwarded = userData.dailyQuests.bonusXPAwarded || false;
     userData.completedTopics = new Set(userData.completedTopics || []); // Use Set
 
-    // --- Update Core Stats ---
+    const subject = subjectSelect.value;
+    const topic = topicSelect.value;
+    const uniqueTestId = `${subject}-${topic}`;
+
+    // --- 4. Update Base Stats & Activity ---
     userData.testsToday = (userData.testsToday || 0) + 1;
     userData.correctAnswersToday = (userData.correctAnswersToday || 0) + correct;
     userData.totalTestsCompleted = (userData.totalTestsCompleted || 0) + 1;
-    userData.totalXP = (userData.totalXP || 0) + correct;
-    userData.weeklyXP = (userData.weeklyXP || 0) + correct;// XP based on correct answers
+    // Base XP gain from this test (bonus added later)
+    const baseXPIncrement = correct;
+    userData.totalXP = (userData.totalXP || 0) + baseXPIncrement;
+    userData.weeklyXP = (userData.weeklyXP || 0) + baseXPIncrement;
 
-    // --- Update Subject Progress ---
-    const subject = subjectSelect.value;
-    if (subject && (data[subject] || schoolSubjectConfig[subject])) { // Check config too
-        userData.progress[subject] = userData.progress[subject] || {
-            testsCompleted: 0, correctAnswers: 0, totalQuestionsAnswered: 0, successRate: 0
-        };
-        const subjData = userData.progress[subject];
-        subjData.testsCompleted++;
-        subjData.correctAnswers += correct;
-        subjData.totalQuestionsAnswered = (subjData.totalQuestionsAnswered || 0) + total; // total questions in this specific test
-        subjData.successRate = subjData.totalQuestionsAnswered > 0
-            ? Math.round((subjData.correctAnswers / subjData.totalQuestionsAnswered) * 100)
-            : 0;
-    }
+    // Update subject progress
+    if (subject && (data[subject] || schoolSubjectConfig[subject])) { // Use schoolSubjectConfig for existence check? Or rely on `data`? Let's use `data`.
+         if (data[subject]) { // Check if subject data loaded
+             userData.progress[subject] = userData.progress[subject] || { testsCompleted: 0, correctAnswers: 0, totalQuestionsAnswered: 0, successRate: 0 };
+             const subjData = userData.progress[subject];
+             subjData.testsCompleted++;
+             subjData.correctAnswers += correct;
+             subjData.totalQuestionsAnswered = (subjData.totalQuestionsAnswered || 0) + total;
+             subjData.successRate = subjData.totalQuestionsAnswered > 0
+                 ? Math.round((subjData.correctAnswers / subjData.totalQuestionsAnswered) * 100)
+                 : 0;
+         } else {
+             console.warn(`Progress not updated for subject "${subject}" as its data was not found/loaded.`);
+         }
+     }
 
-    // --- Update Average Success Rate (Recalculate) ---
-    // (Logic remains the same as before)
-    let totalSuccessSum = 0;
-    let numSubjectsWithProgress = 0;
+
+    // Update average success rate
+    let totalSuccessSum = 0, numSubjectsWithProgress = 0;
     for (const subjKey in userData.progress) {
         if (userData.progress[subjKey]?.testsCompleted > 0) {
             totalSuccessSum += (userData.progress[subjKey].successRate || 0);
             numSubjectsWithProgress++;
         }
     }
-    userData.averageSuccessRate = numSubjectsWithProgress > 0
-        ? Math.round(totalSuccessSum / numSubjectsWithProgress)
-        : 0;
+    userData.averageSuccessRate = numSubjectsWithProgress > 0 ? Math.round(totalSuccessSum / numSubjectsWithProgress) : 0;
 
-
-    // --- Update Streaks & Activity Log ---
-    // (Logic remains the same as before)
+    // Update streaks & activity log
     const today = new Date();
     const todayDateString = today.toDateString();
     const todayYear = today.getFullYear();
     const todayMonth = today.getMonth();
     const todayDay = today.getDate();
-
     if (finalSuccessRate >= 80) {
+        // ... (streak update logic as before) ...
         const yesterday = new Date(today);
         yesterday.setDate(today.getDate() - 1);
         const yesterdayString = yesterday.toDateString();
         if (userData.lastCompletedTestDate !== todayDateString) {
-            if (userData.lastCompletedTestDate === yesterdayString) {
-                userData.dayStreak = (userData.dayStreak || 0) + 1;
-            } else {
-                userData.dayStreak = 1;
-            }
+            if (userData.lastCompletedTestDate === yesterdayString) userData.dayStreak = (userData.dayStreak || 0) + 1;
+            else userData.dayStreak = 1;
             userData.lastCompletedTestDate = todayDateString;
         }
     } else {
-        if (userData.lastCompletedTestDate !== todayDateString) {
-            userData.dayStreak = 0;
-        }
+        if (userData.lastCompletedTestDate !== todayDateString) userData.dayStreak = 0;
     }
-
     userData.activity[todayYear] = userData.activity[todayYear] || {};
     userData.activity[todayYear][todayMonth] = userData.activity[todayYear][todayMonth] || {};
     userData.activity[todayYear][todayMonth][todayDay] = (userData.activity[todayYear][todayMonth][todayDay] || 0) + 1;
-    userData.lastActivityDate = todayDateString; // Update last activity date
+    userData.lastActivityDate = todayDateString;
 
+    // --- 5. Update Daily Quest Progress ---
+    let earnedBonusXP = 0;
+    const quests = userData.dailyQuests.quests; // Already ensured it exists
+    const bonusWasAlreadyAwarded = userData.dailyQuests.bonusXPAwarded;
 
-    // --- Update Achievements ---
+    // Track unique subjects/tests for today
+    if (subject && !userData.dailyQuests.subjectsToday.includes(subject)) {
+        userData.dailyQuests.subjectsToday.push(subject);
+    }
+    if (uniqueTestId !== "-" && !userData.dailyQuests.testsTodayIds.includes(uniqueTestId)) {
+        userData.dailyQuests.testsTodayIds.push(uniqueTestId);
+    }
+    // Check if this topic was completed for the first time EVER
+    // Need to check using schoolSubjectConfig for file existence, not just `data`
+    const topicFileExists = schoolSubjectConfig[schoolTypeSelect.value]?.[subject]?.[topic]; // Check if topic is defined in config
+    const isNewTopicOverall = topic && topicFileExists && !userData.completedTopics.has(topic); // Ensure topic defined and not already completed
+
+    let allQuestsNowComplete = true; // Assume true until proven otherwise
+    console.log("Checking daily quests update...");
+
+    quests.forEach(quest => {
+        if (!quest.isCompleted) {
+            let progressIncrement = 0;
+            switch (quest.type) {
+                case "complete_tests": progressIncrement = 1; break;
+                case "flawless_tests": if (allCorrect) progressIncrement = 1; break;
+                case "earn_xp": progressIncrement = correct; break; // Uses XP from THIS test
+                case "unique_subjects": quest.currentProgress = userData.dailyQuests.subjectsToday.length; break; // Set directly
+                case "unique_tests": quest.currentProgress = userData.dailyQuests.testsTodayIds.length; break; // Set directly
+                case "new_tests": if (isNewTopicOverall) progressIncrement = 1; break;
+            }
+            if (progressIncrement > 0) { quest.currentProgress += progressIncrement; }
+            if (quest.currentProgress >= quest.target) {
+                quest.isCompleted = true;
+                console.log(`Daily Quest Item Completed: ${quest.description}`);
+            }
+        }
+        // Check completion status AFTER potential update for this iteration
+        if (!quest.isCompleted) { allQuestsNowComplete = false; }
+    });
+
+    // Award BONUS if all complete and not previously awarded
+    if (allQuestsNowComplete && !bonusWasAlreadyAwarded) {
+         console.log("All daily quests completed! Awarding bonus XP.");
+         earnedBonusXP = 25; // The single bonus amount
+         userData.dailyQuests.bonusXPAwarded = true; // Mark as awarded
+         // Add bonus XP to totals
+         userData.totalXP += earnedBonusXP;
+         userData.weeklyXP += earnedBonusXP;
+    } else if (allQuestsNowComplete && bonusWasAlreadyAwarded) {
+        console.log("All daily quests complete, but bonus already awarded today.");
+    }
+    // --- End Daily Quest Update ---
+
+    // --- 6. Update Achievements & Completed Topics ---
     if (allCorrect) {
         userData.flawlessTestCount = (userData.flawlessTestCount || 0) + 1;
         userData.winningStreakCount = (userData.winningStreakCount || 0) + 1;
     } else {
-        userData.winningStreakCount = 0;
+        userData.winningStreakCount = 0; // Reset consecutive flawless streak on any error
     }
-
-    const topic = topicSelect.value;
-    // Add topic if it's not summary and exists in config
-    if (topic && subject && schoolSubjectConfig[subject]?.[topic]) {
+    // Add topic to overall completed list if it was new
+    if (isNewTopicOverall) {
         userData.completedTopics.add(topic);
+        console.log(`Added "${topic}" to overall completed topics.`);
     }
+    updateAchievements(userData); // Calculate achievement levels based on updated stats
 
-    updateAchievements(userData); // Calculate achievement levels
 
-    // --- Prepare for Saving & Save ---
-    userData.completedTopics = Array.from(userData.completedTopics); // Convert Set back to Array
-    await saveUserData(currentUser, userData, db);
+    // --- 7. Prepare for Saving & Save ---
+    const dataToSave = {
+        ...userData, // Spread existing data
+        completedTopics: Array.from(userData.completedTopics) // Convert Set back to Array
+        // dailyQuests object is already updated within userData
+    };
+    await saveUserData(currentUser, dataToSave, db);
+    console.log("User data saved after test evaluation.");
 
-    // --- Update UI ---
+    // --- 8. Update UI ---
     console.log("Updating UI after test evaluation...");
-    updateStatisticsSection(userData);
-    updateDashboard(userData);
-    updateProgressSection(userData);
-    updateAchievementsUI(userData);
-    await generateCalendar(currentYear, currentMonth, db); // Await calendar generation
+    // Pass the potentially updated bonus awarded status
+    updateDailyQuestsUI(userData.dailyQuests.quests, userData.dailyQuests.bonusXPAwarded);
+    updateStatisticsSection(userData); // Updates Streak/XP cards with final values
+    updateDashboard(userData); // Updates subject progress cards
+    updateProgressSection(userData); // Updates stats table with final values
+    updateAchievementsUI(userData); // Updates achievements UI
+    await generateCalendar(currentYear, currentMonth, db);
 
-    if (progressSection && progressSection.style.display === 'block') {
-        console.log("Statistiky section is visible, refreshing leaderboard...");
-        await refreshLeaderboard(); // Call the new refresh function
-    }
+    // --- 9. Refresh Leaderboard If Visible ---
+    // Check if the dashboard (where leaderboard now is) is visible
+     const isDashboardVisible = (dashboardSection && dashboardSection.style.display === 'block');
+     if (isDashboardVisible) {
+         console.log("Dashboard section is visible, refreshing leaderboard...");
+         await refreshLeaderboard();
+     }
 
-    // --- Add Back Button ---
-    addBackButtonToTestContainer(); // Reuse existing function
-
+    // --- 10. Add Back Button ---
+    addBackButtonToTestContainer();
 }
 
 
@@ -2445,7 +2675,7 @@ function populateTopics(subject, userData) {
         });
         toggleFavoriteBtn.style.display = 'inline-block'; // Show favorite button ONLY for Cestina
     } else {
-         toggleFavoriteBtn.style.display = 'none'; // Hide favorite button for other subjects
+        toggleFavoriteBtn.style.display = 'none'; // Hide favorite button for other subjects
     }
     // --- END SORTING ---
 
@@ -2454,8 +2684,8 @@ function populateTopics(subject, userData) {
     topics.forEach(topic => {
         // You might have placeholder topics like "Zatím žádná témata", skip them
         if (topic === "Zatím žádná témata" && data[subject][topic] === null) {
-             console.log(`Skipping placeholder topic: ${topic}`);
-             return; // Don't add placeholder as a selectable option
+            console.log(`Skipping placeholder topic: ${topic}`);
+            return; // Don't add placeholder as a selectable option
         }
 
         const option = document.createElement('option');
@@ -2843,7 +3073,7 @@ function setupEventListeners() {
     subjectSelect?.addEventListener('change', async function () { // Make async
         const selectedSubject = this.value; // Get the selected subject name
         console.log(`DEBUG: Subject changed to: "${selectedSubject}"`); // Add log
-    
+
         // --- Ensure this part runs ---
         const selectedSchool = schoolTypeSelect.value;
         let currentUserData = null;
@@ -2853,7 +3083,7 @@ function setupEventListeners() {
         // --- Ensure populateTopics is called with the correct subject ---
         console.log("DEBUG: Calling populateTopics for subject:", selectedSubject);
         populateTopics(selectedSubject, currentUserData);
-    
+
     });
     topicSelect?.addEventListener('change', function () {
         const isTopicSelected = !!this.value;

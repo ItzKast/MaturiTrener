@@ -615,3 +615,128 @@ body.dark-mode #leaderboard-list li { border-bottom-color: var(--gray); }
          margin-top: 1.5rem;
      }
 }
+/* =================================
+   Daily Quests Styling
+   ================================= */
+
+/* Container for the whole quest list card */
+#daily-quests-container {
+    /* Uses general .card styles */
+    /* Add specific margins if needed based on its location */
+    margin-top: 1.5rem;
+}
+
+/* The list itself */
+#daily-quests-list {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Reset default ul margin */
+}
+
+/* Individual quest list item */
+#daily-quests-list li {
+    padding: 0.75rem 0.5rem; /* Vertical and horizontal padding */
+    border-bottom: 1px solid var(--gray); /* Separator line */
+    font-size: 0.9rem; /* Base text size */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Push items apart */
+    align-items: center; /* Vertically align items */
+    gap: 1rem; /* Space between description, progress, reward */
+    transition: opacity 0.3s ease, color 0.3s ease; /* Smooth transition for completion */
+}
+
+/* Remove border from the very last item (including bonus summary) */
+#daily-quests-list li:last-child {
+    border-bottom: none;
+}
+
+/* Quest Description */
+#daily-quests-list .quest-description {
+    flex-grow: 1; /* Allow description to take available space */
+    /* Normal text color inherited or set explicitly if needed */
+    /* color: var(--dark); */
+}
+
+/* Quest Progress Text */
+#daily-quests-list .quest-progress {
+    font-weight: 500; /* Make progress slightly bolder */
+    color: var(--dark); /* Use default dark text color */
+    white-space: nowrap; /* Prevent progress text from wrapping */
+    font-size: 0.85rem; /* Slightly smaller text */
+    text-align: right; /* Align to the right */
+}
+
+/* Styling for Completed Quests */
+#daily-quests-list li.quest-completed .quest-description,
+#daily-quests-list li.quest-completed .quest-progress {
+    text-decoration: line-through; /* Strike through completed quests */
+    opacity: 0.6; /* Dim the text */
+    color: var(--gray); /* Use gray color */
+}
+/* Keep checkmark visible */
+#daily-quests-list li.quest-completed .quest-progress {
+    opacity: 1.0; /* Make checkmark fully visible */
+    color: var(--success); /* Green checkmark */
+    text-decoration: none; /* Remove strikethrough from checkmark */
+}
+
+
+/* Placeholder message when no quests */
+.no-quests {
+    list-style: none;
+    text-align: center;
+    padding: 1rem;
+    color: #718096; /* Use a muted color */
+    border-bottom: none !important; /* Ensure no border */
+}
+
+/* Bonus Summary Line Specifics */
+#daily-quests-list li.quest-bonus-summary {
+    margin-top: 10px; /* Space above bonus line */
+    padding-top: 10px; /* Space below border */
+    /* Border color set dynamically via inline style based on completion */
+    /* border-top: 2px solid var(--gray); */
+}
+/* Ensure flex layout works for bonus summary too */
+#daily-quests-list li.quest-bonus-summary span:first-child { /* The "Bonus..." text */
+     font-weight: bold;
+     margin-right: auto; /* Push status text to the right */
+}
+#daily-quests-list li.quest-bonus-summary span:last-child { /* The status text */
+    font-weight: bold;
+    white-space: nowrap;
+    /* Color set dynamically via inline style (success or warning) */
+}
+
+
+/* =================================
+   Dark Mode Adjustments for Quests
+   ================================= */
+body.dark-mode #daily-quests-list li {
+    border-bottom-color: var(--gray); /* Darker border */
+}
+
+body.dark-mode #daily-quests-list .quest-progress {
+    color: var(--dark); /* Lighter text for progress */
+}
+
+/* Dimming completed quests in dark mode */
+body.dark-mode #daily-quests-list li.quest-completed .quest-description,
+body.dark-mode #daily-quests-list li.quest-completed .quest-progress {
+    color: var(--gray); /* Use the darker gray for dimmed text */
+    opacity: 0.6;
+}
+/* Keep checkmark green and visible */
+body.dark-mode #daily-quests-list li.quest-completed .quest-progress {
+     opacity: 1.0;
+     color: var(--success);
+     text-decoration: none;
+ }
+
+
+body.dark-mode .no-quests {
+    color: #a0aec0; /* Lighter muted color */
+}
+body.dark-mode #daily-quests-list li.quest-bonus-summary span:first-child {
+      color: #ffffff; /* Brighter label */
+}
