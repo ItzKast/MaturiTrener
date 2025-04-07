@@ -366,7 +366,7 @@ const achievementLevels = {
     topicMaster: {
         name: "Znalec témat 📚",
         description: "Dokonči alespoň jeden test z {value} různých okruhů.", // {value} is the next unique topic target
-        levels: [2, 4, 6, 8, 10, 12, 15, 18, 20, 25],
+        levels: [2, 5, 10, 15, 20, 25, 30, 35, 40, 50],
         unit: "témat"
     },
     earlyBird: {
