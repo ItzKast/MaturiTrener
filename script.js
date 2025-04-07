@@ -2021,310 +2021,305 @@ function generateTest() {
  * @param {firebase.firestore.Firestore} db - The Firestore instance.
  */
 async function evaluateTest(db) {
-    // --- 1. Evaluate Answers ---
-    let correct = 0;
+    console.log("Starting test evaluation...");
+
+    // --- 1. Get DOM Elements and Initial Variables ---
     const questionElements = document.querySelectorAll('#test-container .question');
     const total = questionElements.length;
-    let allCorrect = total > 0; // Assume flawless unless proven otherwise
+    const resultCorrectEl = document.getElementById('result-correct'); // Renamed for clarity
+    const resultTotalEl = document.getElementById('result-total');       // Renamed for clarity
+    const resultPercentageEl = document.getElementById('result-percentage'); // Renamed for clarity
+    const modalEl = document.getElementById('test-completion-modal');      // Renamed for clarity
+    const submitButton = document.querySelector('.submit-test-btn');
 
-    console.log(`Evaluating test with ${total} questions.`);
+    let correctAnswersCount = 0; // Use a more descriptive name
+    let allQuestionsCorrect = total > 0; // Assume flawless unless proven otherwise
+
     if (total === 0) {
         console.warn("evaluateTest called with no questions rendered.");
-        return;
+        // Optionally show a message to the user
+        return; // Exit if no questions
     }
 
-    // Disable UI elements during evaluation
-    const submitButton = document.querySelector('.submit-test-btn');
+    // Disable submit button immediately
     if (submitButton) submitButton.disabled = true;
-    questionElements.forEach(questionElement => {
+
+    // --- 2. Evaluate Each Question ---
+    questionElements.forEach((questionElement, index) => {
+        const qIndex = index; // Assign index to qIndex for clarity if preferred inside loop
+        const questionType = questionElement.dataset.questionType;
+        const correctAnswer = questionElement.dataset.correct; // Correct answer string/JSON
+        let isQuestionCorrect = false; // Flag for this specific question
+
+        // Disable inputs/options for this question
         questionElement.querySelectorAll('input, .option').forEach(el => {
             if (el.tagName === 'INPUT') el.disabled = true;
-            else el.style.pointerEvents = 'none';
+            else el.style.pointerEvents = 'none'; // For clickable divs like standard MC options
         });
 
         // --- Answer Evaluation Logic ---
-        const questionType = questionElement.dataset.questionType;
-        const correctAnswer = questionElement.dataset.correct;
-        let isQuestionCorrect = false;
+        try { // Add try...catch around evaluation logic for safety
+            switch (questionType) {
+                case 'mc_single':
+                case 'conditional_mc_single':
+                    const selectedRadio = questionElement.querySelector('input[type="radio"]:checked');
+                    questionElement.querySelectorAll('.option-label').forEach(label => {
+                        const radio = label.querySelector('input');
+                        if (!radio) return; // Safety check
+                        if (radio.value === correctAnswer) label.classList.add('correct');
+                        if (radio.checked) {
+                            if (radio.value === correctAnswer) isQuestionCorrect = true;
+                            else label.classList.add('incorrect');
+                        }
+                    });
+                    if (!selectedRadio) allQuestionsCorrect = false; // Mark not flawless if unanswered
+                    else if (!isQuestionCorrect) allQuestionsCorrect = false; // Mark not flawless if incorrect
+                    break;
 
-        switch (questionType) {
-            case 'mc_single':
-            case 'conditional_mc_single':
-                const selectedRadio = questionElement.querySelector('input[type="radio"]:checked');
-                questionElement.querySelectorAll('.option-label').forEach(label => {
-                    const radio = label.querySelector('input');
-                    if (radio.value === correctAnswer) label.classList.add('correct');
-                    if (radio.checked) {
-                        if (radio.value === correctAnswer) isQuestionCorrect = true;
-                        else label.classList.add('incorrect');
+                case 'free_text':
+                    const input = questionElement.querySelector('.free-text-input');
+                    if (!input) break; // Safety check
+                    const userAnswer = input.value.trim().toLowerCase();
+                    const correctAnswerLower = correctAnswer?.toLowerCase() ?? ''; // Handle null/undefined
+
+                    if (userAnswer === correctAnswerLower && userAnswer !== '') {
+                        isQuestionCorrect = true;
+                        input.classList.add('correct');
+                    } else {
+                        input.classList.add('incorrect');
+                        allQuestionsCorrect = false;
+                        if (userAnswer !== '' && correctAnswer != null) { // Show correction only if answered & answer exists
+                            const correctAnswerDisplay = document.createElement('span');
+                            correctAnswerDisplay.classList.add('correct-answer-display');
+                            correctAnswerDisplay.textContent = ` (Správně: ${correctAnswer})`;
+                            input.parentNode.appendChild(correctAnswerDisplay);
+                        }
                     }
-                });
-                if (!selectedRadio) allCorrect = false;
-                else if (!isQuestionCorrect) allCorrect = false;
-                break;
-            // Add cases for 'free_text', 'mc_multiple', 'standard-mc' as you had them...
-             case 'free_text':
-                const input = questionElement.querySelector('.free-text-input');
-                const userAnswer = input.value.trim().toLowerCase();
-                const correctAnswerLower = correctAnswer?.toLowerCase() ?? ''; // Handle potential null/undefined correct answer
-                if (userAnswer === correctAnswerLower && userAnswer !== '') { // Ensure non-empty correct answer
-                    isQuestionCorrect = true;
-                    input.classList.add('correct');
-                } else {
-                    input.classList.add('incorrect');
-                    allCorrect = false;
-                    if (userAnswer !== '') { // Only show correction if user answered something
-                         const correctAnswerDisplay = document.createElement('span');
-                         correctAnswerDisplay.classList.add('correct-answer-display');
-                         correctAnswerDisplay.textContent = ` (Správně: ${correctAnswer})`; // Show original case
-                         input.parentNode.appendChild(correctAnswerDisplay);
-                    }
-                }
-                if (!input.value.trim()) allCorrect = false;
-                break;
-             case 'mc_multiple':
-                // Ensure correctAnswer is valid JSON before parsing
-                 let correctAnswersArray = [];
-                 try {
-                    if (correctAnswer) correctAnswersArray = JSON.parse(correctAnswer).sort();
-                 } catch(e) { console.error("Invalid JSON for mc_multiple correct answers:", correctAnswer, e); }
+                    if (!input.value.trim()) allQuestionsCorrect = false; // Blank answer is not flawless
+                    break;
 
-                 const selectedCheckboxes = questionElement.querySelectorAll('input[type="checkbox"]:checked');
-                 const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value).sort();
+                case 'mc_multiple':
+                    let correctAnswersArray = [];
+                    try {
+                        if (correctAnswer) correctAnswersArray = JSON.parse(correctAnswer).sort();
+                    } catch (e) { console.error("Invalid JSON for mc_multiple answers:", correctAnswer, e); }
 
-                 isQuestionCorrect = selectedValues.length === correctAnswersArray.length &&
-                    selectedValues.every((value, index) => value === correctAnswersArray[index]);
+                    const selectedCheckboxes = questionElement.querySelectorAll('input[type="checkbox"]:checked');
+                    const selectedValues = Array.from(selectedCheckboxes).map(cb => cb.value).sort();
 
-                 questionElement.querySelectorAll('.option-label').forEach(label => {
-                     const checkbox = label.querySelector('input');
-                     const isActuallyCorrect = correctAnswersArray.includes(checkbox.value);
-                     if (isActuallyCorrect) label.classList.add('correct');
-                     if (checkbox.checked && !isActuallyCorrect) label.classList.add('incorrect');
-                 });
-                 if (!isQuestionCorrect) allCorrect = false;
-                 break;
-            case 'standard-mc':
-                const selectedOptionDiv = questionElement.querySelector('.option.selected');
-                questionElement.querySelectorAll('.option').forEach(option => {
-                    const isCorrect = option.dataset.correct === 'true';
-                    if (isCorrect) option.classList.add('correct');
-                    if (option.classList.contains('selected')) {
-                        if (isCorrect) isQuestionCorrect = true;
-                        else option.classList.add('incorrect');
-                    }
-                });
-                 if (!selectedOptionDiv) allCorrect = false;
-                 else if (!isQuestionCorrect) allCorrect = false;
-                 break;
-            default:
-                console.warn(`Unknown question type for evaluation: ${questionType}`);
-                allCorrect = false;
+                    isQuestionCorrect = selectedValues.length === correctAnswersArray.length &&
+                        selectedValues.every((value, i) => value === correctAnswersArray[i]);
+
+                    questionElement.querySelectorAll('.option-label').forEach(label => {
+                        const checkbox = label.querySelector('input');
+                        if (!checkbox) return;
+                        const isActuallyCorrect = correctAnswersArray.includes(checkbox.value);
+                        if (isActuallyCorrect) label.classList.add('correct');
+                        if (checkbox.checked && !isActuallyCorrect) label.classList.add('incorrect');
+                    });
+                    if (!isQuestionCorrect) allQuestionsCorrect = false;
+                    break;
+
+                case 'standard-mc':
+                    const selectedOptionDiv = questionElement.querySelector('.option.selected');
+                    questionElement.querySelectorAll('.option').forEach(option => {
+                        const isCorrect = option.dataset.correct === 'true';
+                        if (isCorrect) option.classList.add('correct');
+                        if (option.classList.contains('selected')) {
+                            if (isCorrect) isQuestionCorrect = true;
+                            else option.classList.add('incorrect');
+                        }
+                    });
+                    if (!selectedOptionDiv) allQuestionsCorrect = false;
+                    else if (!isQuestionCorrect) allQuestionsCorrect = false;
+                    break;
+
+                default:
+                    console.warn(`Unknown question type for evaluation: ${questionType}`);
+                    allQuestionsCorrect = false; // Treat unknown types as incorrect/not flawless
+            }
+        } catch (evalError) {
+            console.error(`Error evaluating question ${qIndex + 1} (Type: ${questionType}):`, evalError);
+            allQuestionsCorrect = false; // Mark as not flawless if evaluation fails
         }
-        // --- End Answer Evaluation ---
+        // --- End Answer Evaluation Logic ---
 
         if (isQuestionCorrect) {
-            correct++;
+            correctAnswersCount++; // Increment correct count
         }
+        // Log result for this question - qIndex IS defined here
         console.log(`Question ${qIndex + 1} (${questionType}): ${isQuestionCorrect ? 'Correct' : 'Incorrect'}`);
-    });
-    console.log(`Test Result: ${correct}/${total}, Flawless: ${allCorrect}`);
 
-    // --- 2. Show Results Modal ---
-    if (resultCorrect) resultCorrect.textContent = correct;
-    if (resultTotal) resultTotal.textContent = total;
-    const finalSuccessRate = total > 0 ? Math.round((correct / total) * 100) : 0;
-    if (resultPercentage) resultPercentage.textContent = `${finalSuccessRate}%`;
-    if (modal) modal.classList.add('show');
+    }); // End questionElements.forEach
 
-    // --- 3. Update User Data (If Logged In) ---
-    if (!currentUser) {
-        console.warn("User not logged in. Test results not saved.");
+    console.log(`Test Result: ${correctAnswersCount}/${total}, Flawless: ${allQuestionsCorrect}`);
+
+    // --- 3. Show Results Modal ---
+    if (resultCorrectEl) resultCorrectEl.textContent = correctAnswersCount;
+    if (resultTotalEl) resultTotalEl.textContent = total;
+    const finalSuccessRate = total > 0 ? Math.round((correctAnswersCount / total) * 100) : 0;
+    if (resultPercentageEl) resultPercentageEl.textContent = `${finalSuccessRate}%`;
+    if (modalEl) modalEl.classList.add('show');
+
+    // --- 4. Update User Data (If Logged In) ---
+    if (!currentUser || !db) { // Check db instance too
+        console.warn("User not logged in or DB not available. Test results not saved.");
         addBackButtonToTestContainer();
         return;
     }
 
     console.log("Updating user data in Firestore...");
-    const userData = await getUserData(currentUser, db); // Get FRESH data
-    if (!userData) {
-        console.error("Could not retrieve user data to save results.");
-        alert("Chyba: Nepodařilo se načíst uživatelská data pro uložení výsledků.");
-        addBackButtonToTestContainer();
-        return;
-    }
-
-    // Ensure necessary structures exist and convert topics to Set for processing
-    userData.progress = userData.progress || {};
-    userData.achievements = userData.achievements || {};
-    userData.activity = userData.activity || {};
-    userData.dailyQuests = userData.dailyQuests || { quests: [], subjectsToday: [], testsTodayIds: [], bonusXPAwarded: false }; // Initialize quest structure
-    userData.dailyQuests.quests = userData.dailyQuests.quests || [];
-    userData.dailyQuests.subjectsToday = userData.dailyQuests.subjectsToday || [];
-    userData.dailyQuests.testsTodayIds = userData.dailyQuests.testsTodayIds || [];
-    userData.dailyQuests.bonusXPAwarded = userData.dailyQuests.bonusXPAwarded || false;
-    userData.completedTopics = new Set(userData.completedTopics || []); // Use Set
-
-    const subject = subjectSelect.value;
-    const topic = topicSelect.value;
-    const uniqueTestId = `${subject}-${topic}`;
-
-    // --- 4. Update Base Stats & Activity ---
-    userData.testsToday = (userData.testsToday || 0) + 1;
-    userData.correctAnswersToday = (userData.correctAnswersToday || 0) + correct;
-    userData.totalTestsCompleted = (userData.totalTestsCompleted || 0) + 1;
-    // Base XP gain from this test (bonus added later)
-    const baseXPIncrement = correct;
-    userData.totalXP = (userData.totalXP || 0) + baseXPIncrement;
-    userData.weeklyXP = (userData.weeklyXP || 0) + baseXPIncrement;
-
-    // Update subject progress
-    if (subject && (data[subject] || schoolSubjectConfig[subject])) { // Use schoolSubjectConfig for existence check? Or rely on `data`? Let's use `data`.
-         if (data[subject]) { // Check if subject data loaded
-             userData.progress[subject] = userData.progress[subject] || { testsCompleted: 0, correctAnswers: 0, totalQuestionsAnswered: 0, successRate: 0 };
-             const subjData = userData.progress[subject];
-             subjData.testsCompleted++;
-             subjData.correctAnswers += correct;
-             subjData.totalQuestionsAnswered = (subjData.totalQuestionsAnswered || 0) + total;
-             subjData.successRate = subjData.totalQuestionsAnswered > 0
-                 ? Math.round((subjData.correctAnswers / subjData.totalQuestionsAnswered) * 100)
-                 : 0;
-         } else {
-             console.warn(`Progress not updated for subject "${subject}" as its data was not found/loaded.`);
-         }
-     }
-
-
-    // Update average success rate
-    let totalSuccessSum = 0, numSubjectsWithProgress = 0;
-    for (const subjKey in userData.progress) {
-        if (userData.progress[subjKey]?.testsCompleted > 0) {
-            totalSuccessSum += (userData.progress[subjKey].successRate || 0);
-            numSubjectsWithProgress++;
+    try {
+        // Get FRESH user data before making modifications
+        const userData = await getUserData(currentUser, db);
+        if (!userData) {
+            throw new Error("Nepodařilo se načíst uživatelská data pro uložení výsledků.");
         }
-    }
-    userData.averageSuccessRate = numSubjectsWithProgress > 0 ? Math.round(totalSuccessSum / numSubjectsWithProgress) : 0;
 
-    // Update streaks & activity log
-    const today = new Date();
-    const todayDateString = today.toDateString();
-    const todayYear = today.getFullYear();
-    const todayMonth = today.getMonth();
-    const todayDay = today.getDate();
-    if (finalSuccessRate >= 80) {
-        // ... (streak update logic as before) ...
-        const yesterday = new Date(today);
-        yesterday.setDate(today.getDate() - 1);
-        const yesterdayString = yesterday.toDateString();
-        if (userData.lastCompletedTestDate !== todayDateString) {
-            if (userData.lastCompletedTestDate === yesterdayString) userData.dayStreak = (userData.dayStreak || 0) + 1;
-            else userData.dayStreak = 1;
-            userData.lastCompletedTestDate = todayDateString;
+        // Ensure necessary structures exist (using defaults if needed)
+        userData.progress = userData.progress || {};
+        userData.achievements = userData.achievements || {}; // Add defaults if needed: {xpCollector:0, ...}
+        userData.activity = userData.activity || {};
+        userData.dailyQuests = userData.dailyQuests || { quests: [], subjectsToday: [], testsTodayIds: [], bonusXPAwarded: false };
+        userData.dailyQuests.quests = userData.dailyQuests.quests || [];
+        userData.dailyQuests.subjectsToday = userData.dailyQuests.subjectsToday || [];
+        userData.dailyQuests.testsTodayIds = userData.dailyQuests.testsTodayIds || [];
+        userData.dailyQuests.bonusXPAwarded = userData.dailyQuests.bonusXPAwarded || false;
+        userData.completedTopics = new Set(userData.completedTopics || []); // Process as Set
+
+        const subject = subjectSelect.value;
+        const topic = topicSelect.value;
+        const uniqueTestId = subject && topic ? `${subject}-${topic}` : null; // Handle empty selection
+
+        // --- 4a. Update Base Stats & Activity ---
+        userData.testsToday = (userData.testsToday || 0) + 1;
+        userData.correctAnswersToday = (userData.correctAnswersToday || 0) + correctAnswersCount;
+        userData.totalTestsCompleted = (userData.totalTestsCompleted || 0) + 1;
+        const baseXPIncrement = correctAnswersCount; // Base XP from correct answers
+        userData.totalXP = (userData.totalXP || 0) + baseXPIncrement;
+        userData.weeklyXP = (userData.weeklyXP || 0) + baseXPIncrement;
+
+        // Subject Progress
+        if (subject && data[subject]) { // Check subject exists in loaded data
+            userData.progress[subject] = userData.progress[subject] || { testsCompleted: 0, correctAnswers: 0, totalQuestionsAnswered: 0, successRate: 0 };
+            const subjData = userData.progress[subject];
+            subjData.testsCompleted++;
+            subjData.correctAnswers += correctAnswersCount;
+            subjData.totalQuestionsAnswered = (subjData.totalQuestionsAnswered || 0) + total;
+            subjData.successRate = subjData.totalQuestionsAnswered > 0 ? Math.round((subjData.correctAnswers / subjData.totalQuestionsAnswered) * 100) : 0;
         }
-    } else {
-        if (userData.lastCompletedTestDate !== todayDateString) userData.dayStreak = 0;
-    }
-    userData.activity[todayYear] = userData.activity[todayYear] || {};
-    userData.activity[todayYear][todayMonth] = userData.activity[todayYear][todayMonth] || {};
-    userData.activity[todayYear][todayMonth][todayDay] = (userData.activity[todayYear][todayMonth][todayDay] || 0) + 1;
-    userData.lastActivityDate = todayDateString;
 
-    // --- 5. Update Daily Quest Progress ---
-    let earnedBonusXP = 0;
-    const quests = userData.dailyQuests.quests; // Already ensured it exists
-    const bonusWasAlreadyAwarded = userData.dailyQuests.bonusXPAwarded;
+        // Average Success Rate
+        let totalSuccessSum = 0, numSubjectsWithProgress = 0;
+        for (const subjKey in userData.progress) { /* ... calculation ... */ }
+        userData.averageSuccessRate = numSubjectsWithProgress > 0 ? Math.round(totalSuccessSum / numSubjectsWithProgress) : 0;
 
-    // Track unique subjects/tests for today
-    if (subject && !userData.dailyQuests.subjectsToday.includes(subject)) {
-        userData.dailyQuests.subjectsToday.push(subject);
-    }
-    if (uniqueTestId !== "-" && !userData.dailyQuests.testsTodayIds.includes(uniqueTestId)) {
-        userData.dailyQuests.testsTodayIds.push(uniqueTestId);
-    }
-    // Check if this topic was completed for the first time EVER
-    // Need to check using schoolSubjectConfig for file existence, not just `data`
-    const topicFileExists = schoolSubjectConfig[schoolTypeSelect.value]?.[subject]?.[topic]; // Check if topic is defined in config
-    const isNewTopicOverall = topic && topicFileExists && !userData.completedTopics.has(topic); // Ensure topic defined and not already completed
+        // Streaks & Activity Log
+        const today = new Date(); /* ... get date parts ... */
+        const todayDateString = today.toDateString();
+        // ... (Streak update logic) ...
+        if (finalSuccessRate >= 80) { /* ... update dayStreak and lastCompletedTestDate ... */ }
+        else { /* ... reset dayStreak if necessary ... */ }
+        // ... (Activity log update logic) ...
+        userData.lastActivityDate = todayDateString;
 
-    let allQuestsNowComplete = true; // Assume true until proven otherwise
-    console.log("Checking daily quests update...");
 
-    quests.forEach(quest => {
-        if (!quest.isCompleted) {
-            let progressIncrement = 0;
-            switch (quest.type) {
-                case "complete_tests": progressIncrement = 1; break;
-                case "flawless_tests": if (allCorrect) progressIncrement = 1; break;
-                case "earn_xp": progressIncrement = correct; break; // Uses XP from THIS test
-                case "unique_subjects": quest.currentProgress = userData.dailyQuests.subjectsToday.length; break; // Set directly
-                case "unique_tests": quest.currentProgress = userData.dailyQuests.testsTodayIds.length; break; // Set directly
-                case "new_tests": if (isNewTopicOverall) progressIncrement = 1; break;
+        // --- 4b. Update Daily Quest Progress ---
+        let earnedBonusXP = 0;
+        const quests = userData.dailyQuests.quests;
+        const bonusWasAlreadyAwarded = userData.dailyQuests.bonusXPAwarded;
+
+        // Track unique subjects/tests today
+        if (subject && !userData.dailyQuests.subjectsToday.includes(subject)) {
+            userData.dailyQuests.subjectsToday.push(subject);
+        }
+        if (uniqueTestId && !userData.dailyQuests.testsTodayIds.includes(uniqueTestId)) {
+            userData.dailyQuests.testsTodayIds.push(uniqueTestId);
+        }
+        // Check if topic is genuinely new overall
+        const schoolType = schoolTypeSelect.value; // Get selected school type
+        const topicFileExists = schoolType && subject && topic && schoolSubjectConfig[schoolType]?.[subject]?.[topic];
+        const isNewTopicOverall = topic && topicFileExists && !userData.completedTopics.has(topic);
+
+        let allQuestsNowComplete = true;
+        console.log("Checking daily quests update...");
+        quests.forEach(quest => {
+            if (!quest.isCompleted) {
+                let progressIncrement = 0;
+                switch (quest.type) {
+                    case "complete_tests": progressIncrement = 1; break;
+                    case "flawless_tests": if (allQuestionsCorrect) progressIncrement = 1; break;
+                    case "earn_xp": progressIncrement = correctAnswersCount; break;
+                    case "unique_subjects": quest.currentProgress = userData.dailyQuests.subjectsToday.length; break;
+                    case "unique_tests": quest.currentProgress = userData.dailyQuests.testsTodayIds.length; break;
+                    case "new_tests": if (isNewTopicOverall) progressIncrement = 1; break;
+                }
+                if (progressIncrement > 0) quest.currentProgress += progressIncrement;
+                if (quest.currentProgress >= quest.target) {
+                    quest.isCompleted = true;
+                    console.log(`Daily Quest Item Completed: ${quest.description}`);
+                }
             }
-            if (progressIncrement > 0) { quest.currentProgress += progressIncrement; }
-            if (quest.currentProgress >= quest.target) {
-                quest.isCompleted = true;
-                console.log(`Daily Quest Item Completed: ${quest.description}`);
-            }
+            if (!quest.isCompleted) allQuestsNowComplete = false;
+        });
+
+        // Award Bonus XP if applicable
+        if (allQuestsNowComplete && !bonusWasAlreadyAwarded) {
+             console.log("All daily quests completed! Awarding bonus XP.");
+             earnedBonusXP = 25;
+             userData.dailyQuests.bonusXPAwarded = true;
+             userData.totalXP += earnedBonusXP; // Add bonus to totals
+             userData.weeklyXP += earnedBonusXP;
         }
-        // Check completion status AFTER potential update for this iteration
-        if (!quest.isCompleted) { allQuestsNowComplete = false; }
-    });
+        // --- End Daily Quest Update ---
 
-    // Award BONUS if all complete and not previously awarded
-    if (allQuestsNowComplete && !bonusWasAlreadyAwarded) {
-         console.log("All daily quests completed! Awarding bonus XP.");
-         earnedBonusXP = 25; // The single bonus amount
-         userData.dailyQuests.bonusXPAwarded = true; // Mark as awarded
-         // Add bonus XP to totals
-         userData.totalXP += earnedBonusXP;
-         userData.weeklyXP += earnedBonusXP;
-    } else if (allQuestsNowComplete && bonusWasAlreadyAwarded) {
-        console.log("All daily quests complete, but bonus already awarded today.");
+        // --- 4c. Update Achievements & Completed Topics Set ---
+        if (allQuestionsCorrect) {
+            userData.flawlessTestCount = (userData.flawlessTestCount || 0) + 1;
+            userData.winningStreakCount = (userData.winningStreakCount || 0) + 1;
+        } else {
+            userData.winningStreakCount = 0; // Reset streak if not flawless
+        }
+        if (isNewTopicOverall) {
+            userData.completedTopics.add(topic); // Add to set
+            console.log(`Added "${topic}" to overall completed topics.`);
+        }
+        updateAchievements(userData); // Calculate levels based on potentially updated stats
+
+
+        // --- 5. Prepare Data and Save to Firestore ---
+        const dataToSave = {
+            ...userData, // Spread all potentially modified fields
+            completedTopics: Array.from(userData.completedTopics) // Convert Set back to Array for saving
+        };
+        await saveUserData(currentUser, dataToSave, db);
+        console.log("User data saved after test evaluation.");
+
+        // --- 6. Update UI Elements ---
+        console.log("Updating UI after test evaluation...");
+        updateDailyQuestsUI(userData.dailyQuests.quests, userData.dailyQuests.bonusXPAwarded);
+        updateStatisticsSection(userData);
+        updateDashboard(userData);
+        updateProgressSection(userData);
+        updateAchievementsUI(userData);
+        await generateCalendar(currentYear, currentMonth, db);
+
+        // --- 7. Refresh Leaderboard If Visible ---
+        const isDashboardVisible = (dashboardSection && dashboardSection.style.display === 'block');
+        if (isDashboardVisible) {
+            console.log("Dashboard section is visible, refreshing leaderboard...");
+            await refreshLeaderboard();
+        }
+
+    } catch (error) {
+        // Catch errors during data processing or saving
+        console.error("Error during user data update/saving after test evaluation:", error);
+        alert(`Chyba při ukládání výsledků testu: ${error.message}`);
+        // Don't prevent back button from showing
+    } finally {
+         // --- 8. Add Back Button (Always runs) ---
+         addBackButtonToTestContainer();
     }
-    // --- End Daily Quest Update ---
-
-    // --- 6. Update Achievements & Completed Topics ---
-    if (allCorrect) {
-        userData.flawlessTestCount = (userData.flawlessTestCount || 0) + 1;
-        userData.winningStreakCount = (userData.winningStreakCount || 0) + 1;
-    } else {
-        userData.winningStreakCount = 0; // Reset consecutive flawless streak on any error
-    }
-    // Add topic to overall completed list if it was new
-    if (isNewTopicOverall) {
-        userData.completedTopics.add(topic);
-        console.log(`Added "${topic}" to overall completed topics.`);
-    }
-    updateAchievements(userData); // Calculate achievement levels based on updated stats
-
-
-    // --- 7. Prepare for Saving & Save ---
-    const dataToSave = {
-        ...userData, // Spread existing data
-        completedTopics: Array.from(userData.completedTopics) // Convert Set back to Array
-        // dailyQuests object is already updated within userData
-    };
-    await saveUserData(currentUser, dataToSave, db);
-    console.log("User data saved after test evaluation.");
-
-    // --- 8. Update UI ---
-    console.log("Updating UI after test evaluation...");
-    // Pass the potentially updated bonus awarded status
-    updateDailyQuestsUI(userData.dailyQuests.quests, userData.dailyQuests.bonusXPAwarded);
-    updateStatisticsSection(userData); // Updates Streak/XP cards with final values
-    updateDashboard(userData); // Updates subject progress cards
-    updateProgressSection(userData); // Updates stats table with final values
-    updateAchievementsUI(userData); // Updates achievements UI
-    await generateCalendar(currentYear, currentMonth, db);
-
-    // --- 9. Refresh Leaderboard If Visible ---
-    // Check if the dashboard (where leaderboard now is) is visible
-     const isDashboardVisible = (dashboardSection && dashboardSection.style.display === 'block');
-     if (isDashboardVisible) {
-         console.log("Dashboard section is visible, refreshing leaderboard...");
-         await refreshLeaderboard();
-     }
-
-    // --- 10. Add Back Button ---
-    addBackButtonToTestContainer();
 }
 
 
