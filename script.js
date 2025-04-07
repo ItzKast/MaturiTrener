@@ -877,17 +877,16 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) {
 
         if (userData) {
             console.log("User data loaded:", userData);
+            // --- Define date variables ---
             const today = new Date();
-            const todayStr = today.toISOString().split('T')[0]; // For quest generation check
-            // ---> DEFINE todayDateString HERE <---
-            const todayDateString = today.toDateString(); // For daily activity reset check
-            // ---> END DEFINITION <---
+            const todayStr = today.toISOString().split('T')[0]; // For quest check
+            const todayDateString = today.toDateString();      // For daily reset check
 
-            let needsSave = false;
+            let needsSave = false; // Flag for saving updates
 
             // --- Check and Generate Daily Quests ---
             const lastGeneratedDate = userData.dailyQuests?.generatedDate;
-            if (!lastGeneratedDate || lastGeneratedDate !== todayStr) { // Use todayStr
+            if (!lastGeneratedDate || lastGeneratedDate !== todayStr) {
                 console.log(`Generating new daily quests for ${todayStr}. Last generated: ${lastGeneratedDate}`);
                 const newQuests = generateNewDailyQuests(userData);
                 userData.dailyQuests = {
@@ -900,7 +899,7 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) {
                 needsSave = true;
                 console.log("New daily quests prepared for saving:", userData.dailyQuests);
             } else {
-                // Ensure structure exists... (as before)
+                // Ensure structure exists even if quests are already generated
                 userData.dailyQuests = userData.dailyQuests || {};
                 userData.dailyQuests.quests = userData.dailyQuests.quests || [];
                 userData.dailyQuests.subjectsToday = userData.dailyQuests.subjectsToday || [];
@@ -910,7 +909,12 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) {
             }
             // --- End Daily Quest Check ---
 
-            // --- Daily Reset Check (NOW uses the correctly defined todayDateString) ---
+            // --- Daily Reset Check ---
+            // ---> ADDED DEFINITIVE DEBUG LOG HERE <---
+            console.log(`DEBUG: Checking daily reset. Type of todayDateString: ${typeof todayDateString}, Value: ${todayDateString}`);
+            // ---> END DEBUG LOG <---
+
+            // This line (approx script.js:910) was causing the error previously
             if (userData.lastActivityDate !== todayDateString) {
                 console.log(`New day detected (Last: ${userData.lastActivityDate}, Today: ${todayDateString}). Resetting daily stats.`);
                 userData.testsToday = 0;
@@ -919,22 +923,25 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) {
                 if (userData.dailyQuests) {
                     userData.dailyQuests.subjectsToday = [];
                     userData.dailyQuests.testsTodayIds = [];
-                    // NOTE: Do NOT reset bonusXPAwarded here, only when generating new quests
                 }
                 needsSave = true;
             }
             // --- End Daily Reset Check ---
 
+            // Ensure completedTopics is a Set for processing
             userData.completedTopics = new Set(userData.completedTopics || []);
 
+            // --- Save if needed ---
             if (needsSave) {
                 console.log("Saving user data due to quest generation or daily reset...");
+                // Convert Set back to Array before saving
                 const dataToSave = { ...userData, completedTopics: Array.from(userData.completedTopics) };
                 await saveUserData(uid, dataToSave, db);
                 console.log("User data saved.");
             }
 
             // --- Update UI ---
+            // Pass necessary data to UI update functions
             updateDailyQuestsUI(userData.dailyQuests?.quests || [], userData.dailyQuests?.bonusXPAwarded || false);
             updateStatisticsSection(userData);
             updateDashboard(userData);
@@ -943,15 +950,17 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) {
             console.log("UI updated after loading user data.");
 
         } else {
-            console.warn('loadUserDataFromFirestore: getUserData returned null/undefined unexpectedly.');
-            clearUserDataUI();
+            // Handle case where getUserData returned null (e.g., user document deleted unexpectedly)
+            console.warn('loadUserDataFromFirestore: getUserData returned null/undefined unexpectedly for UID:', uid);
+            clearUserDataUI(); // Clear UI elements
             updateDailyQuestsUI([], false); // Clear quests UI
-            await generateCalendar(currentYear, currentMonth, db);
+            await generateCalendar(currentYear, currentMonth, db); // Show empty calendar
         }
     } catch (error) {
-        console.error("Error in loadUserDataFromFirestore:", error);
-        // Displaying alert might be annoying, consider logging or UI message
-        // alert("Nastala chyba při načítání uživatelských dat.");
+        // Log error with context
+        console.error("Error in loadUserDataFromFirestore:", error, ` | UID: ${uid}, isNewlyRegistered: ${isNewlyRegistered}`);
+        // Consider showing a user-friendly error message instead of alert
+        // displayErrorMessage("Chyba při načítání uživatelských dat.");
         clearUserDataUI();
         updateDailyQuestsUI([], false); // Clear quests UI
     }
