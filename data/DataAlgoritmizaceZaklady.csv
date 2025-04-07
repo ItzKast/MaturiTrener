@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je algoritmus?;Postup pro řešení určitého problému;Typ souboru;Způsob kreslení;Programovací jazyk
+Jaké vlastnosti má algoritmus?;Jednoznačnost, konečnost, výslednost;Dlouhost a náročnost;Barevnost a zvuk;Jednoduchost a kopie
+K čemu slouží vývojový diagram?;Zobrazení algoritmu graficky;Vytváření tabulek;Zobrazení textu;Programování robotů
+Co je pseudokód?;Popis algoritmu v přirozeném jazyce blízkém programování;Skutečný program;Typ viru;Vektorový graf
+Jaký je hlavní cíl programování?;Vytvořit funkční a efektivní algoritmus;Uložit soubor;Změnit heslo;Zvýšit rychlost internetu
+Co je sekvence v algoritmu?;Postupné provádění příkazů;Rozdělení obrazovky;Grafické rozhraní;Zabezpečení přístupu
+Co je podmínka v algoritmu?;Rozhodovací část, která mění tok programu;Tisk dokumentu;Změna fontu;Uložení souboru
+Co je cyklus v programování?;Opakování části programu;Zrychlení počítače;Grafická smyčka;Název funkce
+Které jazyky se často používají pro výuku programování?;Python, Scratch;Excel, Word;HTML, CSS;JavaScript, Photoshop
+Co znamená výraz 'složitost algoritmu'?;Míra náročnosti na čas a paměť;Počet obrázků;Velikost textu;Úroveň grafiky
+Co je proměnná?;Místo v paměti, kde je uložená hodnota;Změna textu;Typ grafu;Formát dokumentu
+Jaký datový typ slouží pro čísla s desetinnou čárkou?;Float;Integer;String;Boolean
+Jaký datový typ slouží pro pravdivostní hodnoty?;Boolean;String;Char;Double
+Co je krok algoritmu?;Jednotlivá operace v postupu;Velikost disku;Změna barvy;Oprava textu
+Co je inicializace proměnné?;Přiřazení počáteční hodnoty;Uložení do cloudu;Tisk na obrazovku;Změna stylu
+Jaký je rozdíl mezi proměnnou a konstantou?;Proměnná se může měnit, konstanta ne;Konstanta je číslo;Proměnná je text;Žádný rozdíl
+Co je ladění programu?;Hledání a oprava chyb;Změna barvy;Vytvoření tabulky;Tisk dat
+Jaký nástroj slouží k psaní kódu?;Editor (např. VS Code);Kalkulačka;Tabulkový procesor;Grafický editor
+Co je syntaxe v programování?;Pravidla pro zápis kódu;Styl obrázku;Rozlišení videa;Způsob tisku
+K čemu slouží komentář v kódu?;Vysvětluje části kódu bez vlivu na běh programu;Spouští kód;Mění hodnotu;Mazání řádků

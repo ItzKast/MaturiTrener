@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je HTML?;Značkovací jazyk pro tvorbu webových stránek;Programovací jazyk;Databázový jazyk;Zabezpečovací protokol
+Co znamená zkratka WWW?;World Wide Web;Wide World Word;Wireless Web Window;Web With Words
+Co je doména?;Název internetové stránky;Typ šifrování;IP adresa;Značka počítače
+K čemu slouží webhosting?;Umožňuje zveřejnění webových stránek na internetu;Zálohuje dokumenty;Spravuje tiskárny;Převádí formáty
+K čemu slouží webový prohlížeč?;Zobrazuje webové stránky;Píše text;Tiskne obrázky;Převádí videa
+Který z následujících programů je webový prohlížeč?;Google Chrome;MS Word;Adobe Photoshop;Audacity
+Co je adresa URL?;Jedinečná adresa webové stránky;Název počítače;Formát textu;Typ sítě
+K čemu slouží HTML značky (tagy)?;Definují strukturu a obsah webu;Zrychlují internet;Přidávají heslo;Zabezpečují síť
+Jaká je základní struktura HTML dokumentu?;html, head, body;start, text, end;header, footer, block;file, text, link
+K čemu slouží značka <a>?;Vytváří odkaz;Zobrazí obrázek;Změní barvu;Vloží tabulku
+Co znamená značka <img>?;Vložení obrázku;Vložení videa;Vložení tabulky;Změna pozadí
+Co je hypertext?;Text obsahující odkazy;Text bez formátování;Zdrojový kód;E-mail
+K čemu slouží editor HTML?;Tvorba a úprava webových stránek;Změna hesla;Stahování videí;Úprava PDF
+Jak se nazývá editor, který umožňuje tvorbu webu bez znalosti HTML?;WYSIWYG editor;BASIC;Compiler;Debugger
+K čemu slouží značka <h1>?;Vytvoření hlavního nadpisu;Změna velikosti písma;Vložení tabulky;Zarovnání textu
+Jakou značku použijeme pro odrážkový seznam?;<ul>;<list>;<table>;<br>
+K čemu slouží značka <table>?;Vytváří tabulku;Vkládá text;Změní styl stránky;Vloží zvuk
+Jaká značka vytvoří nový řádek v HTML?;<br>;<line>;<enter>;<row>
+Co je favicon?;Malá ikona webu zobrazující se v záložce prohlížeče;Typ obrázku;Název šablony;Styl písma
+K čemu slouží značka <link>?;Vkládá externí soubor (např. CSS);Vytváří tabulku;Změní barvu textu;Odešle formulář

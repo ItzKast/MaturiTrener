@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je kryptologie?;Věda o šifrování a zabezpečení informací;Typ databáze;Způsob připojení k síti;Obor grafického designu
+Jaká je hlavní funkce šifry?;Změnit čitelný text na nečitelný;Zvětšit soubor;Změnit barvy obrázku;Vložit zvuk
+Co je Caesarova šifra?;Jednoduchý posun znaků v abecedě;Algoritmus pro obrázky;Styl písma;Typ souboru
+K čemu slouží Enigma?;Šifrovací stroj používaný během 2. světové války;Hudební nástroj;Program pro střih videa;Antivirový software
+Co je princip substituce v kryptografii?;Nahrazení znaků jinými znaky;Změna velikosti;Změna fontu;Změna souboru
+Co je dešifrování?;Převedení šifrované zprávy zpět na čitelný text;Vytvoření hesla;Smazání dat;Změna motivu
+Co je moderní metoda šifrování?;AES (Advanced Encryption Standard);WAV;MP4;HTML
+K čemu slouží elektronický podpis?;Ověřuje pravost a původ dokumentu;Mění velikost obrázku;Zrychluje internet;Opravuje text
+Co je certifikát?;Digitální osvědčení potvrzující identitu;Záloha souboru;Seznam kontaktů;Název domény
+Jaký je rozdíl mezi symetrickým a asymetrickým šifrováním?;Symetrické používá jeden klíč, asymetrické dva různé;Asymetrické je starší;Symetrické je pomalejší;Žádný rozdíl
+Co je veřejný klíč?;Klíč dostupný pro šifrování zprávy ostatními;Soukromý klíč uživatele;Záloha disku;Nastavení sítě
+K čemu slouží hashovací funkce?;Vytvoření jedinečného otisku dat;Změna velikosti písma;Tisk dokumentu;Zabezpečení sítě
+Co je SSL/TLS?;Bezpečnostní protokol pro přenos dat na internetu;Způsob šifrování obrazu;Typ grafiky;Formát dokumentu
+Jaký je účel VPN?;Zajištění bezpečné komunikace po internetu;Změna fontu;Překlad textu;Zobrazení videa
+Co znamená HTTPS?;Bezpečná verze protokolu HTTP;Hyperlink transfer protocol;Ochrana hesel;Systém tabulek
+Jaký je příklad historické šifry?;Skytale;Excel;RSA;USB
+Co znamená pojem kryptoanalýza?;Analýza a lámání šifer;Tvorba grafů;Změna dat;Tvorba databází
+Co je dvoufázové ověření?;Bezpečnostní metoda s heslem a druhým krokem (SMS, appka…);Tisk dokumentu;Odeslání e-mailu;Změna hesla
+Jaký algoritmus se často používá pro šifrování souborů?;AES;HTML;JPEG;HTTP
+Co je digitální otisk?;Výsledný hash z dat, který je jedinečný;Naskenovaný podpis;Obrázek dokumentu;Font textu

@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je tabulkový editor?;Program určený k práci s tabulkami a výpočty;Program na psaní textu;Grafický editor;Hudební přehrávač
+Který z programů je tabulkový editor?;MS Excel;MS Word;PowerPoint;Photoshop
+K čemu slouží buňka v Excelu?;Základní jednotka tabulky pro zápis dat;Programovací jazyk;Grafický objekt;Typ grafu
+Co je vzorec v Excelu?;Výpočetní výraz začínající znakem =;Název souboru;Styl tabulky;Typ grafu
+Jak se označuje sloupec v Excelu?;Písmenem;Číslem;Barvou;Tvarováním
+Jak se označuje řádek v Excelu?;Číslem;Písmenem;Symboly;Styly
+K čemu slouží funkce SUMA?;Sečítá hodnoty;Mění typ písma;Tiskne dokument;Změní pozadí
+Co je absolutní odkaz?;Odkaz, který se nemění při kopírování;Odkaz, který se vždy změní;Hypertextový odkaz;Formát buňky
+Jaký je symbol pro absolutní odkaz?;$;#;&;*
+Co je filtr v Excelu?;Nástroj pro zobrazení jen určitých hodnot;Změna pozadí;Tisková funkce;Formát písma
+K čemu slouží grafy v Excelu?;Vizualizují data;Opravují pravopis;Změní formát textu;Vytvářejí tabulky
+Jaký typ grafu zobrazuje části celku?;Výsečový graf;Spojnicový graf;Sloupcový graf;Plošný graf
+K čemu slouží funkce PRŮMĚR?;Vypočítá průměrnou hodnotu z rozsahu;Vytiskne stránku;Označí celý řádek;Změní velikost fontu
+Jaký je správný formát pro vzorec v Excelu?;=A1+B1;A1+B1;SUMA A1:B1;"=SUM(A1;B1"
+Kde najdeš funkci „Podmíněné formátování“?;Na kartě „Domů“;Na kartě „Vložení“;V nabídce „Zobrazení“;V „Možnostech Wordu“
+Co znamená funkce IF?;Podmíněné rozhodnutí;Sečtení hodnot;Vypsání textu;Změna barvy buňky
+Jaký typ dat lze uložit do buňky?;Čísla, text, vzorce;Obrázky;Webové odkazy;Zvukové záznamy
+K čemu slouží funkce MAX?;Najde nejvyšší hodnotu;Vypočítá průměr;Změní styl;Smaže obsah
+Jaký nástroj slouží k rychlému výběru a uspořádání dat?;Třídění a filtrování;Změna fontu;Tisk;Záhlaví a zápatí
+Co je kontingenční tabulka?;Nástroj pro analýzu a shrnutí dat;Grafický formát;Textový styl;Tisková sestava

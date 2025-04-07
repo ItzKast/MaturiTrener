@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je vstup programu?;Data, která program přijímá k dalšímu zpracování;Výstupní zpráva;Zdrojový kód;Grafické rozhraní
+Co je výstup programu?;Výsledek zpracování dat;Příkazový řádek;Chyba v kódu;Zadání proměnné
+Jaký je význam proměnné v kódu?;Ukládá hodnotu, která se může měnit;Slouží jako komentář;Změní barvu stránky;Spouští program
+Jaký symbol značí přiřazení v Pythonu?;=;==;:;->
+K čemu slouží podmínka 'if'?;Spouští kód jen při splnění určité podmínky;Zastaví běh programu;Změní styl;Zvýší výkon
+Jaká je syntaxe cyklu 'for' v Pythonu?;for i in range(10):;loop i = 10;repeat (i<10);next i to 10
+Jaký cyklus se používá pro opakování dokud platí podmínka?;while;for;loop;if
+Co je vnořená podmínka?;Podmínka uvnitř jiné podmínky;Funkce uvnitř třídy;Komentář v programu;Změna proměnné
+K čemu slouží 'else'?;Spouští alternativní kód, když 'if' není splněno;Změní jazyk;Zpustí kód pokaždé;Uloží soubor
+Jak vypíšeš text na obrazovku v Pythonu?;"print(""text"")";show(text);echo text;write text
+Jak deklaruješ proměnnou v Pythonu?;např. x = 5;var x 5;declare x as 5;let x 5
+K čemu slouží funkce v kódu?;Zabalí část kódu, který lze znovu použít;Ukládá data;Změní jazyk;Restartuje program
+Co je rekurze?;Funkce volá sama sebe;Chyba v kódu;Podmínka v cyklu;Náhodné číslo
+K čemu slouží příkaz 'return'?;Vrací výsledek z funkce;Zavře editor;Tiskne text;Vymaže data
+Jak poznáš komentář v Pythonu?;Začíná znakem #;Začíná znakem @;Začíná znakem $;Začíná znakem *
+Jaký je datový typ 'True'?;Boolean;String;Float;List
+Jaká je syntaxe pro vstup od uživatele?;"input(""Zadej číslo:"")";ask();getdata();scanf()
+Jaký je výsledek 5 // 2 v Pythonu?;2;2.5;3;0
+Co je chyba typu syntax error?;Chyba ve struktuře kódu;Zpoždění kódu;Chyba v hardwaru;Výsledek rovná nule
+K čemu slouží indentace v Pythonu?;Určuje bloky kódu;Změní barvu textu;Tiskne výstup;Uloží data

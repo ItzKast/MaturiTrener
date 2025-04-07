@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je základní deska (motherboard)?;Hlavní deska, která propojuje všechny komponenty počítače;Součást RAM;Monitor;Pevný disk
+K čemu slouží procesor (CPU)?;Provádí výpočty a řídí činnost počítače;Zobrazuje obraz;Ukládá data;Chladí počítač
+Co je RAM?;Operační paměť počítače;Trvalá paměť;Chladič;Zdroj
+K čemu slouží BIOS?;Spouští základní hardware při startu počítače;Zálohuje data;Změní rozlišení;Nainstaluje tiskárnu
+Jaká zařízení se připojují k základní desce?;Procesor, RAM, pevný disk, grafická karta;Monitor, klávesnice;Wi-Fi, Bluetooth;Skener, myš
+K čemu slouží pevný disk (HDD)?;K trvalému ukládání dat;K zobrazení videa;K napájení zařízení;K připojení internetu
+Jaký je rozdíl mezi HDD a SSD?;SSD je rychlejší a nemá pohyblivé části;HDD je rychlejší;SSD je větší;Mezi nimi není rozdíl
+Co je zdroj (PSU)?;Zajišťuje napájení všech komponent;Paměťový modul;Operační systém;Tiskárna
+Jaká jednotka se používá k měření výkonu procesoru?;GHz;MB;kB;dpi
+K čemu slouží grafická karta (GPU)?;Zpracovává obrazová data;Přijímá internet;Zabezpečuje data;Zapisuje soubory
+Kde se nachází chladič?;Na procesoru nebo grafické kartě;V monitoru;Ve skeneru;V síťové kartě
+Jaký je účel základního chlazení počítače?;Zabraňuje přehřátí komponent;Zrychluje spuštění systému;Ukládá data;Zvětšuje obraz
+Jaká komponenta určuje výkon pro hraní her?;Grafická karta (GPU);Skener;Myš;USB port
+Co je socket na základní desce?;Místo pro připojení procesoru;Vstup pro monitor;Tlačítko zapnutí;Zásuvka pro RAM
+Co je POST test?;Kontrola hardwaru po zapnutí počítače;Zabezpečení BIOSu;Programování disku;Nastavení sítě
+Jaká komponenta uchovává firmware počítače?;BIOS/UEFI čip;RAM;GPU;Wi-Fi modul
+Co je UEFI?;Moderní náhrada BIOSu;Operační systém;Antivirový program;Herní platforma
+Která komponenta ovlivňuje multitasking?;Operační paměť (RAM);Monitor;Reproduktory;Tiskárna
+Jak se nazývá slot pro grafickou kartu?;PCI Express (PCIe);RAM slot;USB;SATA
+Co je čipset?;Sada obvodů zajišťující komunikaci mezi komponentami;Chladicí zařízení;Název aplikace;Napájecí kabel

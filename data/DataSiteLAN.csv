@@ -1,0 +1,21 @@
+Otazka;Spravna_odpoved;Odpoved_2;Odpoved_3;Odpoved_4
+Co je LAN?;Lokální počítačová síť;Bezdrátová síť;Síť mezi kontinenty;Vesmírná síť
+Jaký je typický příklad LAN?;Síť v domácnosti nebo kanceláři;Internet;Mobilní síť;Bluetooth spojení
+Co je topologie sítě?;Způsob fyzického nebo logického uspořádání prvků sítě;Typ protokolu;Značka kabelu;Nastavení hesla
+Jaký typ topologie používá většina současných LAN sítí?;Hvězda;Kruh;Smyčka;Síťová matice
+Co je síťový protokol?;Soubor pravidel pro komunikaci mezi zařízeními;Druh kabelu;Značka routeru;Antivirový program
+K čemu slouží switch?;Propojuje zařízení v LAN a přeposílá data podle MAC adres;Ukládá data;Zálohuje dokumenty;Slouží jako tiskárna
+Jaká zařízení jsou běžně součástí LAN?;Router, switch, počítače, tiskárny;Televize, rádio, mobil;Reproduktor, kamera, myš;Tablet, telefon, žárovka
+Co je MAC adresa?;Jedinečný identifikátor síťového zařízení;Značka počítače;Typ kabelu;Bezpečnostní kód
+Jaká je úloha síťové karty?;Zajišťuje připojení počítače k síti;Tiskne dokumenty;Zálohuje data;Zobrazuje webové stránky
+K čemu slouží router v LAN?;Řídí přenos dat mezi sítěmi a připojuje síť k internetu;Překlad dokumentů;Spouštění programů;Ukládání hesel
+Co znamená zkratka IP?;Internet Protocol;Informace pro tisk;Interní připojení;Input Program
+Jaký rozsah mají IPv4 adresy?;0.0.0.0 až 255.255.255.255;1–100;AAA–ZZZ;0–127.0.0.1
+Jaký kabel se nejčastěji používá v LAN sítích?;UTP;HDMI;USB;Koaxiální
+K čemu slouží DHCP?;Přiděluje IP adresy zařízením v síti;Ověřuje hesla;Připojuje tiskárny;Spouští antivir
+Co je ping?;Příkaz pro testování odezvy v síti;Název routeru;Virový program;Bezdrátový signál
+Co znamená, když má zařízení statickou IP adresu?;IP se nemění;Získává novou při každém připojení;Nemá IP;Připojuje se přes Wi-Fi
+Jaký je rozdíl mezi switchem a hubem?;Switch přeposílá data jen konkrétnímu zařízení, hub všem;Hub je rychlejší;Switch je bezdrátový;Hub pracuje jen offline
+Co je SSID?;Název bezdrátové sítě;Název počítače;Typ kabelu;Program na skenování
+Jaký protokol se nejčastěji používá pro přenos webových stránek?;HTTP / HTTPS;FTP;SMTP;IPX
+Co je firewall v síti?;Ochrana proti neoprávněnému přístupu;Zálohování dat;Skenování dokumentů;Přenos souborů
