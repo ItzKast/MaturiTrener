@@ -865,7 +865,7 @@ async function saveUserData(uid, data, db) {
         alert("Chyba při ukládání dat. Zkuste to prosím znovu.");
     }
 }
-async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) { // Add parameter here
+async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) {
     console.log("Attempting to load data for user:", uid, `Is New: ${isNewlyRegistered}`);
     if (!uid || !db) {
         console.error("loadUserDataFromFirestore: Missing UID or DB instance.");
@@ -873,16 +873,21 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) { /
     }
 
     try {
-        let userData = await getUserData(uid, db, isNewlyRegistered); // Fetch data (this function now handles defaults if doc doesn't exist)
+        let userData = await getUserData(uid, db, isNewlyRegistered);
 
         if (userData) {
+            console.log("User data loaded:", userData);
             const today = new Date();
-            const todayStr = today.toISOString().split('T')[0];
-            let needsSave = false; // Moved definition higher
+            const todayStr = today.toISOString().split('T')[0]; // For quest generation check
+            // ---> DEFINE todayDateString HERE <---
+            const todayDateString = today.toDateString(); // For daily activity reset check
+            // ---> END DEFINITION <---
+
+            let needsSave = false;
 
             // --- Check and Generate Daily Quests ---
             const lastGeneratedDate = userData.dailyQuests?.generatedDate;
-            if (!lastGeneratedDate || lastGeneratedDate !== todayStr) {
+            if (!lastGeneratedDate || lastGeneratedDate !== todayStr) { // Use todayStr
                 console.log(`Generating new daily quests for ${todayStr}. Last generated: ${lastGeneratedDate}`);
                 const newQuests = generateNewDailyQuests(userData);
                 userData.dailyQuests = {
@@ -890,54 +895,47 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) { /
                     quests: newQuests,
                     subjectsToday: [],
                     testsTodayIds: [],
-                    bonusXPAwarded: false // Reset bonus flag
+                    bonusXPAwarded: false
                 };
                 needsSave = true;
                 console.log("New daily quests prepared for saving:", userData.dailyQuests);
             } else {
-                // Ensure structure exists even if quests are already generated
-                userData.dailyQuests = userData.dailyQuests || {}; // Ensure base object
+                // Ensure structure exists... (as before)
+                userData.dailyQuests = userData.dailyQuests || {};
                 userData.dailyQuests.quests = userData.dailyQuests.quests || [];
                 userData.dailyQuests.subjectsToday = userData.dailyQuests.subjectsToday || [];
                 userData.dailyQuests.testsTodayIds = userData.dailyQuests.testsTodayIds || [];
-                // Don't reset bonusXPAwarded here if quests already exist for today
                 userData.dailyQuests.bonusXPAwarded = userData.dailyQuests.bonusXPAwarded || false;
                 console.log("Daily quests already generated for today.");
             }
+            // --- End Daily Quest Check ---
 
-            console.log("Before Daily Reset Check:", {
-                lastActivity: userData.lastActivityDate,
-                today: todayDateString,
-                testsToday: userData.testsToday,
-                correctToday: userData.correctAnswersToday
-            });
-
-            // --- Daily Reset Check ---
-            // Check if the last recorded activity date is different from today
+            // --- Daily Reset Check (NOW uses the correctly defined todayDateString) ---
             if (userData.lastActivityDate !== todayDateString) {
                 console.log(`New day detected (Last: ${userData.lastActivityDate}, Today: ${todayDateString}). Resetting daily stats.`);
                 userData.testsToday = 0;
-                userData.correctAnswersToday = 0; // Reset today's correct answers counter
-                userData.lastActivityDate = todayDateString;
+                userData.correctAnswersToday = 0;
+                userData.lastActivityDate = todayDateString; // Use todayDateString here
                 if (userData.dailyQuests) {
                     userData.dailyQuests.subjectsToday = [];
                     userData.dailyQuests.testsTodayIds = [];
+                    // NOTE: Do NOT reset bonusXPAwarded here, only when generating new quests
                 }
                 needsSave = true;
             }
+            // --- End Daily Reset Check ---
+
             userData.completedTopics = new Set(userData.completedTopics || []);
 
             if (needsSave) {
-                console.log("Saving updated daily stats after reset...");
-                // Ensure the Set is converted back to Array before saving
+                console.log("Saving user data due to quest generation or daily reset...");
                 const dataToSave = { ...userData, completedTopics: Array.from(userData.completedTopics) };
                 await saveUserData(uid, dataToSave, db);
-                console.log("Daily stats saved.");
-                // Note: userData object in memory is already updated.
+                console.log("User data saved.");
             }
 
-            // --- Update UI Elements ---
-            updateDailyQuestsUI(userData.dailyQuests?.quests || [], userData.dailyQuests?.bonusXPAwarded || false); // <<< ADD THIS CALL
+            // --- Update UI ---
+            updateDailyQuestsUI(userData.dailyQuests?.quests || [], userData.dailyQuests?.bonusXPAwarded || false);
             updateStatisticsSection(userData);
             updateDashboard(userData);
             updateAchievementsUI(userData);
@@ -945,18 +943,17 @@ async function loadUserDataFromFirestore(uid, db, isNewlyRegistered = false) { /
             console.log("UI updated after loading user data.");
 
         } else {
-            // This case should technically be handled by getUserData returning defaults,
-            // but we keep a fallback log here.
             console.warn('loadUserDataFromFirestore: getUserData returned null/undefined unexpectedly.');
-            clearUserDataUI(); // Clear UI elements to show logged-out state
-            await generateCalendar(currentYear, currentMonth, db); // Generate empty calendar
+            clearUserDataUI();
+            updateDailyQuestsUI([], false); // Clear quests UI
+            await generateCalendar(currentYear, currentMonth, db);
         }
-    }
-    catch (error) {
+    } catch (error) {
         console.error("Error in loadUserDataFromFirestore:", error);
-        alert("Nastala chyba při načítání uživatelských dat.");
-        // Optionally clear UI or show specific error message
+        // Displaying alert might be annoying, consider logging or UI message
+        // alert("Nastala chyba při načítání uživatelských dat.");
         clearUserDataUI();
+        updateDailyQuestsUI([], false); // Clear quests UI
     }
 }
 function generateNewDailyQuests(userData) {
