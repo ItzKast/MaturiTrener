@@ -709,85 +709,64 @@ const subjectBadgeInfo = {
     // Add entries for ALL subjects you want badges for
 };
 
-/**
- * Updates the Subject Badges list in the UI.
- * @param {object} userData - The full user data object containing subjectBadges and progress.
- */
 function updateSubjectBadgesUI(userData) {
-    if (!subjectBadgesListEl || !userData) return;
+    // --- Keep checks for elements and userData ---
+    if (!subjectBadgesListEl || !userData) {
+        // Clear or show placeholder if needed, handle null userData
+        if (subjectBadgesListEl) subjectBadgesListEl.innerHTML = '';
+        if (noBadgesLi) noBadgesLi.style.display = 'block';
+        return;
+    }
 
     subjectBadgesListEl.innerHTML = ''; // Clear previous badges
     const awardedBadges = userData.subjectBadges || {};
     const userProgress = userData.progress || {};
     let badgesDisplayed = 0;
 
-    // Iterate through the subjects the user HAS earned a badge for
+    // --- Iterate and create badges ---
     for (const subjectName in awardedBadges) {
         if (awardedBadges.hasOwnProperty(subjectName) && subjectBadgeInfo[subjectName]) {
             const badgeData = awardedBadges[subjectName];
             const badgeDisplayInfo = subjectBadgeInfo[subjectName];
             const subjectProgressData = userProgress[subjectName];
-            let isLost = false; // Flag if badge status is currently lost
+            let isLost = false;
             let tooltip = '';
 
-            // Calculate current average for this subject to check if badge is "lost"
+            // --- Check if badge is lost (Keep this logic) ---
             if (subjectProgressData && subjectProgressData.totalQuestionsAnswered > 0) {
                 const currentAvg = Math.round((subjectProgressData.correctAnswers / subjectProgressData.totalQuestionsAnswered) * 100);
-                if (currentAvg < 80) {
-                    isLost = true;
-                    tooltip = "Trénuj dál a získej tento odznak zpět!";
-                }
-            } else {
-                // If no progress data, assume lost? Or keep awarded? Let's assume lost if no data.
-                isLost = true;
-                 tooltip = "Pro udržení odznaku musíš mít statistiky.";
-            }
+                if (currentAvg < 80) { isLost = true; tooltip = "Trénuj dál a získej tento odznak zpět!"; }
+            } else { isLost = true; tooltip = "Pro udržení odznaku musíš mít statistiky."; }
 
-            // Format the awarded date
-            let awardedDateStr = 'Datum nezaznamenáno';
-            if (badgeData.awardedDate && badgeData.awardedDate.toDate) {
-                try {
-                     awardedDateStr = badgeData.awardedDate.toDate().toLocaleDateString('cs-CZ', {
-                        day: 'numeric', month: 'long', year: 'numeric'
-                    });
-                } catch(e) { console.error("Error formatting badge date", e); }
-            }
-
-            // Create list item
+            // --- Create list item ---
             const li = document.createElement('li');
-            li.classList.add('badge-item');
+            li.classList.add('badge-item'); // Main class
             if (isLost) {
-                li.classList.add('badge-lost');
-                li.title = tooltip; // Add tooltip only if lost
+                li.classList.add('badge-lost'); // Lost class
+                li.title = tooltip; // Tooltip for lost badges
             }
 
-            // Create badge content
+            // --- Create SIMPLIFIED badge content (emoji + title only) ---
             li.innerHTML = `
-                <div class="badge-header">
-                    <span class="badge-emoji">${badgeDisplayInfo.emoji}</span>
-                    <span class="badge-title">${badgeDisplayInfo.title}</span>
-                </div>
-                <p class="badge-description">Získáno dosažením min. 80% úspěšnosti v předmětu ${subjectName}.</p>
-                <p class="badge-date">Získáno dne: ${awardedDateStr}</p>
+                <span class="badge-emoji">${badgeDisplayInfo.emoji}</span>
+                <span class="badge-title">${badgeDisplayInfo.title}</span>
             `;
+            // --- Description and Date are NOT added here anymore ---
 
             subjectBadgesListEl.appendChild(li);
             badgesDisplayed++;
         }
     }
 
-    // Show/Hide placeholder message
+    // --- Show/Hide placeholder (Keep this logic) ---
     if (noBadgesLi) {
-         noBadgesLi.style.display = badgesDisplayed === 0 ? 'block' : 'none';
-         if (badgesDisplayed > 0) {
-             subjectBadgesListEl.appendChild(noBadgesLi); // Ensure placeholder is appended last if hidden
-         } else {
-              subjectBadgesListEl.insertBefore(noBadgesLi, subjectBadgesListEl.firstChild); // Show placeholder first
-         }
+        noBadgesLi.style.display = badgesDisplayed === 0 ? 'list-item' : 'none'; // Use list-item for display
+        // Ensure placeholder is appended correctly whether visible or not
+        if (subjectBadgesListEl.contains(noBadgesLi)) subjectBadgesListEl.removeChild(noBadgesLi); // Remove if exists
+        if (badgesDisplayed === 0) subjectBadgesListEl.appendChild(noBadgesLi); // Add only if no badges
 
-    } else if (badgesDisplayed === 0) {
-        // Fallback if placeholder element wasn't found initially
-         subjectBadgesListEl.innerHTML = '<li class="no-badges">Zatím žádné odznaky. Dosáhni 80% úspěšnosti v předmětu!</li>';
+    } else if (badgesDisplayed === 0) { // Fallback
+        subjectBadgesListEl.innerHTML = '<li class="no-badges">Zatím žádné odznaky.</li>';
     }
 }
 
@@ -943,33 +922,33 @@ async function saveUserData(uid, data, db) {
     }
 
     // Ensure favoriteBooks is an Array (if used)
-     if (dataToSave.favoriteBooks && !Array.isArray(dataToSave.favoriteBooks)) {
-         console.warn("favoriteBooks was not an array, converting/resetting.");
-         dataToSave.favoriteBooks = Array.isArray(dataToSave.favoriteBooks) ? dataToSave.favoriteBooks : [];
-     }
+    if (dataToSave.favoriteBooks && !Array.isArray(dataToSave.favoriteBooks)) {
+        console.warn("favoriteBooks was not an array, converting/resetting.");
+        dataToSave.favoriteBooks = Array.isArray(dataToSave.favoriteBooks) ? dataToSave.favoriteBooks : [];
+    }
 
 
     // Ensure core map structures are valid objects
     const keysToCheck = ['progress', 'achievements', 'activity', 'dailyQuests'];
     keysToCheck.forEach(key => {
         if (typeof dataToSave[key] !== 'object' || dataToSave[key] === null || Array.isArray(dataToSave[key])) {
-             // Avoid overwriting potentially valid arrays like dailyQuests.quests if that logic changes
-             if (!Array.isArray(dataToSave[key])) {
-                  console.warn(`${key} data structure incorrect in saveUserData, resetting to {}.`);
-                  dataToSave[key] = {};
-             }
+            // Avoid overwriting potentially valid arrays like dailyQuests.quests if that logic changes
+            if (!Array.isArray(dataToSave[key])) {
+                console.warn(`${key} data structure incorrect in saveUserData, resetting to {}.`);
+                dataToSave[key] = {};
+            }
         }
     });
 
-     // Specifically ensure dailyQuests sub-arrays are arrays if dailyQuests exists
-     if (dataToSave.dailyQuests) {
-         dataToSave.dailyQuests.quests = dataToSave.dailyQuests.quests || [];
-         dataToSave.dailyQuests.subjectsToday = dataToSave.dailyQuests.subjectsToday || [];
-         dataToSave.dailyQuests.testsTodayIds = dataToSave.dailyQuests.testsTodayIds || [];
-         if (!Array.isArray(dataToSave.dailyQuests.quests)) dataToSave.dailyQuests.quests = [];
-         if (!Array.isArray(dataToSave.dailyQuests.subjectsToday)) dataToSave.dailyQuests.subjectsToday = [];
-         if (!Array.isArray(dataToSave.dailyQuests.testsTodayIds)) dataToSave.dailyQuests.testsTodayIds = [];
-     }
+    // Specifically ensure dailyQuests sub-arrays are arrays if dailyQuests exists
+    if (dataToSave.dailyQuests) {
+        dataToSave.dailyQuests.quests = dataToSave.dailyQuests.quests || [];
+        dataToSave.dailyQuests.subjectsToday = dataToSave.dailyQuests.subjectsToday || [];
+        dataToSave.dailyQuests.testsTodayIds = dataToSave.dailyQuests.testsTodayIds || [];
+        if (!Array.isArray(dataToSave.dailyQuests.quests)) dataToSave.dailyQuests.quests = [];
+        if (!Array.isArray(dataToSave.dailyQuests.subjectsToday)) dataToSave.dailyQuests.subjectsToday = [];
+        if (!Array.isArray(dataToSave.dailyQuests.testsTodayIds)) dataToSave.dailyQuests.testsTodayIds = [];
+    }
 
 
     // ---> Log data being sent to Firestore <---
@@ -1179,9 +1158,9 @@ function updateDailyQuestsUI(quests = [], bonusAwarded = false) {
         } else {
             // Format progress based on quest type (optional: add units)
             progressText = `${quest.currentProgress || 0} / ${quest.target || '?'}`;
-             if (quest.type === 'earn_xp') {
-                 progressText += ' XP';
-             }
+            if (quest.type === 'earn_xp') {
+                progressText += ' XP';
+            }
             // Add more specific units like ' testů', ' okruhů' if desired
             // else if (quest.type.includes('_tests') || quest.type.includes('_subjects')) {
             //     progressText += quest.target > 1 ? ' testů/předmětů' : ' test/předmět';
@@ -2087,7 +2066,7 @@ function generateTest() {
                 const questionDiv = document.createElement('div');
                 questionDiv.classList.add('question', 'question-type-standard-mc'); // Add standard type class
                 questionDiv.dataset.questionType = 'standard-mc';
-                
+
                 questionDiv.dataset.questionId = `${subject}|${topic}|${q._sourceIdentifier}`;
 
                 const questionText = document.createElement('div');
@@ -2184,12 +2163,12 @@ async function evaluateTest(db) {
                 userData.subjectBadges = userData.subjectBadges || {};
                 userData.completedTopics = new Set(userData.completedTopics || []); // Work with Set internally
             } else {
-                 console.error("Failed to fetch userData at the start of evaluateTest.");
-                 // Decide how to proceed - maybe block saving later?
+                console.error("Failed to fetch userData at the start of evaluateTest.");
+                // Decide how to proceed - maybe block saving later?
             }
         } catch (fetchError) {
-             console.error("Error fetching userData at the start of evaluateTest:", fetchError);
-             userData = null; // Ensure userData is null if fetch failed
+            console.error("Error fetching userData at the start of evaluateTest:", fetchError);
+            userData = null; // Ensure userData is null if fetch failed
         }
     }
     // --- End Pre-fetch ---
@@ -2214,23 +2193,24 @@ async function evaluateTest(db) {
                 // Ensure 'isQuestionCorrect' is set accurately inside each case
                 // Ensure 'allQuestionsCorrect' is set to false if needed
                 // Example for mc_single:
-                 case 'mc_single':
-                 case 'conditional_mc_single':
-                     const selectedRadio = questionElement.querySelector('input[type="radio"]:checked');
-                     questionElement.querySelectorAll('.option-label').forEach(label => {
-                         const radio = label.querySelector('input'); if (!radio) return;
-                         if (radio.value === correctAnswer) label.classList.add('correct');
-                         if (radio.checked) { if (radio.value === correctAnswer) isQuestionCorrect = true; else label.classList.add('incorrect');}
-                     });
-                     if (!selectedRadio) allQuestionsCorrect = false; else if (!isQuestionCorrect) allQuestionsCorrect = false;
-                     break;
-                 // ... include other cases ...
-                 case 'free_text':
+                case 'mc_single':
+                case 'conditional_mc_single':
+                    const selectedRadio = questionElement.querySelector('input[type="radio"]:checked');
+                    questionElement.querySelectorAll('.option-label').forEach(label => {
+                        const radio = label.querySelector('input'); if (!radio) return;
+                        if (radio.value === correctAnswer) label.classList.add('correct');
+                        if (radio.checked) { if (radio.value === correctAnswer) isQuestionCorrect = true; else label.classList.add('incorrect'); }
+                    });
+                    if (!selectedRadio) allQuestionsCorrect = false; else if (!isQuestionCorrect) allQuestionsCorrect = false;
+                    break;
+                // ... include other cases ...
+                case 'free_text':
                     const input = questionElement.querySelector('.free-text-input'); if (!input) break;
                     const userAnswer = input.value.trim().toLowerCase();
                     const correctAnswerLower = correctAnswer?.toLowerCase() ?? '';
-                    if (userAnswer === correctAnswerLower && userAnswer !== '') {isQuestionCorrect = true; input.classList.add('correct');}
-                    else {input.classList.add('incorrect'); allQuestionsCorrect = false;
+                    if (userAnswer === correctAnswerLower && userAnswer !== '') { isQuestionCorrect = true; input.classList.add('correct'); }
+                    else {
+                        input.classList.add('incorrect'); allQuestionsCorrect = false;
                         if (userAnswer !== '' && correctAnswer != null) { /* ... add correct answer display ... */ }
                     }
                     if (!input.value.trim()) allQuestionsCorrect = false;
@@ -2256,11 +2236,11 @@ async function evaluateTest(db) {
             // Update display on the question element
             let statsSpan = questionElement.querySelector('.question-stats-display');
             if (!statsSpan) {
-                 statsSpan = document.createElement('span'); statsSpan.classList.add('question-stats-display');
-                 const questionTextEl = questionElement.querySelector('.question-text');
-                 questionTextEl?.parentNode.insertBefore(statsSpan, questionTextEl.nextSibling);
-                 statsSpan.style.fontSize = '0.8em'; statsSpan.style.marginLeft = '10px';
-                 statsSpan.style.fontStyle = 'italic';
+                statsSpan = document.createElement('span'); statsSpan.classList.add('question-stats-display');
+                const questionTextEl = questionElement.querySelector('.question-text');
+                questionTextEl?.parentNode.insertBefore(statsSpan, questionTextEl.nextSibling);
+                statsSpan.style.fontSize = '0.8em'; statsSpan.style.marginLeft = '10px';
+                statsSpan.style.fontStyle = 'italic';
             }
             statsSpan.textContent = ` ${isMastered ? '✅ ' : ''}${questionStatDisplay}`;
             statsSpan.style.color = isMastered ? 'var(--success)' : 'var(--gray)'; // Color based on mastery
@@ -2299,13 +2279,13 @@ async function evaluateTest(db) {
 
         // Subject Progress (using previously updated correct/total for this test)
         if (currentSubject && data[currentSubject]) {
-             userData.progress[currentSubject] = userData.progress[currentSubject] || { testsCompleted: 0, correctAnswers: 0, totalQuestionsAnswered: 0, successRate: 0 };
-             const subjData = userData.progress[currentSubject];
-             subjData.testsCompleted++; // Already incremented? Let's assume getUserData provided the state *before* this test
-             subjData.correctAnswers = (subjData.correctAnswers || 0) + correctAnswersCount; // Add this test's correct answers
-             subjData.totalQuestionsAnswered = (subjData.totalQuestionsAnswered || 0) + total; // Add this test's total questions
-             subjData.successRate = subjData.totalQuestionsAnswered > 0 ? Math.round((subjData.correctAnswers / subjData.totalQuestionsAnswered) * 100) : 0;
-         } else if (currentSubject) { console.warn(`Progress not updated for subject "${currentSubject}" (no data).`); }
+            userData.progress[currentSubject] = userData.progress[currentSubject] || { testsCompleted: 0, correctAnswers: 0, totalQuestionsAnswered: 0, successRate: 0 };
+            const subjData = userData.progress[currentSubject];
+            subjData.testsCompleted++; // Already incremented? Let's assume getUserData provided the state *before* this test
+            subjData.correctAnswers = (subjData.correctAnswers || 0) + correctAnswersCount; // Add this test's correct answers
+            subjData.totalQuestionsAnswered = (subjData.totalQuestionsAnswered || 0) + total; // Add this test's total questions
+            subjData.successRate = subjData.totalQuestionsAnswered > 0 ? Math.round((subjData.correctAnswers / subjData.totalQuestionsAnswered) * 100) : 0;
+        } else if (currentSubject) { console.warn(`Progress not updated for subject "${currentSubject}" (no data).`); }
 
 
         // Average Success Rate
@@ -2341,25 +2321,25 @@ async function evaluateTest(db) {
         });
 
         if (allQuestsNowComplete && !bonusWasAlreadyAwarded) {
-             earnedBonusXP = 25; userData.dailyQuests.bonusXPAwarded = true;
-             userData.totalXP += earnedBonusXP; userData.weeklyXP += earnedBonusXP;
-             console.log("Awarding daily quest bonus XP.");
+            earnedBonusXP = 25; userData.dailyQuests.bonusXPAwarded = true;
+            userData.totalXP += earnedBonusXP; userData.weeklyXP += earnedBonusXP;
+            console.log("Awarding daily quest bonus XP.");
         }
         // --- End Quest Update ---
 
 
         // --- 4c. Check and Award Subject Badges ---
         if (currentSubject && userData.progress[currentSubject]) {
-             const subjData = userData.progress[currentSubject];
-             // Use the just calculated success rate for the subject
-             const currentSubjectAvg = subjData.successRate;
+            const subjData = userData.progress[currentSubject];
+            // Use the just calculated success rate for the subject
+            const currentSubjectAvg = subjData.successRate;
 
-             if (currentSubjectAvg != null && currentSubjectAvg >= 80 && !userData.subjectBadges[currentSubject]) {
-                 console.log(`Awarding badge for ${currentSubject}! Average: ${currentSubjectAvg}%`);
-                 userData.subjectBadges[currentSubject] = {
-                     awardedDate: firebase.firestore.FieldValue.serverTimestamp()
-                 };
-             }
+            if (currentSubjectAvg != null && currentSubjectAvg >= 80 && !userData.subjectBadges[currentSubject]) {
+                console.log(`Awarding badge for ${currentSubject}! Average: ${currentSubjectAvg}%`);
+                userData.subjectBadges[currentSubject] = {
+                    awardedDate: firebase.firestore.FieldValue.serverTimestamp()
+                };
+            }
         }
         // --- End Badge Check ---
 
