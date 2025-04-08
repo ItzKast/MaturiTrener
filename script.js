@@ -481,61 +481,148 @@ const firebaseConfig = {
     measurementId: "G-FLVEDE8H82"
 };
 async function loadAllDataFromURLs() {
-    console.log("Starting to load data from URLs based on schoolSubjectConfig...");
+    console.log("Starting data load based on schoolSubjectConfig...");
     const fetchPromises = [];
-    const loadedFiles = new Set(); // Keep track of files to load only once
-    data = {}; // Clear and initialize the global flat 'data' object
+    const filesToLoad = new Map(); // Use a Map to store { filename: { isJson: boolean, subjectsTopics: Set } }
+    const loadedContentByFilename = {}; // Store successfully loaded content { filename: content }
 
+    // --- Step 1: Identify all unique files to load and where they are used ---
+    data = {}; // Initialize flat data object (will be populated AFTER loading)
     for (const schoolType in schoolSubjectConfig) {
-        for (const subject in schoolSubjectConfig[schoolType]) {
-            if (!data[subject]) { data[subject] = {}; } // Initialize subject in flat 'data'
+        for (const subjectKey in schoolSubjectConfig[schoolType]) {
+             // Ensure subject key exists in flat data structure for initialization later
+             if (!data[subjectKey]) { data[subjectKey] = {}; }
 
-            for (const topic in schoolSubjectConfig[schoolType][subject]) {
-                const filename = schoolSubjectConfig[schoolType][subject][topic];
+            for (const topic in schoolSubjectConfig[schoolType][subjectKey]) {
+                 // Ensure topic key exists under subject for initialization later
+                 if (!data[subjectKey][topic]) { data[subjectKey][topic] = null; } // Default to null, will be array/object later
 
-                // Initialize topic placeholder in flat 'data' if not already present
-                if (!data[subject][topic]) {
-                    if (filename && filename.toLowerCase().endsWith('.json')) {
-                        data[subject][topic] = null;
+                const filename = schoolSubjectConfig[schoolType][subjectKey][topic];
+                if (filename) {
+                    const subjectTopicIdentifier = `${subjectKey}|${topic}`; // Unique identifier for assignment later
+
+                    if (!filesToLoad.has(filename)) {
+                        // First time seeing this file, add it to the map
+                        filesToLoad.set(filename, {
+                            isJson: filename.toLowerCase().endsWith('.json'),
+                            subjectsTopics: new Set([subjectTopicIdentifier]) // Store first location
+                        });
                     } else {
-                        data[subject][topic] = [];
+                        // File seen before, just add this subject/topic location
+                        filesToLoad.get(filename).subjectsTopics.add(subjectTopicIdentifier);
                     }
                 }
-
-                // Schedule fetch only if filename exists and not already loading/loaded
-                if (filename && !loadedFiles.has(filename)) {
-                    loadedFiles.add(filename);
-                    const url = GITHUB_RAW_BASE_URL + filename;
-                    const isJson = filename.toLowerCase().endsWith('.json');
-                    console.log(`Scheduling load for: ${filename} (Subject: ${subject}, Topic: ${topic})`);
-
-                    const promise = fetch(url)
-                        .then(response => {
-                            if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
-                            return isJson ? response.json() : response.text();
-                        })
-                        .then(content => {
-                            // Store loaded data in the FLAT 'data' object
-                            if (isJson) {
-                                data[subject][topic] = content; // Store parsed JSON object
-                                console.log(`Loaded JSON for ${subject} - ${topic}`);
-                            } else {
-                                parseCSV(content, subject, topic); // parseCSV adds to data[subject][topic]
-                            }
-                        })
-                        .catch(error => {
-                            console.error(`Failed ${isJson ? 'JSON' : 'CSV'} load: ${filename} (${subject}/${topic})`, error);
-                            // Keep placeholder (null/[]) on error
-                        });
-                    fetchPromises.push(promise);
-                } else if (!filename) { /* Skip null filenames */ }
-                else { /* Skip already loading files */ }
+                 // Initialize placeholder for null filename topics (like Souhrnné opakování)
+                 else if (data[subjectKey][topic] === null) { // Check if not already initialized (e.g., from another school type)
+                    data[subjectKey][topic] = []; // Initialize summary/null topics as empty array
+                 }
             }
         }
     }
+    console.log(`Identified ${filesToLoad.size} unique files to load.`);
 
+    // --- Step 2: Create Fetch Promises for unique files ---
+    filesToLoad.forEach((fileInfo, filename) => {
+        const url = GITHUB_RAW_BASE_URL + filename;
+        console.log(`Scheduling fetch for unique file: ${filename}`);
+        const promise = fetch(url)
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
+                return fileInfo.isJson ? response.json() : response.text();
+            })
+            .then(content => {
+                console.log(`Successfully fetched ${filename}`);
+                // Store raw content mapped by filename
+                loadedContentByFilename[filename] = content;
+            })
+            .catch(error => {
+                console.error(`Failed to fetch/parse ${filename}:`, error);
+                loadedContentByFilename[filename] = null; // Mark as failed
+            });
+        fetchPromises.push(promise);
+    });
+
+    // --- Step 3: Wait for all fetches to complete ---
     await Promise.all(fetchPromises);
-    console.log("Finished loading and parsing all data.");
+    console.log("All fetch attempts completed.");
+
+    // --- Step 4: Populate the flat 'data' object using loaded content ---
+    console.log("Populating final 'data' structure...");
+    filesToLoad.forEach((fileInfo, filename) => {
+        const loadedContent = loadedContentByFilename[filename];
+
+        if (loadedContent !== null && loadedContent !== undefined) {
+            // Content was loaded successfully
+            fileInfo.subjectsTopics.forEach(subjectTopicId => {
+                const [subjectKey, topic] = subjectTopicId.split('|');
+                if (fileInfo.isJson) {
+                    data[subjectKey][topic] = loadedContent; // Assign the already parsed JSON object
+                } else {
+                    // Need to parse CSV *for each* place it's used, as parseCSV modifies the global 'data'
+                    // Alternatively, parse once and assign the resulting array. Let's parse once.
+                    const parsedCsvData = parseCSVAndReturn(loadedContent); // Use a modified parseCSV
+                    data[subjectKey][topic] = parsedCsvData; // Assign the parsed array
+                }
+                 // console.log(`Assigned data for ${subjectKey} | ${topic}`);
+            });
+        } else {
+            // Fetch or parse failed for this filename
+             console.warn(`Skipping assignment for file ${filename} due to load/parse error.`);
+             fileInfo.subjectsTopics.forEach(subjectTopicId => {
+                 const [subjectKey, topic] = subjectTopicId.split('|');
+                 // Ensure placeholder remains (should be [] or null from init)
+                 if(data[subjectKey] && data[subjectKey].hasOwnProperty(topic)) {
+                      // If it was meant to be JSON, keep it null. Otherwise, keep/set empty array.
+                      if (!fileInfo.isJson) {
+                          data[subjectKey][topic] = data[subjectKey][topic] || []; // Ensure it's at least an empty array
+                      } else {
+                          data[subjectKey][topic] = null; // Keep JSON placeholder null
+                      }
+                 }
+             });
+        }
+    });
+
+    console.log("Finished populating 'data' structure.");
+    // console.log("Final flat data structure:", data);
+}
+function parseCSVAndReturn(csvText) {
+    const questions = [];
+    if (!csvText) return questions; // Return empty if no text
+
+    const lines = csvText.trim().split('\n').filter(line => line.trim() !== '');
+    if (lines.length < 2) return questions; // Return empty if not enough lines
+
+    for (let i = 1; i < lines.length; i++) {
+        try { // Add basic error handling for splitting/parsing lines
+             const values = lines[i].split(';').map(val => val.trim().replace(/^"(.*)"$/, '$1'));
+
+             if (values.length >= 3 && values[0] && values[1]) {
+                 const questionText = values[0];
+                 const correctAnswer = values[1];
+                 const options = values.slice(2).filter(opt => opt);
+
+                 if (options.length < 1) {
+                     console.warn(`parseCSVAndReturn: Question "${questionText}" has no options. Line: ${i + 1}`);
+                     continue;
+                 }
+
+                 const question = {
+                     text: questionText,
+                     correctAnswer: correctAnswer,
+                     options: options,
+                     _sourceIdentifier: `csv-${i + 1}` // Add identifier
+                 };
+                 questions.push(question);
+             } else {
+                  console.warn(`parseCSVAndReturn: Skipping invalid line ${i + 1}:`, lines[i]);
+             }
+        } catch (lineError) {
+             console.error(`parseCSVAndReturn: Error processing line ${i + 1}:`, lineError, lines[i]);
+        }
+    }
+    console.log(`Parsed ${questions.length} questions from CSV text.`);
+    return questions;
 }
 
 let db;
@@ -1785,62 +1872,6 @@ function clearUserDataUI() {
     console.log("User UI cleared.");
     // Calendar regeneration is handled by onAuthStateChanged
 }
-
-function parseCSV(csvText, subject, topic) {
-    if (!csvText || !subject || !topic) {
-        console.error("parseCSV: Missing input data", { subject, topic });
-        return;
-    }
-    // Trim whitespace and filter out empty lines
-    const lines = csvText.trim().split('\n').filter(line => line.trim() !== '');
-    if (lines.length < 2) { // Need header + at least one data line
-        console.warn(`parseCSV: Not enough lines in CSV for ${subject} - ${topic}`);
-        return;
-    }
-
-    // Header isn't strictly used here but good practice to acknowledge it
-    // const header = lines[0].split(';').map(h => h.trim());
-    const questions = [];
-
-    for (let i = 1; i < lines.length; i++) {
-        const values = lines[i].split(';').map(val => val.trim().replace(/^"(.*)"$/, '$1')); // Trim values and remove surrounding quotes
-
-        if (values.length >= 3 && values[0] && values[1]) { // Need at least Question, Correct Answer, Option 1
-            const questionText = values[0];
-            const correctAnswer = values[1];
-            const options = values.slice(2).filter(opt => opt); // Get options (from index 2 onwards), filter out empty ones
-
-            // Ensure we have at least a few options + the correct one makes sense
-            if (options.length < 1) {
-                console.warn(`parseCSV: Question "${questionText}" has no options. Skipping.`);
-                continue;
-            }
-
-
-            const question = {
-                text: questionText,
-                correctAnswer: correctAnswer,
-                options: options, // Incorrect options
-                // correctIndex will be determined after shuffling in generateTest
-            };
-            questions.push(question);
-        } else {
-            console.warn(`parseCSV: Skipping invalid line ${i + 1} in ${subject} - ${topic}:`, lines[i]);
-        }
-    }
-
-    // Add the parsed questions to the main data structure
-    if (!data[subject]) {
-        console.warn(`parseCSV: Subject "${subject}" not found in data structure. Creating.`);
-        data[subject] = {};
-    }
-    if (!data[subject][topic]) {
-        data[subject][topic] = []; // Initialize if topic doesn't exist (shouldn't happen with predefined structure)
-    }
-    data[subject][topic] = questions;
-    console.log(`Parsed ${questions.length} questions for ${subject} - ${topic}`);
-}
-
 /**
  * Generates and displays a test based on selected school, subject, and topic.
  */
