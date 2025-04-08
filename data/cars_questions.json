@@ -1,0 +1,125 @@
+{
+  "topic": "Cars",
+  "questions": [
+    {
+      "id": "car_history_start",
+      "type": "mc_single",
+      "questionText": "Who is credited with building the first practical automobile?",
+      "options": [
+        "Henry Ford",
+        "Karl Benz",
+        "Thomas Edison",
+        "James Watt"
+      ],
+      "correctAnswer": "Karl Benz"
+    },
+    {
+      "id": "car_ford",
+      "type": "mc_single",
+      "questionText": "Which car company introduced mass production with assembly lines?",
+      "options": [
+        "Mercedes-Benz",
+        "Volkswagen",
+        "Toyota",
+        "Ford"
+      ],
+      "correctAnswer": "Ford"
+    },
+    {
+      "id": "car_vocab_steering",
+      "type": "free_text",
+      "questionText": "What do you use to control the direction of a car?",
+      "correctAnswer": "Steering wheel"
+    },
+    {
+      "id": "car_vocab_pedals",
+      "type": "mc_multiple",
+      "questionText": "Which pedals are commonly found in a manual car? (Choose all that apply)",
+      "options": [
+        "Clutch",
+        "Brake",
+        "Accelerator",
+        "Fuel"
+      ],
+      "correctAnswers": [
+        "Clutch",
+        "Brake",
+        "Accelerator"
+      ]
+    },
+    {
+      "id": "car_gearbox",
+      "type": "mc_single",
+      "questionText": "What is the purpose of a gearbox in a car?",
+      "options": [
+        "To hold groceries",
+        "To change speed and torque",
+        "To control lights",
+        "To play music"
+      ],
+      "correctAnswer": "To change speed and torque"
+    },
+    {
+      "id": "car_fuel_types",
+      "type": "mc_multiple",
+      "questionText": "Which of these are common types of car fuel? (Choose all that apply)",
+      "options": [
+        "Petrol",
+        "Diesel",
+        "Electricity",
+        "Steam"
+      ],
+      "correctAnswers": [
+        "Petrol",
+        "Diesel",
+        "Electricity"
+      ]
+    },
+    {
+      "id": "car_parts",
+      "type": "mc_multiple",
+      "questionText": "Which of these are basic parts of a car? (Choose all that apply)",
+      "options": [
+        "Engine",
+        "Wheels",
+        "Windshield",
+        "Microwave"
+      ],
+      "correctAnswers": [
+        "Engine",
+        "Wheels",
+        "Windshield"
+      ]
+    },
+    {
+      "id": "driving_rules",
+      "type": "mc_single",
+      "questionText": "Why is it important to follow traffic rules?",
+      "options": [
+        "To make driving more boring",
+        "To avoid fun",
+        "To ensure safety on the roads",
+        "To get more speeding tickets"
+      ],
+      "correctAnswer": "To ensure safety on the roads"
+    },
+    {
+      "id": "car_vocab_trunk",
+      "type": "free_text",
+      "questionText": "What is the American word for the place where you store luggage in a car?",
+      "correctAnswer": "Trunk"
+    },
+    {
+      "id": "car_electric_future",
+      "type": "mc_single",
+      "questionText": "What kind of cars are becoming more common due to environmental concerns?",
+      "options": [
+        "Diesel cars",
+        "Electric cars",
+        "Steam cars",
+        "Gasoline-only cars"
+      ],
+      "correctAnswer": "Electric cars"
+    }
+  ]
+}

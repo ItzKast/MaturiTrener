@@ -1,0 +1,119 @@
+{
+  "topic": "William Shakespeare",
+  "questions": [
+    {
+      "id": "shakespeare_birth",
+      "type": "free_text",
+      "questionText": "In which year was William Shakespeare born?",
+      "correctAnswer": "1564"
+    },
+    {
+      "id": "shakespeare_works",
+      "type": "mc_multiple",
+      "questionText": "Which types of plays did William Shakespeare write? (Choose all that apply)",
+      "options": [
+        "Tragedies",
+        "Comedies",
+        "Histories",
+        "Science fiction"
+      ],
+      "correctAnswers": [
+        "Tragedies",
+        "Comedies",
+        "Histories"
+      ]
+    },
+    {
+      "id": "shakespeare_tragedy",
+      "type": "mc_single",
+      "questionText": "Which of these is a tragedy written by Shakespeare?",
+      "options": [
+        "Romeo and Juliet",
+        "A Midsummer Night\u2019s Dream",
+        "Much Ado About Nothing",
+        "The Tempest"
+      ],
+      "correctAnswer": "Romeo and Juliet"
+    },
+    {
+      "id": "shakespeare_setting",
+      "type": "free_text",
+      "questionText": "Where is Romeo and Juliet set?",
+      "correctAnswer": "Verona, Italy"
+    },
+    {
+      "id": "rj_main_characters",
+      "type": "mc_multiple",
+      "questionText": "Who are the main characters in Romeo and Juliet? (Choose all that apply)",
+      "options": [
+        "Romeo",
+        "Juliet",
+        "Tybalt",
+        "Macbeth"
+      ],
+      "correctAnswers": [
+        "Romeo",
+        "Juliet",
+        "Tybalt"
+      ]
+    },
+    {
+      "id": "rj_theme",
+      "type": "mc_single",
+      "questionText": "What is the main theme of Romeo and Juliet?",
+      "options": [
+        "Forbidden love",
+        "War and peace",
+        "Magic and dreams",
+        "Justice and law"
+      ],
+      "correctAnswer": "Forbidden love"
+    },
+    {
+      "id": "shakespeare_facts",
+      "type": "mc_multiple",
+      "questionText": "Which facts are true about Shakespeare? (Choose all that apply)",
+      "options": [
+        "He was born in Stratford-upon-Avon",
+        "He wrote over 30 plays",
+        "He also wrote sonnets",
+        "He lived in the 18th century"
+      ],
+      "correctAnswers": [
+        "He was born in Stratford-upon-Avon",
+        "He wrote over 30 plays",
+        "He also wrote sonnets"
+      ]
+    },
+    {
+      "id": "shakespeare_death",
+      "type": "free_text",
+      "questionText": "In which year did Shakespeare die?",
+      "correctAnswer": "1616"
+    },
+    {
+      "id": "shakespeare_theatre",
+      "type": "mc_single",
+      "questionText": "What is the name of the theatre associated with Shakespeare?",
+      "options": [
+        "The Globe",
+        "The Royal Theatre",
+        "The London Dome",
+        "The West End"
+      ],
+      "correctAnswer": "The Globe"
+    },
+    {
+      "id": "rj_plot",
+      "type": "mc_single",
+      "questionText": "What happens at the end of Romeo and Juliet?",
+      "options": [
+        "They run away together",
+        "They get married and live happily",
+        "They both die tragically",
+        "Romeo becomes king"
+      ],
+      "correctAnswer": "They both die tragically"
+    }
+  ]
+}

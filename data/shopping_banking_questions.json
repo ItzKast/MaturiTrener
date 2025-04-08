@@ -1,0 +1,158 @@
+{
+  "topic": "Shopping, Banking and Payment Methods",
+  "questions": [
+    {
+      "id": "types_shops",
+      "type": "mc_multiple",
+      "questionText": "Which types of shops can you commonly find? (Choose all that apply)",
+      "options": [
+        "Supermarkets",
+        "Bakeries",
+        "Butchers",
+        "Libraries"
+      ],
+      "correctAnswers": [
+        "Supermarkets",
+        "Bakeries",
+        "Butchers"
+      ]
+    },
+    {
+      "id": "shopping_products",
+      "type": "mc_multiple",
+      "questionText": "Which products are typically bought in supermarkets? (Choose all that apply)",
+      "options": [
+        "Milk",
+        "Bread",
+        "Books",
+        "Vegetables"
+      ],
+      "correctAnswers": [
+        "Milk",
+        "Bread",
+        "Vegetables"
+      ]
+    },
+    {
+      "id": "online_shopping",
+      "type": "mc_single",
+      "questionText": "What is one major advantage of online shopping?",
+      "options": [
+        "You can touch the product",
+        "It's more expensive",
+        "You can shop anytime from home",
+        "You get paid to shop"
+      ],
+      "correctAnswer": "You can shop anytime from home"
+    },
+    {
+      "id": "currency_uk",
+      "type": "free_text",
+      "questionText": "What is the currency of the United Kingdom?",
+      "correctAnswer": "Pound"
+    },
+    {
+      "id": "currency_usa",
+      "type": "free_text",
+      "questionText": "What is the currency of the United States?",
+      "correctAnswer": "Dollar"
+    },
+    {
+      "id": "currency_cz",
+      "type": "free_text",
+      "questionText": "What is the currency of the Czech Republic?",
+      "correctAnswer": "Czech crown"
+    },
+    {
+      "id": "bank_account",
+      "type": "mc_single",
+      "questionText": "What do you need to open to use banking services?",
+      "options": [
+        "Wallet",
+        "Bank account",
+        "Credit union",
+        "Phone"
+      ],
+      "correctAnswer": "Bank account"
+    },
+    {
+      "id": "atm_withdrawal",
+      "type": "mc_multiple",
+      "questionText": "What are the steps to withdraw money from an ATM? (Choose all that apply)",
+      "options": [
+        "Insert your card",
+        "Enter your PIN",
+        "Choose the amount",
+        "Wait for a phone call"
+      ],
+      "correctAnswers": [
+        "Insert your card",
+        "Enter your PIN",
+        "Choose the amount"
+      ]
+    },
+    {
+      "id": "loan_mortgage",
+      "type": "mc_single",
+      "questionText": "What type of loan is usually used to buy a house?",
+      "options": [
+        "Short-term loan",
+        "Overdraft",
+        "Mortgage",
+        "Credit card loan"
+      ],
+      "correctAnswer": "Mortgage"
+    },
+    {
+      "id": "payment_methods",
+      "type": "mc_multiple",
+      "questionText": "Which are common methods of payment? (Choose all that apply)",
+      "options": [
+        "Cash",
+        "Card",
+        "Cheque",
+        "Bitcoin"
+      ],
+      "correctAnswers": [
+        "Cash",
+        "Card"
+      ]
+    },
+    {
+      "id": "credit_vs_debit",
+      "type": "mc_single",
+      "questionText": "What is the main difference between a credit card and a debit card?",
+      "options": [
+        "Credit card uses a loan, debit card uses your own money",
+        "Debit card gives you free money",
+        "Both are used only online",
+        "They are exactly the same"
+      ],
+      "correctAnswer": "Credit card uses a loan, debit card uses your own money"
+    },
+    {
+      "id": "internet_banking_advantage",
+      "type": "mc_single",
+      "questionText": "What is one major advantage of internet banking?",
+      "options": [
+        "You have to go to the bank",
+        "You can access your account from home",
+        "You get printed statements only",
+        "You need no password"
+      ],
+      "correctAnswer": "You can access your account from home"
+    },
+    {
+      "id": "internet_banking_disadvantage",
+      "type": "mc_single",
+      "questionText": "What is one major disadvantage of internet banking?",
+      "options": [
+        "No access to your balance",
+        "Identity theft risk",
+        "You must go to the bank",
+        "It's always offline"
+      ],
+      "correctAnswer": "Identity theft risk"
+    }
+  ]
+}

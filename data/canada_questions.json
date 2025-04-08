@@ -1,0 +1,209 @@
+{
+  "topic": "Canada",
+  "questions": [
+    {
+      "id": "canada_location",
+      "type": "mc_single",
+      "questionText": "Where is Canada located?",
+      "options": [
+        "Europe",
+        "South America",
+        "North America",
+        "Asia"
+      ],
+      "correctAnswer": "North America"
+    },
+    {
+      "id": "canada_size",
+      "type": "mc_single",
+      "questionText": "What is Canada\u2019s rank in terms of size among all countries in the world?",
+      "options": [
+        "1st",
+        "2nd",
+        "3rd",
+        "4th"
+      ],
+      "correctAnswer": "2nd"
+    },
+    {
+      "id": "canada_capital",
+      "type": "free_text",
+      "questionText": "What is the capital city of Canada?",
+      "correctAnswer": "Ottawa"
+    },
+    {
+      "id": "canada_languages",
+      "type": "mc_multiple",
+      "questionText": "What are the official languages of Canada? (Choose all that apply)",
+      "options": [
+        "English",
+        "Spanish",
+        "French",
+        "German"
+      ],
+      "correctAnswers": [
+        "English",
+        "French"
+      ]
+    },
+    {
+      "id": "canada_population",
+      "type": "mc_single",
+      "questionText": "Approximately how many people live in Canada?",
+      "options": [
+        "10 million",
+        "25 million",
+        "40 million",
+        "60 million"
+      ],
+      "correctAnswer": "40 million"
+    },
+    {
+      "id": "canada_provincies",
+      "type": "free_text",
+      "questionText": "How many provinces does Canada have?",
+      "correctAnswer": "10"
+    },
+    {
+      "id": "canada_territories",
+      "type": "free_text",
+      "questionText": "How many territories does Canada have?",
+      "correctAnswer": "3"
+    },
+    {
+      "id": "canada_currency",
+      "type": "mc_single",
+      "questionText": "What is the currency of Canada?",
+      "options": [
+        "US Dollar",
+        "Canadian Dollar",
+        "Euro",
+        "Pound Sterling"
+      ],
+      "correctAnswer": "Canadian Dollar"
+    },
+    {
+      "id": "canada_flag",
+      "type": "mc_single",
+      "questionText": "What is featured on the Canadian flag?",
+      "options": [
+        "A maple leaf",
+        "A moose",
+        "A polar bear",
+        "An eagle"
+      ],
+      "correctAnswer": "A maple leaf"
+    },
+    {
+      "id": "canada_highest_mountain",
+      "type": "free_text",
+      "questionText": "What is the name of the highest mountain in Canada?",
+      "correctAnswer": "Mount Logan"
+    },
+    {
+      "id": "canada_indigenous",
+      "type": "mc_multiple",
+      "questionText": "Who were the original inhabitants of Canada? (Choose all that apply)",
+      "options": [
+        "Innuits",
+        "Aborigines",
+        "Indians",
+        "Vikings"
+      ],
+      "correctAnswers": [
+        "Innuits",
+        "Indians"
+      ]
+    },
+    {
+      "id": "canada_independence",
+      "type": "mc_single",
+      "questionText": "When did Canada become independent?",
+      "options": [
+        "1492",
+        "1763",
+        "1867",
+        "1945"
+      ],
+      "correctAnswer": "1867"
+    },
+    {
+      "id": "canada_prime_minister",
+      "type": "free_text",
+      "questionText": "Who is the current Prime Minister of Canada?",
+      "correctAnswer": "Mark Carney"
+    },
+    {
+      "id": "canada_nature",
+      "type": "mc_multiple",
+      "questionText": "Which of these animals live in Canada\u2019s wilderness? (Choose all that apply)",
+      "options": [
+        "Grizzly bear",
+        "Polar fox",
+        "Tiger",
+        "Moose"
+      ],
+      "correctAnswers": [
+        "Grizzly bear",
+        "Polar fox",
+        "Moose"
+      ]
+    },
+    {
+      "id": "canada_niagara",
+      "type": "mc_single",
+      "questionText": "Where can you find the famous Niagara Falls?",
+      "options": [
+        "In Alberta",
+        "Near New York",
+        "In Manitoba",
+        "In British Columbia"
+      ],
+      "correctAnswer": "Near New York"
+    },
+    {
+      "id": "canada_food",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are traditional Canadian dishes? (Choose all that apply)",
+      "options": [
+        "Poutine",
+        "Stuffed moose heart",
+        "Pancakes with maple syrup",
+        "Paella"
+      ],
+      "correctAnswers": [
+        "Poutine",
+        "Stuffed moose heart",
+        "Pancakes with maple syrup"
+      ]
+    },
+    {
+      "id": "canada_hockey",
+      "type": "mc_single",
+      "questionText": "Which sport was invented in Canada?",
+      "options": [
+        "Basketball",
+        "Ice-hockey",
+        "Baseball",
+        "Football"
+      ],
+      "correctAnswer": "Ice-hockey"
+    },
+    {
+      "id": "canada_celebrities",
+      "type": "mc_multiple",
+      "questionText": "Which of these celebrities are Canadian? (Choose all that apply)",
+      "options": [
+        "Justin Bieber",
+        "Ryan Gosling",
+        "Margaret Atwood",
+        "Ed Sheeran"
+      ],
+      "correctAnswers": [
+        "Justin Bieber",
+        "Ryan Gosling",
+        "Margaret Atwood"
+      ]
+    }
+  ]
+}

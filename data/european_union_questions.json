@@ -1,0 +1,121 @@
+{
+  "topic": "European Union",
+  "questions": [
+    {
+      "id": "eu_history",
+      "type": "mc_single",
+      "questionText": "What was the original purpose of the European Union?",
+      "options": [
+        "To unify religion",
+        "To prevent wars and support economic cooperation",
+        "To create one single language",
+        "To build a single European army"
+      ],
+      "correctAnswer": "To prevent wars and support economic cooperation"
+    },
+    {
+      "id": "eu_start",
+      "type": "free_text",
+      "questionText": "In which year was the European Union officially established?",
+      "correctAnswer": "1993"
+    },
+    {
+      "id": "eu_members",
+      "type": "mc_single",
+      "questionText": "How many countries are members of the European Union (as of 2024)?",
+      "options": [
+        "25",
+        "27",
+        "28",
+        "30"
+      ],
+      "correctAnswer": "27"
+    },
+    {
+      "id": "eu_institutions",
+      "type": "mc_multiple",
+      "questionText": "Which of these are institutions of the EU? (Choose all that apply)",
+      "options": [
+        "European Commission",
+        "European Parliament",
+        "European Council",
+        "NATO Assembly"
+      ],
+      "correctAnswers": [
+        "European Commission",
+        "European Parliament",
+        "European Council"
+      ]
+    },
+    {
+      "id": "eu_symbols",
+      "type": "mc_multiple",
+      "questionText": "Which are official symbols of the European Union? (Choose all that apply)",
+      "options": [
+        "EU flag",
+        "Ode to Joy",
+        "Euro",
+        "Blue passport"
+      ],
+      "correctAnswers": [
+        "EU flag",
+        "Ode to Joy",
+        "Euro"
+      ]
+    },
+    {
+      "id": "eu_travel",
+      "type": "mc_single",
+      "questionText": "What is one major benefit of the EU for travelers?",
+      "options": [
+        "Free train rides",
+        "Visa-free travel between member states",
+        "Free accommodation",
+        "Unlimited flights"
+      ],
+      "correctAnswer": "Visa-free travel between member states"
+    },
+    {
+      "id": "eu_education",
+      "type": "mc_single",
+      "questionText": "Which program allows students to study in other EU countries?",
+      "options": [
+        "Erasmus+",
+        "Eurovision",
+        "Schengen",
+        "Europass"
+      ],
+      "correctAnswer": "Erasmus+"
+    },
+    {
+      "id": "eu_currency",
+      "type": "mc_single",
+      "questionText": "What is the name of the official currency used by many EU countries?",
+      "options": [
+        "Euro",
+        "Pound",
+        "Dollar",
+        "Crown"
+      ],
+      "correctAnswer": "Euro"
+    },
+    {
+      "id": "eu_work",
+      "type": "mc_single",
+      "questionText": "What does EU membership allow in terms of work?",
+      "options": [
+        "Only local job opportunities",
+        "Free access to work in other member states",
+        "Jobs only in the capital",
+        "Free cars with jobs"
+      ],
+      "correctAnswer": "Free access to work in other member states"
+    },
+    {
+      "id": "cz_eu",
+      "type": "free_text",
+      "questionText": "In which year did the Czech Republic join the European Union?",
+      "correctAnswer": "2004"
+    }
+  ]
+}

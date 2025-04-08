@@ -1,0 +1,114 @@
+{
+  "topic": "CV and Cover Letter",
+  "questions": [
+    {
+      "id": "letter_types",
+      "type": "mc_multiple",
+      "questionText": "Which of these are types of business letters? (Choose all that apply)",
+      "options": [
+        "Cover letter",
+        "Complaint letter",
+        "Thank-you letter",
+        "Love letter"
+      ],
+      "correctAnswers": [
+        "Cover letter",
+        "Complaint letter",
+        "Thank-you letter"
+      ]
+    },
+    {
+      "id": "letter_structure",
+      "type": "mc_multiple",
+      "questionText": "What are the common parts of a formal business letter? (Choose all that apply)",
+      "options": [
+        "Sender's address",
+        "Date",
+        "Salutation",
+        "Closing phrase"
+      ],
+      "correctAnswers": [
+        "Sender's address",
+        "Date",
+        "Salutation",
+        "Closing phrase"
+      ]
+    },
+    {
+      "id": "letter_language",
+      "type": "mc_single",
+      "questionText": "What kind of language should you use in a business letter?",
+      "options": [
+        "Formal and polite",
+        "Slang and emojis",
+        "Very emotional",
+        "Abbreviated and casual"
+      ],
+      "correctAnswer": "Formal and polite"
+    },
+    {
+      "id": "business_vs_personal",
+      "type": "mc_single",
+      "questionText": "What is one major difference between a business and a personal letter?",
+      "options": [
+        "Business letters use formal language and structure",
+        "Personal letters are sent to companies",
+        "Business letters are only handwritten",
+        "Personal letters never use greetings"
+      ],
+      "correctAnswer": "Business letters use formal language and structure"
+    },
+    {
+      "id": "cv_purpose",
+      "type": "mc_single",
+      "questionText": "What is the main purpose of a CV?",
+      "options": [
+        "To tell jokes",
+        "To list your skills and experience for a job",
+        "To apply for a driving license",
+        "To write a poem"
+      ],
+      "correctAnswer": "To list your skills and experience for a job"
+    },
+    {
+      "id": "cv_parts",
+      "type": "mc_multiple",
+      "questionText": "Which of these are typical sections in a CV? (Choose all that apply)",
+      "options": [
+        "Education",
+        "Work experience",
+        "Hobbies",
+        "Favorite food"
+      ],
+      "correctAnswers": [
+        "Education",
+        "Work experience",
+        "Hobbies"
+      ]
+    },
+    {
+      "id": "cover_letter_function",
+      "type": "mc_single",
+      "questionText": "What is the main function of a cover letter?",
+      "options": [
+        "To introduce yourself and explain why you are applying",
+        "To send jokes",
+        "To summarize a book",
+        "To complain about a product"
+      ],
+      "correctAnswer": "To introduce yourself and explain why you are applying"
+    },
+    {
+      "id": "salutation_example",
+      "type": "free_text",
+      "questionText": "Write a formal salutation that could be used in a business letter.",
+      "correctAnswer": "Dear Sir or Madam"
+    },
+    {
+      "id": "closing_phrase_example",
+      "type": "free_text",
+      "questionText": "Write a formal closing phrase used in a business letter.",
+      "correctAnswer": "Yours faithfully"
+    }
+  ]
+}

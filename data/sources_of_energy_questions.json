@@ -1,0 +1,139 @@
+{
+  "topic": "Sources of Energy",
+  "questions": [
+    {
+      "id": "renewable_sources",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are renewable sources of energy? (Choose all that apply)",
+      "options": [
+        "Sun",
+        "Wind",
+        "Water",
+        "Coal"
+      ],
+      "correctAnswers": [
+        "Sun",
+        "Wind",
+        "Water"
+      ]
+    },
+    {
+      "id": "nonrenewable_sources",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are non-renewable sources of energy? (Choose all that apply)",
+      "options": [
+        "Coal",
+        "Natural gas",
+        "Oil",
+        "Solar"
+      ],
+      "correctAnswers": [
+        "Coal",
+        "Natural gas",
+        "Oil"
+      ]
+    },
+    {
+      "id": "nuclear_energy",
+      "type": "mc_single",
+      "questionText": "What is the primary material used in nuclear energy production?",
+      "options": [
+        "Uranium",
+        "Coal",
+        "Natural gas",
+        "Hydrogen"
+      ],
+      "correctAnswer": "Uranium"
+    },
+    {
+      "id": "energy_clean",
+      "type": "mc_single",
+      "questionText": "What does the term 'clean energy' refer to?",
+      "options": [
+        "Energy that makes no sound",
+        "Energy that produces little or no pollution",
+        "Energy from expensive sources",
+        "Energy used at night"
+      ],
+      "correctAnswer": "Energy that produces little or no pollution"
+    },
+    {
+      "id": "greenhouse_gases",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are greenhouse gases? (Choose all that apply)",
+      "options": [
+        "Carbon dioxide",
+        "Methane",
+        "Nitrous oxide",
+        "Oxygen"
+      ],
+      "correctAnswers": [
+        "Carbon dioxide",
+        "Methane",
+        "Nitrous oxide"
+      ]
+    },
+    {
+      "id": "waste_sorting",
+      "type": "mc_single",
+      "questionText": "Why is waste sorting important for the environment?",
+      "options": [
+        "It makes trash look better",
+        "It helps reduce pollution and supports recycling",
+        "It increases landfill space",
+        "It is required for burning waste"
+      ],
+      "correctAnswer": "It helps reduce pollution and supports recycling"
+    },
+    {
+      "id": "energy_recycling",
+      "type": "mc_single",
+      "questionText": "What is the main goal of recycling?",
+      "options": [
+        "To earn money",
+        "To reduce waste and reuse materials",
+        "To fill landfills faster",
+        "To separate colors of trash"
+      ],
+      "correctAnswer": "To reduce waste and reuse materials"
+    },
+    {
+      "id": "cz_power_plants",
+      "type": "mc_multiple",
+      "questionText": "Which types of power plants are found in the Czech Republic? (Choose all that apply)",
+      "options": [
+        "Nuclear",
+        "Thermal",
+        "Hydroelectric",
+        "Geothermal"
+      ],
+      "correctAnswers": [
+        "Nuclear",
+        "Thermal",
+        "Hydroelectric"
+      ]
+    },
+    {
+      "id": "world_power_plants",
+      "type": "mc_multiple",
+      "questionText": "Which countries are known for using nuclear power? (Choose all that apply)",
+      "options": [
+        "France",
+        "USA",
+        "Germany",
+        "Japan"
+      ],
+      "correctAnswers": [
+        "France",
+        "USA",
+        "Japan"
+      ]
+    },
+    {
+      "id": "hydropower_example",
+      "type": "free_text",
+      "questionText": "Name one major hydroelectric power station in the world.",
+      "correctAnswer": "Three Gorges Dam"
+    }
+  ]
+}

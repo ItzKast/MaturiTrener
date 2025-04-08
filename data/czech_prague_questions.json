@@ -1,0 +1,215 @@
+{
+  "topic": "Czech Republic and Prague",
+  "questions": [
+    {
+      "id": "prague_location",
+      "type": "free_text",
+      "questionText": "Where is Prague located?",
+      "correctAnswer": "In the central part of the Czech Republic"
+    },
+    {
+      "id": "prague_population",
+      "type": "mc_single",
+      "questionText": "What is the approximate population of Prague?",
+      "options": [
+        "500,000",
+        "1 million",
+        "2 million",
+        "5 million"
+      ],
+      "correctAnswer": "1 million"
+    },
+    {
+      "id": "prague_parts",
+      "type": "mc_multiple",
+      "questionText": "Which are some historical parts of Prague? (Choose all that apply)",
+      "options": [
+        "Old Town",
+        "New Town",
+        "Lesser Town",
+        "Upper Town"
+      ],
+      "correctAnswers": [
+        "Old Town",
+        "New Town",
+        "Lesser Town"
+      ]
+    },
+    {
+      "id": "prague_landmarks",
+      "type": "mc_multiple",
+      "questionText": "Which landmarks can you find in Prague? (Choose all that apply)",
+      "options": [
+        "Charles Bridge",
+        "Prague Castle",
+        "Astronomical Clock",
+        "Big Ben"
+      ],
+      "correctAnswers": [
+        "Charles Bridge",
+        "Prague Castle",
+        "Astronomical Clock"
+      ]
+    },
+    {
+      "id": "prague_transport",
+      "type": "mc_multiple",
+      "questionText": "What are common means of transport in Prague? (Choose all that apply)",
+      "options": [
+        "Metro",
+        "Tram",
+        "Boat",
+        "Cable car"
+      ],
+      "correctAnswers": [
+        "Metro",
+        "Tram",
+        "Cable car"
+      ]
+    },
+    {
+      "id": "prague_culture",
+      "type": "mc_single",
+      "questionText": "Which of the following is a cultural institution in Prague?",
+      "options": [
+        "National Theatre",
+        "Eiffel Tower",
+        "London Eye",
+        "Empire State Building"
+      ],
+      "correctAnswer": "National Theatre"
+    },
+    {
+      "id": "prague_souvenirs",
+      "type": "mc_multiple",
+      "questionText": "Which souvenirs are typical from Prague? (Choose all that apply)",
+      "options": [
+        "Garnet jewelry",
+        "Becherovka",
+        "Matryoshka dolls",
+        "Glassware"
+      ],
+      "correctAnswers": [
+        "Garnet jewelry",
+        "Becherovka",
+        "Glassware"
+      ]
+    },
+    {
+      "id": "cz_location",
+      "type": "free_text",
+      "questionText": "Where is the Czech Republic located?",
+      "correctAnswer": "In Central Europe"
+    },
+    {
+      "id": "cz_regions",
+      "type": "mc_multiple",
+      "questionText": "Which are the main regions of the Czech Republic? (Choose all that apply)",
+      "options": [
+        "Bohemia",
+        "Moravia",
+        "Silesia",
+        "Transylvania"
+      ],
+      "correctAnswers": [
+        "Bohemia",
+        "Moravia",
+        "Silesia"
+      ]
+    },
+    {
+      "id": "cz_nature",
+      "type": "mc_multiple",
+      "questionText": "Which are some natural beauties of the Czech Republic? (Choose all that apply)",
+      "options": [
+        "Bohemian Paradise",
+        "Macocha Abyss",
+        "Elbe River",
+        "Alps"
+      ],
+      "correctAnswers": [
+        "Bohemian Paradise",
+        "Macocha Abyss",
+        "Elbe River"
+      ]
+    },
+    {
+      "id": "cz_population",
+      "type": "mc_single",
+      "questionText": "What is the approximate population of the Czech Republic?",
+      "options": [
+        "5 million",
+        "10 million",
+        "15 million",
+        "20 million"
+      ],
+      "correctAnswer": "10 million"
+    },
+    {
+      "id": "cz_politics",
+      "type": "mc_single",
+      "questionText": "What type of political system does the Czech Republic have?",
+      "options": [
+        "Monarchy",
+        "Dictatorship",
+        "Parliamentary democracy",
+        "Empire"
+      ],
+      "correctAnswer": "Parliamentary democracy"
+    },
+    {
+      "id": "cz_tourism",
+      "type": "mc_multiple",
+      "questionText": "Which places are popular tourist destinations in the Czech Republic? (Choose all that apply)",
+      "options": [
+        "Karlovy Vary",
+        "\u010cesk\u00fd Krumlov",
+        "Hlubok\u00e1 Castle",
+        "Versailles"
+      ],
+      "correctAnswers": [
+        "Karlovy Vary",
+        "\u010cesk\u00fd Krumlov",
+        "Hlubok\u00e1 Castle"
+      ]
+    },
+    {
+      "id": "cz_traditions",
+      "type": "mc_multiple",
+      "questionText": "Which are traditional Czech customs? (Choose all that apply)",
+      "options": [
+        "Easter whippings",
+        "Name days",
+        "Pumpkin carving",
+        "Christmas carp"
+      ],
+      "correctAnswers": [
+        "Easter whippings",
+        "Name days",
+        "Christmas carp"
+      ]
+    },
+    {
+      "id": "cz_sports",
+      "type": "mc_multiple",
+      "questionText": "Which sports are popular in the Czech Republic? (Choose all that apply)",
+      "options": [
+        "Ice hockey",
+        "Football",
+        "Tennis",
+        "Baseball"
+      ],
+      "correctAnswers": [
+        "Ice hockey",
+        "Football",
+        "Tennis"
+      ]
+    },
+    {
+      "id": "cz_athletes",
+      "type": "free_text",
+      "questionText": "Name a famous Czech athlete.",
+      "correctAnswer": "Jarom\u00edr J\u00e1gr"
+    }
+  ]
+}

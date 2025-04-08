@@ -1,0 +1,164 @@
+{
+  "topic": "Eastern Bohemia and Hradec Kr\u00e1lov\u00e9",
+  "questions": [
+    {
+      "id": "ebohemia_location",
+      "type": "free_text",
+      "questionText": "Where is Eastern Bohemia located?",
+      "correctAnswer": "In the northeastern part of the Czech Republic"
+    },
+    {
+      "id": "ebohemia_landscape",
+      "type": "mc_multiple",
+      "questionText": "What types of landscape are found in Eastern Bohemia? (Choose all that apply)",
+      "options": [
+        "Mountains",
+        "Plains",
+        "Forests",
+        "Deserts"
+      ],
+      "correctAnswers": [
+        "Mountains",
+        "Plains",
+        "Forests"
+      ]
+    },
+    {
+      "id": "ebohemia_climate",
+      "type": "mc_single",
+      "questionText": "What is the typical climate of Eastern Bohemia?",
+      "options": [
+        "Mediterranean",
+        "Oceanic",
+        "Temperate",
+        "Tropical"
+      ],
+      "correctAnswer": "Temperate"
+    },
+    {
+      "id": "ebohemia_population",
+      "type": "mc_single",
+      "questionText": "What is the approximate population of Eastern Bohemia?",
+      "options": [
+        "200,000",
+        "500,000",
+        "1 million",
+        "2 million"
+      ],
+      "correctAnswer": "1 million"
+    },
+    {
+      "id": "ebohemia_cities",
+      "type": "mc_multiple",
+      "questionText": "Which are major cities in Eastern Bohemia? (Choose all that apply)",
+      "options": [
+        "Hradec Kr\u00e1lov\u00e9",
+        "Pardubice",
+        "Chrudim",
+        "Brno"
+      ],
+      "correctAnswers": [
+        "Hradec Kr\u00e1lov\u00e9",
+        "Pardubice",
+        "Chrudim"
+      ]
+    },
+    {
+      "id": "ebohemia_culture",
+      "type": "mc_multiple",
+      "questionText": "Which cultural aspects are typical in Eastern Bohemia? (Choose all that apply)",
+      "options": [
+        "Traditional cuisine",
+        "Folk music",
+        "Winter sports",
+        "Opera festivals"
+      ],
+      "correctAnswers": [
+        "Traditional cuisine",
+        "Folk music",
+        "Winter sports"
+      ]
+    },
+    {
+      "id": "ebohemia_tourism",
+      "type": "mc_multiple",
+      "questionText": "Which places are popular tourist destinations in Eastern Bohemia? (Choose all that apply)",
+      "options": [
+        "Adr\u0161pach Rocks",
+        "Peklo Valley",
+        "Kuks Hospital",
+        "Karl\u0161tejn Castle"
+      ],
+      "correctAnswers": [
+        "Adr\u0161pach Rocks",
+        "Peklo Valley",
+        "Kuks Hospital"
+      ]
+    },
+    {
+      "id": "hk_location",
+      "type": "free_text",
+      "questionText": "Where is Hradec Kr\u00e1lov\u00e9 located?",
+      "correctAnswer": "In Eastern Bohemia, Czech Republic"
+    },
+    {
+      "id": "hk_transport",
+      "type": "mc_multiple",
+      "questionText": "What transport options are available in Hradec Kr\u00e1lov\u00e9? (Choose all that apply)",
+      "options": [
+        "Buses",
+        "Trains",
+        "Trams",
+        "Metro"
+      ],
+      "correctAnswers": [
+        "Buses",
+        "Trains"
+      ]
+    },
+    {
+      "id": "hk_culture_sport",
+      "type": "mc_multiple",
+      "questionText": "Which cultural or sports activities are common in Hradec Kr\u00e1lov\u00e9? (Choose all that apply)",
+      "options": [
+        "Jazz concerts",
+        "Football",
+        "Ice hockey",
+        "Surfing"
+      ],
+      "correctAnswers": [
+        "Jazz concerts",
+        "Football",
+        "Ice hockey"
+      ]
+    },
+    {
+      "id": "hk_interest",
+      "type": "mc_multiple",
+      "questionText": "What are some places of interest in Hradec Kr\u00e1lov\u00e9? (Choose all that apply)",
+      "options": [
+        "White Tower",
+        "Museum of East Bohemia",
+        "Giant Mountains",
+        "Old Town Square"
+      ],
+      "correctAnswers": [
+        "White Tower",
+        "Museum of East Bohemia",
+        "Old Town Square"
+      ]
+    },
+    {
+      "id": "hk_history",
+      "type": "mc_single",
+      "questionText": "What is a key fact about the history of Hradec Kr\u00e1lov\u00e9?",
+      "options": [
+        "It was once a royal dowry town",
+        "It was the first capital of the Czech Republic",
+        "It is a mining town",
+        "It was founded by Charles IV"
+      ],
+      "correctAnswer": "It was once a royal dowry town"
+    }
+  ]
+}

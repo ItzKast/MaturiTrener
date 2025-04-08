@@ -1,0 +1,178 @@
+{
+  "topic": "USA",
+  "questions": [
+    {
+      "id": "usa_location",
+      "type": "mc_single",
+      "questionText": "Where is the USA located?",
+      "options": [
+        "South America",
+        "Europe",
+        "North America",
+        "Asia"
+      ],
+      "correctAnswer": "North America"
+    },
+    {
+      "id": "usa_capital",
+      "type": "free_text",
+      "questionText": "What is the capital city of the USA?",
+      "correctAnswer": "Washington D. C."
+    },
+    {
+      "id": "usa_population",
+      "type": "mc_single",
+      "questionText": "What is the approximate population of the USA?",
+      "options": [
+        "100 million",
+        "220 million",
+        "340 million",
+        "500 million"
+      ],
+      "correctAnswer": "340 million"
+    },
+    {
+      "id": "usa_states",
+      "type": "mc_single",
+      "questionText": "How many states are there in the USA?",
+      "options": [
+        "48",
+        "49",
+        "50",
+        "52"
+      ],
+      "correctAnswer": "50"
+    },
+    {
+      "id": "usa_languages",
+      "type": "mc_multiple",
+      "questionText": "Which languages are commonly spoken in the USA? (Choose all that apply)",
+      "options": [
+        "English",
+        "Spanish",
+        "German",
+        "French"
+      ],
+      "correctAnswers": [
+        "English",
+        "Spanish"
+      ]
+    },
+    {
+      "id": "usa_currency",
+      "type": "mc_single",
+      "questionText": "What is the currency of the USA?",
+      "options": [
+        "Euro",
+        "Canadian Dollar",
+        "US Dollar",
+        "Pound"
+      ],
+      "correctAnswer": "US Dollar"
+    },
+    {
+      "id": "usa_president",
+      "type": "free_text",
+      "questionText": "Who is the head of state in the USA?",
+      "correctAnswer": "President"
+    },
+    {
+      "id": "usa_potus",
+      "type": "free_text",
+      "questionText": "What is the name of the head of the USA?",
+      "correctAnswer": "Donald Trump"
+    },
+    {
+      "id": "usa_mountains",
+      "type": "mc_single",
+      "questionText": "What are the largest mountains in the USA?",
+      "options": [
+        "Andes",
+        "Rocky Mountains",
+        "Alps",
+        "Sierra Madre"
+      ],
+      "correctAnswer": "Rocky Mountains"
+    },
+    {
+      "id": "usa_highest_peak",
+      "type": "free_text",
+      "questionText": "What is the highest mountain in the USA?",
+      "correctAnswer": "Mount McKinley"
+    },
+    {
+      "id": "usa_nps_oldest",
+      "type": "mc_single",
+      "questionText": "What is the oldest national park in the world?",
+      "options": [
+        "Grand Canyon",
+        "Yellowstone",
+        "Everglades",
+        "Sequoia"
+      ],
+      "correctAnswer": "Yellowstone"
+    },
+    {
+      "id": "usa_declaration",
+      "type": "mc_single",
+      "questionText": "When was the Declaration of Independence signed?",
+      "options": [
+        "1492",
+        "1620",
+        "1776",
+        "1865"
+      ],
+      "correctAnswer": "1776"
+    },
+    {
+      "id": "usa_first_president",
+      "type": "free_text",
+      "questionText": "Who was the first president of the USA?",
+      "correctAnswer": "George Washington"
+    },
+    {
+      "id": "usa_civil_war",
+      "type": "mc_single",
+      "questionText": "What was the main reason for the American Civil War?",
+      "options": [
+        "Taxes",
+        "Independence",
+        "Slavery",
+        "Immigration"
+      ],
+      "correctAnswer": "Slavery"
+    },
+    {
+      "id": "usa_new_york_nickname",
+      "type": "mc_multiple",
+      "questionText": "Which nicknames are associated with New York City? (Choose all that apply)",
+      "options": [
+        "The Big Apple",
+        "The Windy City",
+        "The City That Never Sleeps",
+        "Melting Pot"
+      ],
+      "correctAnswers": [
+        "The Big Apple",
+        "The City That Never Sleeps",
+        "Melting Pot"
+      ]
+    },
+    {
+      "id": "usa_sports",
+      "type": "mc_multiple",
+      "questionText": "Which sports are especially popular in the USA? (Choose all that apply)",
+      "options": [
+        "Basketball",
+        "Cricket",
+        "American Football",
+        "Baseball"
+      ],
+      "correctAnswers": [
+        "Basketball",
+        "American Football",
+        "Baseball"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "topic": "Housing and Living",
+  "questions": [
+    {
+      "id": "types_uk",
+      "type": "mc_multiple",
+      "questionText": "Which types of houses are typical in the UK? (Choose all that apply)",
+      "options": [
+        "Terraced houses",
+        "Detached houses",
+        "Bungalows",
+        "Chalets"
+      ],
+      "correctAnswers": [
+        "Terraced houses",
+        "Detached houses",
+        "Bungalows"
+      ]
+    },
+    {
+      "id": "types_usa",
+      "type": "mc_multiple",
+      "questionText": "Which types of houses are common in the USA? (Choose all that apply)",
+      "options": [
+        "Detached houses",
+        "Mobile homes",
+        "Apartments",
+        "Cottages"
+      ],
+      "correctAnswers": [
+        "Detached houses",
+        "Mobile homes",
+        "Apartments"
+      ]
+    },
+    {
+      "id": "types_cz",
+      "type": "mc_multiple",
+      "questionText": "Which types of houses are typical in the Czech Republic? (Choose all that apply)",
+      "options": [
+        "Paneláky",
+        "Family houses",
+        "Chalets",
+        "Skyscrapers"
+      ],
+      "correctAnswers": [
+        "Paneláky",
+        "Family houses",
+        "Chalets"
+      ]
+    },
+    {
+      "id": "uk_strange",
+      "type": "mc_single",
+      "questionText": "What is something unusual about houses in the UK?",
+      "options": [
+        "They often have separate taps for hot and cold water",
+        "They have swimming pools in every house",
+        "All houses are pink",
+        "They are built from glass"
+      ],
+      "correctAnswer": "They often have separate taps for hot and cold water"
+    },
+    {
+      "id": "usa_strange",
+      "type": "mc_single",
+      "questionText": "What is something unusual about houses in the USA?",
+      "options": [
+        "They often have wooden frames and are not made of brick",
+        "All houses have basements",
+        "They are usually round",
+        "They all have solar panels"
+      ],
+      "correctAnswer": "They often have wooden frames and are not made of brick"
+    },
+    {
+      "id": "cz_strange",
+      "type": "mc_single",
+      "questionText": "What is something specific about housing in the Czech Republic?",
+      "options": [
+        "Panel buildings (Paneláky) are common in cities",
+        "Most people live in castles",
+        "People live on boats",
+        "Houses are all made of glass"
+      ],
+      "correctAnswer": "Panel buildings (Paneláky) are common in cities"
+    },
+    {
+      "id": "future_houses",
+      "type": "mc_multiple",
+      "questionText": "Which of these are features of future houses? (Choose all that apply)",
+      "options": [
+        "Smart home technology",
+        "Self-cleaning surfaces",
+        "Flying garages",
+        "Eco-friendly materials"
+      ],
+      "correctAnswers": [
+        "Smart home technology",
+        "Self-cleaning surfaces",
+        "Eco-friendly materials"
+      ]
+    },
+    {
+      "id": "house_materials_future",
+      "type": "mc_single",
+      "questionText": "What materials will future houses likely use more of?",
+      "options": [
+        "Plastic",
+        "Wood",
+        "Eco-friendly and sustainable materials",
+        "Concrete only"
+      ],
+      "correctAnswer": "Eco-friendly and sustainable materials"
+    }
+  ]
+}
