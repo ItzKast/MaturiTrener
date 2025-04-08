@@ -50,6 +50,12 @@
             "correctAnswer": "Chronologická"
         },
         {
+            "id": "kapitoly",
+            "type": "free_text",
+            "questionText": "Počet kapitol:",
+            "correctAnswer": "18"
+        },
+        {
             "id": "vypravec",
             "type": "mc_single",
             "questionText": "Vypravěč / Forma projevu:",
