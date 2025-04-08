@@ -118,22 +118,22 @@ const schoolSubjectConfig = {
             "Holidays in CZ and English speaking countries": "holidays_festivals_questions.json",
             "Housing and living": "housing_and_living_questions.json",
             "Education": "education_questions.json",
-            "CV + cover letter":"cv_cover_letter_questions.json",
+            "CV + cover letter": "cv_cover_letter_questions.json",
             "Food and drink": "food_drink_questions.json",
-            "Shopping + shops, payment methods":"shopping_banking_questions.json",
+            "Shopping + shops, payment methods": "shopping_banking_questions.json",
             "Mass Media": "mass_media_questions.json",
             "Sport": "sport_questions.json",
-            "Cars":"cars_questions.json",
+            "Cars": "cars_questions.json",
             "Inventions, dicoveries and technology": "science_questions.json",
-            "Sources of energy":"sources_of_energy_questions.json",
-            "Czech Republic, Prague":"czech_prague_questions.json",
-            "Eastern Bohemia, HK":"eastern_bohemia_questions.json",
+            "Sources of energy": "sources_of_energy_questions.json",
+            "Czech Republic, Prague": "czech_prague_questions.json",
+            "Eastern Bohemia, HK": "eastern_bohemia_questions.json",
             "Great Britain": "great_britain_questions.json",
             "W. Shakespeare": "shakespeare_questions.json",
-            "The USA":"usa_questions.json",
+            "The USA": "usa_questions.json",
             "Australia and New Zealand": "australia_nz_questions.json",
-            "Canada":"canada_questions.json",
-            "European Union":"european_union_questions.json"
+            "Canada": "canada_questions.json",
+            "European Union": "european_union_questions.json"
         }
     },
     "Gymnázium": {
@@ -1505,15 +1505,20 @@ function mapAuthError(error) {
 // --- UI Update & Navigation Functions ---
 
 function showLogin() {
-    if (leaderboardListenerUnsubscribe) { // Detach when leaving Profile/Stats
+    // Detach listener FIRST
+    if (leaderboardListenerUnsubscribe) {
         console.log("Detaching leaderboard listener when showing Login.");
         leaderboardListenerUnsubscribe();
         leaderboardListenerUnsubscribe = null;
     }
+
+    // Show/Hide Sections
     if (loginSection) loginSection.style.display = 'flex';
     if (dashboardSection) dashboardSection.style.display = 'none';
     if (testSection) testSection.style.display = 'none';
-    if (profileSection) profileSection.style.display = 'none';
+    if (profileSection) profileSection.style.display = 'none'; // Already here, good
+
+    // Reset Login Form
     if (loginMessage) loginMessage.textContent = '';
     if (loginForm) {
         loginForm.reset();
@@ -1527,53 +1532,64 @@ function showLogin() {
 // let leaderboardListenerUnsubscribe = null;
 
 function showDashboard() {
+    // Detach listener FIRST
     if (leaderboardListenerUnsubscribe) {
         console.log("Detaching previous leaderboard listener before showing Dashboard.");
         leaderboardListenerUnsubscribe();
         leaderboardListenerUnsubscribe = null;
     }
-    if (profileSection) profileSection.style.display = 'none';
+
+    // Show/Hide Sections
+    if(profileSection) profileSection.style.display = 'none'; // <<< ADDED
     if (loginSection) loginSection.style.display = 'none';
-    if (dashboardSection) dashboardSection.style.display = 'block'; // Show Dashboard
+    if (dashboardSection) dashboardSection.style.display = 'block';
     if (testSection) testSection.style.display = 'none';
-    if (currentUser) {
+
+    // Attach Leaderboard Listener if user logged in
+    if (currentUser && db && !leaderboardListenerUnsubscribe) { // Check !leaderboardListenerUnsubscribe to prevent duplicates
         console.log("Attaching real-time leaderboard listener for Dashboard section...");
+        if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Načítání žebříčku...</li>'; // Show loading state
 
-        const query = db.collection("users")
-            .orderBy("weeklyXP", "desc")
-            .limit(10);
-
-        leaderboardListenerUnsubscribe = query.onSnapshot(querySnapshot => {
-            console.log("Leaderboard snapshot received (Dashboard).");
-            const topUsers = [];
-            querySnapshot.forEach(doc => {
-                const data = doc.data();
-                if (data.nickname && typeof data.weeklyXP === 'number') {
-                    topUsers.push({
-                        nickname: data.nickname,
-                        xp: data.weeklyXP
-                    });
-                }
+        const query = db.collection("users").orderBy("weeklyXP", "desc").limit(10);
+        try {
+            leaderboardListenerUnsubscribe = query.onSnapshot(querySnapshot => {
+                console.log("Leaderboard snapshot received (Dashboard).");
+                const topUsers = [];
+                querySnapshot.forEach(doc => {
+                    const data = doc.data();
+                    if (data.nickname && typeof data.weeklyXP === 'number') {
+                        topUsers.push({ nickname: data.nickname, xp: data.weeklyXP });
+                    }
+                });
+                updateLeaderboardUI(topUsers);
+            }, error => { // Handle snapshot errors
+                console.error("Error fetching leaderboard snapshot (Dashboard):", error);
+                if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba live žebříčku.</li>';
+                if (leaderboardListenerUnsubscribe) leaderboardListenerUnsubscribe(); // Detach on persistent error?
+                leaderboardListenerUnsubscribe = null;
             });
-            updateLeaderboardUI(topUsers); // Update the UI
-        }, error => {
-            console.error("Error fetching leaderboard snapshot (Dashboard):", error);
-            if (leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba live žebříčku.</li>';
-        });
-    } else {
-        updateLeaderboardUI([]);
+        } catch (error) {
+             console.error("Error attaching leaderboard listener:", error);
+             if(leaderboardList) leaderboardList.innerHTML = '<li class="no-leaderboard">Chyba připojení live žebříčku.</li>';
+        }
+    } else if (!currentUser) {
+        updateLeaderboardUI([]); // Clear if not logged in
     }
+    // Other dashboard updates (like subject cards) are triggered by loadUserDataFromFirestore
 }
 
 function showTestSection() {
-    if (leaderboardListenerUnsubscribe) { // Detach when leaving Profile/Stats
+    // Detach listener FIRST
+    if (leaderboardListenerUnsubscribe) {
         console.log("Detaching leaderboard listener when showing Test Section.");
         leaderboardListenerUnsubscribe();
         leaderboardListenerUnsubscribe = null;
     }
+
+    // Show/Hide Sections
+    if(profileSection) profileSection.style.display = 'none'; // <<< ADDED
     if (loginSection) loginSection.style.display = 'none';
     if (dashboardSection) dashboardSection.style.display = 'none';
-    if (profileSection) profileSection.style.display = 'none';
     if (testSection) testSection.style.display = 'block';
 }
 
@@ -1725,45 +1741,49 @@ function updateProgressSection(userData) {
  * Clears user-specific data from the UI, typically called on logout.
  */
 function clearUserDataUI() {
+    // Detach listener FIRST
     if (leaderboardListenerUnsubscribe) {
         console.log("Detaching leaderboard listener during UI clear.");
         leaderboardListenerUnsubscribe();
         leaderboardListenerUnsubscribe = null;
     }
-    // Reset dashboard stats
-    updateStatisticsSection(null); // Pass null for default/zero state
+
+    // Reset stats/quests/badges/achievements
+    updateStatisticsSection(null);
     updateDailyQuestsUI([], false);
+    updateSubjectBadgesUI(null); // Call badge update with null
+    updateAchievementsUI(null); // Clear achievements
 
-    // Clear subject cards
+    // Clear subject cards & progress table
     if (subjectStatsContainer) subjectStatsContainer.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">Pro zobrazení pokroku se přihlaste.</p>';
+    if (progressTableBody) { /* ... clear table and add placeholder row ... */ }
 
-    // Clear progress table
-    if (progressTableBody) {
-        progressTableBody.innerHTML = '';
-        const row = document.createElement('tr');
-        const cell = document.createElement('td');
-        cell.colSpan = 4;
-        cell.textContent = 'Pro zobrazení statistik se přihlaste.';
-        cell.style.textAlign = 'center';
-        cell.style.padding = '1rem';
-        row.appendChild(cell);
-        progressTableBody.appendChild(row);
-    }
-    if (toggleFavoriteBtn) {
-        toggleFavoriteBtn.style.display = 'none';
-        toggleFavoriteBtn.disabled = true;
-    }
+    // Reset Favorite button
+    if (toggleFavoriteBtn) { toggleFavoriteBtn.style.display = 'none'; toggleFavoriteBtn.disabled = true; }
 
-    // Reset test section if needed (might happen automatically on navigation)
-    if (testContainer) testContainer.innerHTML = '';
-    if (testContainer) testContainer.style.display = 'none';
-    if (subjectSelect) subjectSelect.value = '';
-    if (topicSelect) topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
-    if (topicSelect) topicSelect.disabled = true;
+    // Reset Test selection area
+    if (testContainer) { testContainer.innerHTML = ''; testContainer.style.display = 'none'; }
+    if (schoolTypeSelect) schoolTypeSelect.value = ''; // Reset school type
+    if (subjectSelect) { subjectSelect.innerHTML = '<option value="">Nejprve typ školy</option>'; subjectSelect.disabled = true; subjectSelect.value = ''; }
+    if (topicSelect) { topicSelect.innerHTML = '<option value="">Nejprve předmět</option>'; topicSelect.disabled = true; topicSelect.value = ''; }
     if (generateTestBtn) generateTestBtn.disabled = true;
-    if (profileSection) profileSection.style.display = 'none';
 
-    // Calendar will be regenerated by auth listener with empty data
+    // Hide sections
+    if (profileSection) profileSection.style.display = 'none';
+    if (dashboardSection) dashboardSection.style.display = 'none'; // Also hide dashboard if logged out
+    if (testSection) testSection.style.display = 'none';
+
+    // Clear Profile Specific Info
+    if (profileEmail) profileEmail.textContent = 'N/A';
+    if (profileNickname) profileNickname.textContent = 'N/A';
+    if (profileJoined) profileJoined.textContent = 'N/A';
+    if (nicknameChangeForm) nicknameChangeForm.reset();
+    if (nicknameChangeMessage) nicknameChangeMessage.textContent = '';
+    if (passwordChangeMessage) passwordChangeMessage.textContent = '';
+    if (deleteAccountMessage) deleteAccountMessage.textContent = '';
+
+    console.log("User UI cleared.");
+    // Calendar regeneration is handled by onAuthStateChanged
 }
 
 function parseCSV(csvText, subject, topic) {
@@ -1855,11 +1875,10 @@ function generateTest() {
 
     try {
         let generatedQuestions = []; // Array to hold the questions selected for this test
-        const isJsonSubject = currentSubjectKey.startsWith("Čeština") || currentSubjectKey.startsWith("Angličtina");
         // --- 3. Determine Test Type and Generate Questions ---
 
         // --- 3a. JSON-Based Subjects (Čeština, Angličtina) ---
-        if (isJsonSubject) {
+        if (subject === "Čeština" || subject === "Angličtina") {
             console.log(`Generating JSON test for ${subject} - ${topic}`);
             const jsonData = data[subject]?.[topic]; // Get data from the flat 'data' object
 
@@ -1923,7 +1942,7 @@ function generateTest() {
                             let optionsToShow = q.options || [];
                             if (isOriginalCzech && q.type === 'conditional_mc_single') { // Check ONLY original Czech for this specific logic
                                 if (q.optionsBasedOn && correctDruh) optionsToShow = q.optionsBasedOn[correctDruh] || [];
-                                else { optionsToShow = []; console.error(`Missing options for conditional Q ${q.id}`);}
+                                else { optionsToShow = []; console.error(`Missing options for conditional Q ${q.id}`); }
                             } // Add other conditional logic here if needed
 
                             if (optionsToShow.length === 0) {
@@ -1990,7 +2009,7 @@ function generateTest() {
                 testContainer.appendChild(questionDiv);
             }); // End forEach JSON question
 
-        // --- 3b. CSV-Based Subjects ---
+            // --- 3b. CSV-Based Subjects ---
         } else {
             console.log(`Generating CSV test for ${subject} - ${topic}`);
             let sourceQuestions = []; // Temporary array for selected CSV questions
@@ -2019,14 +2038,14 @@ function generateTest() {
                 console.log(`Generating standard CSV test for ${currentSubjectKey} - ${topic}`);
                 const availableQuestions = data[currentSubjectKey]?.[topic];
                 if (!availableQuestions || !Array.isArray(availableQuestions) || availableQuestions.length === 0) {
-                     throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky (CSV).`);
-                 }
+                    throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky (CSV).`);
+                }
 
                 // <<< FIX: Assign standard topic questions to the main array HERE >>>
                 generatedQuestions = getRandomQuestions(availableQuestions, questionsPerStandardTest);
-                 if (generatedQuestions.length === 0) throw new Error("Nepodařilo se vybrat žádné otázky pro standardní test.");
-                 console.log(`Using ${generatedQuestions.length} questions for standard test.`);
-                 // --- End Standard Topic Logic ---
+                if (generatedQuestions.length === 0) throw new Error("Nepodařilo se vybrat žádné otázky pro standardní test.");
+                console.log(`Using ${generatedQuestions.length} questions for standard test.`);
+                // --- End Standard Topic Logic ---
             }
 
 
@@ -2034,8 +2053,8 @@ function generateTest() {
             generatedQuestions.forEach((q, index) => {
                 // Ensure question object 'q' is valid
                 if (!q || typeof q !== 'object' || !q.text || !q.correctAnswer || !q.options) {
-                     console.warn(`Skipping invalid question object at index ${index} for CSV test.`);
-                     return; // Skip this iteration
+                    console.warn(`Skipping invalid question object at index ${index} for CSV test.`);
+                    return; // Skip this iteration
                 }
 
                 const questionDiv = document.createElement('div');
@@ -2077,17 +2096,17 @@ function generateTest() {
 
         // --- 4. Add Submit Button ---
         if (generatedQuestions.length > 0) { // Only add submit if questions were actually generated
-             if (submitBtn && submitBtn.parentNode) submitBtn.remove(); // Remove old one if exists
-             submitBtn = document.createElement('button');
-             submitBtn.classList.add('btn', 'btn-primary', 'submit-test-btn');
-             submitBtn.style.marginTop = '2rem';
-             submitBtn.textContent = 'Odeslat odpovědi';
-             submitBtn.addEventListener('click', () => evaluateTest(db)); // Use arrow function to ensure correct 'this' context if needed later, or direct call
-             testContainer.appendChild(submitBtn);
-             testContainer.style.display = 'block'; // Show test container
+            if (submitBtn && submitBtn.parentNode) submitBtn.remove(); // Remove old one if exists
+            submitBtn = document.createElement('button');
+            submitBtn.classList.add('btn', 'btn-primary', 'submit-test-btn');
+            submitBtn.style.marginTop = '2rem';
+            submitBtn.textContent = 'Odeslat odpovědi';
+            submitBtn.addEventListener('click', () => evaluateTest(db)); // Use arrow function to ensure correct 'this' context if needed later, or direct call
+            testContainer.appendChild(submitBtn);
+            testContainer.style.display = 'block'; // Show test container
         } else {
-             // This case should ideally be caught by earlier checks, but as a fallback:
-             throw new Error("Nepodařilo se vygenerovat žádné otázky.");
+            // This case should ideally be caught by earlier checks, but as a fallback:
+            throw new Error("Nepodařilo se vygenerovat žádné otázky.");
         }
 
     } catch (error) {
@@ -2669,14 +2688,14 @@ function populateSubjects(selectedSchoolType) {
 
     // Check if any subjects were found for the school type
     if (subjectsForSchool.length === 0) {
-         console.warn(`populateSubjects: No subjects defined for school type: ${selectedSchoolType}`);
-         subjectSelect.innerHTML = '<option value="">Pro tento typ školy nejsou předměty</option>';
-         return;
+        console.warn(`populateSubjects: No subjects defined for school type: ${selectedSchoolType}`);
+        subjectSelect.innerHTML = '<option value="">Pro tento typ školy nejsou předměty</option>';
+        return;
     }
 
 
     // Populate the subject dropdown
-    subjectsForSchool.forEach(currentSubjectKey => { 
+    subjectsForSchool.forEach(currentSubjectKey => {
 
         const option = document.createElement('option');
         option.value = currentSubjectKey; // Use the full key (potentially with suffix) as the option's value
@@ -2807,10 +2826,10 @@ async function handleToggleFavorite() {
         const index = userData.favoriteBooks.indexOf(selectedTopic);
 
         if (index > -1) {
-             userData.favoriteBooks.splice(index, 1); console.log(`Removed ${selectedTopic} from favorites.`);
-         } else {
-             userData.favoriteBooks.push(selectedTopic); console.log(`Added ${selectedTopic} to favorites.`);
-         }
+            userData.favoriteBooks.splice(index, 1); console.log(`Removed ${selectedTopic} from favorites.`);
+        } else {
+            userData.favoriteBooks.push(selectedTopic); console.log(`Added ${selectedTopic} to favorites.`);
+        }
 
         await saveUserData(currentUser, userData, db);
         console.log("User favorites saved.");
@@ -2894,44 +2913,56 @@ function setupEventListeners() {
     changePasswordBtn?.addEventListener('click', handleChangePassword);
     deleteAccountBtn?.addEventListener('click', handleDeleteAccount); // Add delete listener
     async function showProfileSection() {
-        // 1. Detach any existing listener (Safety check, other show functions should handle it)
+        // 1. Detach any existing listener FIRST
         if (leaderboardListenerUnsubscribe) {
             console.log("Detaching previous leaderboard listener before showing Profile/Stats.");
             leaderboardListenerUnsubscribe();
-            leaderboardListenerUnsubscribe = null;
+            leaderboardListenerUnsubscribe = null; // Reset the variable
         }
 
         // 2. Show/Hide Sections
         if (loginSection) loginSection.style.display = 'none';
         if (dashboardSection) dashboardSection.style.display = 'none';
         if (testSection) testSection.style.display = 'none';
-        if (profileSection) profileSection.style.display = 'block';
+        if (profileSection) profileSection.style.display = 'block'; // Show this section
 
         // 3. Load Data if User is Logged In
-        if (currentUser) {
+        if (currentUser && db) { // Check db instance
             console.log("Loading data for Profile/Stats section...");
             try {
                 const userData = await getUserData(currentUser, db);
-                if (!userData) { throw new Error("Nepodařilo se načíst data uživatele."); }
+                if (!userData) throw new Error("Nepodařilo se načíst data uživatele.");
 
-                loadProfileData();
+                // Populate Profile Info, Stats Table, Achievements
+                loadProfileData(); // Assumes this fetches necessary data or uses existing if appropriate
                 updateProgressSection(userData);
                 updateAchievementsUI(userData);
+                updateSubjectBadgesUI(userData); // Load/Update badges here too
+
+                // NOTE: Leaderboard listener is NOT attached here anymore, it's on the Dashboard.
+
             } catch (error) {
-                // Handle errors during initial data fetch
                 console.error("Error loading profile/stats section data:", error);
-                // Clear UI...
+                // Clear relevant UI parts on error
                 if (profileEmail) profileEmail.textContent = 'Chyba';
-                // ... etc ...
+                if (profileNickname) profileNickname.textContent = 'Chyba';
+                if (profileJoined) profileJoined.textContent = 'Chyba';
                 updateProgressSection(null);
                 updateAchievementsUI(null);
+                updateSubjectBadgesUI(null); // Clear badges
             }
         } else {
+            // Clear UI elements if user is logged out
             if (profileEmail) profileEmail.textContent = 'N/A';
-            // ... etc ...
+            if (profileNickname) profileNickname.textContent = 'N/A';
+            if (profileJoined) profileJoined.textContent = 'N/A';
+            if (nicknameChangeForm) nicknameChangeForm.reset();
+            if (nicknameChangeMessage) nicknameChangeMessage.textContent = '';
+            if (passwordChangeMessage) passwordChangeMessage.textContent = '';
+            if (deleteAccountMessage) deleteAccountMessage.textContent = '';
             updateProgressSection(null);
             updateAchievementsUI(null);
-            // No need to update leaderboard UI here, showLogin/clearUserDataUI handles it
+            updateSubjectBadgesUI(null); // Clear badges
         }
     }
     async function loadProfileData() {
