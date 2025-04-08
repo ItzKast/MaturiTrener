@@ -18,8 +18,8 @@
             "id": "tema",
             "type": "mc_single",
             "questionText": "Hlavní téma:",
-            "options": ["Odtržení člověka od společnosti", "Dospívání mladého muže", "Detektivní vyšetřování", "Revoluce"],
-            "correctAnswer": "Odtržení člověka od společnosti"
+            "options": ["Boj hlavní postavy s bezvýchodnou situací", "Dospívání mladého muže", "Detektivní vyšetřování", "Revoluce"],
+            "correctAnswer": "Boj hlavní postavy s bezvýchodnou situací"
         },
         {
             "id": "postavy",
@@ -48,6 +48,12 @@
             "questionText": "Kompozice:",
             "options": ["Chronologická", "Retrospektivní", "Rámcová", "Mozaikovitá"],
             "correctAnswer": "Chronologická"
+        },
+        {
+            "id": "kapitoly",
+            "type": "free_text",
+            "questionText": "Počet kapitol",
+            "correctAnswer": "3"
         },
         {
             "id": "vypravec",
