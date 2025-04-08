@@ -307,7 +307,7 @@ const schoolSubjectConfig = {
             "Česká filosofie": "DataCeskaFilosofie.csv",
             "Souhrnné opakování": null
         },
-        "Čeština": {
+        "Čeština Gymnázium": {
             "William Shakespeare - Romeo a Julie": "cestina_william_shakespeare_romeo_a_julie.json",
             "Molière - Lakomec": "cestina_moliere_lakomec.json",
             "Alexandr Sergejevič Puškin - Evžen Oněgin": "cestina_Puskin_Evžen_Oněgin.json",
@@ -345,7 +345,7 @@ const schoolSubjectConfig = {
             "Ladislav Fuks - Spalovač mrtvol": "cestina_Fuks_Spalovač_mrtvol.json",
             "Bohumil Hrabal - Ostře sledované vlaky": "cestina_Hrabal_Ostře_sledované_vlaky.json"
         },
-        "Angličtina": {
+        "Angličtina Gymnázium": {
             "Education": "education_questions.json",
             "Culture": "culture_questions.json",
             "Food and drink": "food_drink_questions.json",
@@ -1855,11 +1855,11 @@ function generateTest() {
 
     try {
         let generatedQuestions = []; // Array to hold the questions selected for this test
-
+        const isJsonSubject = subjectKey.startsWith("Čeština") || subjectKey.startsWith("Angličtina");
         // --- 3. Determine Test Type and Generate Questions ---
 
         // --- 3a. JSON-Based Subjects (Čeština, Angličtina) ---
-        if (subject === "Čeština" || subject === "Angličtina") {
+        if (isJsonSubject) {
             console.log(`Generating JSON test for ${subject} - ${topic}`);
             const jsonData = data[subject]?.[topic]; // Get data from the flat 'data' object
 
@@ -1878,7 +1878,8 @@ function generateTest() {
 
             // Determine 'druh' only if needed (Czech conditional logic)
             let correctDruh = null;
-            if (subject === "Čeština") {
+            const isOriginalCzech = (subjectKey === "Čeština"); // Check for exact match
+            if (isOriginalCzech) {
                 correctDruh = jsonData.questions.find(q => q.id === 'druh')?.correctAnswer;
             }
 
@@ -1920,10 +1921,9 @@ function generateTest() {
                         case 'mc_single':
                         case 'conditional_mc_single':
                             let optionsToShow = q.options || [];
-                            // Czech conditional logic for options
-                            if (subject === "Čeština" && q.type === 'conditional_mc_single') {
+                            if (isOriginalCzech && q.type === 'conditional_mc_single') { // Check ONLY original Czech for this specific logic
                                 if (q.optionsBasedOn && correctDruh) optionsToShow = q.optionsBasedOn[correctDruh] || [];
-                                else { optionsToShow = []; console.error(`Missing options for conditional Q ${q.id}`); }
+                                else { optionsToShow = []; console.error(`Missing options for conditional Q ${q.id}`);}
                             } // Add other conditional logic here if needed
 
                             if (optionsToShow.length === 0) {
@@ -1997,30 +1997,35 @@ function generateTest() {
 
             if (topic === "Souhrnné opakování") {
                 // --- Summary Test Logic ---
-                console.log(`Generating summary test for ${subject}`);
-                const otherTopics = Object.keys(data[subject] || {}).filter(t => t !== "Souhrnné opakování" && data[subject][t]?.length > 0);
+                console.log(`Generating summary test for ${subjectKey}`);
+                let summarySourceQuestions = []; // Use a temporary array for summary
+                const otherTopics = Object.keys(data[subjectKey] || {}).filter(t => t !== "Souhrnné opakování" && data[subjectKey][t]?.length > 0);
                 if (otherTopics.length === 0) throw new Error("Nebyly nalezeny žádné okruhy s otázkami pro souhrnný test.");
 
                 otherTopics.forEach(ot => {
-                    const questionsFromTopic = data[subject][ot];
-                    // Ensure getRandomQuestions handles empty arrays gracefully if needed
-                    sourceQuestions.push(...getRandomQuestions(questionsFromTopic, questionsPerTopicSummary));
+                    const questionsFromTopic = data[subjectKey][ot];
+                    summarySourceQuestions.push(...getRandomQuestions(questionsFromTopic, questionsPerTopicSummary));
                 });
-                if (sourceQuestions.length === 0) throw new Error("Nepodařilo se vybrat žádné otázky pro souhrnný test.");
-                shuffleArray(sourceQuestions); // Shuffle the combined list
-                generatedQuestions = sourceQuestions; // Assign to the main array
+
+                if (summarySourceQuestions.length === 0) throw new Error("Nepodařilo se vybrat žádné otázky pro souhrnný test.");
+                shuffleArray(summarySourceQuestions); // Shuffle the combined list
+
+                // <<< FIX: Assign summary questions to the main array HERE >>>
+                generatedQuestions = summarySourceQuestions;
                 console.log(`Using ${generatedQuestions.length} questions for summary test.`);
-                // --- End Summary Test Logic ---
 
             } else {
                 // --- Standard Topic CSV Logic ---
-                console.log(`Generating standard CSV test for ${subject} - ${topic}`);
-                const availableQuestions = data[subject]?.[topic];
-                if (!availableQuestions || !Array.isArray(availableQuestions) || availableQuestions.length === 0) throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky (CSV).`);
+                console.log(`Generating standard CSV test for ${subjectKey} - ${topic}`);
+                const availableQuestions = data[subjectKey]?.[topic];
+                if (!availableQuestions || !Array.isArray(availableQuestions) || availableQuestions.length === 0) {
+                     throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky (CSV).`);
+                 }
 
-                generatedQuestions = getRandomQuestions(availableQuestions, questionsPerStandardTest); // Get random subset
-                if (generatedQuestions.length === 0) throw new Error("Nepodařilo se vybrat žádné otázky pro standardní test.");
-                console.log(`Using ${generatedQuestions.length} questions for standard test.`);
+                // <<< FIX: Assign standard topic questions to the main array HERE >>>
+                generatedQuestions = getRandomQuestions(availableQuestions, questionsPerStandardTest);
+                 if (generatedQuestions.length === 0) throw new Error("Nepodařilo se vybrat žádné otázky pro standardní test.");
+                 console.log(`Using ${generatedQuestions.length} questions for standard test.`);
                  // --- End Standard Topic Logic ---
             }
 
@@ -2109,9 +2114,9 @@ async function evaluateTest(db) {
     const resultPercentageEl = document.getElementById('result-percentage');
     const modalEl = document.getElementById('test-completion-modal');
     const submitButton = document.querySelector('.submit-test-btn');
-    const currentSubject = subjectSelect.value; // Get subject early
-    const currentTopic = topicSelect.value;    // Get topic early
-    const currentSchool = schoolTypeSelect.value; // Get school type early
+    const currentSubjectKey = subjectSelect.value; // The actual key, e.g., "Čeština Gymnázium"
+    const currentTopic = topicSelect.value;
+    const schoolType = schoolTypeSelect.value;
 
     let correctAnswersCount = 0;
     let allQuestionsCorrect = total > 0;
@@ -2221,7 +2226,7 @@ async function evaluateTest(db) {
     if (modalEl) modalEl.classList.add('show');
 
     // --- 4. Update User Data (If Logged In) ---
-    if (!currentUser || !db) {
+    if (!currentUser || !db || !userData) {
         console.warn("User not logged in or DB not available. Test results not saved.");
         addBackButtonToTestContainer();
         return;
@@ -2244,7 +2249,7 @@ async function evaluateTest(db) {
         userData.dailyQuests.bonusXPAwarded = userData.dailyQuests.bonusXPAwarded || false;
         userData.completedTopics = new Set(userData.completedTopics || []);
 
-        const uniqueTestId = currentSubject && currentTopic ? `${currentSubject}-${currentTopic}` : null;
+        const uniqueTestId = currentSubjectKey && currentTopic ? `${currentSubjectKey}-${currentTopic}` : null;
 
         // --- 4c. Update Base Stats & Activity ---
         const baseXPIncrement = correctAnswersCount;
@@ -2255,13 +2260,13 @@ async function evaluateTest(db) {
         userData.weeklyXP = (userData.weeklyXP || 0) + baseXPIncrement;
 
         // Subject Progress
-        if (currentSubject && data[currentSubject]) {
-            userData.progress[currentSubject] = userData.progress[currentSubject] || { testsCompleted: 0, correctAnswers: 0, totalQuestionsAnswered: 0, successRate: 0 };
-            const subjData = userData.progress[currentSubject];
+        if (currentSubjectKey && data[currentSubjectKey]) {
+            userData.progress[currentSubjectKey] = userData.progress[currentSubjectKey] || { testsCompleted: 0, correctAnswers: 0, totalQuestionsAnswered: 0, successRate: 0 };
+            const subjData = userData.progress[currentSubjectKey];
             subjData.testsCompleted++; subjData.correctAnswers += correctAnswersCount;
             subjData.totalQuestionsAnswered = (subjData.totalQuestionsAnswered || 0) + total;
             subjData.successRate = subjData.totalQuestionsAnswered > 0 ? Math.round((subjData.correctAnswers / subjData.totalQuestionsAnswered) * 100) : 0;
-        } else if (currentSubject) { console.warn(`Progress not updated for subject "${currentSubject}" (no data loaded).`); }
+        } else if (currentSubjectKey) { console.warn(`Progress not updated for subject "${currentSubjectKey}" (no data loaded).`); }
 
         // Average Success Rate
         let totalSuccessSum = 0, numSubjectsWithProgress = 0;
@@ -2294,9 +2299,9 @@ async function evaluateTest(db) {
         const schoolType = schoolTypeSelect.value;
 
         // Track unique subjects/tests today
-        if (currentSubject && !userData.dailyQuests.subjectsToday.includes(currentSubject)) userData.dailyQuests.subjectsToday.push(currentSubject);
+        if (currentSubjectKey && !userData.dailyQuests.subjectsToday.includes(currentSubjectKey)) userData.dailyQuests.subjectsToday.push(currentSubjectKey);
         if (uniqueTestId && !userData.dailyQuests.testsTodayIds.includes(uniqueTestId)) userData.dailyQuests.testsTodayIds.push(uniqueTestId);
-        const topicFileExists = schoolType && currentSubject && currentTopic && schoolSubjectConfig[schoolType]?.[currentSubject]?.[currentTopic];
+        const topicFileExists = schoolType && currentSubjectKey && currentTopic && schoolSubjectConfig[schoolType]?.[currentSubjectKey]?.[currentTopic];
         const isNewTopicOverall = currentTopic && topicFileExists && !userData.completedTopics.has(currentTopic);
 
         let allQuestsNowComplete = true;
@@ -2632,124 +2637,157 @@ function initializeSchoolTypes() {
 }
 /**
  * Populates the Subject dropdown based on the selected school type.
+ * Displays clean names while using potentially suffixed keys as values.
  */
 function populateSubjects(selectedSchoolType) {
-    if (!subjectSelect || !topicSelect || !generateTestBtn) return;
+    // Ensure required elements are available
+    if (!subjectSelect || !topicSelect || !generateTestBtn) {
+        console.error("populateSubjects: Missing required select/button elements.");
+        return;
+    }
 
-    // Reset subject and topic dropdowns
+    // Reset subject and topic dropdowns to initial state
     subjectSelect.innerHTML = '<option value="">Vyberte předmět</option>';
     topicSelect.innerHTML = '<option value="">Nejprve předmět</option>';
     subjectSelect.disabled = true;
     topicSelect.disabled = true;
     generateTestBtn.disabled = true;
-    if (toggleFavoriteBtn) { // Hide/disable favorite button too
+    if (toggleFavoriteBtn) { // Reset favorite button state
         toggleFavoriteBtn.style.display = 'none';
         toggleFavoriteBtn.disabled = true;
     }
 
-
+    // Validate selectedSchoolType and corresponding config
     if (!selectedSchoolType || !schoolSubjectConfig[selectedSchoolType]) {
         subjectSelect.innerHTML = '<option value="">Nejprve typ školy</option>';
-        return; // Exit if no valid school type selected
+        console.warn(`populateSubjects: Invalid or missing school type: ${selectedSchoolType}`);
+        return; // Exit if no valid school type selected or config missing
     }
 
+    // Get subject keys for the selected school from the configuration object
     const subjectsForSchool = Object.keys(schoolSubjectConfig[selectedSchoolType]);
 
-    // Optional: Sort subjects alphabetically if desired for this dropdown
-    // subjectsForSchool.sort((a, b) => a.localeCompare(b, 'cs'));
+    // Check if any subjects were found for the school type
+    if (subjectsForSchool.length === 0) {
+         console.warn(`populateSubjects: No subjects defined for school type: ${selectedSchoolType}`);
+         subjectSelect.innerHTML = '<option value="">Pro tento typ školy nejsou předměty</option>';
+         return;
+    }
 
-    subjectsForSchool.forEach(subject => {
-        // Optional: Check if any data actually exists for this subject before adding
-        if (!data[subject] || Object.keys(data[subject]).length === 0) {
-            console.warn(`No data found for subject "${subject}", not adding to dropdown.`);
-            // return; // Uncomment to hide subjects with no loaded topics
-        }
+
+    // Populate the subject dropdown
+    subjectsForSchool.forEach(subjectKey => { // e.g., "Čeština", "Angličtina", "Čeština Gymnázium"
+        // Optional: Check if any data actually loaded for this subject before adding the option
+        // if (!data[subjectKey] || Object.keys(data[subjectKey]).length === 0) {
+        //     console.warn(`No data loaded for subject "${subjectKey}", skipping dropdown option.`);
+        //     return;
+        // }
 
         const option = document.createElement('option');
-        option.value = subject;
-        option.textContent = subject;
+        option.value = subjectKey; // Use the full key (potentially with suffix) as the option's value
+
+        // --- Clean up display text shown to the user ---
+        // Remove " Gymnázium" suffix specifically for display purposes
+        let displaySubjectName = subjectKey.replace(/ Gymnázium$/, '');
+        option.textContent = displaySubjectName; // Show the cleaned name (e.g., "Čeština")
+        // ---
+
         subjectSelect.appendChild(option);
     });
 
-    subjectSelect.disabled = false; // Enable subject selection
+    subjectSelect.disabled = false; // Enable the subject dropdown
 }
 
-function populateTopics(subject, userData) {
-    console.log(`DEBUG: populateTopics started with subject: "${subject}"`);
+/**
+ * Populates the Topic dropdown based on the selected subject key.
+ * Handles favorite display only for Czech subjects ("Čeština" or "Čeština Gymnázium").
+ * @param {string} subjectKey - The subject key (e.g., "Čeština", "Čeština Gymnázium").
+ * @param {object|null} userData - The current user's data (for favorites).
+ */
+function populateTopics(subjectKey, userData) {
+    console.log(`DEBUG: populateTopics started with subject key: "${subjectKey}"`);
     if (!topicSelect || !generateTestBtn || !toggleFavoriteBtn) {
-        console.error("DEBUG: populateTopics exiting - elements missing!");
+        console.error("DEBUG: populateTopics exiting - dropdown elements missing!");
         return;
     }
 
-    const currentTopicValue = topicSelect.value;
+    // --- Reset Topic Select & Buttons ---
+    const currentTopicValue = topicSelect.value; // Store previous value if needed
     topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
     topicSelect.disabled = true;
     generateTestBtn.disabled = true;
     toggleFavoriteBtn.style.display = 'none'; // Hide favorite button by default
     toggleFavoriteBtn.disabled = true;
 
-    if (!subject || !data[subject]) {
-        console.warn(`DEBUG: populateTopics - Invalid subject "${subject}" or no data.`);
+    // --- Validate Subject Key and Data ---
+    if (!subjectKey || !data[subjectKey]) {
+        console.warn(`DEBUG: populateTopics - Invalid subject key "${subjectKey}" or no data found in the flat 'data' object.`);
         topicSelect.innerHTML = '<option value="">Neplatný předmět nebo chybí data</option>';
         return;
     }
 
-    let topics = Object.keys(data[subject]); // Get topics from the flat 'data' object
-    console.log(`DEBUG: Topics found for "${subject}":`, topics);
+    // --- Get Topics from Flat Data ---
+    let topics = Object.keys(data[subjectKey]);
+    console.log(`DEBUG: Topics found for "${subjectKey}" in flat data:`, topics);
 
-    if (topics.length === 0 || (topics.length === 1 && topics[0] === "Zatím žádná témata")) {
-        console.warn(`DEBUG: No actual topics found for subject "${subject}".`);
+    // --- Handle No Topics Found ---
+    // Check if the only topic is the placeholder OR if the array is truly empty
+    const actualTopics = topics.filter(t => !(t === "Zatím žádná témata" && data[subjectKey][t] === null));
+    if (actualTopics.length === 0) {
+        console.warn(`DEBUG: No actual topics found for subject "${subjectKey}".`);
         topicSelect.innerHTML = '<option value="">Žádné okruhy nenalezeny</option>';
-        return;
+        return; // Keep dropdown disabled and exit
     }
 
-    // --- SORTING (ONLY for Čeština Favorites) ---
-    if (subject === "Čeština") {
+    // --- Determine if Czech for UI logic ---
+    const isCzechSubject = subjectKey.startsWith("Čeština"); // Checks "Čeština" or "Čeština Gymnázium"
+
+    // --- Sorting (Apply ONLY for Czech versions) ---
+    if (isCzechSubject) {
         const favoriteBooks = userData?.favoriteBooks || [];
-        topics.sort((a, b) => {
+        // Sort the *actual* topics, not the keys including placeholders if filtered earlier
+        actualTopics.sort((a, b) => {
             const aIsFav = favoriteBooks.includes(a);
             const bIsFav = favoriteBooks.includes(b);
             if (aIsFav && !bIsFav) return -1;
             if (!aIsFav && bIsFav) return 1;
             return a.localeCompare(b, 'cs'); // Alpha for others
         });
-        // Favorite button only visible for Czech
-        toggleFavoriteBtn.style.display = 'inline-block';
+        // Show favorite button ONLY for Czech subjects
+        if (toggleFavoriteBtn) toggleFavoriteBtn.style.display = 'inline-block';
     }
-    // No 'else' needed - other subjects retain original order from Object.keys
+    // No sorting for non-Czech subjects, use order from Object.keys (which might vary slightly by browser)
 
-    // --- Populate Options ---
-    topics.forEach(topic => {
-        if (topic === "Zatím žádná témata" && data[subject][topic] === null) {
-            return; // Skip placeholder option
-        }
-
+    // --- Populate Options using the potentially sorted 'actualTopics' ---
+    actualTopics.forEach(topic => {
         const option = document.createElement('option');
         option.value = topic;
         let displayText = topic;
-        // Add star ONLY if subject is Čeština AND it's a favorite
-        if (subject === "Čeština" && userData?.favoriteBooks?.includes(topic)) {
+        // Add star ONLY if it's a Czech subject AND a favorite
+        if (isCzechSubject && userData?.favoriteBooks?.includes(topic)) {
             displayText = "★ " + topic;
         }
         option.textContent = displayText;
         topicSelect.appendChild(option);
     });
+    // --- End Populate Options ---
 
-    topicSelect.disabled = false; // Enable dropdown
+    // Enable the topic dropdown now that options are added
+    topicSelect.disabled = false;
 
     // --- Restore Selection & Enable Buttons ---
-    if (topics.includes(currentTopicValue)) {
+    if (actualTopics.includes(currentTopicValue)) {
         topicSelect.value = currentTopicValue;
         generateTestBtn.disabled = false; // Enable generate test
         // Enable favorite button ONLY if Czech AND a topic is selected
-        if (subject === "Čeština") {
-            toggleFavoriteBtn.disabled = false;
+        if (isCzechSubject) {
+            if (toggleFavoriteBtn) toggleFavoriteBtn.disabled = false;
         }
     } else {
-        // No valid selection restored, keep buttons disabled
+        // No valid previous selection, keep buttons disabled
         generateTestBtn.disabled = true;
-        if (subject === "Čeština") {
-            toggleFavoriteBtn.disabled = true;
+        if (isCzechSubject) {
+            if (toggleFavoriteBtn) toggleFavoriteBtn.disabled = true;
         }
     }
 }
@@ -2759,10 +2797,11 @@ async function handleToggleFavorite() {
         return;
     }
 
-    const selectedSubject = subjectSelect.value;
+    const selectedSubjectKey = subjectSelect.value;
     const selectedTopic = topicSelect.value;
 
-    if (selectedSubject !== "Čeština" || !selectedTopic) {
+    const isCzechSubject = selectedSubjectKey.startsWith("Čeština");
+    if (!isCzechSubject || !selectedTopic) {
         console.warn("Cannot toggle favorite: Not Čeština subject or no topic selected.");
         return;
     }
@@ -2771,41 +2810,32 @@ async function handleToggleFavorite() {
     toggleFavoriteBtn.disabled = true;
 
     try {
-        console.log(`Toggling favorite for: ${selectedTopic}`);
-        // Fetch the LATEST user data before modifying
+        console.log(`Toggling favorite for topic: ${selectedTopic} (Subject Key: ${selectedSubjectKey})`);
         const userData = await getUserData(currentUser, db);
-        if (!userData) {
-            throw new Error("Nepodařilo se načíst uživatelská data.");
-        }
+        if (!userData) throw new Error("Nepodařilo se načíst data uživatele.");
 
-        // Initialize favoriteBooks if it doesn't exist
         userData.favoriteBooks = userData.favoriteBooks || [];
-
         const index = userData.favoriteBooks.indexOf(selectedTopic);
 
         if (index > -1) {
-            // It's a favorite, remove it
-            userData.favoriteBooks.splice(index, 1);
-            console.log(`Removed ${selectedTopic} from favorites.`);
-        } else {
-            // It's not a favorite, add it
-            userData.favoriteBooks.push(selectedTopic);
-            console.log(`Added ${selectedTopic} to favorites.`);
-        }
+             userData.favoriteBooks.splice(index, 1); console.log(`Removed ${selectedTopic} from favorites.`);
+         } else {
+             userData.favoriteBooks.push(selectedTopic); console.log(`Added ${selectedTopic} to favorites.`);
+         }
 
-        // Save the updated data
         await saveUserData(currentUser, userData, db);
         console.log("User favorites saved.");
 
-        populateTopics(selectedSubject, userData);
+        // Repopulate topics using the CURRENT selected subject key
+        populateTopics(selectedSubjectKey, userData);
 
+        // Re-enable button state based on current selection
         toggleFavoriteBtn.disabled = !topicSelect.value;
 
     } catch (error) {
         console.error("Error toggling favorite:", error);
         alert("Chyba při ukládání oblíbené položky.");
-        // Re-enable button even on error
-        toggleFavoriteBtn.disabled = !topicSelect.value;
+        toggleFavoriteBtn.disabled = !topicSelect.value; // Still potentially re-enable
     }
 }
 // --- Event Listener Setup ---
