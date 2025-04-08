@@ -50,6 +50,12 @@
             "correctAnswer": "Chronologická"
         },
         {
+            "id": "casti",
+            "type": "free_text",
+            "questionText": "Počet částí:",
+            "correctAnswer": "3"
+        },
+        {
             "id": "vypravec",
             "type": "mc_single",
             "questionText": "Vypravěč / Forma projevu:",
