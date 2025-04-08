@@ -1,0 +1,187 @@
+{
+  "topic": "American Literature",
+  "questions": [
+    {
+      "id": "poe_genre",
+      "type": "mc_single",
+      "questionText": "Which literary genres is Edgar Allan Poe known for?",
+      "options": [
+        "Romantic comedy",
+        "Horror and detective",
+        "Historical fiction",
+        "Science and nature"
+      ],
+      "correctAnswer": "Horror and detective"
+    },
+    {
+      "id": "poe_poem",
+      "type": "free_text",
+      "questionText": "What is Edgar Allan Poe’s most famous poem?",
+      "correctAnswer": "The Raven"
+    },
+    {
+      "id": "poe_story",
+      "type": "mc_single",
+      "questionText": "Which of these is a short story by Edgar Allan Poe?",
+      "options": [
+        "The Pit and the Pendulum",
+        "The Great Gatsby",
+        "On the Road",
+        "Fahrenheit 451"
+      ],
+      "correctAnswer": "The Pit and the Pendulum"
+    },
+    {
+      "id": "hemingway_nobel",
+      "type": "mc_single",
+      "questionText": "Which Hemingway book earned him the Nobel Prize?",
+      "options": [
+        "A Farewell to Arms",
+        "For Whom the Bell Tolls",
+        "The Old Man and the Sea",
+        "The Sun Also Rises"
+      ],
+      "correctAnswer": "The Old Man and the Sea"
+    },
+    {
+      "id": "fitzgerald_book",
+      "type": "free_text",
+      "questionText": "What is the most famous novel by Francis Scott Fitzgerald?",
+      "correctAnswer": "The Great Gatsby"
+    },
+    {
+      "id": "lost_generation",
+      "type": "mc_multiple",
+      "questionText": "Which authors were part of the Lost Generation? (Choose all that apply)",
+      "options": [
+        "Ernest Hemingway",
+        "Francis Scott Fitzgerald",
+        "Edgar Allan Poe",
+        "Remarque"
+      ],
+      "correctAnswers": [
+        "Ernest Hemingway",
+        "Francis Scott Fitzgerald",
+        "Remarque"
+      ]
+    },
+    {
+      "id": "kerouac_movement",
+      "type": "mc_single",
+      "questionText": "Which literary movement was Jack Kerouac associated with?",
+      "options": [
+        "Modernism",
+        "Romanticism",
+        "Victorian",
+        "Beat Generation"
+      ],
+      "correctAnswer": "Beat Generation"
+    },
+    {
+      "id": "kerouac_book",
+      "type": "mc_single",
+      "questionText": "What is the most famous novel by Jack Kerouac?",
+      "options": [
+        "Paper Towns",
+        "On the Road",
+        "The Fault in Our Stars",
+        "Animal Farm"
+      ],
+      "correctAnswer": "On the Road"
+    },
+    {
+      "id": "bradbury_novel",
+      "type": "mc_single",
+      "questionText": "Which dystopian novel was written by Ray Bradbury?",
+      "options": [
+        "Fahrenheit 451",
+        "1984",
+        "Brave New World",
+        "The Hunger Games"
+      ],
+      "correctAnswer": "Fahrenheit 451"
+    },
+    {
+      "id": "bradbury_genres",
+      "type": "mc_multiple",
+      "questionText": "Which genres did Ray Bradbury write in? (Choose all that apply)",
+      "options": [
+        "Science fiction",
+        "Horror",
+        "Fantasy",
+        "Historical romance"
+      ],
+      "correctAnswers": [
+        "Science fiction",
+        "Horror"
+      ]
+    },
+    {
+      "id": "green_books",
+      "type": "mc_multiple",
+      "questionText": "Which books were written by John Green? (Choose all that apply)",
+      "options": [
+        "The Fault in Our Stars",
+        "Paper Towns",
+        "Looking for Alaska",
+        "Twilight"
+      ],
+      "correctAnswers": [
+        "The Fault in Our Stars",
+        "Paper Towns",
+        "Looking for Alaska"
+      ]
+    },
+    {
+      "id": "gatsby_theme",
+      "type": "mc_single",
+      "questionText": "What is a central theme in The Great Gatsby?",
+      "options": [
+        "American Dream",
+        "War Trauma",
+        "Science vs. Religion",
+        "Technology"
+      ],
+      "correctAnswer": "American Dream"
+    },
+    {
+      "id": "hemingway_experience",
+      "type": "mc_single",
+      "questionText": "Which war influenced Hemingway’s writing?",
+      "options": [
+        "World War I",
+        "World War II",
+        "Vietnam War",
+        "Korean War"
+      ],
+      "correctAnswer": "World War I"
+    },
+    {
+      "id": "american_indian_lit",
+      "type": "mc_single",
+      "questionText": "What was the nature of Native American literature before colonization?",
+      "options": [
+        "Written novels",
+        "Spoken legends and myths",
+        "Plays",
+        "Newspapers"
+      ],
+      "correctAnswer": "Spoken legends and myths"
+    },
+    {
+      "id": "colonists_writing",
+      "type": "mc_multiple",
+      "questionText": "What did early American colonists write? (Choose all that apply)",
+      "options": [
+        "Manuals",
+        "Travel books",
+        "Mythological epics",
+        "Science books"
+      ],
+      "correctAnswers": [
+        "Manuals",
+        "Travel books"
+      ]
+    }
+  ]
+}

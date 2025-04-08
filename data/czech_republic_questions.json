@@ -1,0 +1,200 @@
+{
+  "topic": "The Czech Republic",
+  "questions": [
+    {
+      "id": "regions_cz",
+      "type": "mc_single",
+      "questionText": "How many regions is the Czech Republic divided into?",
+      "options": [
+        "10",
+        "12",
+        "14",
+        "16"
+      ],
+      "correctAnswer": "14"
+    },
+    {
+      "id": "bordering_countries",
+      "type": "mc_multiple",
+      "questionText": "Which countries border the Czech Republic? (Choose all that apply)",
+      "options": [
+        "Germany",
+        "Austria",
+        "Poland",
+        "Hungary",
+        "Slovakia"
+      ],
+      "correctAnswers": [
+        "Germany",
+        "Austria",
+        "Poland",
+        "Slovakia"
+      ]
+    },
+    {
+      "id": "national_anthem",
+      "type": "free_text",
+      "questionText": "What is the name of the Czech national anthem?",
+      "correctAnswer": "Where is my home"
+    },
+    {
+      "id": "independence_date",
+      "type": "mc_single",
+      "questionText": "When was the independent Czech Republic established?",
+      "options": [
+        "1989",
+        "1992",
+        "1993",
+        "2000"
+      ],
+      "correctAnswer": "1993"
+    },
+    {
+      "id": "highest_mountain",
+      "type": "free_text",
+      "questionText": "What is the name of the highest mountain in the Czech Republic?",
+      "correctAnswer": "Snowdon"
+    },
+    {
+      "id": "vltava_use",
+      "type": "mc_multiple",
+      "questionText": "What are the uses of dams on the Vltava River? (Choose all that apply)",
+      "options": [
+        "Flood protection",
+        "Recreation",
+        "Drinking water",
+        "Heating"
+      ],
+      "correctAnswers": [
+        "Flood protection",
+        "Recreation",
+        "Drinking water"
+      ]
+    },
+    {
+      "id": "charles_iv",
+      "type": "mc_multiple",
+      "questionText": "What is Charles IV known for? (Choose all that apply)",
+      "options": [
+        "Charles Bridge",
+        "Prague Castle",
+        "Founding university",
+        "Writing Czech anthem"
+      ],
+      "correctAnswers": [
+        "Charles Bridge",
+        "Prague Castle",
+        "Founding university"
+      ]
+    },
+    {
+      "id": "prague_river",
+      "type": "mc_single",
+      "questionText": "Which river flows through Prague?",
+      "options": [
+        "Elbe",
+        "Morava",
+        "Dyje",
+        "Vltava"
+      ],
+      "correctAnswer": "Vltava"
+    },
+    {
+      "id": "tourist_places",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are tourist places in Prague? (Choose all that apply)",
+      "options": [
+        "Charles Bridge",
+        "Vyšehrad",
+        "Prague Castle",
+        "Karlštejn"
+      ],
+      "correctAnswers": [
+        "Charles Bridge",
+        "Vyšehrad",
+        "Prague Castle"
+      ]
+    },
+    {
+      "id": "unesco_cities",
+      "type": "mc_multiple",
+      "questionText": "Which of these cities are listed as UNESCO heritage sites? (Choose all that apply)",
+      "options": [
+        "Český Krumlov",
+        "Kutná Hora",
+        "Brno",
+        "Karlovy Vary"
+      ],
+      "correctAnswers": [
+        "Český Krumlov",
+        "Kutná Hora"
+      ]
+    },
+    {
+      "id": "moravian_karst",
+      "type": "mc_single",
+      "questionText": "What is the famous abyss found in the Moravian Karst?",
+      "options": [
+        "Macocha",
+        "Kateřinská",
+        "Bozkov",
+        "Javoříčská"
+      ],
+      "correctAnswer": "Macocha"
+    },
+    {
+      "id": "spa_city",
+      "type": "free_text",
+      "questionText": "What is the name of the Czech spa city famous for its film festival?",
+      "correctAnswer": "Karlovy Vary"
+    },
+    {
+      "id": "czech_souvenirs",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are typical Czech souvenirs? (Choose all that apply)",
+      "options": [
+        "Beer",
+        "Plum vodka",
+        "Cheddar cheese",
+        "Czech garnet"
+      ],
+      "correctAnswers": [
+        "Beer",
+        "Plum vodka",
+        "Czech garnet"
+      ]
+    },
+    {
+      "id": "czech_stereotypes",
+      "type": "mc_multiple",
+      "questionText": "Which of these are typical stereotypes about Czech people? (Choose all that apply)",
+      "options": [
+        "Don’t smile much",
+        "White socks in sandals",
+        "Always friendly to tourists",
+        "Love hiking"
+      ],
+      "correctAnswers": [
+        "Don’t smile much",
+        "White socks in sandals",
+        "Love hiking"
+      ]
+    },
+    {
+      "id": "favorite_activities",
+      "type": "mc_multiple",
+      "questionText": "What are popular activities among Czechs? (Choose all that apply)",
+      "options": [
+        "Mushrooming",
+        "Football",
+        "Ski jumping",
+        "Hockey"
+      ],
+      "correctAnswers": [
+        "Mushrooming",
+        "Football",
+        "Hockey"
+      ]
+    }
+  ]
+}

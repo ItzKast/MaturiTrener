@@ -1,0 +1,192 @@
+{
+  "topic": "Food and drink",
+  "questions": [
+    {
+      "id": "basic_tastes",
+      "type": "mc_multiple",
+      "questionText": "What are the four basic tastes that the human mouth can identify? (Choose all that apply)",
+      "options": [
+        "Sweet",
+        "Spicy",
+        "Bitter",
+        "Sour",
+        "Salty"
+      ],
+      "correctAnswers": [
+        "Sweet",
+        "Bitter",
+        "Sour",
+        "Salty"
+      ]
+    },
+    {
+      "id": "healthy_food_effects",
+      "type": "mc_single",
+      "questionText": "What is one benefit of eating healthy and unprocessed food?",
+      "options": [
+        "It increases sugar levels",
+        "It causes tiredness",
+        "It helps relieve stress",
+        "It makes you sleepy"
+      ],
+      "correctAnswer": "It helps relieve stress"
+    },
+    {
+      "id": "saying_about_food",
+      "type": "free_text",
+      "questionText": "Complete the popular saying: 'We are what we ______.'",
+      "correctAnswer": "eat"
+    },
+    {
+      "id": "special_diets",
+      "type": "mc_multiple",
+      "questionText": "Which of these are types of special diets? (Choose all that apply)",
+      "options": [
+        "Vegetarianism",
+        "Veganism",
+        "Pescatarianism",
+        "Carnivorism"
+      ],
+      "correctAnswers": [
+        "Vegetarianism",
+        "Veganism"
+      ]
+    },
+    {
+      "id": "restaurant_reasons",
+      "type": "mc_multiple",
+      "questionText": "Why do people usually go to restaurants? (Choose all that apply)",
+      "options": [
+        "Celebrations",
+        "Trying new cuisines",
+        "Everyday breakfast",
+        "No time to cook"
+      ],
+      "correctAnswers": [
+        "Celebrations",
+        "Trying new cuisines",
+        "No time to cook"
+      ]
+    },
+    {
+      "id": "cz_typical_dish",
+      "type": "free_text",
+      "questionText": "What is the name of the traditional Czech dish made with beef, cream sauce, dumplings, and cranberries?",
+      "correctAnswer": "Svíčková"
+    },
+    {
+      "id": "cz_christmas_dish",
+      "type": "mc_single",
+      "questionText": "What do Czech people usually eat on Christmas Eve?",
+      "options": [
+        "Roast turkey",
+        "Potato salad and carp",
+        "Pizza",
+        "Goulash"
+      ],
+      "correctAnswer": "Potato salad and carp"
+    },
+    {
+      "id": "british_breakfast",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are typical components of a full English breakfast? (Choose all that apply)",
+      "options": [
+        "Eggs",
+        "Bacon",
+        "Beans",
+        "Pancakes",
+        "Toast"
+      ],
+      "correctAnswers": [
+        "Eggs",
+        "Bacon",
+        "Beans",
+        "Toast"
+      ]
+    },
+    {
+      "id": "british_tradition",
+      "type": "mc_single",
+      "questionText": "At what time do British people traditionally drink afternoon tea?",
+      "options": [
+        "2 p.m.",
+        "3 p.m.",
+        "4 p.m.",
+        "5 p.m."
+      ],
+      "correctAnswer": "4 p.m."
+    },
+    {
+      "id": "fish_and_chips_origin",
+      "type": "free_text",
+      "questionText": "Which country is famous for the dish 'fish and chips'?",
+      "correctAnswer": "United Kingdom"
+    },
+    {
+      "id": "american_cuisine_features",
+      "type": "mc_multiple",
+      "questionText": "Which of the following describe American cuisine? (Choose all that apply)",
+      "options": [
+        "Fast food",
+        "Fatty and fried",
+        "Light portions",
+        "Healthy and organic"
+      ],
+      "correctAnswers": [
+        "Fast food",
+        "Fatty and fried"
+      ]
+    },
+    {
+      "id": "american_dinner",
+      "type": "mc_single",
+      "questionText": "What is typically the main meal of the day in the USA?",
+      "options": [
+        "Breakfast",
+        "Lunch",
+        "Dinner",
+        "Snack"
+      ],
+      "correctAnswer": "Dinner"
+    },
+    {
+      "id": "thanksgiving_food",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are typical dishes served at Thanksgiving in the USA? (Choose all that apply)",
+      "options": [
+        "Turkey",
+        "Stuffing",
+        "Mashed potatoes",
+        "Sushi"
+      ],
+      "correctAnswers": [
+        "Turkey",
+        "Stuffing",
+        "Mashed potatoes"
+      ]
+    },
+    {
+      "id": "meal_comparison",
+      "type": "mc_single",
+      "questionText": "Which country considers breakfast the most important meal of the day and spends more time enjoying it?",
+      "options": [
+        "Czech Republic",
+        "United Kingdom",
+        "USA"
+      ],
+      "correctAnswer": "United Kingdom"
+    },
+    {
+      "id": "balanced_diet",
+      "type": "mc_single",
+      "questionText": "What is a good approach to healthy eating according to the text?",
+      "options": [
+        "Avoid all unhealthy food",
+        "Only eat vegetables",
+        "Eat healthy but allow some treats",
+        "Eat whatever you like"
+      ],
+      "correctAnswer": "Eat healthy but allow some treats"
+    }
+  ]
+}

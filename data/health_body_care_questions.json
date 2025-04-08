@@ -1,0 +1,191 @@
+{
+  "topic": "Health and Body Care",
+  "questions": [
+    {
+      "id": "healthy_habits",
+      "type": "mc_multiple",
+      "questionText": "Which of these habits are part of a healthy lifestyle? (Choose all that apply)",
+      "options": [
+        "Drinking water",
+        "Sleeping regularly",
+        "Smoking",
+        "Avoiding stress"
+      ],
+      "correctAnswers": [
+        "Drinking water",
+        "Sleeping regularly",
+        "Avoiding stress"
+      ]
+    },
+    {
+      "id": "illness_example",
+      "type": "mc_single",
+      "questionText": "Which of these is an illness, not a disease?",
+      "options": [
+        "Flu",
+        "Toothache",
+        "Cancer",
+        "Diabetes"
+      ],
+      "correctAnswer": "Toothache"
+    },
+    {
+      "id": "cold_symptoms",
+      "type": "mc_multiple",
+      "questionText": "What are common symptoms of a cold? (Choose all that apply)",
+      "options": [
+        "Runny nose",
+        "Sneezing",
+        "Broken leg",
+        "Sore throat"
+      ],
+      "correctAnswers": [
+        "Runny nose",
+        "Sneezing",
+        "Sore throat"
+      ]
+    },
+    {
+      "id": "disease_treatment",
+      "type": "mc_single",
+      "questionText": "Where should serious diseases like cancer be treated?",
+      "options": [
+        "At home",
+        "In school",
+        "In a hospital",
+        "In a library"
+      ],
+      "correctAnswer": "In a hospital"
+    },
+    {
+      "id": "injury_skiing",
+      "type": "mc_single",
+      "questionText": "Which of these injuries is common during skiing?",
+      "options": [
+        "Sprained ankle",
+        "Sunburn",
+        "Food poisoning",
+        "Cough"
+      ],
+      "correctAnswer": "Sprained ankle"
+    },
+    {
+      "id": "first_aid",
+      "type": "free_text",
+      "questionText": "What is one of the basic things you should do when giving first aid?",
+      "correctAnswer": "Call the ambulance"
+    },
+    {
+      "id": "doctor_visit",
+      "type": "mc_single",
+      "questionText": "Where do we usually wait before entering the doctor’s office?",
+      "options": [
+        "Pharmacy",
+        "Examination room",
+        "Waiting room",
+        "Reception"
+      ],
+      "correctAnswer": "Waiting room"
+    },
+    {
+      "id": "civilisation_diseases",
+      "type": "mc_multiple",
+      "questionText": "Which of these are examples of civilization diseases? (Choose all that apply)",
+      "options": [
+        "Depression",
+        "Overweight",
+        "Broken arm",
+        "Diabetes"
+      ],
+      "correctAnswers": [
+        "Depression",
+        "Overweight",
+        "Diabetes"
+      ]
+    },
+    {
+      "id": "rash_cause",
+      "type": "mc_single",
+      "questionText": "What can cause a rash?",
+      "options": [
+        "A fall",
+        "Allergic reaction",
+        "Too much exercise",
+        "Cold weather"
+      ],
+      "correctAnswer": "Allergic reaction"
+    },
+    {
+      "id": "broken_bone",
+      "type": "mc_single",
+      "questionText": "What do you need when you break a bone?",
+      "options": [
+        "Cough drops",
+        "Band-aid",
+        "Cast",
+        "Pills"
+      ],
+      "correctAnswer": "Cast"
+    },
+    {
+      "id": "cz_healthcare",
+      "type": "mc_single",
+      "questionText": "How is the healthcare system in the Czech Republic funded?",
+      "options": [
+        "Private insurance only",
+        "Government funding",
+        "Health insurance",
+        "Charity organizations"
+      ],
+      "correctAnswer": "Health insurance"
+    },
+    {
+      "id": "vomiting_reason",
+      "type": "mc_single",
+      "questionText": "What is a common reason for vomiting?",
+      "options": [
+        "Broken finger",
+        "Eating bad food",
+        "Stress",
+        "Too much sun"
+      ],
+      "correctAnswer": "Eating bad food"
+    },
+    {
+      "id": "dentist_job",
+      "type": "mc_single",
+      "questionText": "Which doctor should you visit if you have a toothache?",
+      "options": [
+        "Cardiologist",
+        "Dentist",
+        "Neurologist",
+        "General Practitioner"
+      ],
+      "correctAnswer": "Dentist"
+    },
+    {
+      "id": "unconscious_help",
+      "type": "mc_single",
+      "questionText": "What should you do when someone is unconscious?",
+      "options": [
+        "Give water",
+        "Take a photo",
+        "Call an ambulance",
+        "Cover them with a blanket"
+      ],
+      "correctAnswer": "Call an ambulance"
+    },
+    {
+      "id": "blister_cause",
+      "type": "mc_single",
+      "questionText": "What can cause a blister on your foot?",
+      "options": [
+        "New shoes",
+        "Cold weather",
+        "Eating chocolate",
+        "Sunburn"
+      ],
+      "correctAnswer": "New shoes"
+    }
+  ]
+}

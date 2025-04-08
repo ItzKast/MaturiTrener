@@ -1,0 +1,196 @@
+{
+  "topic": "Culture",
+  "questions": [
+    {
+      "id": "culture_definition",
+      "type": "mc_multiple",
+      "questionText": "What does culture include? (Choose all that apply)",
+      "options": [
+        "Art",
+        "Religion",
+        "Language",
+        "Rules of behavior",
+        "Politics"
+      ],
+      "correctAnswers": [
+        "Art",
+        "Religion",
+        "Language",
+        "Rules of behavior"
+      ]
+    },
+    {
+      "id": "film_genres",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are film genres? (Choose all that apply)",
+      "options": [
+        "Romance",
+        "Comedy",
+        "Detective",
+        "Horror",
+        "Documentary"
+      ],
+      "correctAnswers": [
+        "Romance",
+        "Comedy",
+        "Detective",
+        "Horror"
+      ]
+    },
+    {
+      "id": "cinema_vs_tv",
+      "type": "mc_single",
+      "questionText": "Which of the following is NOT an advantage of watching a film at the cinema?",
+      "options": [
+        "Higher sound quality",
+        "Bigger screen",
+        "You can lie in bed",
+        "Better picture"
+      ],
+      "correctAnswer": "You can lie in bed"
+    },
+    {
+      "id": "oscar_awards",
+      "type": "free_text",
+      "questionText": "What is the name of the most prestigious film award in the USA?",
+      "correctAnswer": "Oscar"
+    },
+    {
+      "id": "czech_oscar_movies",
+      "type": "mc_multiple",
+      "questionText": "Which of the following Czech films won an Oscar? (Choose all that apply)",
+      "options": [
+        "Kolja",
+        "Obchod na korze",
+        "Ostře sledované vlaky",
+        "Tmavomodrý svět"
+      ],
+      "correctAnswers": [
+        "Kolja",
+        "Obchod na korze",
+        "Ostře sledované vlaky"
+      ]
+    },
+    {
+      "id": "cinemas_cz",
+      "type": "free_text",
+      "questionText": "Where is the most famous international film festival in the Czech Republic held?",
+      "correctAnswer": "Karlovy Vary"
+    },
+    {
+      "id": "theatre_types",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are types of theatre performances? (Choose all that apply)",
+      "options": [
+        "Opera",
+        "Ballet",
+        "Musical",
+        "Sitcom",
+        "Play"
+      ],
+      "correctAnswers": [
+        "Opera",
+        "Ballet",
+        "Musical",
+        "Play"
+      ]
+    },
+    {
+      "id": "globe_theatre",
+      "type": "mc_single",
+      "questionText": "Which famous theatre is located in London?",
+      "options": [
+        "The Globe",
+        "Broadway",
+        "SEMAFOR",
+        "National Theatre"
+      ],
+      "correctAnswer": "The Globe"
+    },
+    {
+      "id": "famous_directors",
+      "type": "mc_multiple",
+      "questionText": "Who are well-known film directors? (Choose all that apply)",
+      "options": [
+        "Steven Spielberg",
+        "Quentin Tarantino",
+        "Miloš Forman",
+        "George Orwell"
+      ],
+      "correctAnswers": [
+        "Steven Spielberg",
+        "Quentin Tarantino",
+        "Miloš Forman"
+      ]
+    },
+    {
+      "id": "art_locations",
+      "type": "mc_multiple",
+      "questionText": "Where can we find famous art pieces? (Choose all that apply)",
+      "options": [
+        "Galleries",
+        "Museums",
+        "Libraries",
+        "Concert halls"
+      ],
+      "correctAnswers": [
+        "Galleries",
+        "Museums"
+      ]
+    },
+    {
+      "id": "mona_lisa_location",
+      "type": "free_text",
+      "questionText": "Where is the painting Mona Lisa displayed?",
+      "correctAnswer": "Louvre in Paris"
+    },
+    {
+      "id": "music_genres",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are music genres? (Choose all that apply)",
+      "options": [
+        "Jazz",
+        "Rap",
+        "Pop",
+        "Thriller",
+        "Rock"
+      ],
+      "correctAnswers": [
+        "Jazz",
+        "Rap",
+        "Pop",
+        "Rock"
+      ]
+    },
+    {
+      "id": "spotify_usage",
+      "type": "mc_single",
+      "questionText": "Which platform is commonly used for streaming music?",
+      "options": [
+        "Netflix",
+        "Spotify",
+        "YouTube",
+        "HBO"
+      ],
+      "correctAnswer": "Spotify"
+    },
+    {
+      "id": "the_beatles",
+      "type": "free_text",
+      "questionText": "What is the name of the famous British band from the 1960s with the hit song 'Yesterday'?",
+      "correctAnswer": "The Beatles"
+    },
+    {
+      "id": "elvis",
+      "type": "mc_single",
+      "questionText": "Which American artist is known as the king of rock and roll?",
+      "options": [
+        "Michael Jackson",
+        "Elvis Presley",
+        "Bob Dylan",
+        "Eminem"
+      ],
+      "correctAnswer": "Elvis Presley"
+    }
+  ]
+}

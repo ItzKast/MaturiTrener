@@ -1,0 +1,182 @@
+{
+  "topic": "British Literature",
+  "questions": [
+    {
+      "id": "types_literature",
+      "type": "mc_multiple",
+      "questionText": "Which are the common types of literature? (Choose all that apply)",
+      "options": [
+        "Nonfiction prose",
+        "Drama",
+        "Poetry",
+        "Mythology"
+      ],
+      "correctAnswers": [
+        "Nonfiction prose",
+        "Drama",
+        "Poetry"
+      ]
+    },
+    {
+      "id": "beowulf_monsters",
+      "type": "mc_multiple",
+      "questionText": "Which monsters does Beowulf fight? (Choose all that apply)",
+      "options": [
+        "Grendel",
+        "Grendel’s mother",
+        "Dragon",
+        "Cyclops"
+      ],
+      "correctAnswers": [
+        "Grendel",
+        "Grendel’s mother"
+      ]
+    },
+    {
+      "id": "chaucer_work",
+      "type": "free_text",
+      "questionText": "What is Geoffrey Chaucer’s most famous work?",
+      "correctAnswer": "The Canterbury Tales"
+    },
+    {
+      "id": "shakespeare_tragedies",
+      "type": "mc_multiple",
+      "questionText": "Which are Shakespeare’s tragedies? (Choose all that apply)",
+      "options": [
+        "Romeo and Juliet",
+        "Hamlet",
+        "Macbeth",
+        "A Midsummer Night’s Dream"
+      ],
+      "correctAnswers": [
+        "Romeo and Juliet",
+        "Hamlet",
+        "Macbeth"
+      ]
+    },
+    {
+      "id": "swift_genre",
+      "type": "mc_single",
+      "questionText": "What genre is Gulliver’s Travels by Jonathan Swift?",
+      "options": [
+        "Romanticism",
+        "Satire",
+        "Adventure",
+        "Fantasy"
+      ],
+      "correctAnswer": "Satire"
+    },
+    {
+      "id": "romanticism_feature",
+      "type": "mc_single",
+      "questionText": "What did romanticism emphasize?",
+      "options": [
+        "Facts and logic",
+        "Rules",
+        "Feelings and emotions",
+        "Science"
+      ],
+      "correctAnswer": "Feelings and emotions"
+    },
+    {
+      "id": "dickens_theme",
+      "type": "mc_single",
+      "questionText": "What is a typical theme in Dickens’s novels?",
+      "options": [
+        "Magic",
+        "Historical battles",
+        "Social inequality",
+        "Politics"
+      ],
+      "correctAnswer": "Social inequality"
+    },
+    {
+      "id": "a_christmas_carol",
+      "type": "free_text",
+      "questionText": "What is the name of the selfish man in A Christmas Carol?",
+      "correctAnswer": "Ebenezer Scrooge"
+    },
+    {
+      "id": "pygmalion_author",
+      "type": "mc_single",
+      "questionText": "Who wrote Pygmalion?",
+      "options": [
+        "Oscar Wilde",
+        "George Bernard Shaw",
+        "Charles Dickens",
+        "William Blake"
+      ],
+      "correctAnswer": "George Bernard Shaw"
+    },
+    {
+      "id": "orwell_book",
+      "type": "mc_single",
+      "questionText": "What is the political allegory written by George Orwell?",
+      "options": [
+        "Animal Farm",
+        "Brave New World",
+        "1984",
+        "Lord of the Flies"
+      ],
+      "correctAnswer": "Animal Farm"
+    },
+    {
+      "id": "animal_farm_characters",
+      "type": "mc_multiple",
+      "questionText": "Which characters in Animal Farm represent political figures? (Choose all that apply)",
+      "options": [
+        "Napoleon - Stalin",
+        "Major - Marx",
+        "Snowball - Trotsky",
+        "Boxer - Lenin"
+      ],
+      "correctAnswers": [
+        "Napoleon - Stalin",
+        "Major - Marx",
+        "Snowball - Trotsky"
+      ]
+    },
+    {
+      "id": "tolkien_world",
+      "type": "free_text",
+      "questionText": "What is the name of the fantasy world created by J.R.R. Tolkien?",
+      "correctAnswer": "Middle-Earth"
+    },
+    {
+      "id": "harry_potter_author",
+      "type": "mc_single",
+      "questionText": "Who wrote the Harry Potter series?",
+      "options": [
+        "J.R.R. Tolkien",
+        "Philip Pullman",
+        "J.K. Rowling",
+        "Suzanne Collins"
+      ],
+      "correctAnswer": "J.K. Rowling"
+    },
+    {
+      "id": "victorian_realism",
+      "type": "mc_single",
+      "questionText": "What is the characteristic of Victorian literature?",
+      "options": [
+        "Fairy tales",
+        "Critical realism",
+        "Romantic poetry",
+        "Detective fiction"
+      ],
+      "correctAnswer": "Critical realism"
+    },
+    {
+      "id": "british_library",
+      "type": "mc_single",
+      "questionText": "Where is the largest library in Great Britain?",
+      "options": [
+        "Oxford",
+        "Cambridge",
+        "Edinburgh",
+        "London"
+      ],
+      "correctAnswer": "London"
+    }
+  ]
+}

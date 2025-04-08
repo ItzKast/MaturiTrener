@@ -1,0 +1,196 @@
+{
+  "topic": "Global Problems",
+  "questions": [
+    {
+      "id": "global_problem_scope",
+      "type": "mc_single",
+      "questionText": "What do global problems affect?",
+      "options": [
+        "One country",
+        "Europe only",
+        "The entire world",
+        "Just nature"
+      ],
+      "correctAnswer": "The entire world"
+    },
+    {
+      "id": "north_vs_south",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are typical of the Northern Hemisphere? (Choose all that apply)",
+      "options": [
+        "High hygiene standards",
+        "Developed economy",
+        "Hunger",
+        "Civilization illnesses"
+      ],
+      "correctAnswers": [
+        "High hygiene standards",
+        "Developed economy",
+        "Civilization illnesses"
+      ]
+    },
+    {
+      "id": "south_issues",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are problems in the Southern Hemisphere? (Choose all that apply)",
+      "options": [
+        "High birth rate",
+        "Starvation",
+        "Low mortality",
+        "Lack of medicine"
+      ],
+      "correctAnswers": [
+        "High birth rate",
+        "Starvation",
+        "Lack of medicine"
+      ]
+    },
+    {
+      "id": "war_reasons",
+      "type": "mc_multiple",
+      "questionText": "What are some common causes of wars? (Choose all that apply)",
+      "options": [
+        "Religion",
+        "Power",
+        "Territory",
+        "Art"
+      ],
+      "correctAnswers": [
+        "Religion",
+        "Power",
+        "Territory"
+      ]
+    },
+    {
+      "id": "ukraine_conflict",
+      "type": "mc_single",
+      "questionText": "What is one of the main reasons behind the war in Ukraine?",
+      "options": [
+        "Religion",
+        "Natural disaster",
+        "Territory",
+        "Terrorism"
+      ],
+      "correctAnswer": "Territory"
+    },
+    {
+      "id": "peace_talks",
+      "type": "mc_single",
+      "questionText": "What is a 'ceasefire'?",
+      "options": [
+        "A type of weapon",
+        "A peace treaty",
+        "A break in fighting",
+        "A war declaration"
+      ],
+      "correctAnswer": "A break in fighting"
+    },
+    {
+      "id": "terrorism_definition",
+      "type": "mc_single",
+      "questionText": "What is terrorism usually aimed at?",
+      "options": [
+        "Entertainment",
+        "Political reasons",
+        "Economic growth",
+        "Religious celebrations"
+      ],
+      "correctAnswer": "Political reasons"
+    },
+    {
+      "id": "911_event",
+      "type": "free_text",
+      "questionText": "What is the date of the terrorist attack known as 9/11?",
+      "correctAnswer": "11th September 2001"
+    },
+    {
+      "id": "natural_disasters",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are natural disasters? (Choose all that apply)",
+      "options": [
+        "Earthquake",
+        "Tsunami",
+        "Pollution",
+        "Overpopulation"
+      ],
+      "correctAnswers": [
+        "Earthquake",
+        "Tsunami"
+      ]
+    },
+    {
+      "id": "pollution_sources",
+      "type": "mc_single",
+      "questionText": "What is the main cause of water pollution mentioned in the text?",
+      "options": [
+        "Acid rain",
+        "Household chemicals",
+        "Oil and plastic waste",
+        "Wind erosion"
+      ],
+      "correctAnswer": "Oil and plastic waste"
+    },
+    {
+      "id": "racism_definition",
+      "type": "mc_single",
+      "questionText": "What does racism mean?",
+      "options": [
+        "Dislike for other religions",
+        "Discrimination based on race, skin color, or nationality",
+        "Economic inequality",
+        "Cultural differences"
+      ],
+      "correctAnswer": "Discrimination based on race, skin color, or nationality"
+    },
+    {
+      "id": "mlk_speech",
+      "type": "free_text",
+      "questionText": "What are the first words of Martin Luther King’s famous speech?",
+      "correctAnswer": "I have a dream"
+    },
+    {
+      "id": "mlk_prize",
+      "type": "mc_single",
+      "questionText": "What prestigious award did Martin Luther King receive?",
+      "options": [
+        "Pulitzer Prize",
+        "Golden Globe",
+        "Nobel Peace Prize",
+        "Oscar"
+      ],
+      "correctAnswer": "Nobel Peace Prize"
+    },
+    {
+      "id": "migration_causes",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are causes of migration? (Choose all that apply)",
+      "options": [
+        "War",
+        "Hunger",
+        "Good weather",
+        "Overpopulation"
+      ],
+      "correctAnswers": [
+        "War",
+        "Hunger",
+        "Overpopulation"
+      ]
+    },
+    {
+      "id": "dangerous_sources",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are examples of human-caused environmental problems? (Choose all that apply)",
+      "options": [
+        "Plastic waste",
+        "Hurricanes",
+        "Pesticides",
+        "Oil spills"
+      ],
+      "correctAnswers": [
+        "Plastic waste",
+        "Pesticides",
+        "Oil spills"
+      ]
+    }
+  ]
+}

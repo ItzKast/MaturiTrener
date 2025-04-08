@@ -1,0 +1,176 @@
+{
+  "topic": "Education",
+  "questions": [
+    {
+      "id": "uniforms_uk",
+      "type": "mc_single",
+      "questionText": "Do most schools in the UK require students to wear uniforms?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correctAnswer": "Yes"
+    },
+    {
+      "id": "school_start_time_uk",
+      "type": "mc_single",
+      "questionText": "What time does school usually start in the UK?",
+      "options": [
+        "7:55",
+        "8:30",
+        "9:00",
+        "9:30"
+      ],
+      "correctAnswer": "9:00"
+    },
+    {
+      "id": "education_age_uk",
+      "type": "mc_single",
+      "questionText": "Education is compulsory in the UK from the age of:",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "correctAnswer": "5"
+    },
+    {
+      "id": "gcse_meaning",
+      "type": "free_text",
+      "questionText": "What does the abbreviation GCSE stand for?",
+      "correctAnswer": "General Certificate of Secondary Education"
+    },
+    {
+      "id": "a_levels_age",
+      "type": "mc_single",
+      "questionText": "At what age do students in the UK typically take A-levels?",
+      "options": [
+        "16",
+        "17",
+        "18",
+        "19"
+      ],
+      "correctAnswer": "18"
+    },
+    {
+      "id": "oxford_cambridge",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are famous British universities? (Choose all that apply)",
+      "options": [
+        "Cambridge",
+        "Oxford",
+        "Harvard",
+        "Yale",
+        "University of Edinburgh"
+      ],
+      "correctAnswers": [
+        "Cambridge",
+        "Oxford",
+        "University of Edinburgh"
+      ]
+    },
+    {
+      "id": "compulsory_usa",
+      "type": "mc_single",
+      "questionText": "Until what age is education compulsory in most states of the USA?",
+      "options": [
+        "16",
+        "17",
+        "18",
+        "19"
+      ],
+      "correctAnswer": "18"
+    },
+    {
+      "id": "grading_usa",
+      "type": "mc_single",
+      "questionText": "Which grade is considered the lowest passing grade in the US grading system?",
+      "options": [
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "correctAnswer": "D"
+    },
+    {
+      "id": "high_school_diploma",
+      "type": "free_text",
+      "questionText": "What is the name of the certificate awarded after finishing high school in the USA?",
+      "correctAnswer": "High School Diploma"
+    },
+    {
+      "id": "university_usa",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are famous US universities? (Choose all that apply)",
+      "options": [
+        "Harvard",
+        "MIT",
+        "Yale",
+        "Oxford",
+        "Columbia"
+      ],
+      "correctAnswers": [
+        "Harvard",
+        "MIT",
+        "Yale",
+        "Columbia"
+      ]
+    },
+    {
+      "id": "compulsory_cz",
+      "type": "free_text",
+      "questionText": "How many years of compulsory education are there in the Czech Republic?",
+      "correctAnswer": "9"
+    },
+    {
+      "id": "school_comparison",
+      "type": "mc_single",
+      "questionText": "Which of these countries does NOT typically require school uniforms?",
+      "options": [
+        "The UK",
+        "The USA",
+        "The Czech Republic"
+      ],
+      "correctAnswer": "The Czech Republic"
+    },
+    {
+      "id": "university_payment_comparison",
+      "type": "mc_single",
+      "questionText": "In which country is university education generally free at public universities?",
+      "options": [
+        "UK",
+        "USA",
+        "Czech Republic"
+      ],
+      "correctAnswer": "Czech Republic"
+    },
+    {
+      "id": "terms_uk",
+      "type": "mc_single",
+      "questionText": "How many terms are there in the academic year in the UK?",
+      "options": [
+        "Two",
+        "Three",
+        "Four",
+        "One"
+      ],
+      "correctAnswer": "Three"
+    },
+    {
+      "id": "education_structure_comparison",
+      "type": "mc_multiple",
+      "questionText": "Which of these countries have a system where students can attend grammar schools? (Choose all that apply)",
+      "options": [
+        "UK",
+        "USA",
+        "Czech Republic"
+      ],
+      "correctAnswers": [
+        "UK",
+        "Czech Republic"
+      ]
+    }
+  ]
+}

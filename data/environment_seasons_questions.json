@@ -1,0 +1,195 @@
+{
+  "topic": "Protection of the Environment and Seasons of the Year",
+  "questions": [
+    {
+      "id": "weather_mood",
+      "type": "mc_single",
+      "questionText": "How does weather typically affect our mood?",
+      "options": [
+        "Rain makes us happier",
+        "Sunny weather lifts our mood",
+        "Cold weather increases happiness",
+        "Storms help us relax"
+      ],
+      "correctAnswer": "Sunny weather lifts our mood"
+    },
+    {
+      "id": "seasons_count",
+      "type": "free_text",
+      "questionText": "How many seasons are there in the Czech Republic?",
+      "correctAnswer": "Four"
+    },
+    {
+      "id": "spring_features",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are typical for spring? (Choose all that apply)",
+      "options": [
+        "Blossoming flowers",
+        "Snowfall",
+        "Showers",
+        "Birds returning"
+      ],
+      "correctAnswers": [
+        "Blossoming flowers",
+        "Showers",
+        "Birds returning"
+      ]
+    },
+    {
+      "id": "summer_activities",
+      "type": "mc_multiple",
+      "questionText": "What are common summer activities? (Choose all that apply)",
+      "options": [
+        "Skiing",
+        "Swimming",
+        "Barbecuing",
+        "Sunbathing"
+      ],
+      "correctAnswers": [
+        "Swimming",
+        "Barbecuing",
+        "Sunbathing"
+      ]
+    },
+    {
+      "id": "autumn_weather",
+      "type": "mc_single",
+      "questionText": "What type of weather is typical for autumn?",
+      "options": [
+        "Scorching heat",
+        "Heavy snow",
+        "Damp and foggy",
+        "Thunderstorms"
+      ],
+      "correctAnswer": "Damp and foggy"
+    },
+    {
+      "id": "winter_activities",
+      "type": "mc_multiple",
+      "questionText": "What are typical winter activities? (Choose all that apply)",
+      "options": [
+        "Skiing",
+        "Building a snowman",
+        "Sunbathing",
+        "Drinking hot chocolate"
+      ],
+      "correctAnswers": [
+        "Skiing",
+        "Building a snowman",
+        "Drinking hot chocolate"
+      ]
+    },
+    {
+      "id": "extreme_weather",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are examples of extreme weather? (Choose all that apply)",
+      "options": [
+        "Drought",
+        "Flood",
+        "Rainbow",
+        "Hurricane"
+      ],
+      "correctAnswers": [
+        "Drought",
+        "Flood",
+        "Hurricane"
+      ]
+    },
+    {
+      "id": "weather_forecast",
+      "type": "mc_single",
+      "questionText": "What does the weather forecast help us with?",
+      "options": [
+        "Know when to sleep",
+        "Know what to wear",
+        "Know when to plant flowers",
+        "Plan birthday parties"
+      ],
+      "correctAnswer": "Know what to wear"
+    },
+    {
+      "id": "climate_problems",
+      "type": "mc_multiple",
+      "questionText": "What problems are caused by climate change? (Choose all that apply)",
+      "options": [
+        "Melting glaciers",
+        "Rising sea levels",
+        "Expanding deserts",
+        "Longer winters"
+      ],
+      "correctAnswers": [
+        "Melting glaciers",
+        "Rising sea levels"
+      ]
+    },
+    {
+      "id": "environment_tips",
+      "type": "mc_multiple",
+      "questionText": "Which of these are eco-friendly actions? (Choose all that apply)",
+      "options": [
+        "Turn off lights",
+        "Use plastic bags",
+        "Recycle",
+        "Leave tap running"
+      ],
+      "correctAnswers": [
+        "Turn off lights",
+        "Recycle"
+      ]
+    },
+    {
+      "id": "recycling_importance",
+      "type": "free_text",
+      "questionText": "What is one of the easiest and most helpful things we can do for the environment?",
+      "correctAnswer": "Recycle"
+    },
+    {
+      "id": "april_weather",
+      "type": "mc_single",
+      "questionText": "Why is April considered funny in Czech weather?",
+      "options": [
+        "Because it’s always sunny",
+        "Because it never rains",
+        "Because the weather changes quickly",
+        "Because it’s the hottest month"
+      ],
+      "correctAnswer": "Because the weather changes quickly"
+    },
+    {
+      "id": "heat_protection",
+      "type": "mc_single",
+      "questionText": "What should we use to protect our skin in summer?",
+      "options": [
+        "Sunscreen",
+        "Blanket",
+        "Scarf",
+        "Raincoat"
+      ],
+      "correctAnswer": "Sunscreen"
+    },
+    {
+      "id": "fog_danger",
+      "type": "mc_single",
+      "questionText": "Why is fog dangerous in autumn?",
+      "options": [
+        "It brings heat",
+        "It’s very colorful",
+        "It causes visibility problems",
+        "It melts snow"
+      ],
+      "correctAnswer": "It causes visibility problems"
+    },
+    {
+      "id": "season_start",
+      "type": "mc_single",
+      "questionText": "When does winter start according to the calendar?",
+      "options": [
+        "21st September",
+        "21st March",
+        "21st June",
+        "21st December"
+      ],
+      "correctAnswer": "21st December"
+    }
+  ]
+}

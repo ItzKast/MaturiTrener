@@ -1,0 +1,178 @@
+{
+  "topic": "Science",
+  "questions": [
+    {
+      "id": "science_impact",
+      "type": "mc_multiple",
+      "questionText": "Which areas of life have been influenced by scientific inventions and discoveries? (Choose all that apply)",
+      "options": [
+        "Communication",
+        "Transport",
+        "Health care",
+        "Housework",
+        "Cooking"
+      ],
+      "correctAnswers": [
+        "Communication",
+        "Transport",
+        "Health care",
+        "Housework"
+      ]
+    },
+    {
+      "id": "discovery_vs_invention",
+      "type": "mc_single",
+      "questionText": "What is the difference between discovery and invention?",
+      "options": [
+        "Discovery is creating something new, invention is finding something old",
+        "Discovery is finding something that already exists, invention is creating something new",
+        "They mean the same",
+        "Discovery means building machines"
+      ],
+      "correctAnswer": "Discovery is finding something that already exists, invention is creating something new"
+    },
+    {
+      "id": "prehistoric_invention",
+      "type": "free_text",
+      "questionText": "What invention allowed people in prehistory to transport goods more easily?",
+      "correctAnswer": "Wheel"
+    },
+    {
+      "id": "gutenberg_invention",
+      "type": "free_text",
+      "questionText": "Who invented the book printer in 1450?",
+      "correctAnswer": "Johannes Gutenberg"
+    },
+    {
+      "id": "newton_discovery",
+      "type": "mc_single",
+      "questionText": "Which scientist discovered the law of gravity?",
+      "options": [
+        "Isaac Newton",
+        "Albert Einstein",
+        "James Watt",
+        "Thomas Edison"
+      ],
+      "correctAnswer": "Isaac Newton"
+    },
+    {
+      "id": "einstein_theory",
+      "type": "free_text",
+      "questionText": "Which theory is Albert Einstein known for?",
+      "correctAnswer": "Theory of relativity"
+    },
+    {
+      "id": "edison_invention",
+      "type": "mc_single",
+      "questionText": "What did Thomas Alva Edison invent?",
+      "options": [
+        "Steam engine",
+        "Electric bulb",
+        "Television",
+        "Train"
+      ],
+      "correctAnswer": "Electric bulb"
+    },
+    {
+      "id": "czech_inventors",
+      "type": "mc_multiple",
+      "questionText": "Which of these are Czech inventors? (Choose all that apply)",
+      "options": [
+        "Otto Wichterle",
+        "František Křižík",
+        "James Watt",
+        "Gutenberg"
+      ],
+      "correctAnswers": [
+        "Otto Wichterle",
+        "František Křižík"
+      ]
+    },
+    {
+      "id": "space_research",
+      "type": "mc_multiple",
+      "questionText": "Why is space research important? (Choose all that apply)",
+      "options": [
+        "Weather forecast",
+        "Communication",
+        "Tourism",
+        "Scientific purposes"
+      ],
+      "correctAnswers": [
+        "Weather forecast",
+        "Communication",
+        "Scientific purposes"
+      ]
+    },
+    {
+      "id": "first_in_space",
+      "type": "free_text",
+      "questionText": "Who was the first person in space?",
+      "correctAnswer": "Yuri Gagarin"
+    },
+    {
+      "id": "first_on_moon",
+      "type": "free_text",
+      "questionText": "Who was the first man on the moon?",
+      "correctAnswer": "Neil Armstrong"
+    },
+    {
+      "id": "x_ray_discovery",
+      "type": "mc_single",
+      "questionText": "Who discovered x-rays in 1895?",
+      "options": [
+        "Isaac Newton",
+        "Albert Einstein",
+        "Wilhelm Röntgen",
+        "Nikola Tesla"
+      ],
+      "correctAnswer": "Wilhelm Röntgen"
+    },
+    {
+      "id": "dangerous_inventions",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are considered dangerous inventions? (Choose all that apply)",
+      "options": [
+        "Atomic bomb",
+        "Dynamite",
+        "AI",
+        "Refrigerator"
+      ],
+      "correctAnswers": [
+        "Atomic bomb",
+        "Dynamite",
+        "AI"
+      ]
+    },
+    {
+      "id": "daily_technologies",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are modern technologies used at home? (Choose all that apply)",
+      "options": [
+        "Microwave",
+        "Fridge",
+        "Laptop",
+        "Satellite",
+        "Vacuum cleaner"
+      ],
+      "correctAnswers": [
+        "Microwave",
+        "Fridge",
+        "Laptop",
+        "Vacuum cleaner"
+      ]
+    },
+    {
+      "id": "technology_disadvantage",
+      "type": "mc_single",
+      "questionText": "What is a disadvantage of modern technology mentioned in the text?",
+      "options": [
+        "It helps people stay in shape",
+        "It makes us spend more time with family",
+        "It pollutes the environment",
+        "It makes cooking harder"
+      ],
+      "correctAnswer": "It pollutes the environment"
+    }
+  ]
+}
