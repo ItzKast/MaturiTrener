@@ -50,6 +50,18 @@
             "correctAnswer": "Chronologická"
         },
         {
+            "id": "akty",
+            "type": "free_text",
+            "questionText": "Počet aktů:",
+            "correctAnswer": "3"
+        },
+        {
+            "id": "obrazy",
+            "type": "free_text",
+            "questionText": "Počet obrazů:",
+            "correctAnswer": "14"
+        },
+        {
             "id": "vypravec",
             "type": "mc_single",
             "questionText": "Vypravěč / Forma projevu:",
@@ -60,8 +72,8 @@
             "id": "smer",
             "type": "mc_single",
             "questionText": "Literární směr:",
-            "options": ["Humanismus", "Existencialismus", "Sci-fi", "Expresionismus"],
-            "correctAnswer": "Humanismus"
+            "options": ["Demokratický proud", "Existencialismus", "Sci-fi", "Expresionismus"],
+            "correctAnswer": "Demokratický proud"
         }
     ]
 }
