@@ -1915,23 +1915,72 @@ function generateTest() {
                 const optionsDiv = document.createElement('div'); optionsDiv.classList.add('question-options');
 
                 // Generate Input Based on Type
-                try { // Add inner try...catch for option generation
+                try {
                     switch (q.type) {
                         case 'mc_single':
                         case 'conditional_mc_single':
                             let optionsToShow = q.options || [];
-                            if (subject === "Čeština" && q.type === 'conditional_mc_single') { /* ... Czech conditional options logic ... */ }
-                            if (!optionsToShow || optionsToShow.length === 0) optionsDiv.textContent = "Chyba: Možnosti nenalezeny.";
-                            else { /* ... create/append RADIO buttons, shuffle optionsToShow ... */ }
-                            break;
+                            // Czech conditional logic for options
+                            if (subject === "Čeština" && q.type === 'conditional_mc_single') {
+                                if (q.optionsBasedOn && correctDruh) optionsToShow = q.optionsBasedOn[correctDruh] || [];
+                                else { optionsToShow = []; console.error(`Missing options for conditional Q ${q.id}`); }
+                            } // Add other conditional logic here if needed
+
+                            if (optionsToShow.length === 0) {
+                                optionsDiv.textContent = "Chyba: Možnosti nenalezeny.";
+                            } else {
+                                // --- CODE TO CREATE RADIO BUTTONS ---
+                                const shuffledOptions = shuffleArray([...optionsToShow]); // Shuffle
+                                shuffledOptions.forEach(optionText => {
+                                    const label = document.createElement('label');
+                                    label.classList.add('option-label');
+                                    const input = document.createElement('input');
+                                    input.type = 'radio';
+                                    input.name = `question_${q.id}`; // Group radios by question
+                                    input.value = optionText;
+                                    label.appendChild(input);
+                                    label.appendChild(document.createTextNode(` ${optionText}`));
+                                    optionsDiv.appendChild(label);
+                                });
+                                // --- END RADIO BUTTON CODE ---
+                            }
+                            break; // End mc_single / conditional
+
                         case 'free_text':
-                            const input = document.createElement('input'); /* ... set attributes ... */ optionsDiv.appendChild(input);
-                            break;
+                            // --- CODE TO CREATE TEXT INPUT ---
+                            const input = document.createElement('input');
+                            input.type = 'text';
+                            input.name = `question_${q.id}`;
+                            input.placeholder = 'Napište odpověď...';
+                            input.classList.add('free-text-input');
+                            optionsDiv.appendChild(input);
+                            // --- END TEXT INPUT CODE ---
+                            break; // End free_text
+
                         case 'mc_multiple':
-                            if (!q.options || q.options.length === 0) optionsDiv.textContent = "Chyba: Možnosti nenalezeny.";
-                            else { /* ... create/append CHECKBOXES, shuffle q.options ... */ }
-                            break;
-                        default: optionsDiv.textContent = `Neznámý typ otázky: ${q.type}`;
+                            if (!q.options || q.options.length === 0) {
+                                optionsDiv.textContent = "Chyba: Možnosti nenalezeny.";
+                            } else {
+                                // --- CODE TO CREATE CHECKBOXES ---
+                                const shuffledOptions = shuffleArray([...q.options]); // Shuffle
+                                shuffledOptions.forEach(optionText => {
+                                    const label = document.createElement('label');
+                                    label.classList.add('option-label');
+                                    const input = document.createElement('input');
+                                    input.type = 'checkbox';
+                                    // Use unique name/id if needed, or rely on value during evaluation
+                                    input.name = `question_${q.id}_option_${optionText.replace(/\s+/g, '_')}`; // Example name
+                                    input.value = optionText;
+                                    label.appendChild(input);
+                                    label.appendChild(document.createTextNode(` ${optionText}`));
+                                    optionsDiv.appendChild(label);
+                                });
+                                // --- END CHECKBOX CODE ---
+                            }
+                            break; // End mc_multiple
+
+                        default:
+                            optionsDiv.textContent = `Neznámý typ otázky: ${q.type}`;
                     }
                 } catch (optionError) {
                     console.error(`Error generating options for Q ${index + 1} (${uniqueQuestionId}):`, optionError);
