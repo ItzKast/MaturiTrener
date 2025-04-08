@@ -50,6 +50,12 @@
             "correctAnswer": "Retrospektivní"
         },
         {
+            "id": "kapitoly",
+            "type": "free_text",
+            "questionText": "Počet kapitol",
+            "correctAnswer": "9"
+        },
+        {
             "id": "vypravec",
             "type": "mc_single",
             "questionText": "Vypravěč / Forma projevu:",
@@ -61,7 +67,7 @@
             "type": "mc_single",
             "questionText": "Literární směr:",
             "options": ["Modernismus", "Realismus", "Ztracená generace", "Naturalismus"],
-            "correctAnswer": "Modernismus"
+            "correctAnswer": "Ztracená generace"
         }
     ]
 }
