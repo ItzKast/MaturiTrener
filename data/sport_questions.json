@@ -1,0 +1,199 @@
+{
+  "topic": "Sport",
+  "questions": [
+    {
+      "id": "sport_importance",
+      "type": "mc_multiple",
+      "questionText": "Why is sport important for people? (Choose all that apply)",
+      "options": [
+        "Improves immunity",
+        "Improves physical and mental health",
+        "Helps meet new people",
+        "Causes stress"
+      ],
+      "correctAnswers": [
+        "Improves immunity",
+        "Improves physical and mental health",
+        "Helps meet new people"
+      ]
+    },
+    {
+      "id": "hormones_sport",
+      "type": "free_text",
+      "questionText": "What is the name of the hormone released during physical activity that brings happiness?",
+      "correctAnswer": "Endorphins"
+    },
+    {
+      "id": "indoor_sports",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are indoor sports? (Choose all that apply)",
+      "options": [
+        "Squash",
+        "Table tennis",
+        "Golf",
+        "Bowling"
+      ],
+      "correctAnswers": [
+        "Squash",
+        "Table tennis",
+        "Bowling"
+      ]
+    },
+    {
+      "id": "extreme_sports",
+      "type": "mc_single",
+      "questionText": "Which of these is considered an extreme sport?",
+      "options": [
+        "Gymnastics",
+        "Paragliding",
+        "Swimming",
+        "Cycling"
+      ],
+      "correctAnswer": "Paragliding"
+    },
+    {
+      "id": "team_sports",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are team sports? (Choose all that apply)",
+      "options": [
+        "Football",
+        "Table tennis",
+        "Baseball",
+        "Volleyball"
+      ],
+      "correctAnswers": [
+        "Football",
+        "Baseball",
+        "Volleyball"
+      ]
+    },
+    {
+      "id": "winter_sports",
+      "type": "mc_multiple",
+      "questionText": "Which sports are typically played in winter? (Choose all that apply)",
+      "options": [
+        "Downhill skiing",
+        "Cross-country skiing",
+        "Surfing",
+        "Ice hockey"
+      ],
+      "correctAnswers": [
+        "Downhill skiing",
+        "Cross-country skiing",
+        "Ice hockey"
+      ]
+    },
+    {
+      "id": "tennis_game_types",
+      "type": "mc_single",
+      "questionText": "How many players are there in a doubles tennis match?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "correctAnswer": "4"
+    },
+    {
+      "id": "tennis_equipment",
+      "type": "mc_multiple",
+      "questionText": "What equipment is needed to play tennis? (Choose all that apply)",
+      "options": [
+        "Racket",
+        "Ball",
+        "Gloves",
+        "Proper shoes"
+      ],
+      "correctAnswers": [
+        "Racket",
+        "Ball",
+        "Proper shoes"
+      ]
+    },
+    {
+      "id": "tennis_tournaments",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are famous tennis tournaments? (Choose all that apply)",
+      "options": [
+        "Wimbledon",
+        "US Open",
+        "Tour de France",
+        "French Open"
+      ],
+      "correctAnswers": [
+        "Wimbledon",
+        "US Open",
+        "French Open"
+      ]
+    },
+    {
+      "id": "favorite_tennis_player",
+      "type": "free_text",
+      "questionText": "Who is the tennis player from Spain mentioned as a favorite?",
+      "correctAnswer": "Carlos Alcaraz"
+    },
+    {
+      "id": "hockey_rules",
+      "type": "mc_single",
+      "questionText": "How many players are on the ice for one team at the same time in ice hockey?",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "11"
+      ],
+      "correctAnswer": "6"
+    },
+    {
+      "id": "hockey_equipment",
+      "type": "mc_multiple",
+      "questionText": "What equipment is used in ice hockey? (Choose all that apply)",
+      "options": [
+        "Ice skates",
+        "Puck",
+        "Stick",
+        "Ball"
+      ],
+      "correctAnswers": [
+        "Ice skates",
+        "Puck",
+        "Stick"
+      ]
+    },
+    {
+      "id": "olympics_frequency",
+      "type": "mc_single",
+      "questionText": "How often are the Olympic Games held?",
+      "options": [
+        "Every year",
+        "Every 2 years",
+        "Every 4 years",
+        "Every 6 years"
+      ],
+      "correctAnswer": "Every 4 years"
+    },
+    {
+      "id": "olympic_symbols",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are Olympic symbols? (Choose all that apply)",
+      "options": [
+        "Olympic flag",
+        "Olympic fire",
+        "Olympic anthem",
+        "Golden ball"
+      ],
+      "correctAnswers": [
+        "Olympic flag",
+        "Olympic fire",
+        "Olympic anthem"
+      ]
+    },
+    {
+      "id": "modern_olympics_origin",
+      "type": "free_text",
+      "questionText": "In which city were the first modern Olympic Games held?",
+      "correctAnswer": "Athens"
+    }
+  ]
+}

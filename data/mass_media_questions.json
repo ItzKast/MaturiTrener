@@ -1,0 +1,110 @@
+{
+  "topic": "Mass Media",
+  "questions": [
+    {
+      "id": "media_definition",
+      "type": "free_text",
+      "questionText": "What are mass media?",
+      "correctAnswer": "Means of communication that reach a large audience and inform people about current events."
+    },
+    {
+      "id": "types_media",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are examples of mass media?",
+      "options": [
+        "Internet",
+        "Radio",
+        "Books",
+        "Newspapers",
+        "Social media",
+        "Postcards"
+      ],
+      "correctAnswers": [
+        "Internet",
+        "Radio",
+        "Newspapers",
+        "Social media"
+      ]
+    },
+    {
+      "id": "newspapers_groups",
+      "type": "mc_single",
+      "questionText": "What are the two main groups of newspapers?",
+      "options": [
+        "Local and National",
+        "Broadsheets and Tabloids",
+        "Paid and Free",
+        "Short and Long"
+      ],
+      "correctAnswer": "Broadsheets and Tabloids"
+    },
+    {
+      "id": "radio_advantages",
+      "type": "free_text",
+      "questionText": "Why is radio still useful today?",
+      "correctAnswer": "Because it provides music, news, and traffic information 24 hours a day and can be listened to while doing other activities."
+    },
+    {
+      "id": "internet_advantages",
+      "type": "mc_multiple",
+      "questionText": "What are some advantages of the internet as a mass medium?",
+      "options": [
+        "Constant updates",
+        "Access to any information",
+        "No electricity needed",
+        "Ability to communicate instantly"
+      ],
+      "correctAnswers": [
+        "Constant updates",
+        "Access to any information",
+        "Ability to communicate instantly"
+      ]
+    },
+    {
+      "id": "social_media_pros",
+      "type": "free_text",
+      "questionText": "Mention at least one benefit of social media.",
+      "correctAnswer": "We can keep in touch with our friends or meet people from other countries."
+    },
+    {
+      "id": "social_media_cons",
+      "type": "mc_single",
+      "questionText": "What is one major disadvantage of social media?",
+      "options": [
+        "There is no way to send photos",
+        "We may compare ourselves with others",
+        "It is not used by young people",
+        "There is too much text"
+      ],
+      "correctAnswer": "We may compare ourselves with others"
+    },
+    {
+      "id": "tv_usage",
+      "type": "free_text",
+      "questionText": "Do you prefer watching TV or reading the news on the internet? Why?",
+      "correctAnswer": ""
+    },
+    {
+      "id": "internet_dangers",
+      "type": "mc_multiple",
+      "questionText": "What are some risks connected with the internet?",
+      "options": [
+        "Unreliable information",
+        "Slow access",
+        "Fake news",
+        "Lack of critical thinking"
+      ],
+      "correctAnswers": [
+        "Unreliable information",
+        "Fake news",
+        "Lack of critical thinking"
+      ]
+    },
+    {
+      "id": "generational_difference",
+      "type": "free_text",
+      "questionText": "How is your generation different from your parents' when it comes to using media?",
+      "correctAnswer": ""
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "topic": "Australia and New Zealand",
+  "questions": [
+    {
+      "id": "australia_location",
+      "type": "mc_single",
+      "questionText": "Where is Australia located?",
+      "options": [
+        "Northern Hemisphere",
+        "Southern Hemisphere",
+        "Western Hemisphere",
+        "Eastern Europe"
+      ],
+      "correctAnswer": "Southern Hemisphere"
+    },
+    {
+      "id": "australia_capital",
+      "type": "free_text",
+      "questionText": "What is the capital city of Australia?",
+      "correctAnswer": "Canberra"
+    },
+    {
+      "id": "australia_largest_city",
+      "type": "mc_single",
+      "questionText": "Which is the largest and most cosmopolitan city in Australia?",
+      "options": [
+        "Canberra",
+        "Brisbane",
+        "Sydney",
+        "Melbourne"
+      ],
+      "correctAnswer": "Sydney"
+    },
+    {
+      "id": "australia_symbols",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are national symbols of Australia? (Choose all that apply)",
+      "options": [
+        "Kangaroo",
+        "Boomerang",
+        "Union Jack",
+        "Koala"
+      ],
+      "correctAnswers": [
+        "Kangaroo",
+        "Boomerang",
+        "Union Jack"
+      ]
+    },
+    {
+      "id": "australia_animals",
+      "type": "mc_multiple",
+      "questionText": "Which animals are native to Australia? (Choose all that apply)",
+      "options": [
+        "Kangaroo",
+        "Koala",
+        "Platypus",
+        "Giraffe"
+      ],
+      "correctAnswers": [
+        "Kangaroo",
+        "Koala",
+        "Platypus"
+      ]
+    },
+    {
+      "id": "australia_nps",
+      "type": "mc_multiple",
+      "questionText": "Which are famous national parks or natural landmarks in Australia? (Choose all that apply)",
+      "options": [
+        "Kakadu",
+        "Grand Canyon",
+        "Great Barrier Reef",
+        "Uluru"
+      ],
+      "correctAnswers": [
+        "Kakadu",
+        "Great Barrier Reef",
+        "Uluru"
+      ]
+    },
+    {
+      "id": "australia_sport",
+      "type": "free_text",
+      "questionText": "What is the national sport of Australia?",
+      "correctAnswer": "Cricket"
+    },
+    {
+      "id": "nz_capital",
+      "type": "free_text",
+      "questionText": "What is the capital city of New Zealand?",
+      "correctAnswer": "Wellington"
+    },
+    {
+      "id": "nz_languages",
+      "type": "mc_multiple",
+      "questionText": "Which are the official languages of New Zealand? (Choose all that apply)",
+      "options": [
+        "English",
+        "Maori",
+        "French",
+        "German"
+      ],
+      "correctAnswers": [
+        "English",
+        "Maori"
+      ]
+    },
+    {
+      "id": "nz_animals",
+      "type": "mc_single",
+      "questionText": "Which animal is a national symbol of New Zealand?",
+      "options": [
+        "Kiwi",
+        "Koala",
+        "Emu",
+        "Eagle"
+      ],
+      "correctAnswer": "Kiwi"
+    },
+    {
+      "id": "haka_dance",
+      "type": "mc_single",
+      "questionText": "What is the purpose of the Maori Haka dance?",
+      "options": [
+        "To celebrate holidays",
+        "To prepare food",
+        "To scare enemies before matches",
+        "To attract tourists"
+      ],
+      "correctAnswer": "To scare enemies before matches"
+    },
+    {
+      "id": "nz_geography",
+      "type": "mc_single",
+      "questionText": "What is the highest mountain in New Zealand?",
+      "options": [
+        "Mt. Cook",
+        "Mt. Kosciuszko",
+        "Mt. Logan",
+        "Mt. McKinley"
+      ],
+      "correctAnswer": "Mt. Cook"
+    },
+    {
+      "id": "australia_currency",
+      "type": "mc_single",
+      "questionText": "What is the currency used in Australia?",
+      "options": [
+        "Australian dollar",
+        "US dollar",
+        "Euro",
+        "British pound"
+      ],
+      "correctAnswer": "Australian dollar"
+    },
+    {
+      "id": "nz_economy",
+      "type": "mc_multiple",
+      "questionText": "Which industries are important to New Zealand’s economy? (Choose all that apply)",
+      "options": [
+        "Agriculture",
+        "Wool processing",
+        "Fishing",
+        "Automobile manufacturing"
+      ],
+      "correctAnswers": [
+        "Agriculture",
+        "Wool processing"
+      ]
+    },
+    {
+      "id": "oz_indigenous_people",
+      "type": "free_text",
+      "questionText": "What are the original inhabitants of Australia called?",
+      "correctAnswer": "Aborigines"
+    }
+  ]
+}

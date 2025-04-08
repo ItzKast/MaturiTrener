@@ -1,0 +1,175 @@
+{
+  "topic": "Holidays and Festivals",
+  "questions": [
+    {
+      "id": "holiday_types",
+      "type": "mc_multiple",
+      "questionText": "Which categories can holidays be divided into? (Choose all that apply)",
+      "options": [
+        "Christian holidays",
+        "National holidays",
+        "Specific holidays",
+        "International sports days"
+      ],
+      "correctAnswers": [
+        "Christian holidays",
+        "National holidays",
+        "Specific holidays"
+      ]
+    },
+    {
+      "id": "cz_christmas",
+      "type": "mc_single",
+      "questionText": "When do people in the Czech Republic open Christmas presents?",
+      "options": [
+        "24th December morning",
+        "24th December evening",
+        "25th December morning",
+        "25th December evening"
+      ],
+      "correctAnswer": "24th December evening"
+    },
+    {
+      "id": "cz_santa",
+      "type": "free_text",
+      "questionText": "Who brings presents to children in the Czech Republic at Christmas?",
+      "correctAnswer": "Baby Jesus"
+    },
+    {
+      "id": "gb_christmas_dinner",
+      "type": "mc_single",
+      "questionText": "When is Christmas dinner typically eaten in the UK?",
+      "options": [
+        "24th December evening",
+        "25th December morning",
+        "25th December midday",
+        "26th December evening"
+      ],
+      "correctAnswer": "25th December midday"
+    },
+    {
+      "id": "gb_boxing_day",
+      "type": "free_text",
+      "questionText": "What is the day after Christmas called in the UK?",
+      "correctAnswer": "Boxing Day"
+    },
+    {
+      "id": "easter_symbol",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are Easter symbols? (Choose all that apply)",
+      "options": [
+        "Eggs",
+        "Lamb",
+        "Pumpkins",
+        "Chickens",
+        "Daffodils"
+      ],
+      "correctAnswers": [
+        "Eggs",
+        "Lamb",
+        "Chickens",
+        "Daffodils"
+      ]
+    },
+    {
+      "id": "cz_easter_tradition",
+      "type": "mc_single",
+      "questionText": "What do Czech boys give girls after whipping them with willow sticks?",
+      "options": [
+        "Candy",
+        "Money",
+        "Painted eggs",
+        "Ribbons"
+      ],
+      "correctAnswer": "Painted eggs"
+    },
+    {
+      "id": "us_easter_event",
+      "type": "free_text",
+      "questionText": "What is the Easter event held in front of the White House called?",
+      "correctAnswer": "Easter Egg Roll"
+    },
+    {
+      "id": "new_years_eve",
+      "type": "mc_multiple",
+      "questionText": "What are typical activities on New Year’s Eve? (Choose all that apply)",
+      "options": [
+        "Fireworks",
+        "Parties",
+        "Going to work",
+        "Making resolutions"
+      ],
+      "correctAnswers": [
+        "Fireworks",
+        "Parties",
+        "Making resolutions"
+      ]
+    },
+    {
+      "id": "valentines_day",
+      "type": "mc_single",
+      "questionText": "What is a typical symbol of Valentine's Day?",
+      "options": [
+        "Pumpkin",
+        "Turkey",
+        "Heart",
+        "Snowflake"
+      ],
+      "correctAnswer": "Heart"
+    },
+    {
+      "id": "halloween_tradition",
+      "type": "mc_single",
+      "questionText": "What do children say when they go door-to-door on Halloween?",
+      "options": [
+        "Trick or eat",
+        "Boo or treat",
+        "Trick or treat",
+        "Give or go"
+      ],
+      "correctAnswer": "Trick or treat"
+    },
+    {
+      "id": "cz_national_holiday",
+      "type": "mc_single",
+      "questionText": "What happened on October 28th in Czech history?",
+      "options": [
+        "End of World War II",
+        "Independence of Czechoslovakia",
+        "Arrival of Cyril and Methodius",
+        "Burning of Jan Hus"
+      ],
+      "correctAnswer": "Independence of Czechoslovakia"
+    },
+    {
+      "id": "gb_guy_fawkes",
+      "type": "free_text",
+      "questionText": "What do people burn on Guy Fawkes Night?",
+      "correctAnswer": "Figures of Guy Fawkes"
+    },
+    {
+      "id": "usa_independence_day",
+      "type": "mc_single",
+      "questionText": "When is the Independence Day celebrated in the USA?",
+      "options": [
+        "1st July",
+        "4th July",
+        "14th July",
+        "24th July"
+      ],
+      "correctAnswer": "4th July"
+    },
+    {
+      "id": "thanksgiving_origin",
+      "type": "mc_single",
+      "questionText": "Who helped the Pilgrims survive their first year in America?",
+      "options": [
+        "The French",
+        "The British",
+        "The Native Americans",
+        "The Spanish"
+      ],
+      "correctAnswer": "The Native Americans"
+    }
+  ]
+}

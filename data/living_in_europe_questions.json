@@ -1,0 +1,181 @@
+{
+  "topic": "Living in Europe",
+  "questions": [
+    {
+      "id": "eu_members",
+      "type": "mc_single",
+      "questionText": "How many countries are currently members of the European Union?",
+      "options": [
+        "25",
+        "27",
+        "28",
+        "30"
+      ],
+      "correctAnswer": "27"
+    },
+    {
+      "id": "maastricht_treaty",
+      "type": "mc_single",
+      "questionText": "When was the EU officially established by the Maastricht Treaty?",
+      "options": [
+        "1951",
+        "1967",
+        "1993",
+        "2004"
+      ],
+      "correctAnswer": "1993"
+    },
+    {
+      "id": "eu_flag",
+      "type": "free_text",
+      "questionText": "What symbol is on the EU flag?",
+      "correctAnswer": "12 yellow stars on a blue field"
+    },
+    {
+      "id": "eu_seat",
+      "type": "mc_single",
+      "questionText": "Where is the official seat of the EU?",
+      "options": [
+        "Vienna",
+        "Strasbourg",
+        "Brussels",
+        "Luxembourg"
+      ],
+      "correctAnswer": "Brussels"
+    },
+    {
+      "id": "cz_joined_eu",
+      "type": "free_text",
+      "questionText": "On what date did the Czech Republic join the European Union?",
+      "correctAnswer": "1st May 2004"
+    },
+    {
+      "id": "eu_institutions",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are institutions of the European Union? (Choose all that apply)",
+      "options": [
+        "European Parliament",
+        "EU Commission",
+        "Council of the EU",
+        "European Court of Justice",
+        "Federal Reserve"
+      ],
+      "correctAnswers": [
+        "European Parliament",
+        "EU Commission",
+        "Council of the EU",
+        "European Court of Justice"
+      ]
+    },
+    {
+      "id": "euro_currency",
+      "type": "mc_single",
+      "questionText": "How many EU countries currently use the Euro as their currency?",
+      "options": [
+        "12",
+        "14",
+        "16",
+        "19"
+      ],
+      "correctAnswer": "16"
+    },
+    {
+      "id": "erasmus_program",
+      "type": "free_text",
+      "questionText": "What is the name of the EU program that allows students to study abroad?",
+      "correctAnswer": "Erasmus"
+    },
+    {
+      "id": "eu_day",
+      "type": "mc_single",
+      "questionText": "When is Europe Day celebrated?",
+      "options": [
+        "1st January",
+        "9th May",
+        "1st May",
+        "26th October"
+      ],
+      "correctAnswer": "9th May"
+    },
+    {
+      "id": "traveling_advantages",
+      "type": "mc_multiple",
+      "questionText": "What are the advantages of traveling within the EU? (Choose all that apply)",
+      "options": [
+        "No passport needed",
+        "No border controls",
+        "Use international driving license",
+        "Less paperwork"
+      ],
+      "correctAnswers": [
+        "No passport needed",
+        "No border controls",
+        "Less paperwork"
+      ]
+    },
+    {
+      "id": "traveling_disadvantage",
+      "type": "mc_single",
+      "questionText": "What is a possible disadvantage of free movement within the EU?",
+      "options": [
+        "Higher taxes",
+        "Illegal immigration",
+        "Slower transport",
+        "Lack of transportation"
+      ],
+      "correctAnswer": "Illegal immigration"
+    },
+    {
+      "id": "study_abroad_advantage",
+      "type": "mc_multiple",
+      "questionText": "What are some benefits of studying abroad in the EU? (Choose all that apply)",
+      "options": [
+        "Learning about new cultures",
+        "Improving language skills",
+        "Meeting new people",
+        "Getting a free car"
+      ],
+      "correctAnswers": [
+        "Learning about new cultures",
+        "Improving language skills",
+        "Meeting new people"
+      ]
+    },
+    {
+      "id": "eu_shopping",
+      "type": "mc_single",
+      "questionText": "What is one benefit of being able to shop within the EU?",
+      "options": [
+        "Only local food is allowed",
+        "Cheaper prices for luxury goods",
+        "Access to products all year round",
+        "Customs duties on EU products"
+      ],
+      "correctAnswer": "Access to products all year round"
+    },
+    {
+      "id": "cz_infrastructure",
+      "type": "mc_single",
+      "questionText": "What does the Czech Republic use EU subsidies for?",
+      "options": [
+        "Buying weapons",
+        "Lowering taxes",
+        "Building schools and roads",
+        "Printing new banknotes"
+      ],
+      "correctAnswer": "Building schools and roads"
+    },
+    {
+      "id": "eu_disadvantage",
+      "type": "mc_single",
+      "questionText": "Which of these is seen as a disadvantage of EU membership?",
+      "options": [
+        "More travel opportunities",
+        "Free language courses",
+        "Weakened national identity",
+        "More cultural exchange"
+      ],
+      "correctAnswer": "Weakened national identity"
+    }
+  ]
+}

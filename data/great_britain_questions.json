@@ -1,0 +1,209 @@
+{
+  "topic": "Great Britain",
+  "questions": [
+    {
+      "id": "uk_name",
+      "type": "free_text",
+      "questionText": "What is the official name of the UK?",
+      "correctAnswer": "The United Kingdom of Great Britain and Northern Ireland"
+    },
+    {
+      "id": "uk_parts",
+      "type": "mc_multiple",
+      "questionText": "Which countries are part of the United Kingdom? (Choose all that apply)",
+      "options": [
+        "England",
+        "Scotland",
+        "Wales",
+        "Northern Ireland",
+        "Ireland"
+      ],
+      "correctAnswers": [
+        "England",
+        "Scotland",
+        "Wales",
+        "Northern Ireland"
+      ]
+    },
+    {
+      "id": "capital_countries",
+      "type": "mc_multiple",
+      "questionText": "Match the capital cities to their countries in the UK. (Choose all that apply)",
+      "options": [
+        "London - England",
+        "Cardiff - Wales",
+        "Edinburgh - Scotland",
+        "Belfast - Northern Ireland"
+      ],
+      "correctAnswers": [
+        "London - England",
+        "Cardiff - Wales",
+        "Edinburgh - Scotland",
+        "Belfast - Northern Ireland"
+      ]
+    },
+    {
+      "id": "union_jack",
+      "type": "mc_single",
+      "questionText": "What colors are in the Union Jack?",
+      "options": [
+        "Red, white, and blue",
+        "Green and white",
+        "Black and yellow",
+        "Blue and yellow"
+      ],
+      "correctAnswer": "Red, white, and blue"
+    },
+    {
+      "id": "ben_nevis",
+      "type": "free_text",
+      "questionText": "What is the highest mountain in the UK?",
+      "correctAnswer": "Ben Nevis"
+    },
+    {
+      "id": "british_river",
+      "type": "mc_single",
+      "questionText": "Which river flows through London?",
+      "options": [
+        "Tyne",
+        "Thames",
+        "Severn",
+        "Clyde"
+      ],
+      "correctAnswer": "Thames"
+    },
+    {
+      "id": "scotland_features",
+      "type": "mc_multiple",
+      "questionText": "What is Scotland famous for? (Choose all that apply)",
+      "options": [
+        "Whiskey",
+        "Bagpipes",
+        "Deserts",
+        "Castles"
+      ],
+      "correctAnswers": [
+        "Whiskey",
+        "Bagpipes",
+        "Castles"
+      ]
+    },
+    {
+      "id": "london_sites",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are landmarks in London? (Choose all that apply)",
+      "options": [
+        "Big Ben",
+        "Tower Bridge",
+        "Eiffel Tower",
+        "Buckingham Palace"
+      ],
+      "correctAnswers": [
+        "Big Ben",
+        "Tower Bridge",
+        "Buckingham Palace"
+      ]
+    },
+    {
+      "id": "sports_uk",
+      "type": "mc_multiple",
+      "questionText": "Which sports are popular in the UK? (Choose all that apply)",
+      "options": [
+        "Football",
+        "Cricket",
+        "Golf",
+        "Baseball"
+      ],
+      "correctAnswers": [
+        "Football",
+        "Cricket",
+        "Golf"
+      ]
+    },
+    {
+      "id": "british_breakfast",
+      "type": "mc_multiple",
+      "questionText": "What can be found in a traditional British breakfast? (Choose all that apply)",
+      "options": [
+        "Fried eggs",
+        "Beans",
+        "Bacon",
+        "Croissant"
+      ],
+      "correctAnswers": [
+        "Fried eggs",
+        "Beans",
+        "Bacon"
+      ]
+    },
+    {
+      "id": "famous_people",
+      "type": "mc_multiple",
+      "questionText": "Which of the following are famous British people? (Choose all that apply)",
+      "options": [
+        "Shakespeare",
+        "Adele",
+        "David Beckham",
+        "Elvis Presley"
+      ],
+      "correctAnswers": [
+        "Shakespeare",
+        "Adele",
+        "David Beckham"
+      ]
+    },
+    {
+      "id": "british_symbol",
+      "type": "mc_multiple",
+      "questionText": "Which are typical British symbols? (Choose all that apply)",
+      "options": [
+        "Red post boxes",
+        "Doubledeckers",
+        "Golden Gate Bridge",
+        "Union Jack"
+      ],
+      "correctAnswers": [
+        "Red post boxes",
+        "Doubledeckers",
+        "Union Jack"
+      ]
+    },
+    {
+      "id": "london_founder",
+      "type": "free_text",
+      "questionText": "Who founded London?",
+      "correctAnswer": "Romans"
+    },
+    {
+      "id": "parliament_structure",
+      "type": "mc_multiple",
+      "questionText": "Which houses make up the UK Parliament? (Choose all that apply)",
+      "options": [
+        "House of Commons",
+        "House of Lords",
+        "House of Representatives",
+        "Senate"
+      ],
+      "correctAnswers": [
+        "House of Commons",
+        "House of Lords"
+      ]
+    },
+    {
+      "id": "tower_uses",
+      "type": "mc_multiple",
+      "questionText": "What has the Tower of London been used as? (Choose all that apply)",
+      "options": [
+        "Prison",
+        "Zoo",
+        "Observatory",
+        "Library"
+      ],
+      "correctAnswers": [
+        "Prison",
+        "Zoo",
+        "Observatory"
+      ]
+    }
+  ]
+}

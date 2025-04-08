@@ -1,0 +1,190 @@
+{
+  "topic": "The USA and Canada",
+  "questions": [
+    {
+      "id": "usa_continent",
+      "type": "mc_single",
+      "questionText": "Where is the USA located?",
+      "options": [
+        "South America",
+        "North America",
+        "Europe",
+        "Asia"
+      ],
+      "correctAnswer": "North America"
+    },
+    {
+      "id": "usa_states",
+      "type": "free_text",
+      "questionText": "How many states does the USA consist of?",
+      "correctAnswer": "50"
+    },
+    {
+      "id": "largest_state",
+      "type": "mc_single",
+      "questionText": "What is the largest state in the USA?",
+      "options": [
+        "Texas",
+        "California",
+        "Alaska",
+        "Florida"
+      ],
+      "correctAnswer": "Alaska"
+    },
+    {
+      "id": "usa_capital",
+      "type": "free_text",
+      "questionText": "What is the capital city of the USA?",
+      "correctAnswer": "Washington D.C."
+    },
+    {
+      "id": "mississippi",
+      "type": "mc_single",
+      "questionText": "Which is one of the longest rivers in the USA?",
+      "options": [
+        "Amazon",
+        "Mississippi",
+        "Volga",
+        "Danube"
+      ],
+      "correctAnswer": "Mississippi"
+    },
+    {
+      "id": "yellowstone",
+      "type": "mc_single",
+      "questionText": "Which is the oldest national park in the world?",
+      "options": [
+        "Grand Canyon",
+        "Sequoia",
+        "Everglades",
+        "Yellowstone"
+      ],
+      "correctAnswer": "Yellowstone"
+    },
+    {
+      "id": "thanksgiving_origin",
+      "type": "mc_multiple",
+      "questionText": "What are the origins of Thanksgiving? (Choose all that apply)",
+      "options": [
+        "Pilgrim Fathers",
+        "Mayflower",
+        "Friendly Indians",
+        "American Civil War"
+      ],
+      "correctAnswers": [
+        "Pilgrim Fathers",
+        "Mayflower",
+        "Friendly Indians"
+      ]
+    },
+    {
+      "id": "civil_war_reason",
+      "type": "mc_single",
+      "questionText": "What was the main reason for the American Civil War?",
+      "options": [
+        "Taxes",
+        "Slavery",
+        "Religion",
+        "Immigration"
+      ],
+      "correctAnswer": "Slavery"
+    },
+    {
+      "id": "new_york_nicknames",
+      "type": "mc_multiple",
+      "questionText": "What are the nicknames of New York? (Choose all that apply)",
+      "options": [
+        "The Big Apple",
+        "The City of Lights",
+        "The City That Never Sleeps",
+        "Melting Pot"
+      ],
+      "correctAnswers": [
+        "The Big Apple",
+        "The City That Never Sleeps",
+        "Melting Pot"
+      ]
+    },
+    {
+      "id": "canada_languages",
+      "type": "mc_multiple",
+      "questionText": "What are the official languages of Canada?",
+      "options": [
+        "English",
+        "French",
+        "German",
+        "Spanish"
+      ],
+      "correctAnswers": [
+        "English",
+        "French"
+      ]
+    },
+    {
+      "id": "canada_flag",
+      "type": "free_text",
+      "questionText": "What symbol is in the center of the Canadian flag?",
+      "correctAnswer": "Maple leaf"
+    },
+    {
+      "id": "canada_capital",
+      "type": "mc_single",
+      "questionText": "What is the capital city of Canada?",
+      "options": [
+        "Toronto",
+        "Vancouver",
+        "Ottawa",
+        "Montreal"
+      ],
+      "correctAnswer": "Ottawa"
+    },
+    {
+      "id": "canada_food",
+      "type": "mc_multiple",
+      "questionText": "Which foods are traditional in Canada? (Choose all that apply)",
+      "options": [
+        "Poutine",
+        "Stuffed turkey",
+        "Pancakes with maple syrup",
+        "Sushi"
+      ],
+      "correctAnswers": [
+        "Poutine",
+        "Stuffed turkey",
+        "Pancakes with maple syrup"
+      ]
+    },
+    {
+      "id": "canadian_celebs",
+      "type": "mc_multiple",
+      "questionText": "Which of these are Canadian celebrities? (Choose all that apply)",
+      "options": [
+        "Justin Bieber",
+        "Celine Dion",
+        "Lady Gaga",
+        "Ryan Gosling"
+      ],
+      "correctAnswers": [
+        "Justin Bieber",
+        "Celine Dion",
+        "Ryan Gosling"
+      ]
+    },
+    {
+      "id": "canada_nature",
+      "type": "mc_multiple",
+      "questionText": "Which animals are found in Canada’s forests? (Choose all that apply)",
+      "options": [
+        "Grizzly bear",
+        "Polar fox",
+        "Tiger",
+        "Moose"
+      ],
+      "correctAnswers": [
+        "Grizzly bear",
+        "Polar fox",
+        "Moose"
+      ]
+    }
+  ]
+}
