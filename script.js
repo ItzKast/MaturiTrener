@@ -1882,19 +1882,15 @@ function generateTest() {
         if (isJsonSubject) {
             console.log(`Generating JSON test for ${subject} - ${topic}`);
             const jsonData = data[subject]?.[topic]; // Get data from the flat 'data' object
-            generatedQuestions = jsonData.questions;
-
-            // Validate loaded JSON data
             if (!jsonData || typeof jsonData !== 'object' || !jsonData.questions || !Array.isArray(jsonData.questions) || jsonData.questions.length === 0) {
                 let errorMsg = `Data pro ${subject} - "${topic}" nebyla nalezena, načtena, nebo jsou v nesprávném formátu.`;
                 if (jsonData && (!jsonData.questions || jsonData.questions.length === 0)) {
                     errorMsg = `JSON soubor pro ${subject} - "${topic}" neobsahuje žádné otázky v poli 'questions'.`;
                 }
+                console.error("JSON Data Error:", errorMsg, "jsonData received:", jsonData); // Add log
                 throw new Error(errorMsg);
             }
-
-            // Use all questions from the JSON file directly
-            generatedQuestions = jsonData.questions; // Assign questions directly
+            generatedQuestions = jsonData.questions;
             console.log(`Using ${generatedQuestions.length} questions from JSON.`);
 
             // Determine 'druh' only if needed (Czech conditional logic)
