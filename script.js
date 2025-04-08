@@ -1821,119 +1821,225 @@ function parseCSV(csvText, subject, topic) {
     console.log(`Parsed ${questions.length} questions for ${subject} - ${topic}`);
 }
 
+/**
+ * Generates and displays a test based on selected school, subject, and topic.
+ */
 function generateTest() {
     console.log("Generating test...");
+
+    // --- 1. Get References & Selected Values ---
     if (!testContainer || !noQuestionsMessage || !subjectSelect || !topicSelect || !schoolTypeSelect) {
-         console.error("generateTest prerequisite elements missing.");
-         return;
+        console.error("generateTest prerequisite elements missing.");
+        return; // Cannot proceed
     }
 
     const schoolType = schoolTypeSelect.value;
     const subject = subjectSelect.value;
     const topic = topicSelect.value;
 
+    // Clear previous test & messages
     testContainer.innerHTML = '';
     testContainer.style.display = 'none';
     noQuestionsMessage.style.display = 'none';
 
+    // Validate selections
     if (!schoolType || !subject || !topic) {
         noQuestionsMessage.textContent = "Prosím vyberte typ školy, předmět a okruh.";
         noQuestionsMessage.style.display = 'block';
         return;
     }
 
-    // ---> DEFINE CONSTANTS INSIDE THE FUNCTION <---
+    // --- 2. Define Constants ---
     const questionsPerTopicSummary = 2;
     const questionsPerStandardTest = 10;
-    // ---> END DEFINITIONS <---
 
     try {
-        // --- Check if Subject uses JSON Format ---
-        if (subject === "Čeština" || subject === "Angličtina") {
-            // ... (existing JSON handling logic) ...
+        let generatedQuestions = []; // Array to hold the questions selected for this test
 
+        // --- 3. Determine Test Type and Generate Questions ---
+
+        // --- 3a. JSON-Based Subjects (Čeština, Angličtina) ---
+        if (subject === "Čeština" || subject === "Angličtina") {
+            console.log(`Generating JSON test for ${subject} - ${topic}`);
+            const jsonData = data[subject]?.[topic]; // Get data from the flat 'data' object
+
+            // Validate loaded JSON data
+            if (!jsonData || typeof jsonData !== 'object' || !jsonData.questions || !Array.isArray(jsonData.questions) || jsonData.questions.length === 0) {
+                let errorMsg = `Data pro ${subject} - "${topic}" nebyla nalezena, načtena, nebo jsou v nesprávném formátu.`;
+                if (jsonData && (!jsonData.questions || jsonData.questions.length === 0)) {
+                    errorMsg = `JSON soubor pro ${subject} - "${topic}" neobsahuje žádné otázky v poli 'questions'.`;
+                }
+                throw new Error(errorMsg);
+            }
+
+            // Use all questions from the JSON file directly
+            generatedQuestions = jsonData.questions; // Assign questions directly
+            console.log(`Using ${generatedQuestions.length} questions from JSON.`);
+
+            // Determine 'druh' only if needed (Czech conditional logic)
+            let correctDruh = null;
+            if (subject === "Čeština") {
+                correctDruh = jsonData.questions.find(q => q.id === 'druh')?.correctAnswer;
+            }
+
+            // --- Display JSON Questions ---
+            generatedQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('question', `question-type-${q.type || 'unknown'}`); // Add type class
+                const uniqueQuestionId = `${subject}|${topic}|${q.id || `json-idx-${index}`}`; // Create unique ID
+                questionDiv.dataset.questionId = uniqueQuestionId;
+                questionDiv.dataset.questionType = q.type || 'unknown';
+
+                // Store Correct Answer(s)
+                let correctValue = null;
+                if (subject === "Čeština" && q.type === 'conditional_mc_single' && q.correctBasedOn && correctDruh) {
+                    correctValue = q.correctBasedOn[correctDruh]; // Get conditional answer
+                } else if (q.correctAnswers) {
+                    correctValue = JSON.stringify([...q.correctAnswers].sort());
+                } else if (q.correctAnswer != null) { // Check for null/undefined explicitly
+                    correctValue = (q.type === 'free_text') ? String(q.correctAnswer).toLowerCase() : String(q.correctAnswer); // Ensure string
+                }
+                questionDiv.dataset.correct = correctValue ?? "CHYBA_V_DATECH"; // Use nullish coalescing
+
+                // Question Text
+                const questionTextDiv = document.createElement('div');
+                questionTextDiv.classList.add('question-text');
+                questionTextDiv.textContent = `${index + 1}. ${q.questionText || '(Chybí text otázky)'}`;
+                questionDiv.appendChild(questionTextDiv);
+
+                // Per-Question Stats Placeholder
+                let statsSpan = document.createElement('span'); statsSpan.classList.add('question-stats-display');
+                questionTextDiv.insertAdjacentElement('afterend', statsSpan);
+
+                // Question Options Container
+                const optionsDiv = document.createElement('div'); optionsDiv.classList.add('question-options');
+
+                // Generate Input Based on Type
+                try { // Add inner try...catch for option generation
+                    switch (q.type) {
+                        case 'mc_single':
+                        case 'conditional_mc_single':
+                            let optionsToShow = q.options || [];
+                            if (subject === "Čeština" && q.type === 'conditional_mc_single') { /* ... Czech conditional options logic ... */ }
+                            if (!optionsToShow || optionsToShow.length === 0) optionsDiv.textContent = "Chyba: Možnosti nenalezeny.";
+                            else { /* ... create/append RADIO buttons, shuffle optionsToShow ... */ }
+                            break;
+                        case 'free_text':
+                            const input = document.createElement('input'); /* ... set attributes ... */ optionsDiv.appendChild(input);
+                            break;
+                        case 'mc_multiple':
+                            if (!q.options || q.options.length === 0) optionsDiv.textContent = "Chyba: Možnosti nenalezeny.";
+                            else { /* ... create/append CHECKBOXES, shuffle q.options ... */ }
+                            break;
+                        default: optionsDiv.textContent = `Neznámý typ otázky: ${q.type}`;
+                    }
+                } catch (optionError) {
+                    console.error(`Error generating options for Q ${index + 1} (${uniqueQuestionId}):`, optionError);
+                    optionsDiv.textContent = "Chyba při generování možností.";
+                }
+                questionDiv.appendChild(optionsDiv);
+                testContainer.appendChild(questionDiv);
+            }); // End forEach JSON question
+
+        // --- 3b. CSV-Based Subjects ---
         } else {
-            // --- Generate Standard Multiple Choice Test (CSV based) ---
             console.log(`Generating CSV test for ${subject} - ${topic}`);
-            let sourceQuestions = []; // Rename to avoid conflict with potential global 'testQuestions'
+            let sourceQuestions = []; // Temporary array for selected CSV questions
 
             if (topic === "Souhrnné opakování") {
+                // --- Summary Test Logic ---
                 console.log(`Generating summary test for ${subject}`);
-                 // Use questionsPerTopicSummary (defined above)
-                 const otherTopics = Object.keys(data[subject] || {}).filter(t => t !== "Souhrnné opakování" && data[subject][t]?.length > 0);
-                 if (otherTopics.length === 0) throw new Error("Nebyly nalezeny žádné okruhy s otázkami pro souhrnný test.");
-                 otherTopics.forEach(ot => {
-                     const questionsFromTopic = data[subject][ot];
-                     sourceQuestions.push(...getRandomQuestions(questionsFromTopic, questionsPerTopicSummary)); // Use constant
-                 });
-                 shuffleArray(sourceQuestions);
+                const otherTopics = Object.keys(data[subject] || {}).filter(t => t !== "Souhrnné opakování" && data[subject][t]?.length > 0);
+                if (otherTopics.length === 0) throw new Error("Nebyly nalezeny žádné okruhy s otázkami pro souhrnný test.");
+
+                otherTopics.forEach(ot => {
+                    const questionsFromTopic = data[subject][ot];
+                    // Ensure getRandomQuestions handles empty arrays gracefully if needed
+                    sourceQuestions.push(...getRandomQuestions(questionsFromTopic, questionsPerTopicSummary));
+                });
+                if (sourceQuestions.length === 0) throw new Error("Nepodařilo se vybrat žádné otázky pro souhrnný test.");
+                shuffleArray(sourceQuestions); // Shuffle the combined list
+                generatedQuestions = sourceQuestions; // Assign to the main array
+                console.log(`Using ${generatedQuestions.length} questions for summary test.`);
+                // --- End Summary Test Logic ---
 
             } else {
-                // Standard topic test (CSV)
+                // --- Standard Topic CSV Logic ---
                 console.log(`Generating standard CSV test for ${subject} - ${topic}`);
                 const availableQuestions = data[subject]?.[topic];
-                if (!availableQuestions || !Array.isArray(availableQuestions) || availableQuestions.length === 0) {
-                    throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky (CSV).`);
+                if (!availableQuestions || !Array.isArray(availableQuestions) || availableQuestions.length === 0) throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky (CSV).`);
+
+                generatedQuestions = getRandomQuestions(availableQuestions, questionsPerStandardTest); // Get random subset
+                if (generatedQuestions.length === 0) throw new Error("Nepodařilo se vybrat žádné otázky pro standardní test.");
+                console.log(`Using ${generatedQuestions.length} questions for standard test.`);
+                 // --- End Standard Topic Logic ---
+            }
+
+
+            // --- Display CSV Questions ---
+            generatedQuestions.forEach((q, index) => {
+                // Ensure question object 'q' is valid
+                if (!q || typeof q !== 'object' || !q.text || !q.correctAnswer || !q.options) {
+                     console.warn(`Skipping invalid question object at index ${index} for CSV test.`);
+                     return; // Skip this iteration
                 }
-                // Use questionsPerStandardTest (defined above)
-                sourceQuestions = getRandomQuestions(availableQuestions, questionsPerStandardTest); // Use constant
-            }
 
-            if (sourceQuestions.length === 0) {
-                 throw new Error("Nepodařilo se vygenerovat žádné otázky pro tento test.");
-            }
-            console.log(`Generated ${sourceQuestions.length} CSV-based questions.`);
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('question', 'question-type-standard-mc');
+                // Ensure _sourceIdentifier exists from parseCSV or create fallback
+                const uniqueQuestionId = `${subject}|${topic}|${q._sourceIdentifier || `csv-idx-${index}`}`;
+                questionDiv.dataset.questionId = uniqueQuestionId;
+                questionDiv.dataset.questionType = 'standard-mc';
 
-            // --- Display Standard Questions ---
-            sourceQuestions.forEach((q, index) => { // Iterate over sourceQuestions
-                 // ... (existing logic to create and append CSV question elements) ...
-                  const questionDiv = document.createElement('div');
-                  questionDiv.classList.add('question', 'question-type-standard-mc');
-                  const uniqueQuestionId = `${subject}|${topic}|${q._sourceIdentifier || `csv-unknown-${index}`}`;
-                  questionDiv.dataset.questionId = uniqueQuestionId;
-                  questionDiv.dataset.questionType = 'standard-mc';
+                // Question Text
+                const questionTextDiv = document.createElement('div');
+                questionTextDiv.classList.add('question-text');
+                questionTextDiv.textContent = `${index + 1}. ${q.text}`;
+                questionDiv.appendChild(questionTextDiv);
 
-                  const questionTextDiv = document.createElement('div');
-                  questionTextDiv.classList.add('question-text');
-                  questionTextDiv.textContent = `${index + 1}. ${q.text}`;
-                  questionDiv.appendChild(questionTextDiv);
+                // Per-Question Stats Placeholder
+                let statsSpan = document.createElement('span'); statsSpan.classList.add('question-stats-display');
+                questionTextDiv.insertAdjacentElement('afterend', statsSpan);
 
-                  let statsSpan = document.createElement('span');
-                  statsSpan.classList.add('question-stats-display');
-                  questionTextDiv.insertAdjacentElement('afterend', statsSpan);
+                // Options
+                const optionsDiv = document.createElement('div'); optionsDiv.classList.add('question-options');
+                const allOptions = [...q.options, q.correctAnswer];
+                shuffleArray(allOptions); // Shuffle options for standard MC
+                allOptions.forEach(optionText => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.classList.add('option');
+                    optionDiv.textContent = optionText;
+                    optionDiv.dataset.correct = (optionText === q.correctAnswer).toString(); // Store boolean as string
+                    optionDiv.addEventListener('click', () => { // Handle selection
+                        questionDiv.querySelectorAll('.option.selected').forEach(sel => { if (sel !== optionDiv) sel.classList.remove('selected'); });
+                        optionDiv.classList.toggle('selected');
+                    });
+                    optionsDiv.appendChild(optionDiv);
+                });
+                questionDiv.appendChild(optionsDiv);
+                testContainer.appendChild(questionDiv);
+            }); // End forEach CSV question
+        } // --- End CSV Test Generation ---
 
-                  const allOptions = [...q.options, q.correctAnswer];
-                  shuffleArray(allOptions);
-                  const optionsDiv = document.createElement('div');
-                  optionsDiv.classList.add('question-options');
-                  allOptions.forEach(optionText => {
-                        const optionDiv = document.createElement('div');
-                        optionDiv.classList.add('option');
-                        optionDiv.textContent = optionText;
-                        optionDiv.dataset.correct = (optionText === q.correctAnswer).toString(); // Store as string
-                        optionDiv.addEventListener('click', () => {
-                             questionDiv.querySelectorAll('.option.selected').forEach(sel => { if (sel !== optionDiv) sel.classList.remove('selected'); });
-                             optionDiv.classList.toggle('selected');
-                        });
-                        optionsDiv.appendChild(optionDiv);
-                   });
-                  questionDiv.appendChild(optionsDiv);
-                  testContainer.appendChild(questionDiv);
-            });
-            // --- End CSV Test Generation ---
+        // --- 4. Add Submit Button ---
+        if (generatedQuestions.length > 0) { // Only add submit if questions were actually generated
+             if (submitBtn && submitBtn.parentNode) submitBtn.remove(); // Remove old one if exists
+             submitBtn = document.createElement('button');
+             submitBtn.classList.add('btn', 'btn-primary', 'submit-test-btn');
+             submitBtn.style.marginTop = '2rem';
+             submitBtn.textContent = 'Odeslat odpovědi';
+             submitBtn.addEventListener('click', () => evaluateTest(db)); // Use arrow function to ensure correct 'this' context if needed later, or direct call
+             testContainer.appendChild(submitBtn);
+             testContainer.style.display = 'block'; // Show test container
+        } else {
+             // This case should ideally be caught by earlier checks, but as a fallback:
+             throw new Error("Nepodařilo se vygenerovat žádné otázky.");
         }
-        if (submitBtn && submitBtn.parentNode) submitBtn.remove();
-        submitBtn = document.createElement('button');
-        submitBtn.classList.add('btn', 'btn-primary', 'submit-test-btn');
-        submitBtn.style.marginTop = '2rem';
-        submitBtn.textContent = 'Odeslat odpovědi';
-        submitBtn.addEventListener('click', () => evaluateTest(db));
-        testContainer.appendChild(submitBtn);
-        testContainer.style.display = 'block'; // Show test
 
-    } catch (error) { // Catch errors during generation
-        console.error("Error generating test:", error);
-        noQuestionsMessage.textContent = error.message || "Nepodařilo se vygenerovat test.";
+    } catch (error) {
+        // --- 5. Handle Errors During Generation ---
+        console.error("Error during test generation:", error);
+        noQuestionsMessage.textContent = error.message || "Nastala neočekávaná chyba při generování testu.";
         noQuestionsMessage.style.display = 'block';
         testContainer.style.display = 'none';
     }
