@@ -115,7 +115,25 @@ const schoolSubjectConfig = {
             "Bohumil Hrabal - Ostře sledované vlaky": "cestina_Hrabal_Ostře_sledované_vlaky.json"
         },
         "Angličtina": {
-            "Zatím žádná témata": null
+            "Holidays in CZ and English speaking countries": "holidays_festivals_questions.json",
+            "Housing and living": "housing_and_living_questions.json",
+            "Education": "education_questions.json",
+            "CV + cover letter":"cv_cover_letter_questions.json",
+            "Food and drink": "food_drink_questions.json",
+            "Shopping + shops, payment methods":"shopping_banking_questions.json",
+            "Mass Media": "mass_media_questions.json",
+            "Sport": "sport_questions.json",
+            "Cars":"cars_questions.json",
+            "Inventions, dicoveries and technology": "science_questions.json",
+            "Sources of energy":"sources_of_energy_questions.json",
+            "Czech Republic, Prague":"czech_prague_questions.json",
+            "Eastern Bohemia, HK":"eastern_bohemia_questions.json",
+            "Great Britain": "great_britain_questions.json",
+            "W. Shakespeare": "shakespeare_questions.json",
+            "The USA":"usa_questions.json",
+            "Australia and New Zealand": "australia_nz_questions.json",
+            "Canada":"canada_questions.json",
+            "European Union":"european_union_questions.json"
         }
     },
     "Gymnázium": {
