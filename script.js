@@ -1855,7 +1855,7 @@ function generateTest() {
 
     try {
         let generatedQuestions = []; // Array to hold the questions selected for this test
-        const isJsonSubject = subjectKey.startsWith("Čeština") || subjectKey.startsWith("Angličtina");
+        const isJsonSubject = currentSubjectKey.startsWith("Čeština") || currentSubjectKey.startsWith("Angličtina");
         // --- 3. Determine Test Type and Generate Questions ---
 
         // --- 3a. JSON-Based Subjects (Čeština, Angličtina) ---
@@ -1878,7 +1878,7 @@ function generateTest() {
 
             // Determine 'druh' only if needed (Czech conditional logic)
             let correctDruh = null;
-            const isOriginalCzech = (subjectKey === "Čeština"); // Check for exact match
+            const isOriginalCzech = (currentSubjectKey === "Čeština"); // Check for exact match
             if (isOriginalCzech) {
                 correctDruh = jsonData.questions.find(q => q.id === 'druh')?.correctAnswer;
             }
@@ -1997,13 +1997,13 @@ function generateTest() {
 
             if (topic === "Souhrnné opakování") {
                 // --- Summary Test Logic ---
-                console.log(`Generating summary test for ${subjectKey}`);
+                console.log(`Generating summary test for ${currentSubjectKey}`);
                 let summarySourceQuestions = []; // Use a temporary array for summary
-                const otherTopics = Object.keys(data[subjectKey] || {}).filter(t => t !== "Souhrnné opakování" && data[subjectKey][t]?.length > 0);
+                const otherTopics = Object.keys(data[currentSubjectKey] || {}).filter(t => t !== "Souhrnné opakování" && data[currentSubjectKey][t]?.length > 0);
                 if (otherTopics.length === 0) throw new Error("Nebyly nalezeny žádné okruhy s otázkami pro souhrnný test.");
 
                 otherTopics.forEach(ot => {
-                    const questionsFromTopic = data[subjectKey][ot];
+                    const questionsFromTopic = data[currentSubjectKey][ot];
                     summarySourceQuestions.push(...getRandomQuestions(questionsFromTopic, questionsPerTopicSummary));
                 });
 
@@ -2016,8 +2016,8 @@ function generateTest() {
 
             } else {
                 // --- Standard Topic CSV Logic ---
-                console.log(`Generating standard CSV test for ${subjectKey} - ${topic}`);
-                const availableQuestions = data[subjectKey]?.[topic];
+                console.log(`Generating standard CSV test for ${currentSubjectKey} - ${topic}`);
+                const availableQuestions = data[currentSubjectKey]?.[topic];
                 if (!availableQuestions || !Array.isArray(availableQuestions) || availableQuestions.length === 0) {
                      throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky (CSV).`);
                  }
@@ -2676,19 +2676,14 @@ function populateSubjects(selectedSchoolType) {
 
 
     // Populate the subject dropdown
-    subjectsForSchool.forEach(subjectKey => { // e.g., "Čeština", "Angličtina", "Čeština Gymnázium"
-        // Optional: Check if any data actually loaded for this subject before adding the option
-        // if (!data[subjectKey] || Object.keys(data[subjectKey]).length === 0) {
-        //     console.warn(`No data loaded for subject "${subjectKey}", skipping dropdown option.`);
-        //     return;
-        // }
+    subjectsForSchool.forEach(currentSubjectKey => { 
 
         const option = document.createElement('option');
-        option.value = subjectKey; // Use the full key (potentially with suffix) as the option's value
+        option.value = currentSubjectKey; // Use the full key (potentially with suffix) as the option's value
 
         // --- Clean up display text shown to the user ---
         // Remove " Gymnázium" suffix specifically for display purposes
-        let displaySubjectName = subjectKey.replace(/ Gymnázium$/, '');
+        let displaySubjectName = currentSubjectKey.replace(/ Gymnázium$/, '');
         option.textContent = displaySubjectName; // Show the cleaned name (e.g., "Čeština")
         // ---
 
@@ -2698,14 +2693,8 @@ function populateSubjects(selectedSchoolType) {
     subjectSelect.disabled = false; // Enable the subject dropdown
 }
 
-/**
- * Populates the Topic dropdown based on the selected subject key.
- * Handles favorite display only for Czech subjects ("Čeština" or "Čeština Gymnázium").
- * @param {string} subjectKey - The subject key (e.g., "Čeština", "Čeština Gymnázium").
- * @param {object|null} userData - The current user's data (for favorites).
- */
-function populateTopics(subjectKey, userData) {
-    console.log(`DEBUG: populateTopics started with subject key: "${subjectKey}"`);
+function populateTopics(currentSubjectKey, userData) {
+    console.log(`DEBUG: populateTopics started with subject key: "${currentSubjectKey}"`);
     if (!topicSelect || !generateTestBtn || !toggleFavoriteBtn) {
         console.error("DEBUG: populateTopics exiting - dropdown elements missing!");
         return;
@@ -2720,27 +2709,27 @@ function populateTopics(subjectKey, userData) {
     toggleFavoriteBtn.disabled = true;
 
     // --- Validate Subject Key and Data ---
-    if (!subjectKey || !data[subjectKey]) {
-        console.warn(`DEBUG: populateTopics - Invalid subject key "${subjectKey}" or no data found in the flat 'data' object.`);
+    if (!currentSubjectKey || !data[currentSubjectKey]) {
+        console.warn(`DEBUG: populateTopics - Invalid subject key "${currentSubjectKey}" or no data found in the flat 'data' object.`);
         topicSelect.innerHTML = '<option value="">Neplatný předmět nebo chybí data</option>';
         return;
     }
 
     // --- Get Topics from Flat Data ---
-    let topics = Object.keys(data[subjectKey]);
-    console.log(`DEBUG: Topics found for "${subjectKey}" in flat data:`, topics);
+    let topics = Object.keys(data[currentSubjectKey]);
+    console.log(`DEBUG: Topics found for "${currentSubjectKey}" in flat data:`, topics);
 
     // --- Handle No Topics Found ---
     // Check if the only topic is the placeholder OR if the array is truly empty
-    const actualTopics = topics.filter(t => !(t === "Zatím žádná témata" && data[subjectKey][t] === null));
+    const actualTopics = topics.filter(t => !(t === "Zatím žádná témata" && data[currentSubjectKey][t] === null));
     if (actualTopics.length === 0) {
-        console.warn(`DEBUG: No actual topics found for subject "${subjectKey}".`);
+        console.warn(`DEBUG: No actual topics found for subject "${currentSubjectKey}".`);
         topicSelect.innerHTML = '<option value="">Žádné okruhy nenalezeny</option>';
         return; // Keep dropdown disabled and exit
     }
 
     // --- Determine if Czech for UI logic ---
-    const isCzechSubject = subjectKey.startsWith("Čeština"); // Checks "Čeština" or "Čeština Gymnázium"
+    const isCzechSubject = currentSubjectKey.startsWith("Čeština"); // Checks "Čeština" or "Čeština Gymnázium"
 
     // --- Sorting (Apply ONLY for Czech versions) ---
     if (isCzechSubject) {
