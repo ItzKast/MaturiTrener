@@ -328,8 +328,28 @@ const schoolSubjectConfig = {
             "Bohumil Hrabal - Ostře sledované vlaky": "cestina_Hrabal_Ostře_sledované_vlaky.json"
         },
         "Angličtina": {
-            "Zatím žádná témata": null
+            "Education": "education_questions.json",
+            "Culture": "culture_questions.json",
+            "Food and drink": "food_drink_questions.json",
+            "Sport": "sport_questions.json",
+            "Science": "science_questions.json",
+            "Living with my family, friends": null,
+            "Daily routine and free time": null,
+            "The Czech Republic, my town": "czech_republic_questions.json",
+            "Holidays and festivals": "holidays_festivals_questions.json",
+            "Global problems": "global_problems_questions.json",
+            "Living in Europe": "living_in_europe_questions.json",
+            "Work and jobs": null,
+            "Great Britain": "great_britain_questions.json",
+            "The USA and Canada": "usa_canada_questions.json",
+            "Australia and New Zealand": "australia_nz_questions.json",
+            "British literature": "british_literature_questions.json",
+            "American literature": "american_literature_questions.json",
+            "Protection of the environment and seasons of the year": "environment_seasons_questions.json",
+            "Mass Media": "mass_media_questions.json",
+            "Health and body care": "health_body_care_questions.json"
         }
+
     }
 };
 // --- Data Structure for Questions ---
@@ -445,78 +465,62 @@ const firebaseConfig = {
     appId: "1:485827643986:web:838563f26c0fafda9c6d8b",
     measurementId: "G-FLVEDE8H82"
 };
-/**
- * Fetches and parses all data (CSV or JSON) from the configured URLs.
- * @returns {Promise<void>} A promise that resolves when all data is loaded and parsed.
- */
 async function loadAllDataFromURLs() {
     console.log("Starting to load data from URLs based on schoolSubjectConfig...");
     const fetchPromises = [];
     const loadedFiles = new Set(); // Keep track of files to load only once
-
-    // Clear and initialize the global flat 'data' object
-    data = {};
+    data = {}; // Clear and initialize the global flat 'data' object
 
     for (const schoolType in schoolSubjectConfig) {
         for (const subject in schoolSubjectConfig[schoolType]) {
-            // Initialize subject in the flat 'data' object if not already present
-            if (!data[subject]) {
-                data[subject] = {};
-            }
+            if (!data[subject]) { data[subject] = {}; } // Initialize subject in flat 'data'
 
             for (const topic in schoolSubjectConfig[schoolType][subject]) {
                 const filename = schoolSubjectConfig[schoolType][subject][topic];
 
-                // Initialize topic in the flat 'data' object if not already present
+                // Initialize topic placeholder in flat 'data' if not already present
                 if (!data[subject][topic]) {
-                    // Initialize based on expected file type or default to array
                     if (filename && filename.toLowerCase().endsWith('.json')) {
-                        data[subject][topic] = null; // Placeholder for JSON
+                        data[subject][topic] = null;
                     } else {
-                        data[subject][topic] = []; // Array for CSV or null topic
+                        data[subject][topic] = [];
                     }
                 }
 
-                if (filename && !loadedFiles.has(filename)) { // Check if already loading/loaded
-                    loadedFiles.add(filename); // Mark as loading
+                // Schedule fetch only if filename exists and not already loading/loaded
+                if (filename && !loadedFiles.has(filename)) {
+                    loadedFiles.add(filename);
                     const url = GITHUB_RAW_BASE_URL + filename;
                     const isJson = filename.toLowerCase().endsWith('.json');
-
                     console.log(`Scheduling load for: ${filename} (Subject: ${subject}, Topic: ${topic})`);
 
                     const promise = fetch(url)
                         .then(response => {
-                            if (!response.ok) {
-                                throw new Error(`HTTP error! status: ${response.status} for ${url}`);
-                            }
+                            if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
                             return isJson ? response.json() : response.text();
                         })
                         .then(content => {
                             // Store loaded data in the FLAT 'data' object
                             if (isJson) {
-                                data[subject][topic] = content;
-                                console.log(`Parsed JSON for ${subject} - ${topic}`);
+                                data[subject][topic] = content; // Store parsed JSON object
+                                console.log(`Loaded JSON for ${subject} - ${topic}`);
                             } else {
-                                parseCSV(content, subject, topic); // parseCSV puts data into data[subject][topic]
+                                parseCSV(content, subject, topic); // parseCSV adds to data[subject][topic]
                             }
                         })
                         .catch(error => {
-                            console.error(`Failed to load or parse ${filename} (Subject: ${subject}, Topic: ${topic}):`, error);
-                            // Keep the placeholder (null or []) in data[subject][topic] on error
+                            console.error(`Failed ${isJson ? 'JSON' : 'CSV'} load: ${filename} (${subject}/${topic})`, error);
+                            // Keep placeholder (null/[]) on error
                         });
                     fetchPromises.push(promise);
-                } else if (!filename) {
-                    console.log(`Skipping topic "${topic}" for subject "${subject}" as filename is null.`);
-                } else {
-                    console.log(`File ${filename} already scheduled for loading.`);
-                }
+                } else if (!filename) { /* Skip null filenames */ }
+                else { /* Skip already loading files */ }
             }
         }
     }
 
     await Promise.all(fetchPromises);
-    console.log("Finished loading and parsing all data based on schoolSubjectConfig.");
-    // console.log("Final flat data structure:", data); // Optional check
+    console.log("Finished loading and parsing all data.");
 }
 
 let db;
@@ -844,33 +848,33 @@ async function saveUserData(uid, data, db) {
     }
 
     // Ensure favoriteBooks is an Array (if used)
-     if (dataToSave.favoriteBooks && !Array.isArray(dataToSave.favoriteBooks)) {
-         console.warn("favoriteBooks was not an array, converting/resetting.");
-         dataToSave.favoriteBooks = Array.isArray(dataToSave.favoriteBooks) ? dataToSave.favoriteBooks : [];
-     }
+    if (dataToSave.favoriteBooks && !Array.isArray(dataToSave.favoriteBooks)) {
+        console.warn("favoriteBooks was not an array, converting/resetting.");
+        dataToSave.favoriteBooks = Array.isArray(dataToSave.favoriteBooks) ? dataToSave.favoriteBooks : [];
+    }
 
 
     // Ensure core map structures are valid objects
     const keysToCheck = ['progress', 'achievements', 'activity', 'dailyQuests'];
     keysToCheck.forEach(key => {
         if (typeof dataToSave[key] !== 'object' || dataToSave[key] === null || Array.isArray(dataToSave[key])) {
-             // Avoid overwriting potentially valid arrays like dailyQuests.quests if that logic changes
-             if (!Array.isArray(dataToSave[key])) {
-                  console.warn(`${key} data structure incorrect in saveUserData, resetting to {}.`);
-                  dataToSave[key] = {};
-             }
+            // Avoid overwriting potentially valid arrays like dailyQuests.quests if that logic changes
+            if (!Array.isArray(dataToSave[key])) {
+                console.warn(`${key} data structure incorrect in saveUserData, resetting to {}.`);
+                dataToSave[key] = {};
+            }
         }
     });
 
-     // Specifically ensure dailyQuests sub-arrays are arrays if dailyQuests exists
-     if (dataToSave.dailyQuests) {
-         dataToSave.dailyQuests.quests = dataToSave.dailyQuests.quests || [];
-         dataToSave.dailyQuests.subjectsToday = dataToSave.dailyQuests.subjectsToday || [];
-         dataToSave.dailyQuests.testsTodayIds = dataToSave.dailyQuests.testsTodayIds || [];
-         if (!Array.isArray(dataToSave.dailyQuests.quests)) dataToSave.dailyQuests.quests = [];
-         if (!Array.isArray(dataToSave.dailyQuests.subjectsToday)) dataToSave.dailyQuests.subjectsToday = [];
-         if (!Array.isArray(dataToSave.dailyQuests.testsTodayIds)) dataToSave.dailyQuests.testsTodayIds = [];
-     }
+    // Specifically ensure dailyQuests sub-arrays are arrays if dailyQuests exists
+    if (dataToSave.dailyQuests) {
+        dataToSave.dailyQuests.quests = dataToSave.dailyQuests.quests || [];
+        dataToSave.dailyQuests.subjectsToday = dataToSave.dailyQuests.subjectsToday || [];
+        dataToSave.dailyQuests.testsTodayIds = dataToSave.dailyQuests.testsTodayIds || [];
+        if (!Array.isArray(dataToSave.dailyQuests.quests)) dataToSave.dailyQuests.quests = [];
+        if (!Array.isArray(dataToSave.dailyQuests.subjectsToday)) dataToSave.dailyQuests.subjectsToday = [];
+        if (!Array.isArray(dataToSave.dailyQuests.testsTodayIds)) dataToSave.dailyQuests.testsTodayIds = [];
+    }
 
 
     // ---> Log data being sent to Firestore <---
@@ -1079,9 +1083,9 @@ function updateDailyQuestsUI(quests = [], bonusAwarded = false) {
         } else {
             // Format progress based on quest type (optional: add units)
             progressText = `${quest.currentProgress || 0} / ${quest.target || '?'}`;
-             if (quest.type === 'earn_xp') {
-                 progressText += ' XP';
-             }
+            if (quest.type === 'earn_xp') {
+                progressText += ' XP';
+            }
             // Add more specific units like ' testů', ' okruhů' if desired
             // else if (quest.type.includes('_tests') || quest.type.includes('_subjects')) {
             //     progressText += quest.target > 1 ? ' testů/předmětů' : ' test/předmět';
@@ -1802,67 +1806,82 @@ function parseCSV(csvText, subject, topic) {
     console.log(`Parsed ${questions.length} questions for ${subject} - ${topic}`);
 }
 
-/**
- * Generates and displays a test based on selected subject and topic.
- */
 function generateTest() {
-    if (!testContainer || !noQuestionsMessage || !subjectSelect || !topicSelect) return;
+    console.log("Generating test...");
+    if (!testContainer || !noQuestionsMessage || !subjectSelect || !topicSelect || !schoolTypeSelect) {
+        console.error("generateTest prerequisite elements missing.");
+        return;
+    }
 
+    const schoolType = schoolTypeSelect.value; // Get selected school
     const subject = subjectSelect.value;
     const topic = topicSelect.value;
 
-    testContainer.innerHTML = ''; // Clear previous test
-    testContainer.style.display = 'none'; // Hide initially
+    testContainer.innerHTML = '';
+    testContainer.style.display = 'none';
     noQuestionsMessage.style.display = 'none';
 
-    if (!subject || !topic) {
-        noQuestionsMessage.textContent = "Prosím vyberte předmět a okruh.";
+    if (!schoolType || !subject || !topic) {
+        noQuestionsMessage.textContent = "Prosím vyberte typ školy, předmět a okruh.";
         noQuestionsMessage.style.display = 'block';
         return;
     }
 
-    let testQuestions = [];
-    const questionsPerTopicSummary = 2; // How many questions per topic for summary test
-    const questionsPerStandardTest = 10;
-
     try {
-        if (subject === "Čeština") {
-            // --- Generate Čeština Test ---
-            const bookData = data[subject]?.[topic]; // Get the book's JSON object
-            if (!bookData || !bookData.questions || bookData.questions.length === 0) {
-                throw new Error(`Pro knihu "${topic}" nebyla nalezena data nebo otázky.`);
+        // --- Check if Subject uses JSON Format ---
+        if (subject === "Čeština" || subject === "Angličtina") {
+            const jsonData = data[subject]?.[topic];
+            if (!jsonData || typeof jsonData !== 'object' || !jsonData.questions || jsonData.questions.length === 0) {
+                let errorMsg = `Data pro ${subject} - "${topic}" nebyla nalezena nebo načtena.`;
+                if (jsonData && (!jsonData.questions || jsonData.questions.length === 0)) {
+                    errorMsg = `Chyba ve struktuře JSON souboru pro ${subject} - "${topic}". Chybí pole 'questions' nebo je prázdné.`;
+                }
+                throw new Error(errorMsg);
             }
 
-            console.log(`Generating Čeština test for ${topic}`);
-            testContainer.innerHTML = ''; // Clear just before adding questions
+            console.log(`Generating JSON test for ${subject} - ${topic}`);
+            // Find correct 'druh' ONLY if it's Czech
+            let correctDruh = null;
+            if (subject === "Čeština") {
+                correctDruh = jsonData.questions.find(q => q.id === 'druh')?.correctAnswer;
+                console.log("DEBUG: Correct 'druh' for conditional questions:", correctDruh);
+            }
 
-            // Get the correct 'druh' for conditional questions
-            const correctDruh = bookData.questions.find(q => q.id === 'druh')?.correctAnswer;
-
-            bookData.questions.forEach((q, index) => {
+            jsonData.questions.forEach((q, index) => {
                 const questionDiv = document.createElement('div');
                 questionDiv.classList.add('question', `question-type-${q.type}`);
-                // Store type and correct answer(s) for evaluation
-                questionDiv.dataset.questionId = q.id;
+                const uniqueQuestionId = `${subject}|${topic}|${q.id}`; // Create unique ID
+                questionDiv.dataset.questionId = uniqueQuestionId;
                 questionDiv.dataset.questionType = q.type;
-                if (q.correctAnswer) {
-                    // Store correct answer, lowercased for free text
-                    questionDiv.dataset.correct = (q.type === 'free_text') ? q.correctAnswer.toLowerCase() : q.correctAnswer;
-                }
-                if (q.correctAnswers) {
-                    // Store array of multiple correct answers (stringified)
-                    questionDiv.dataset.correct = JSON.stringify(q.correctAnswers.sort()); // Sort for consistent comparison
-                }
-                // Handle conditional 'vypravec' separately for correct answer storage
-                if (q.type === 'conditional_mc_single' && q.correctBasedOn && correctDruh) {
-                    questionDiv.dataset.correct = q.correctBasedOn[correctDruh] || "CHYBA_V_DATECH";
-                }
 
+                // --- Store Correct Answer(s) ---
+                let correctValue = null;
+                if (subject === "Čeština" && q.type === 'conditional_mc_single' && q.correctBasedOn && correctDruh) {
+                    correctValue = q.correctBasedOn[correctDruh] || null; // Get conditional answer
+                    if (correctValue === null) console.error(`Missing conditional correct answer for ${uniqueQuestionId} based on druh ${correctDruh}`);
+                } else if (q.correctAnswers) { // Handle multiple correct first
+                    correctValue = JSON.stringify([...q.correctAnswers].sort()); // Ensure array and sort
+                } else if (q.correctAnswer) { // Handle single correct
+                    correctValue = (q.type === 'free_text') ? q.correctAnswer.toLowerCase() : q.correctAnswer;
+                } else {
+                    console.error(`Missing correct answer data for question ${uniqueQuestionId}`);
+                }
+                if (correctValue !== null) {
+                    questionDiv.dataset.correct = correctValue;
+                } else {
+                    questionDiv.dataset.correct = "CHYBA_V_DATECH"; // Fallback marker
+                }
+                // --- End Store Correct Answer ---
 
                 const questionTextDiv = document.createElement('div');
                 questionTextDiv.classList.add('question-text');
                 questionTextDiv.textContent = `${index + 1}. ${q.questionText}`;
                 questionDiv.appendChild(questionTextDiv);
+
+                // Add placeholder for stats display
+                let statsSpan = document.createElement('span');
+                statsSpan.classList.add('question-stats-display');
+                questionTextDiv.insertAdjacentElement('afterend', statsSpan);
 
                 const optionsDiv = document.createElement('div');
                 optionsDiv.classList.add('question-options');
@@ -1870,169 +1889,110 @@ function generateTest() {
                 // --- Generate Input Based on Type ---
                 switch (q.type) {
                     case 'mc_single':
-                    case 'conditional_mc_single': // Treat conditional like single MC for generation
-                        let optionsToShow = q.options;
-                        // Determine options for conditional vypravec based on the CORRECT druh
-                        if (q.type === 'conditional_mc_single') {
-                            if (q.optionsBasedOn && correctDruh) {
-                                optionsToShow = q.optionsBasedOn[correctDruh] || [];
-                            } else {
-                                optionsToShow = []; // Or show an error/placeholder
-                                console.error(`Missing options for conditional question ${q.id} based on druh ${correctDruh}`);
-                            }
-                        }
-                        if (!optionsToShow || optionsToShow.length === 0) {
-                            optionsDiv.textContent = "Chyba: Možnosti nebyly nalezeny.";
-                        } else {
-                            // Shuffle options unless it's conditional with only one possibility
-                            const shuffledOptions = (q.type === 'conditional_mc_single' && optionsToShow.length <= 1)
-                                ? optionsToShow
-                                : shuffleArray([...optionsToShow]);
+                    case 'conditional_mc_single':
+                        let optionsToShow = q.options || [];
+                        // Apply Czech-specific conditional logic for OPTIONS display
+                        if (subject === "Čeština" && q.type === 'conditional_mc_single') {
+                            if (q.optionsBasedOn && correctDruh) optionsToShow = q.optionsBasedOn[correctDruh] || [];
+                            else { optionsToShow = []; console.error(`Missing options for conditional Q ${q.id}`); }
+                        } // English/Other conditional MIGHT just use standard options
 
+                        if (optionsToShow.length === 0) optionsDiv.textContent = "Chyba: Možnosti nenalezeny.";
+                        else {
+                            const shuffledOptions = shuffleArray([...optionsToShow]); // Always shuffle options
                             shuffledOptions.forEach(optionText => {
-                                const label = document.createElement('label');
-                                label.classList.add('option-label');
-                                const input = document.createElement('input');
-                                input.type = 'radio';
-                                input.name = `question_${q.id}`; // Unique name per question
-                                input.value = optionText;
-                                label.appendChild(input);
-                                label.appendChild(document.createTextNode(` ${optionText}`)); // Add space
+                                const label = document.createElement('label'); label.classList.add('option-label');
+                                const input = document.createElement('input'); input.type = 'radio'; input.name = `question_${q.id}`; input.value = optionText;
+                                label.appendChild(input); label.appendChild(document.createTextNode(` ${optionText}`));
                                 optionsDiv.appendChild(label);
                             });
                         }
                         break;
-
                     case 'free_text':
-                        const input = document.createElement('input');
-                        input.type = 'text';
-                        input.name = `question_${q.id}`;
-                        input.placeholder = 'Napište odpověď...';
-                        input.classList.add('free-text-input'); // Add class for styling
+                        const input = document.createElement('input'); input.type = 'text'; input.name = `question_${q.id}`; input.placeholder = 'Napište odpověď...'; input.classList.add('free-text-input');
                         optionsDiv.appendChild(input);
                         break;
-
                     case 'mc_multiple':
-                        if (!q.options || q.options.length === 0) {
-                            optionsDiv.textContent = "Chyba: Možnosti nebyly nalezeny.";
-                        } else {
+                        if (!q.options || q.options.length === 0) optionsDiv.textContent = "Chyba: Možnosti nenalezeny.";
+                        else {
                             const shuffledOptions = shuffleArray([...q.options]);
                             shuffledOptions.forEach(optionText => {
-                                const label = document.createElement('label');
-                                label.classList.add('option-label');
-                                const input = document.createElement('input');
-                                input.type = 'checkbox';
-                                input.name = `question_${q.id}`; // Use same name for grouping? No, value matters.
-                                input.value = optionText;
-                                label.appendChild(input);
-                                label.appendChild(document.createTextNode(` ${optionText}`));
+                                const label = document.createElement('label'); label.classList.add('option-label');
+                                const input = document.createElement('input'); input.type = 'checkbox'; input.name = `question_${q.id}_${optionText}`; input.value = optionText; // Unique name per checkbox helpful
+                                label.appendChild(input); label.appendChild(document.createTextNode(` ${optionText}`));
                                 optionsDiv.appendChild(label);
                             });
                         }
                         break;
-
-                    default:
-                        optionsDiv.textContent = `Neznámý typ otázky: ${q.type}`;
+                    default: optionsDiv.textContent = `Neznámý typ otázky: ${q.type}`;
                 }
-
                 questionDiv.appendChild(optionsDiv);
                 testContainer.appendChild(questionDiv);
-            });
+            }); // End forEach question
 
+            // --- End JSON Test Generation ---
         } else {
             // --- Generate Standard Multiple Choice Test (CSV based) ---
-            let testQuestions = [];
-            const questionsPerTopicSummary = 2;
-            const questionsPerStandardTest = 10; // Keep standard number
-
+            console.log(`Generating CSV test for ${subject} - ${topic}`);
+            let sourceQuestions = [];
             if (topic === "Souhrnné opakování") {
-                console.log(`Generating summary test for ${subject}`);
-                const otherTopics = Object.keys(data[subject] || {}).filter(t => t !== "Souhrnné opakování");
-
-                if (otherTopics.length === 0) {
-                    throw new Error("Nebyly nalezeny žádné okruhy (CSV) pro souhrnný test.");
-                }
-
-                for (const otherTopic of otherTopics) {
-                    const questionsFromTopic = data[subject]?.[otherTopic];
-                    if (questionsFromTopic && Array.isArray(questionsFromTopic) && questionsFromTopic.length > 0) {
-                        const randomQuestions = getRandomQuestions(questionsFromTopic, questionsPerTopicSummary);
-                        testQuestions.push(...randomQuestions);
-                    } else {
-                        console.warn(`No CSV questions found for ${subject} - ${otherTopic} in summary`);
-                    }
-                }
-                shuffleArray(testQuestions);
-
+                // ... (Logic to get questionsPerTopicSummary from other topics in data[subject]) ...
+                const otherTopics = Object.keys(data[subject] || {}).filter(t => t !== "Souhrnné opakování" && data[subject][t]?.length > 0); // Ensure topic has data
+                if (otherTopics.length === 0) throw new Error("Nebyly nalezeny žádné okruhy s otázkami pro souhrnný test.");
+                otherTopics.forEach(ot => {
+                    const questionsFromTopic = data[subject][ot];
+                    sourceQuestions.push(...getRandomQuestions(questionsFromTopic, questionsPerTopicSummary));
+                });
+                shuffleArray(sourceQuestions); // Shuffle combined questions
             } else {
-                // Standard topic test (CSV)
-                console.log(`Generating standard test for ${subject} - ${topic}`);
                 const availableQuestions = data[subject]?.[topic];
-
-                if (!availableQuestions || !Array.isArray(availableQuestions) || availableQuestions.length === 0) {
-                    throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky (CSV).`);
-                }
-                testQuestions = getRandomQuestions(availableQuestions, questionsPerStandardTest);
+                if (!availableQuestions || !Array.isArray(availableQuestions) || availableQuestions.length === 0) throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky (CSV).`);
+                sourceQuestions = getRandomQuestions(availableQuestions, questionsPerStandardTest); // Get random subset
             }
 
-            if (testQuestions.length === 0) {
-                throw new Error("Nepodařilo se vygenerovat žádné otázky pro tento test.");
-            }
+            if (sourceQuestions.length === 0) throw new Error("Nepodařilo se vygenerovat žádné otázky pro tento test.");
+            console.log(`Generated ${sourceQuestions.length} CSV-based questions.`);
 
-            console.log(`Generated ${testQuestions.length} standard questions.`);
-
-            // --- Display Standard Questions ---
-            testQuestions.forEach((q, index) => {
+            sourceQuestions.forEach((q, index) => {
                 const questionDiv = document.createElement('div');
-                questionDiv.classList.add('question', 'question-type-standard-mc'); // Add standard type class
+                questionDiv.classList.add('question', 'question-type-standard-mc');
+                // Unique ID: Subject|Topic|SourceIdentifier (ensure _sourceIdentifier exists from parseCSV)
+                const uniqueQuestionId = `${subject}|${topic}|${q._sourceIdentifier || `csv-unknown-${index}`}`; // Fallback ID
+                questionDiv.dataset.questionId = uniqueQuestionId;
                 questionDiv.dataset.questionType = 'standard-mc';
 
-                const questionText = document.createElement('div');
-                questionText.classList.add('question-text');
-                questionText.textContent = `${index + 1}. ${q.text}`;
-                questionDiv.appendChild(questionText);
+                const questionTextDiv = document.createElement('div');
+                questionTextDiv.classList.add('question-text');
+                questionTextDiv.textContent = `${index + 1}. ${q.text}`;
+                questionDiv.appendChild(questionTextDiv);
+
+                // Add placeholder for stats display
+                let statsSpan = document.createElement('span');
+                statsSpan.classList.add('question-stats-display');
+                questionTextDiv.insertAdjacentElement('afterend', statsSpan);
 
                 const allOptions = [...q.options, q.correctAnswer];
                 shuffleArray(allOptions);
-
                 const optionsDiv = document.createElement('div');
                 optionsDiv.classList.add('question-options');
-
-                allOptions.forEach((optionText) => {
-                    const optionDiv = document.createElement('div');
-                    optionDiv.classList.add('option');
-                    optionDiv.textContent = optionText;
-                    optionDiv.dataset.correct = (optionText === q.correctAnswer); // Set data attribute
-
-                    optionDiv.addEventListener('click', () => {
-                        questionDiv.querySelectorAll('.option.selected').forEach(sel => {
-                            if (sel !== optionDiv) sel.classList.remove('selected');
-                        });
-                        optionDiv.classList.toggle('selected');
-                    });
-
-                    optionsDiv.appendChild(optionDiv);
-                });
-
+                allOptions.forEach(optionText => { /* ... create standard-mc option divs ... */ });
                 questionDiv.appendChild(optionsDiv);
                 testContainer.appendChild(questionDiv);
             });
-        } // End of else (standard test)
-
-        // --- Add Submit Button (Common for both test types) ---
-        if (submitBtn && submitBtn.parentNode) {
-            submitBtn.remove();
+            // --- End CSV Test Generation ---
         }
+
+        // --- Add Submit Button ---
+        if (submitBtn && submitBtn.parentNode) submitBtn.remove();
         submitBtn = document.createElement('button');
-        submitBtn.classList.add('btn', 'btn-primary', 'submit-test-btn'); // Add class
+        submitBtn.classList.add('btn', 'btn-primary', 'submit-test-btn');
         submitBtn.style.marginTop = '2rem';
         submitBtn.textContent = 'Odeslat odpovědi';
         submitBtn.addEventListener('click', () => evaluateTest(db));
         testContainer.appendChild(submitBtn);
+        testContainer.style.display = 'block'; // Show test
 
-        testContainer.style.display = 'block'; // Show the generated test
-
-    } catch (error) {
+    } catch (error) { // Catch errors during generation
         console.error("Error generating test:", error);
         noQuestionsMessage.textContent = error.message || "Nepodařilo se vygenerovat test.";
         noQuestionsMessage.style.display = 'block';
@@ -2237,11 +2197,12 @@ async function evaluateTest(db) {
         let earnedBonusXP = 0;
         const quests = userData.dailyQuests.quests;
         const bonusWasAlreadyAwarded = userData.dailyQuests.bonusXPAwarded;
+        const schoolType = schoolTypeSelect.value;
 
         // Track unique subjects/tests today
         if (currentSubject && !userData.dailyQuests.subjectsToday.includes(currentSubject)) userData.dailyQuests.subjectsToday.push(currentSubject);
         if (uniqueTestId && !userData.dailyQuests.testsTodayIds.includes(uniqueTestId)) userData.dailyQuests.testsTodayIds.push(uniqueTestId);
-        const topicFileExists = currentSchool && currentSubject && currentTopic && schoolSubjectConfig[currentSchool]?.[currentSubject]?.[currentTopic];
+        const topicFileExists = schoolType && currentSubject && currentTopic && schoolSubjectConfig[schoolType]?.[currentSubject]?.[currentTopic];
         const isNewTopicOverall = currentTopic && topicFileExists && !userData.completedTopics.has(currentTopic);
 
         let allQuestsNowComplete = true;
@@ -2264,9 +2225,9 @@ async function evaluateTest(db) {
         });
 
         if (allQuestsNowComplete && !bonusWasAlreadyAwarded) {
-             console.log("All DQ completed! Awarding bonus.");
-             earnedBonusXP = 25; userData.dailyQuests.bonusXPAwarded = true;
-             userData.totalXP += earnedBonusXP; userData.weeklyXP += earnedBonusXP;
+            console.log("All DQ completed! Awarding bonus.");
+            earnedBonusXP = 25; userData.dailyQuests.bonusXPAwarded = true;
+            userData.totalXP += earnedBonusXP; userData.weeklyXP += earnedBonusXP;
         }
         // --- End Quest Update ---
 
@@ -2298,6 +2259,10 @@ async function evaluateTest(db) {
         updateProgressSection(userData); // Reflects final XP/counts
         updateAchievementsUI(userData);
         await generateCalendar(currentYear, currentMonth, db); // Regenerate calendar
+        if (isNewTopicOverall) {
+            userData.completedTopics.add(currentTopic); // Add to set
+            console.log(`Added "${currentTopic}" to overall completed topics.`);
+        }
 
         // --- 7. Refresh Leaderboard ---
         const isDashboardVisible = (dashboardSection && dashboardSection.style.display === 'block');
@@ -2616,97 +2581,78 @@ function populateSubjects(selectedSchoolType) {
 }
 
 function populateTopics(subject, userData) {
-    // Check 1: Log input and ensure elements exist
     console.log(`DEBUG: populateTopics started with subject: "${subject}"`);
     if (!topicSelect || !generateTestBtn || !toggleFavoriteBtn) {
-        console.error("DEBUG: populateTopics exiting - dropdown elements missing!");
+        console.error("DEBUG: populateTopics exiting - elements missing!");
         return;
     }
 
-    // Reset Topic Select & Buttons
-    const currentTopicValue = topicSelect.value; // Store previous value
-    topicSelect.innerHTML = '<option value="">Vyberte okruh</option>'; // Reset with placeholder
-    topicSelect.disabled = true; // Disable initially
-    generateTestBtn.disabled = true; // Disable initially
-    toggleFavoriteBtn.style.display = 'none'; // Hide favorite button initially
-    toggleFavoriteBtn.disabled = true; // Disable favorite button initially
+    const currentTopicValue = topicSelect.value;
+    topicSelect.innerHTML = '<option value="">Vyberte okruh</option>';
+    topicSelect.disabled = true;
+    generateTestBtn.disabled = true;
+    toggleFavoriteBtn.style.display = 'none'; // Hide favorite button by default
+    toggleFavoriteBtn.disabled = true;
 
-    // Check 2: Ensure a valid subject was passed AND data exists for it in the FLAT 'data' object
     if (!subject || !data[subject]) {
-        console.warn(`DEBUG: populateTopics - Invalid subject "${subject}" or no data found in the flat 'data' object.`);
-        // Update placeholder text to be more informative if needed
+        console.warn(`DEBUG: populateTopics - Invalid subject "${subject}" or no data.`);
         topicSelect.innerHTML = '<option value="">Neplatný předmět nebo chybí data</option>';
-        // Keep disabled
-        return; // Exit the function
+        return;
     }
 
-    // Check 3: Get topics for the selected subject from the FLAT 'data' object
-    let topics = Object.keys(data[subject]);
-    console.log(`DEBUG: Topics found for "${subject}" in flat data:`, topics);
+    let topics = Object.keys(data[subject]); // Get topics from the flat 'data' object
+    console.log(`DEBUG: Topics found for "${subject}":`, topics);
 
-    // Check 4: Handle case where subject exists but has no topics loaded/defined
     if (topics.length === 0 || (topics.length === 1 && topics[0] === "Zatím žádná témata")) {
         console.warn(`DEBUG: No actual topics found for subject "${subject}".`);
         topicSelect.innerHTML = '<option value="">Žádné okruhy nenalezeny</option>';
-        // Keep disabled
-        return; // Exit
+        return;
     }
 
-    // --- SORTING (Apply ONLY for Čeština) ---
+    // --- SORTING (ONLY for Čeština Favorites) ---
     if (subject === "Čeština") {
-        // Sort Čeština topics (favorites first, then alphabetically)
         const favoriteBooks = userData?.favoriteBooks || [];
-        console.log("User favorite books for sorting:", favoriteBooks);
         topics.sort((a, b) => {
             const aIsFav = favoriteBooks.includes(a);
             const bIsFav = favoriteBooks.includes(b);
             if (aIsFav && !bIsFav) return -1;
             if (!aIsFav && bIsFav) return 1;
-            return a.localeCompare(b, 'cs'); // Alpha for non-fav/same fav status
+            return a.localeCompare(b, 'cs'); // Alpha for others
         });
-        toggleFavoriteBtn.style.display = 'inline-block'; // Show favorite button ONLY for Cestina
-    } else {
-        toggleFavoriteBtn.style.display = 'none'; // Hide favorite button for other subjects
+        // Favorite button only visible for Czech
+        toggleFavoriteBtn.style.display = 'inline-block';
     }
-    // --- END SORTING ---
-
+    // No 'else' needed - other subjects retain original order from Object.keys
 
     // --- Populate Options ---
     topics.forEach(topic => {
-        // You might have placeholder topics like "Zatím žádná témata", skip them
         if (topic === "Zatím žádná témata" && data[subject][topic] === null) {
-            console.log(`Skipping placeholder topic: ${topic}`);
-            return; // Don't add placeholder as a selectable option
+            return; // Skip placeholder option
         }
 
         const option = document.createElement('option');
         option.value = topic;
-
         let displayText = topic;
-        // Add star prefix if it's Čeština and a favorite (check userData again)
+        // Add star ONLY if subject is Čeština AND it's a favorite
         if (subject === "Čeština" && userData?.favoriteBooks?.includes(topic)) {
             displayText = "★ " + topic;
         }
         option.textContent = displayText;
-
         topicSelect.appendChild(option);
     });
-    // --- End Populate Options ---
 
-    // Enable the topic dropdown now that options are added
-    topicSelect.disabled = false;
+    topicSelect.disabled = false; // Enable dropdown
 
-    // Restore previous selection if it's still a valid topic in the list
+    // --- Restore Selection & Enable Buttons ---
     if (topics.includes(currentTopicValue)) {
         topicSelect.value = currentTopicValue;
-        // Enable Generate button if a topic is selected
-        generateTestBtn.disabled = false;
-        // Enable Favorite button ONLY if Cestina is selected AND a topic is selected
+        generateTestBtn.disabled = false; // Enable generate test
+        // Enable favorite button ONLY if Czech AND a topic is selected
         if (subject === "Čeština") {
             toggleFavoriteBtn.disabled = false;
         }
     } else {
-        // No valid previous selection, keep buttons disabled
+        // No valid selection restored, keep buttons disabled
         generateTestBtn.disabled = true;
         if (subject === "Čeština") {
             toggleFavoriteBtn.disabled = true;
