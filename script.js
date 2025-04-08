@@ -3274,4 +3274,3 @@ function updateLeaderboardUI(leaderboardData) {
         leaderboardList.appendChild(li);
     });
 }
-
