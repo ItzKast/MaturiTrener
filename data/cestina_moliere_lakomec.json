@@ -60,7 +60,7 @@
             "type": "mc_single",
             "questionText": "Vypravěč / Forma projevu:",
             "options": ["Monology/Dialogy", "Er-forma", "Ich-forma"],
-            "correctAnswer": "Monology/Dialogy",
+            "correctAnswer": "Monology/Dialogy"
         },
         {
             "id": "smer",
