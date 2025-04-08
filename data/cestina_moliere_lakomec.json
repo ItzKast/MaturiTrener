@@ -50,19 +50,17 @@
             "correctAnswer": "Chronologická"
         },
         {
+            "id": "dejstvi",
+            "type": "free_text",
+            "questionText": "Počet dějství:",
+            "correctAnswer": "5"
+        },
+        {
             "id": "vypravec",
-            "type": "conditional_mc_single",
+            "type": "mc_single",
             "questionText": "Vypravěč / Forma projevu:",
-            "correctBasedOn": {
-                "Drama": "Monology/Dialogy",
-                "Próza": "Er-forma",
-                "Poezie": "Lyrický subjekt"
-            },
-            "optionsBasedOn": {
-                "Drama": ["Monology/Dialogy"],
-                "Próza": ["Ich-forma", "Er-forma"],
-                "Poezie": ["Lyrický subjekt"]
-            }
+            "options": ["Monology/Dialogy", "Er-forma", "Ich-forma"],
+            "correctAnswer": "Monology/Dialogy",
         },
         {
             "id": "smer",
