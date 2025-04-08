@@ -50,6 +50,12 @@
         "correctAnswer": "Chronologická" 
       },
       {
+        "id": "dejstvi",
+        "type": "free_text",
+        "questionText": "Počet dějství:",
+        "correctAnswer": "3"
+      },
+      {
         "id": "vypravec",
         "type": "conditional_mc_single", 
         "questionText": "Vypravěč / Forma projevu:",
