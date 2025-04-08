@@ -1877,10 +1877,12 @@ function generateTest() {
         let generatedQuestions = []; // Array to hold the questions selected for this test
         // --- 3. Determine Test Type and Generate Questions ---
 
-        // --- 3a. JSON-Based Subjects (Čeština, Angličtina) ---
-        if (subject === "Čeština" || subject === "Angličtina") {
+        const isJsonSubject = subject.startsWith("Čeština") || subject.startsWith("Angličtina");
+
+        if (isJsonSubject) {
             console.log(`Generating JSON test for ${subject} - ${topic}`);
             const jsonData = data[subject]?.[topic]; // Get data from the flat 'data' object
+            generatedQuestions = jsonData.questions;
 
             // Validate loaded JSON data
             if (!jsonData || typeof jsonData !== 'object' || !jsonData.questions || !Array.isArray(jsonData.questions) || jsonData.questions.length === 0) {
@@ -1897,7 +1899,7 @@ function generateTest() {
 
             // Determine 'druh' only if needed (Czech conditional logic)
             let correctDruh = null;
-            const isOriginalCzech = (currentSubjectKey === "Čeština"); // Check for exact match
+            const isOriginalCzech = (subject === "Čeština"); // Check for exact match
             if (isOriginalCzech) {
                 correctDruh = jsonData.questions.find(q => q.id === 'druh')?.correctAnswer;
             }
@@ -2016,13 +2018,13 @@ function generateTest() {
 
             if (topic === "Souhrnné opakování") {
                 // --- Summary Test Logic ---
-                console.log(`Generating summary test for ${currentSubjectKey}`);
+                console.log(`Generating summary test for ${subject}`);
                 let summarySourceQuestions = []; // Use a temporary array for summary
-                const otherTopics = Object.keys(data[currentSubjectKey] || {}).filter(t => t !== "Souhrnné opakování" && data[currentSubjectKey][t]?.length > 0);
+                const otherTopics = Object.keys(data[subject] || {}).filter(t => t !== "Souhrnné opakování" && data[subject][t]?.length > 0);
                 if (otherTopics.length === 0) throw new Error("Nebyly nalezeny žádné okruhy s otázkami pro souhrnný test.");
 
                 otherTopics.forEach(ot => {
-                    const questionsFromTopic = data[currentSubjectKey][ot];
+                    const questionsFromTopic = data[subject][ot];
                     summarySourceQuestions.push(...getRandomQuestions(questionsFromTopic, questionsPerTopicSummary));
                 });
 
@@ -2035,8 +2037,8 @@ function generateTest() {
 
             } else {
                 // --- Standard Topic CSV Logic ---
-                console.log(`Generating standard CSV test for ${currentSubjectKey} - ${topic}`);
-                const availableQuestions = data[currentSubjectKey]?.[topic];
+                console.log(`Generating standard CSV test for ${subject} - ${topic}`);
+                const availableQuestions = data[subject]?.[topic];
                 if (!availableQuestions || !Array.isArray(availableQuestions) || availableQuestions.length === 0) {
                     throw new Error(`Pro okruh "${topic}" nebyly nalezeny žádné otázky (CSV).`);
                 }
