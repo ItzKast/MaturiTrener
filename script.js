@@ -2274,10 +2274,10 @@ async function evaluateTest(db) {
     if (modalEl) modalEl.classList.add('show');
 
     // --- 4. Update User Data (If Logged In) ---
-    if (!currentUser || !db || !userData) {
+   if (!currentUser || !db) { // <<< Corrected check
         console.warn("User not logged in or DB not available. Test results not saved.");
         addBackButtonToTestContainer();
-        return;
+        return; // Exit if not logged in or DB missing
     }
 
     console.log("Attempting user data update in Firestore...");
