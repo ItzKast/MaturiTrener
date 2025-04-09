@@ -2978,7 +2978,6 @@ function setupEventListeners() {
                 loadProfileData(userData); // Pass the data object
                 updateProgressSection(userData);
                 updateAchievementsUI(userData);
-                updateSubjectBadgesUI(userData); // Load/Update badges here too
 
                 // NOTE: Leaderboard listener is NOT attached here anymore, it's on the Dashboard.
 
@@ -3035,10 +3034,6 @@ function setupEventListeners() {
         }
 
         console.log("Profile data displayed:", { email: profileEmail.textContent, nickname: profileNickname.textContent, joined: profileJoined.textContent });
-        } catch (error) {
-            console.error("Error loading profile data:", error);
-            profileNickname.textContent = 'Chyba načítání';
-            profileJoined.textContent = 'Chyba načítání';
         }
     }
     async function handleNicknameChange(event) {
