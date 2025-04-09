@@ -645,7 +645,7 @@ let header, main, dashboardSection, testSection, progressSection, testContainer,
     emailInput, passwordInput, loginBtn, registerBtn, loginMessage,
     calendarGrid, currentMonthDisplay, prevMonthBtn, nextMonthBtn,
     testsTodayEl, correctAnswersEl, successRateEl, dayStreakEl, totalXpEl, achievementListEl, themeToggleButton, toggleFavoriteBtn; // Added elements for stats
-let profileSection, profileEmail, profileNickname, profileJoined,
+let profileSection, profileEmail, profileNickname,
     nicknameChangeForm, newNicknameInput, changeNicknameBtn, nicknameChangeMessage,
     changePasswordBtn, passwordChangeMessage, deleteAccountBtn, deleteAccountMessage, profileLinkleaderboardList, noLeaderboardLi, nicknameInput, schoolTypeSelect, dailyQuestsListEl;
 
@@ -700,7 +700,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     profileLink = document.getElementById('profile-link');
     profileEmail = document.getElementById('profile-email');
     profileNickname = document.getElementById('profile-nickname');
-    profileJoined = document.getElementById('profile-joined');
     nicknameChangeForm = document.getElementById('nickname-change-form');
     newNicknameInput = document.getElementById('new-nickname');
     changeNicknameBtn = document.getElementById('change-nickname-btn');
@@ -1865,7 +1864,6 @@ function clearUserDataUI() {
     // Clear Profile Specific Info
     if (profileEmail) profileEmail.textContent = 'N/A';
     if (profileNickname) profileNickname.textContent = 'N/A';
-    if (profileJoined) profileJoined.textContent = 'N/A';
     if (nicknameChangeForm) nicknameChangeForm.reset();
     if (nicknameChangeMessage) nicknameChangeMessage.textContent = '';
     if (passwordChangeMessage) passwordChangeMessage.textContent = '';
@@ -2905,7 +2903,6 @@ async function showProfileSection() {
                  // Optionally display error messages in the profile fields
                  if (profileEmail) profileEmail.textContent = 'Chyba';
                  if (profileNickname) profileNickname.textContent = 'Chyba';
-                 if (profileJoined) profileJoined.textContent = 'Chyba';
                  updateProgressSection(null); // Clear tables/stats
                  updateAchievementsUI(null);
                  return; // Stop further processing
@@ -2925,7 +2922,6 @@ async function showProfileSection() {
             // Clear relevant UI parts on error
             if (profileEmail) profileEmail.textContent = 'Chyba';
             if (profileNickname) profileNickname.textContent = 'Chyba';
-            if (profileJoined) profileJoined.textContent = 'Chyba';
             updateProgressSection(null);
             updateAchievementsUI(null);
             // updateSubjectBadgesUI(null); // Clear badges (if function exists)
@@ -2935,7 +2931,6 @@ async function showProfileSection() {
         console.log("Profile: User not logged in, clearing UI.");
         if (profileEmail) profileEmail.textContent = 'N/A';
         if (profileNickname) profileNickname.textContent = 'N/A';
-        if (profileJoined) profileJoined.textContent = 'N/A';
         if (nicknameChangeForm) nicknameChangeForm.reset();
         if (nicknameChangeMessage) nicknameChangeMessage.textContent = '';
         if (passwordChangeMessage) passwordChangeMessage.textContent = '';
@@ -2948,12 +2943,11 @@ async function showProfileSection() {
 
 async function loadProfileData(userData) {
     // Basic checks for required elements and the passed data
-    if (!auth.currentUser || !profileEmail || !profileNickname || !profileJoined || !userData) {
+    if (!auth.currentUser || !profileEmail || !profileNickname || !userData) {
          console.warn("loadProfileData: Missing required elements, auth state, or userData.");
          // Set defaults or error states if elements exist but data/auth is missing
          if (profileEmail) profileEmail.textContent = 'Chyba';
          if (profileNickname) profileNickname.textContent = 'Chyba';
-         if (profileJoined) profileJoined.textContent = 'Chyba';
          return;
     }
     console.log("[loadProfileData] userData received as parameter:", userData);
@@ -2971,16 +2965,12 @@ async function loadProfileData(userData) {
     if (hasToDateMethod) {
         // Format the timestamp
         const joinDate = userData.createdAt.toDate();
-        profileJoined.textContent = joinDate.toLocaleDateString('cs-CZ', {
-            day: 'numeric', month: 'long', year: 'numeric'
-        });
     } else {
          // Log if createdAt is missing or not a timestamp
          console.log("Profile: 'createdAt' field missing or invalid in userData for user:", currentUser, userData.createdAt);
-         profileJoined.textContent = 'Neznámé';
     }
 
-    console.log("Profile data displayed:", { email: profileEmail.textContent, nickname: profileNickname.textContent, joined: profileJoined.textContent });
+    console.log("Profile data displayed:", { email: profileEmail.textContent, nickname: profileNickname.textContent });
 }
 
 async function handleNicknameChange(event) {
