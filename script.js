@@ -879,7 +879,6 @@ async function getUserData(uid, db, isNewlyRegistered = false) {
             data.favoriteBooks = Array.isArray(data.favoriteBooks) ? data.favoriteBooks : [];
             data.nickname = data.nickname || null;
             data.email = data.email || null; // Ensure email field exists
-            data.createdAt = data.createdAt || null; // Ensure timestamp exists
             data.weeklyXP = typeof data.weeklyXP === 'number' ? data.weeklyXP : 0;
             data.testsToday = data.testsToday || 0;
             data.correctAnswersToday = data.correctAnswersToday || 0;
@@ -903,7 +902,6 @@ async function getUserData(uid, db, isNewlyRegistered = false) {
             const defaultUserData = {
                 nickname: null,
                 email: null, // Will be set during registration transaction
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                 progress: {}, // Start with empty progress object
                 weeklyXP: 0,
                 testsToday: 0,
@@ -1648,7 +1646,6 @@ async function registerUserHandler(authInstance) {
             const userDataPayload = {
                 nickname: nickname, // The variable from input
                 email: email,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                 // ... include ALL OTHER necessary default fields ...
                 weeklyXP: 0,
                 testsToday: 0,
@@ -3113,8 +3110,6 @@ async function showProfileSection() {
                  return;
             }
             console.log("[showProfileSection] userData received from getUserData:", userData);
-            console.log("[showProfileSection] Type of createdAt AFTER getUserData:", typeof userData?.createdAt?.toDate);
-            console.log("[showProfileSection] Value of createdAt AFTER getUserData:", userData?.createdAt);
             // *** Pass fetched userData to display/update functions ***
             loadProfileData(userData); // Pass the data object
             updateSubjectTopicDetailUI(userData);
@@ -3154,24 +3149,11 @@ async function loadProfileData(userData) {
          return;
     }
     console.log("[loadProfileData] userData received as parameter:", userData);
-        console.log("[loadProfileData] Type of createdAt at START of function:", typeof userData?.createdAt?.toDate);
-        console.log("[loadProfileData] Value of createdAt at START of function:", userData?.createdAt);
-        const hasToDateMethod = userData?.createdAt && typeof userData.createdAt.toDate === 'function';
-        console.log("[loadProfileData] Does createdAt have .toDate() method?", hasToDateMethod);
     // --- Get Email directly from auth state ---
     profileEmail.textContent = auth.currentUser.email || 'N/A';
 
     // --- Use the PASSED userData object ---
     profileNickname.textContent = userData.nickname || 'Nenastaveno';
-
-    // Display Joined Date
-    if (hasToDateMethod) {
-        // Format the timestamp
-        const joinDate = userData.createdAt.toDate();
-    } else {
-         // Log if createdAt is missing or not a timestamp
-         console.log("Profile: 'createdAt' field missing or invalid in userData for user:", currentUser, userData.createdAt);
-    }
 
     console.log("Profile data displayed:", { email: profileEmail.textContent, nickname: profileNickname.textContent });
 }
