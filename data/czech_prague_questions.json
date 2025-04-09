@@ -26,13 +26,13 @@
       "options": [
         "Old Town",
         "New Town",
-        "Lesser Town",
+        "Lesser Quarter",
         "Upper Town"
       ],
       "correctAnswers": [
         "Old Town",
         "New Town",
-        "Lesser Town"
+        "Lesser Quarter"
       ]
     },
     {
@@ -122,13 +122,13 @@
       "type": "mc_multiple",
       "questionText": "Which are some natural beauties of the Czech Republic? (Choose all that apply)",
       "options": [
-        "Bohemian Paradise",
+        "Bohemian Switzerland",
         "Macocha Abyss",
         "Elbe River",
         "Alps"
       ],
       "correctAnswers": [
-        "Bohemian Paradise",
+        "Bohemian Switzerland",
         "Macocha Abyss",
         "Elbe River"
       ]
@@ -205,11 +205,5 @@
         "Tennis"
       ]
     },
-    {
-      "id": "cz_athletes",
-      "type": "free_text",
-      "questionText": "Name a famous Czech athlete.",
-      "correctAnswer": "Jarom\u00edr J\u00e1gr"
-    }
   ]
 }
