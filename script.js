@@ -2875,13 +2875,274 @@ async function handleToggleFavorite() {
         toggleFavoriteBtn.disabled = !topicSelect.value; // Still potentially re-enable
     }
 }
-// --- Event Listener Setup ---
+// --- Profile Section Functions (Moved Outside) ---
+
+async function showProfileSection() {
+    // 1. Detach any existing listener FIRST
+    if (leaderboardListenerUnsubscribe) {
+        console.log("Detaching previous leaderboard listener before showing Profile/Stats.");
+        leaderboardListenerUnsubscribe();
+        leaderboardListenerUnsubscribe = null; // Reset the variable
+    }
+
+    // 2. Show/Hide Sections
+    if (loginSection) loginSection.style.display = 'none';
+    if (dashboardSection) dashboardSection.style.display = 'none';
+    if (testSection) testSection.style.display = 'none';
+    if (profileSection) profileSection.style.display = 'block'; // Show this section
+
+    // 3. Load Data if User is Logged In
+    if (currentUser && db) { // Check db instance
+        console.log("Loading data for Profile/Stats section...");
+        try {
+            // *** Fetch user data ONCE here ***
+            const userData = await getUserData(currentUser, db);
+            if (!userData) {
+                // Handle case where user data couldn't be fetched even though logged in
+                 console.error("Profile: Failed to get user data for UID:", currentUser);
+                 // Optionally display error messages in the profile fields
+                 if (profileEmail) profileEmail.textContent = 'Chyba';
+                 if (profileNickname) profileNickname.textContent = 'Chyba';
+                 if (profileJoined) profileJoined.textContent = 'Chyba';
+                 updateProgressSection(null); // Clear tables/stats
+                 updateAchievementsUI(null);
+                 // updateSubjectBadgesUI(null); // Call if you have this function
+                 return; // Stop further processing
+            }
+
+            // *** Pass fetched userData to display/update functions ***
+            loadProfileData(userData); // Pass the data object
+            updateProgressSection(userData);
+            updateAchievementsUI(userData);
+            // updateSubjectBadgesUI(userData); // Load/Update badges here too (if function exists)
+
+            // NOTE: Leaderboard listener is NOT attached here anymore, it's on the Dashboard.
+
+        } catch (error) {
+            console.error("Error loading profile/stats section data:", error);
+            // Clear relevant UI parts on error
+            if (profileEmail) profileEmail.textContent = 'Chyba';
+            if (profileNickname) profileNickname.textContent = 'Chyba';
+            if (profileJoined) profileJoined.textContent = 'Chyba';
+            updateProgressSection(null);
+            updateAchievementsUI(null);
+            // updateSubjectBadgesUI(null); // Clear badges (if function exists)
+        }
+    } else {
+        // Clear UI elements if user is logged out
+        console.log("Profile: User not logged in, clearing UI.");
+        if (profileEmail) profileEmail.textContent = 'N/A';
+        if (profileNickname) profileNickname.textContent = 'N/A';
+        if (profileJoined) profileJoined.textContent = 'N/A';
+        if (nicknameChangeForm) nicknameChangeForm.reset();
+        if (nicknameChangeMessage) nicknameChangeMessage.textContent = '';
+        if (passwordChangeMessage) passwordChangeMessage.textContent = '';
+        if (deleteAccountMessage) deleteAccountMessage.textContent = '';
+        updateProgressSection(null);
+        updateAchievementsUI(null);
+        // updateSubjectBadgesUI(null); // Clear badges (if function exists)
+    }
+}
+
+async function loadProfileData(userData) {
+    // Basic checks for required elements and the passed data
+    if (!auth.currentUser || !profileEmail || !profileNickname || !profileJoined || !userData) {
+         console.warn("loadProfileData: Missing required elements, auth state, or userData.");
+         // Set defaults or error states if elements exist but data/auth is missing
+         if (profileEmail) profileEmail.textContent = 'Chyba';
+         if (profileNickname) profileNickname.textContent = 'Chyba';
+         if (profileJoined) profileJoined.textContent = 'Chyba';
+         return;
+    }
+
+    // --- Get Email directly from auth state ---
+    profileEmail.textContent = auth.currentUser.email || 'N/A';
+
+    // --- Use the PASSED userData object ---
+    profileNickname.textContent = userData.nickname || 'Nenastaveno';
+
+    // Display Joined Date
+    if (userData.createdAt && userData.createdAt.toDate) {
+        // Format the timestamp
+        const joinDate = userData.createdAt.toDate();
+        profileJoined.textContent = joinDate.toLocaleDateString('cs-CZ', {
+            day: 'numeric', month: 'long', year: 'numeric'
+        });
+    } else {
+         // Log if createdAt is missing or not a timestamp
+         console.log("Profile: 'createdAt' field missing or invalid in userData for user:", currentUser, userData.createdAt);
+         profileJoined.textContent = 'Neznámé';
+    }
+
+    console.log("Profile data displayed:", { email: profileEmail.textContent, nickname: profileNickname.textContent, joined: profileJoined.textContent });
+}
+
+async function handleNicknameChange(event) {
+    event.preventDefault(); // Prevent form submission
+    if (!currentUser || !newNicknameInput || !nicknameChangeMessage || !changeNicknameBtn) return;
+
+    const newNickname = newNicknameInput.value.trim();
+    // Corrected Log: Use the newNickname variable
+    console.log("DEBUG: Nickname read from input:", newNickname);
+    nicknameChangeMessage.textContent = ''; // Clear previous message
+    nicknameChangeMessage.className = ''; // Clear success/error class
+
+    // Validation
+    const nicknamePattern = /^[a-zA-Z0-9_]{3,15}$/;
+    if (!nicknamePattern.test(newNickname)) {
+        nicknameChangeMessage.textContent = "Nová přezdívka má neplatný formát.";
+        nicknameChangeMessage.classList.add('error');
+        return;
+    }
+
+    changeNicknameBtn.disabled = true;
+    nicknameChangeMessage.textContent = 'Ověřuji a ukládám...';
+
+    try {
+        const userData = await getUserData(currentUser, db);
+        const oldNickname = userData?.nickname;
+        const oldNicknameLower = oldNickname?.toLowerCase();
+        const newNicknameLower = newNickname.toLowerCase();
+
+
+        if (oldNicknameLower === newNicknameLower) {
+            nicknameChangeMessage.textContent = "Nová přezdívka je stejná jako stará.";
+            changeNicknameBtn.disabled = false;
+            return;
+        }
+
+        // Check uniqueness ONLY if it's different
+        const isUnique = await checkNicknameUniqueness(newNickname);
+        if (!isUnique) {
+            nicknameChangeMessage.textContent = "Tato přezdívka je již obsazena.";
+            nicknameChangeMessage.classList.add('error');
+            changeNicknameBtn.disabled = false;
+            return;
+        }
+
+        // Transaction to update user doc and nickname collection
+        const userDocRef = db.collection("users").doc(currentUser);
+        const newNicknameDocRef = db.collection("nicknames").doc(newNicknameLower);
+        const oldNicknameDocRef = oldNickname ? db.collection("nicknames").doc(oldNicknameLower) : null;
+
+
+        await db.runTransaction(async (transaction) => {
+            // 1. Delete old nickname reservation (if exists)
+            if (oldNicknameDocRef) {
+                 const oldNickDoc = await transaction.get(oldNicknameDocRef); // Check existence within transaction
+                 if(oldNickDoc.exists) {
+                    transaction.delete(oldNicknameDocRef);
+                 }
+            }
+            // 2. Create new nickname reservation
+            transaction.set(newNicknameDocRef, { userId: currentUser });
+            // 3. Update nickname in user document
+            transaction.update(userDocRef, { nickname: newNickname });
+        });
+
+        nicknameChangeMessage.textContent = "Přezdívka úspěšně změněna!";
+        nicknameChangeMessage.classList.add('success');
+        if (profileNickname) profileNickname.textContent = newNickname; // Update UI immediately
+        newNicknameInput.value = ''; // Clear input
+
+
+    } catch (error) {
+        console.error("Error changing nickname:", error);
+        nicknameChangeMessage.textContent = "Chyba při změně přezdívky.";
+        nicknameChangeMessage.classList.add('error');
+    } finally {
+        changeNicknameBtn.disabled = false;
+    }
+}
+
+async function handleChangePassword() {
+    if (!auth || !auth.currentUser || !passwordChangeMessage || !changePasswordBtn) return;
+
+    const email = auth.currentUser.email;
+    passwordChangeMessage.textContent = '';
+    passwordChangeMessage.className = '';
+    changePasswordBtn.disabled = true;
+
+    try {
+        await auth.sendPasswordResetEmail(email);
+        passwordChangeMessage.textContent = `Odkaz pro reset hesla byl zaslán na ${email}. Zkontrolujte si poštu (i spam).`;
+        passwordChangeMessage.classList.add('success');
+    } catch (error) {
+        console.error("Error sending password reset email:", error);
+        passwordChangeMessage.textContent = "Chyba při zasílání emailu: " + mapAuthError(error);
+        passwordChangeMessage.classList.add('error');
+        changePasswordBtn.disabled = false; // Re-enable only on error
+    }
+    // Keep button disabled on success to prevent spamming
+}
+
+async function handleDeleteAccount() {
+    if (!auth || !auth.currentUser || !db || !deleteAccountBtn || !deleteAccountMessage) return;
+
+    const user = auth.currentUser;
+    const uid = user.uid;
+    const userEmail = user.email; // For confirmation message
+
+    // --- Confirmation ---
+    const confirmation = prompt(`Opravdu chcete trvale smazat svůj účet (${userEmail})? Tato akce je nevratná! Napište "SMAZAT" pro potvrzení:`);
+    if (confirmation !== "SMAZAT") {
+        deleteAccountMessage.textContent = "Smazání účtu zrušeno.";
+        return;
+    }
+
+    deleteAccountBtn.disabled = true;
+    deleteAccountMessage.textContent = "Mažu účet a data...";
+    deleteAccountMessage.className = '';
+
+    try {
+        // 1. Get user data to find nickname
+        const userData = await getUserData(uid, db);
+        const nickname = userData?.nickname;
+        const nicknameLower = nickname?.toLowerCase();
+
+        // 2. Delete Firestore Data (User Doc and Nickname Reservation) in Transaction
+        const userDocRef = db.collection("users").doc(uid);
+        const nicknameDocRef = nicknameLower ? db.collection("nicknames").doc(nicknameLower) : null;
+
+
+        await db.runTransaction(async (transaction) => {
+            if (nicknameDocRef) {
+                // Check if nickname doc still exists before deleting within transaction
+                const nickDoc = await transaction.get(nicknameDocRef);
+                if (nickDoc.exists) {
+                    transaction.delete(nicknameDocRef);
+                }
+            }
+            // Check if user doc exists before deleting within transaction
+            const userDoc = await transaction.get(userDocRef);
+            if (userDoc.exists) {
+                transaction.delete(userDocRef);
+            }
+        });
+        console.log("Firestore data deleted for user:", uid);
+
+        // 3. Delete Firebase Auth User
+        await user.delete();
+
+        // Auth state listener will handle UI changes (logout, show login)
+        console.log("Firebase Auth user deleted successfully.");
+        alert("Váš účet byl úspěšně smazán."); // Inform user
+
+    } catch (error) {
+        console.error("Error deleting account:", error);
+        deleteAccountMessage.textContent = "Chyba při mazání účtu: " + mapAuthError(error);
+        deleteAccountMessage.classList.add('error');
+        if (error.code === 'auth/requires-recent-login') {
+            deleteAccountMessage.textContent += " Prosím, odhlaste se a znovu přihlaste, poté zkuste smazání znovu.";
+        }
+        deleteAccountBtn.disabled = false; // Re-enable on error
+    }
+}
 function setupEventListeners() {
     // Navigation Links
     document.getElementById('dashboard-link')?.addEventListener('click', (e) => {
         e.preventDefault();
         showDashboard();
-        // Data is updated automatically if needed when loading user data
     });
     document.getElementById('test-link')?.addEventListener('click', (e) => {
         e.preventDefault();
@@ -2889,11 +3150,7 @@ function setupEventListeners() {
     });
     document.getElementById('progress-link')?.addEventListener('click', (e) => {
         e.preventDefault();
-        showProfileSection();
-        // Data should be up-to-date from previous actions or load
-        if (currentUser) {
-            getUserData(currentUser, db).then(userData => updateProgressSection(userData));
-        }
+        showProfileSection(); // Call the top-level function now
     });
     themeToggleButton?.addEventListener('click', toggleTheme);
 
@@ -2901,321 +3158,75 @@ function setupEventListeners() {
     authLink?.addEventListener('click', (e) => {
         e.preventDefault();
         if (currentUser) {
-            logoutUserHandler(auth); // Use handler
+            logoutUserHandler(auth);
         } else {
             showLogin();
         }
     });
 
     // Login/Register Buttons
-    // Modify the event listener setup for registerBtn
     registerBtn?.addEventListener('click', () => {
         if (loginForm.classList.contains('register-mode')) {
-            // Already in register mode, perform registration
             registerUserHandler(auth);
         } else {
-            // Switch to register mode
             loginForm.classList.add('register-mode');
-            loginMessage.textContent = ''; // Clear login messages
-            registerBtn.textContent = 'Dokončit registraci'; // Change button text
-            if (loginBtn) loginBtn.style.display = 'none'; // Hide login button
+            loginMessage.textContent = '';
+            registerBtn.textContent = 'Dokončit registraci';
+            if (loginBtn) loginBtn.style.display = 'none';
         }
     });
-    // Add back listener for login button to potentially clear register mode if user clicks login again
     loginBtn?.addEventListener('click', () => {
         if (loginForm.classList.contains('register-mode')) {
-            // If user clicks Login while in register mode, switch back
             loginForm.classList.remove('register-mode');
             registerBtn.textContent = 'Registrovat se';
             if (loginBtn) loginBtn.style.display = 'block';
-            loginMessage.textContent = ''; // Clear messages
+            loginMessage.textContent = '';
         } else {
-            // Perform login
             loginUserHandler(auth);
         }
     });
+
+    // Profile Link
     profileLink?.addEventListener('click', (e) => {
         e.preventDefault();
-        showProfileSection();
+        showProfileSection(); // Call the top-level function
     });
-    nicknameChangeForm?.addEventListener('submit', handleNicknameChange);
-    changePasswordBtn?.addEventListener('click', handleChangePassword);
-    deleteAccountBtn?.addEventListener('click', handleDeleteAccount); // Add delete listener
-        async function showProfileSection() {
-        // 1. Detach any existing listener FIRST
-        if (leaderboardListenerUnsubscribe) {
-            console.log("Detaching previous leaderboard listener before showing Profile/Stats.");
-            leaderboardListenerUnsubscribe();
-            leaderboardListenerUnsubscribe = null; // Reset the variable
-        }
 
-        // 2. Show/Hide Sections
-        if (loginSection) loginSection.style.display = 'none';
-        if (dashboardSection) dashboardSection.style.display = 'none';
-        if (testSection) testSection.style.display = 'none';
-        if (profileSection) profileSection.style.display = 'block'; // Show this section
+    // Profile Actions
+    nicknameChangeForm?.addEventListener('submit', handleNicknameChange); // Call top-level function
+    changePasswordBtn?.addEventListener('click', handleChangePassword); // Call top-level function
+    deleteAccountBtn?.addEventListener('click', handleDeleteAccount); // Call top-level function
 
-        // 3. Load Data if User is Logged In
-        if (currentUser && db) { // Check db instance
-            console.log("Loading data for Profile/Stats section...");
-            try {
-                // *** Fetch user data ONCE here ***
-                const userData = await getUserData(currentUser, db);
-                if (!userData) {
-                    // Handle case where user data couldn't be fetched even though logged in
-                     console.error("Profile: Failed to get user data for UID:", currentUser);
-                     // Optionally display error messages in the profile fields
-                     if (profileEmail) profileEmail.textContent = 'Chyba';
-                     if (profileNickname) profileNickname.textContent = 'Chyba';
-                     if (profileJoined) profileJoined.textContent = 'Chyba';
-                     updateProgressSection(null); // Clear tables/stats
-                     updateAchievementsUI(null);
-                     updateSubjectBadgesUI(null);
-                     return; // Stop further processing
-                }
-
-                // *** Pass fetched userData to display/update functions ***
-                loadProfileData(userData); // Pass the data object
-                updateProgressSection(userData);
-                updateAchievementsUI(userData);
-
-                // NOTE: Leaderboard listener is NOT attached here anymore, it's on the Dashboard.
-
-            } catch (error) {
-                console.error("Error loading profile/stats section data:", error);
-                // Clear relevant UI parts on error
-                if (profileEmail) profileEmail.textContent = 'Chyba';
-                if (profileNickname) profileNickname.textContent = 'Chyba';
-                if (profileJoined) profileJoined.textContent = 'Chyba';
-                updateProgressSection(null);
-                updateAchievementsUI(null);
-            }
-        } else {
-            // Clear UI elements if user is logged out
-            console.log("Profile: User not logged in, clearing UI.");
-            if (profileEmail) profileEmail.textContent = 'N/A';
-            if (profileNickname) profileNickname.textContent = 'N/A';
-            if (profileJoined) profileJoined.textContent = 'N/A';
-            if (nicknameChangeForm) nicknameChangeForm.reset();
-            if (nicknameChangeMessage) nicknameChangeMessage.textContent = '';
-            if (passwordChangeMessage) passwordChangeMessage.textContent = '';
-            if (deleteAccountMessage) deleteAccountMessage.textContent = '';
-            updateProgressSection(null);
-            updateAchievementsUI(null);
-        }
-    }
-     async function loadProfileData(userData) {
-        // Basic checks for required elements and the passed data
-        if (!auth.currentUser || !profileEmail || !profileNickname || !profileJoined || !userData) {
-             console.warn("loadProfileData: Missing required elements, auth state, or userData.");
-             // Set defaults or error states if elements exist but data/auth is missing
-             if (profileEmail) profileEmail.textContent = 'Chyba';
-             if (profileNickname) profileNickname.textContent = 'Chyba';
-             if (profileJoined) profileJoined.textContent = 'Chyba';
-             return;
-        }
-
-        // --- Get Email directly from auth state ---
-        profileEmail.textContent = auth.currentUser.email || 'N/A';
-
-        profileNickname.textContent = userData.nickname || 'Nenastaveno';
-
-        // Display Joined Date
-        if (userData.createdAt && userData.createdAt.toDate) {
-            // Format the timestamp
-            const joinDate = userData.createdAt.toDate();
-            profileJoined.textContent = joinDate.toLocaleDateString('cs-CZ', {
-                day: 'numeric', month: 'long', year: 'numeric'
-            });
-        } else {
-             // Log if createdAt is missing or not a timestamp
-             console.log("Profile: 'createdAt' field missing or invalid in userData for user:", currentUser, userData.createdAt);
-             profileJoined.textContent = 'Neznámé';
-        }
-
-        console.log("Profile data displayed:", { email: profileEmail.textContent, nickname: profileNickname.textContent, joined: profileJoined.textContent });
-        }
-    }
-    async function handleNicknameChange(event) {
-        event.preventDefault(); // Prevent form submission
-        if (!currentUser || !newNicknameInput || !nicknameChangeMessage || !changeNicknameBtn) return;
-
-        const newNickname = newNicknameInput.value.trim();
-        console.log("DEBUG: Nickname read from input:", nickname);
-        nicknameChangeMessage.textContent = ''; // Clear previous message
-        nicknameChangeMessage.className = ''; // Clear success/error class
-
-        // Validation
-        const nicknamePattern = /^[a-zA-Z0-9_]{3,15}$/;
-        if (!nicknamePattern.test(newNickname)) {
-            nicknameChangeMessage.textContent = "Nová přezdívka má neplatný formát.";
-            nicknameChangeMessage.classList.add('error');
-            return;
-        }
-
-        changeNicknameBtn.disabled = true;
-        nicknameChangeMessage.textContent = 'Ověřuji a ukládám...';
-
-        try {
-            const userData = await getUserData(currentUser, db);
-            const oldNickname = userData?.nickname;
-            const oldNicknameLower = oldNickname?.toLowerCase();
-            const newNicknameLower = newNickname.toLowerCase();
-
-
-            if (oldNicknameLower === newNicknameLower) {
-                nicknameChangeMessage.textContent = "Nová přezdívka je stejná jako stará.";
-                changeNicknameBtn.disabled = false;
-                return;
-            }
-
-            // Check uniqueness ONLY if it's different
-            const isUnique = await checkNicknameUniqueness(newNickname);
-            if (!isUnique) {
-                nicknameChangeMessage.textContent = "Tato přezdívka je již obsazena.";
-                nicknameChangeMessage.classList.add('error');
-                changeNicknameBtn.disabled = false;
-                return;
-            }
-
-            // Transaction to update user doc and nickname collection
-            const userDocRef = db.collection("users").doc(currentUser);
-            const newNicknameDocRef = db.collection("nicknames").doc(newNicknameLower);
-            const oldNicknameDocRef = oldNickname ? db.collection("nicknames").doc(oldNicknameLower) : null;
-
-
-            await db.runTransaction(async (transaction) => {
-                // 1. Delete old nickname reservation (if exists)
-                if (oldNicknameDocRef) {
-                    transaction.delete(oldNicknameDocRef);
-                }
-                // 2. Create new nickname reservation
-                transaction.set(newNicknameDocRef, { userId: currentUser });
-                // 3. Update nickname in user document
-                transaction.update(userDocRef, { nickname: newNickname });
-            });
-
-            nicknameChangeMessage.textContent = "Přezdívka úspěšně změněna!";
-            nicknameChangeMessage.classList.add('success');
-            if (profileNickname) profileNickname.textContent = newNickname; // Update UI immediately
-            newNicknameInput.value = ''; // Clear input
-
-
-        } catch (error) {
-            console.error("Error changing nickname:", error);
-            nicknameChangeMessage.textContent = "Chyba při změně přezdívky.";
-            nicknameChangeMessage.classList.add('error');
-        } finally {
-            changeNicknameBtn.disabled = false;
-        }
-    }
-    async function handleChangePassword() {
-        if (!auth || !auth.currentUser || !passwordChangeMessage || !changePasswordBtn) return;
-
-        const email = auth.currentUser.email;
-        passwordChangeMessage.textContent = '';
-        passwordChangeMessage.className = '';
-        changePasswordBtn.disabled = true;
-
-        try {
-            await auth.sendPasswordResetEmail(email);
-            passwordChangeMessage.textContent = `Odkaz pro reset hesla byl zaslán na ${email}. Zkontrolujte si poštu (i spam).`;
-            passwordChangeMessage.classList.add('success');
-        } catch (error) {
-            console.error("Error sending password reset email:", error);
-            passwordChangeMessage.textContent = "Chyba při zasílání emailu: " + mapAuthError(error);
-            passwordChangeMessage.classList.add('error');
-            changePasswordBtn.disabled = false; // Re-enable only on error
-        }
-        // Keep button disabled on success to prevent spamming
-    }
-    async function handleDeleteAccount() {
-        if (!auth || !auth.currentUser || !db || !deleteAccountBtn || !deleteAccountMessage) return;
-
-        const user = auth.currentUser;
-        const uid = user.uid;
-        const userEmail = user.email; // For confirmation message
-
-        // --- Confirmation ---
-        const confirmation = prompt(`Opravdu chcete trvale smazat svůj účet (${userEmail})? Tato akce je nevratná! Napište "SMAZAT" pro potvrzení:`);
-        if (confirmation !== "SMAZAT") {
-            deleteAccountMessage.textContent = "Smazání účtu zrušeno.";
-            return;
-        }
-        deleteAccountBtn.disabled = true;
-        deleteAccountMessage.textContent = "Mažu účet a data...";
-        deleteAccountMessage.className = '';
-        try {
-            // 1. Get user data to find nickname
-            const userData = await getUserData(uid, db);
-            const nickname = userData?.nickname;
-            const nicknameLower = nickname?.toLowerCase();
-
-            // 2. Delete Firestore Data (User Doc and Nickname Reservation) in Transaction
-            const userDocRef = db.collection("users").doc(uid);
-            const nicknameDocRef = nicknameLower ? db.collection("nicknames").doc(nicknameLower) : null;
-
-
-            await db.runTransaction(async (transaction) => {
-                if (nicknameDocRef) {
-                    // Check if nickname doc still exists before deleting
-                    const nickDoc = await transaction.get(nicknameDocRef);
-                    if (nickDoc.exists) {
-                        transaction.delete(nicknameDocRef);
-                    }
-                }
-                // Check if user doc exists before deleting
-                const userDoc = await transaction.get(userDocRef);
-                if (userDoc.exists) {
-                    transaction.delete(userDocRef);
-                }
-            });
-            console.log("Firestore data deleted for user:", uid);
-
-            // 3. Delete Firebase Auth User
-            await user.delete();
-
-            // Auth state listener will handle UI changes (logout, show login)
-            console.log("Firebase Auth user deleted successfully.");
-            alert("Váš účet byl úspěšně smazán.");
-        } catch (error) {
-            console.error("Error deleting account:", error);
-            deleteAccountMessage.textContent = "Chyba při mazání účtu: " + mapAuthError(error);
-            deleteAccountMessage.classList.add('error');
-            if (error.code === 'auth/requires-recent-login') {
-                deleteAccountMessage.textContent += " Prosím, odhlaste se a znovu přihlaste, poté zkuste smazání znovu.";
-            }
-            deleteAccountBtn.disabled = false; // Re-enable on error
-        }
-    }
+    // School/Subject/Topic Selection
     schoolTypeSelect?.addEventListener('change', function () {
         const selectedSchool = this.value;
         populateSubjects(selectedSchool);
     });
-    // Test Generation Controls
     subjectSelect?.addEventListener('change', async function () { // Make async
-        const selectedSubject = this.value; // Get the selected subject name
-        console.log(`DEBUG: Subject changed to: "${selectedSubject}"`); // Add log
+        const selectedSubject = this.value;
+        console.log(`DEBUG: Subject changed to: "${selectedSubject}"`);
 
-        // --- Ensure this part runs ---
-        const selectedSchool = schoolTypeSelect.value;
         let currentUserData = null;
         if (currentUser) {
-            currentUserData = await getUserData(currentUser, db);
+            try { // Add try-catch for robustness
+                currentUserData = await getUserData(currentUser, db);
+            } catch (error) {
+                console.error("Error fetching user data on subject change:", error);
+                // Handle error, maybe clear topics or show a message
+            }
         }
-        // --- Ensure populateTopics is called with the correct subject ---
         console.log("DEBUG: Calling populateTopics for subject:", selectedSubject);
-        populateTopics(selectedSubject, currentUserData);
-
+        populateTopics(selectedSubject, currentUserData); // Pass potentially null data if fetch failed or user logged out
     });
     topicSelect?.addEventListener('change', function () {
         const isTopicSelected = !!this.value;
-        const isCestina = subjectSelect.value === "Čeština";
+        const selectedSubjectKey = subjectSelect.value; // Get current subject
+        const isCestina = selectedSubjectKey && selectedSubjectKey.startsWith("Čeština"); // Check if current subject is Čeština
+
         if (generateTestBtn) generateTestBtn.disabled = !isTopicSelected;
         if (toggleFavoriteBtn) {
-            // Favorite button logic now depends only on Čeština subject being selected,
-            // and a topic being chosen. The school type doesn't directly affect it here.
             toggleFavoriteBtn.style.display = isCestina ? 'inline-block' : 'none';
+            // Enable only if a topic is selected AND it's a Czech subject
             toggleFavoriteBtn.disabled = !(isTopicSelected && isCestina);
         }
     });
@@ -3225,10 +3236,10 @@ function setupEventListeners() {
     closeModalBtn?.addEventListener('click', () => {
         if (modal) modal.classList.remove('show');
     });
-    backToTestsModalBtn?.addEventListener('click', () => { // Use correct button ID
-        handleBackToTestSelection();
+    backToTestsModalBtn?.addEventListener('click', () => {
+        handleBackToTestSelection(); // Assumes handleBackToTestSelection is correctly defined elsewhere
     });
-    toggleFavoriteBtn?.addEventListener('click', handleToggleFavorite);
+    toggleFavoriteBtn?.addEventListener('click', handleToggleFavorite); // Assumes handleToggleFavorite is correctly defined elsewhere
     window.addEventListener('click', (event) => { // Close modal on outside click
         if (event.target === modal) {
             if (modal) modal.classList.remove('show');
@@ -3242,7 +3253,7 @@ function setupEventListeners() {
             currentMonth = 11;
             currentYear--;
         }
-        generateCalendar(currentYear, currentMonth, db); // Regenerate with db
+        generateCalendar(currentYear, currentMonth, db);
     });
     nextMonthBtn?.addEventListener('click', () => {
         currentMonth++;
@@ -3250,9 +3261,10 @@ function setupEventListeners() {
             currentMonth = 0;
             currentYear++;
         }
-        generateCalendar(currentYear, currentMonth, db); // Regenerate with db
+        generateCalendar(currentYear, currentMonth, db);
     });
 }
+
 /**
  * Fetches top N users based on total XP from Firestore.
  * @param {number} limit - Number of users to fetch.
