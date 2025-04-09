@@ -2941,7 +2941,7 @@ function setupEventListeners() {
     nicknameChangeForm?.addEventListener('submit', handleNicknameChange);
     changePasswordBtn?.addEventListener('click', handleChangePassword);
     deleteAccountBtn?.addEventListener('click', handleDeleteAccount); // Add delete listener
-    async function showProfileSection() {
+        async function showProfileSection() {
         // 1. Detach any existing listener FIRST
         if (leaderboardListenerUnsubscribe) {
             console.log("Detaching previous leaderboard listener before showing Profile/Stats.");
@@ -2959,11 +2959,23 @@ function setupEventListeners() {
         if (currentUser && db) { // Check db instance
             console.log("Loading data for Profile/Stats section...");
             try {
+                // *** Fetch user data ONCE here ***
                 const userData = await getUserData(currentUser, db);
-                if (!userData) throw new Error("Nepodařilo se načíst data uživatele.");
+                if (!userData) {
+                    // Handle case where user data couldn't be fetched even though logged in
+                     console.error("Profile: Failed to get user data for UID:", currentUser);
+                     // Optionally display error messages in the profile fields
+                     if (profileEmail) profileEmail.textContent = 'Chyba';
+                     if (profileNickname) profileNickname.textContent = 'Chyba';
+                     if (profileJoined) profileJoined.textContent = 'Chyba';
+                     updateProgressSection(null); // Clear tables/stats
+                     updateAchievementsUI(null);
+                     updateSubjectBadgesUI(null);
+                     return; // Stop further processing
+                }
 
-                // Populate Profile Info, Stats Table, Achievements
-                loadProfileData(); // Assumes this fetches necessary data or uses existing if appropriate
+                // *** Pass fetched userData to display/update functions ***
+                loadProfileData(userData); // Pass the data object
                 updateProgressSection(userData);
                 updateAchievementsUI(userData);
                 updateSubjectBadgesUI(userData); // Load/Update badges here too
@@ -2978,10 +2990,10 @@ function setupEventListeners() {
                 if (profileJoined) profileJoined.textContent = 'Chyba';
                 updateProgressSection(null);
                 updateAchievementsUI(null);
-                updateSubjectBadgesUI(null); // Clear badges
             }
         } else {
             // Clear UI elements if user is logged out
+            console.log("Profile: User not logged in, clearing UI.");
             if (profileEmail) profileEmail.textContent = 'N/A';
             if (profileNickname) profileNickname.textContent = 'N/A';
             if (profileJoined) profileJoined.textContent = 'N/A';
@@ -2991,32 +3003,38 @@ function setupEventListeners() {
             if (deleteAccountMessage) deleteAccountMessage.textContent = '';
             updateProgressSection(null);
             updateAchievementsUI(null);
-            updateSubjectBadgesUI(null); // Clear badges
         }
     }
-    async function loadProfileData() {
-        if (!currentUser || !auth.currentUser || !profileEmail || !profileNickname || !profileJoined) return;
+     async function loadProfileData(userData) {
+        // Basic checks for required elements and the passed data
+        if (!auth.currentUser || !profileEmail || !profileNickname || !profileJoined || !userData) {
+             console.warn("loadProfileData: Missing required elements, auth state, or userData.");
+             // Set defaults or error states if elements exist but data/auth is missing
+             if (profileEmail) profileEmail.textContent = 'Chyba';
+             if (profileNickname) profileNickname.textContent = 'Chyba';
+             if (profileJoined) profileJoined.textContent = 'Chyba';
+             return;
+        }
 
+        // --- Get Email directly from auth state ---
         profileEmail.textContent = auth.currentUser.email || 'N/A';
 
-        try {
-            const userData = await getUserData(currentUser, db);
-            if (userData) {
-                profileNickname.textContent = userData.nickname || 'Nenastaveno';
+        profileNickname.textContent = userData.nickname || 'Nenastaveno';
 
-                if (userData.createdAt && userData.createdAt.toDate) {
-                    // Format the timestamp
-                    const joinDate = userData.createdAt.toDate();
-                    profileJoined.textContent = joinDate.toLocaleDateString('cs-CZ', {
-                        day: 'numeric', month: 'long', year: 'numeric'
-                    });
-                } else {
-                    profileJoined.textContent = 'Neznámé';
-                }
-            } else {
-                profileNickname.textContent = 'Chyba';
-                profileJoined.textContent = 'Chyba';
-            }
+        // Display Joined Date
+        if (userData.createdAt && userData.createdAt.toDate) {
+            // Format the timestamp
+            const joinDate = userData.createdAt.toDate();
+            profileJoined.textContent = joinDate.toLocaleDateString('cs-CZ', {
+                day: 'numeric', month: 'long', year: 'numeric'
+            });
+        } else {
+             // Log if createdAt is missing or not a timestamp
+             console.log("Profile: 'createdAt' field missing or invalid in userData for user:", currentUser, userData.createdAt);
+             profileJoined.textContent = 'Neznámé';
+        }
+
+        console.log("Profile data displayed:", { email: profileEmail.textContent, nickname: profileNickname.textContent, joined: profileJoined.textContent });
         } catch (error) {
             console.error("Error loading profile data:", error);
             profileNickname.textContent = 'Chyba načítání';
