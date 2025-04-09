@@ -128,12 +128,6 @@
       ]
     },
     {
-      "id": "favorite_tennis_player",
-      "type": "free_text",
-      "questionText": "Who is the tennis player from Spain mentioned as a favorite?",
-      "correctAnswer": "Carlos Alcaraz"
-    },
-    {
       "id": "hockey_rules",
       "type": "mc_single",
       "questionText": "How many players are on the ice for one team at the same time in ice hockey?",
