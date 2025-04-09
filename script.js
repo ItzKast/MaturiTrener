@@ -819,6 +819,9 @@ async function getUserData(uid, db, isNewlyRegistered = false) { // Added isNewl
             // --- Document Exists: Return Existing Data ---
             const data = doc.data();
             // Ensure essential structures exist after retrieval (Good practice)
+            console.log("[getUserData] Raw data from doc.data():", data);
+        console.log("[getUserData] Type of createdAt immediately after doc.data():", typeof data?.createdAt?.toDate);
+        console.log("[getUserData] Value of createdAt immediately after doc.data():", data?.createdAt);
             data.progress = data.progress || {};
             data.achievements = data.achievements || { /* default achievement levels */ };
             data.activity = data.activity || {};
@@ -1838,7 +1841,6 @@ function clearUserDataUI() {
     // Reset stats/quests/badges/achievements
     updateStatisticsSection(null);
     updateDailyQuestsUI([], false);
-    updateSubjectBadgesUI(null); // Call badge update with null
     updateAchievementsUI(null); // Clear achievements
 
     // Clear subject cards & progress table
@@ -2906,15 +2908,15 @@ async function showProfileSection() {
                  if (profileJoined) profileJoined.textContent = 'Chyba';
                  updateProgressSection(null); // Clear tables/stats
                  updateAchievementsUI(null);
-                 // updateSubjectBadgesUI(null); // Call if you have this function
                  return; // Stop further processing
             }
-
+            console.log("[showProfileSection] userData received from getUserData:", userData);
+            console.log("[showProfileSection] Type of createdAt AFTER getUserData:", typeof userData?.createdAt?.toDate);
+            console.log("[showProfileSection] Value of createdAt AFTER getUserData:", userData?.createdAt);
             // *** Pass fetched userData to display/update functions ***
             loadProfileData(userData); // Pass the data object
             updateProgressSection(userData);
             updateAchievementsUI(userData);
-            // updateSubjectBadgesUI(userData); // Load/Update badges here too (if function exists)
 
             // NOTE: Leaderboard listener is NOT attached here anymore, it's on the Dashboard.
 
@@ -2954,7 +2956,11 @@ async function loadProfileData(userData) {
          if (profileJoined) profileJoined.textContent = 'Chyba';
          return;
     }
-
+    console.log("[loadProfileData] userData received as parameter:", userData);
+        console.log("[loadProfileData] Type of createdAt at START of function:", typeof userData?.createdAt?.toDate);
+        console.log("[loadProfileData] Value of createdAt at START of function:", userData?.createdAt);
+        const hasToDateMethod = userData?.createdAt && typeof userData.createdAt.toDate === 'function';
+        console.log("[loadProfileData] Does createdAt have .toDate() method?", hasToDateMethod);
     // --- Get Email directly from auth state ---
     profileEmail.textContent = auth.currentUser.email || 'N/A';
 
@@ -2962,7 +2968,7 @@ async function loadProfileData(userData) {
     profileNickname.textContent = userData.nickname || 'Nenastaveno';
 
     // Display Joined Date
-    if (userData.createdAt && userData.createdAt.toDate) {
+    if (hasToDateMethod) {
         // Format the timestamp
         const joinDate = userData.createdAt.toDate();
         profileJoined.textContent = joinDate.toLocaleDateString('cs-CZ', {
