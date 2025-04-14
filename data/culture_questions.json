@@ -20,23 +20,24 @@
       ]
     },
     {
-      "id": "film_genres",
-      "type": "mc_multiple",
-      "questionText": "Which of the following are film genres? (Choose all that apply)",
-      "options": [
-        "Romance",
-        "Comedy",
-        "Detective",
-        "Horror",
-        "Documentary"
-      ],
-      "correctAnswers": [
-        "Romance",
-        "Comedy",
-        "Detective",
-        "Horror"
-      ]
-    },
+  "id": "film_genres",
+  "type": "mc_multiple",
+  "questionText": "Which of the following are film genres? (Choose all that apply)",
+  "options": [
+    "Romance",
+    "Comedy",
+    "Detective",
+    "Horror",
+    "Biography",
+    "Historical event"
+  ],
+  "correctAnswers": [
+    "Romance",
+    "Comedy",
+    "Detective",
+    "Horror"
+  ]
+},
     {
       "id": "cinema_vs_tv",
       "type": "mc_single",
