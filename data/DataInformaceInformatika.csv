@@ -3,7 +3,8 @@ Co je bit?;Základní jednotka informace;Typ paměti;Značka disku;Typ algoritmu
 Kolik bitů má 1 bajt?;8;16;4;10
 Co je bajt?;Jednotka informace tvořená 8 bity;Operační systém;Typ kabelu;Značka klávesnice
 Jaká je zkratka pro megabajt?;MB;Mb;Mg;Mbit
-Co je kilobajt?;1024 bajtů;1000 bajtů;512 bajtů;2048 bajtů
+Co je kilobajt?;1000 bajtů;1024 bajtů;512 bajtů;2048 bajtů
+Co je kibibajt?;1024 bajtů;1000 bajtů;512 bajtů;2048 bajtů
 Která z následujících jednotek je největší?;Terabajt;Gigabajt;Kilobajt;Megabajt
 Co je hardware?;Fyzická část počítače;Operační systém;Program;Typ internetu
 Co je software?;Programové vybavení počítače;Tiskárna;Monitor;Paměť RAM
