@@ -1393,10 +1393,12 @@ function updateAchievementsUI(userData) {
             tooltipText = descriptionTemplate.replace('{value}', nextLevelThreshold);
 
         } else {
-            // Max level reached
+            // --- Max level reached ---
             progressPercent = 100;
-            valueText = `<span class="max">MAX ${unit}</span>`; // Or just show total value
-            tooltipText = `Maximální úroveň dosažena! (${descriptionTemplate.replace('{value}', finalThreshold)})`;
+            valueText = `<span class="max">MAX ${unit}</span>`; // Or show total value: `${currentValue} ${unit}`
+
+            const lastLevelThreshold = definition.levels[maxLevel - 1];
+            tooltipText = `Maximální úroveň dosažena! (${descriptionTemplate.replace('{value}', lastLevelThreshold)})`; // Use lastLevelThreshold here
         }
 
         // Create List Item
